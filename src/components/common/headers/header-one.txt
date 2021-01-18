@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { Component } from 'react';
 import { Link, NavLink} from 'react-router-dom';
 import { IntlActions } from 'react-redux-multilingual'
 import Pace from 'react-pace-progress'
@@ -13,58 +13,34 @@ import LogoImage from "./common/logo";
 import {changeCurrency} from '../../../actions'
 import {connect} from "react-redux";
 
-// class HeaderOne extends Component {
-const HeaderOne = (props) => {
-        const [isLoading, setIsLoading] = useState(false);
-        // const [isOpen, setIsOpen] = useState(false);
-		// this.state = {
-		// 	isLoading:false
-		// }
+class HeaderOne extends Component {
 
+    constructor(props) {
+        super(props);
+
+		this.state = {
+			isLoading:false
+		}
+    }
     /*=====================
          Pre loader
          ==========================*/
-
-    //component did mount
-    useEffect(() => {
-        window.addEventListener('scroll', handleScroll)
-    }, []);
-
-    useEffect(() => {
+    componentDidMount() {
         setTimeout(function() {
             document.querySelector(".loader-wrapper").style = "display: none";
         }, 2000);
-        // setIsOpen({ open: true });
-        // window.addEventListener('scroll', handleScroll)
-    }, []);
 
-    //component will mount
-    // useEffect(() => {
-    //     window.addEventListener('scroll', handleScroll)
-    // }, []);
+        this.setState({ open: true });
+    }
 
-    //component will unmount
-    useEffect(() => {
-        return () => {
-            window.removeEventListener('scroll', handleScroll)
-        }
-    }, []);
+    componentWillMount(){
+        window.addEventListener('scroll', this.handleScroll);
+	}
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleScroll);
+    }
 
-    // componentDidMount() {
-    //     setTimeout(function() {
-    //         document.querySelector(".loader-wrapper").style = "display: none";
-    //     }, 2000);
-    //
-    //     this.setState({ open: true });
-    // }
-    // componentWillMount(){
-    //     window.addEventListener('scroll', this.handleScroll);
-	// }
-    // componentWillUnmount() {
-    //     window.removeEventListener('scroll', this.handleScroll);
-    // }
-
-    const handleScroll = () => {
+    handleScroll = () => {
         let number = window.pageXOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
         if (number >= 300) {
             if (window.innerWidth < 576) {
@@ -76,39 +52,38 @@ const HeaderOne = (props) => {
         }
     };
 
-    const changeLanguage = (lang) => {
+    changeLanguage(lang) {
         store.dispatch(IntlActions.setLocale(lang))
-	};
+	}
 
-    const openNav = () => {
+    openNav() {
         var openmyslide = document.getElementById("mySidenav");
         if(openmyslide){
             openmyslide.classList.add('open-side')
 		}
-    };
-
-    const openSearch = () => {
+    }
+    openSearch() {
         document.getElementById("search-overlay").style.display = "block";
-    };
+    }
 
-    const closeSearch = () => {
+    closeSearch() {
         document.getElementById("search-overlay").style.display = "none";
-    };
+    }
 
-	const load = () =>{
-		setIsLoading({isLoading: true});
+	load = ()=>{
+		this.setState({isLoading: true});
 		fetch().then(()=>{
 			// deal with data fetched
-			setIsLoading({isLoading: false})
+			this.setState({isLoading: false})
 		})
 	};
 
-
+	render() {
 
 		return (
 			<div>
 				<header id="sticky" className="sticky">
-					{isLoading ? <Pace color="#27ae60"/> : null}
+					{this.state.isLoading ? <Pace color="#27ae60"/> : null}
 					<div className="mobile-fix-option"></div>
 					{/*Top Header Component*/}
 					<TopBar/>
@@ -119,14 +94,14 @@ const HeaderOne = (props) => {
 								<div className="main-menu">
 									<div className="menu-left">
 										<div className="navbar">
-											<a href="javascript:void(0)" onClick={openNav}>
+											<a href="javascript:void(0)" onClick={this.openNav}>
 												<div className="bar-style"> <i className="fa fa-bars sidebar-bar" aria-hidden="true"></i></div>
 											</a>
 											{/*SideBar Navigation Component*/}
 											<SideBar/>
 										</div>
 										<div className="brand-logo">
-											<LogoImage />
+											<LogoImage logo={this.props.logoName} />
 										</div>
 									</div>
 									<div className="menu-right pull-right">
@@ -137,8 +112,8 @@ const HeaderOne = (props) => {
 											<div className="icon-nav">
 												<ul>
 													<li className="onhover-div mobile-search">
-														<div><img src={`${process.env.PUBLIC_URL}/assets/images/icon/search.png`} onClick={openSearch} className="img-fluid" alt="" />
-															<i className="fa fa-search" onClick={openSearch}></i></div>
+														<div><img src={`${process.env.PUBLIC_URL}/assets/images/icon/search.png`} onClick={this.openSearch} className="img-fluid" alt="" />
+															<i className="fa fa-search" onClick={this.openSearch}></i></div>
 													</li>
 													{/*<li className="onhover-div mobile-setting">*/}
 													{/*	<div><img src={`${process.env.PUBLIC_URL}/assets/images/icon/setting.png`} className="img-fluid" alt="" />*/}
@@ -172,7 +147,7 @@ const HeaderOne = (props) => {
 
                 <div id="search-overlay" className="search-overlay">
                     <div>
-                        <span className="closebtn" onClick={closeSearch} title="Close Overlay">×</span>
+                        <span className="closebtn" onClick={this.closeSearch} title="Close Overlay">×</span>
                         <div className="overlay-content">
                             <div className="container">
                                 <div className="row">
@@ -192,8 +167,8 @@ const HeaderOne = (props) => {
 
 			</div>
 			)
-	};
-
+	}
+}
 
 export default connect(null,
     { changeCurrency }

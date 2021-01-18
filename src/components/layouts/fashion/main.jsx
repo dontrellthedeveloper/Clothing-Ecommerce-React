@@ -162,6 +162,7 @@ class Fashion extends Component {
                         </div>
                     </section>
                 </div>
+
                 {/*Blog Section end*/}
                 <div className="container">
                     <div className="row">

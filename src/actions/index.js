@@ -13,7 +13,7 @@ export const fetchProductsBegin = () => ({
 export const receiveProducts = products => ({
     type: types.RECEIVE_PRODUCTS,
     products
-})
+});
 
 export const getAllProducts = () => dispatch => {
     dispatch(fetchProductsBegin());
@@ -21,11 +21,11 @@ export const getAllProducts = () => dispatch => {
         dispatch(receiveProducts(products));
         return products;
     })
-}
+};
 export const fetchSingleProduct = productId => ({
     type: types.FETCH_SINGLE_PRODUCT,
     productId
-})
+});
 
 
 

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import {Helmet} from 'react-helmet'
 import '../../common/index.scss';
 import Slider from 'react-slick';
@@ -20,27 +20,32 @@ import HeaderOne from "../../common/headers/header-one"
 import FooterOne from "../../common/footers/footer-one"
 import BlogSection from "../common/blogsection";
 
-class Beauty extends Component {
-    constructor(props){
-        super(props)
+// class Beauty extends Component {
+const Beauty = (props) => {
+    // const [isOpen, setIsOpen] = useState(false);
 
-        this.state = {
-            open: false
-        }
-    }
-    onOpenModal = () => {
-        this.setState({ open: true });
-    };
+    // this.state = {
+    // 	isLoading:false
+    // }
 
-    onCloseModal = () => {
-        this.setState({ open: false });
-    };
 
-    componentDidMount() {
+    // const onOpenModal = () => {
+    //     setIsOpen({ open: true });
+    // };
+    //
+    // const onCloseModal = () => {
+    //     setIsOpen({ open: false });
+    // };
+
+    useEffect(() => {
         document.getElementById("color").setAttribute("href", `${process.env.PUBLIC_URL}/assets/css/color3.css` );
-    }
+    }, []);
 
-    render(){
+    // componentDidMount() {
+    //     document.getElementById("color").setAttribute("href", `${process.env.PUBLIC_URL}/assets/css/color3.css` );
+    // }
+
+
 
         return (
             <div>
@@ -87,6 +92,9 @@ class Beauty extends Component {
                 </section>
 
 
+
+
+
                 {/*About Section*/}
                 {/*<section className="beauty-about">*/}
                 {/*    <div className="container">*/}
@@ -131,40 +139,100 @@ class Beauty extends Component {
                 <TopCollection type={'beauty'} />
                 {/*Product slider End*/}
 
-                {/*Video Section*/}
-                <section className="video-section pt-0">
-                    <div className="title1">
-                        <h4>special offer</h4>
-                        <h2 className="title-inner1">product tutorial</h2>
-                    </div>
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-md-8 offset-md-2">
-                                <a href="javascript:void(0)" onClick={this.onOpenModal}>
-                                    <div className="video-img">
-                                        <img src={`${process.env.PUBLIC_URL}/assets/images/beauty/video_1.jpg`} alt="" className="img-fluid blur-up lazyload" />
-                                        <div className="play-btn">
-                                            <span><i className="fa fa-play" aria-hidden="true"></i></span>
-                                        </div>
+
+
+
+                {/*Parallax banner*/}
+                <section className="p-0">
+                    <div className="full-banner parallax-banner1 parallax text-center p-left">
+                        <div className="container">
+                            <div className="row">
+                                <div className="col">
+                                    <div className="banner-contain">
+                                        <h2>2018</h2>
+                                        <h3>fashion trends</h3>
+                                        <h4>special offer</h4>
                                     </div>
-                                </a>
-                                <Modal
-                                    open={this.state.open}
-                                    onClose={this.onCloseModal}
-                                    id="video"
-                                    className="modal fade video-modal" center>
-                                    <iframe src="https://www.youtube.com/embed/FRIDLxM8Roc"
-                                            allowFullScreen></iframe>
-                                </Modal>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </section>
-                {/*Video Section End*/}
+                {/*Parallax banner End*/}
+
+
+
+                {/*/!*Video Section*!/*/}
+                {/*<section className="video-section pt-0">*/}
+                {/*    <div className="title1">*/}
+                {/*        <h4>special offer</h4>*/}
+                {/*        <h2 className="title-inner1">product tutorial</h2>*/}
+                {/*    </div>*/}
+                {/*    <div className="container">*/}
+                {/*        <div className="row">*/}
+                {/*            <div className="col-md-8 offset-md-2">*/}
+                {/*                <a href="javascript:void(0)" onClick={onOpenModal}>*/}
+                {/*                    <div className="video-img">*/}
+                {/*                        <img src={`${process.env.PUBLIC_URL}/assets/images/beauty/video_1.jpg`} alt="" className="img-fluid blur-up lazyload" />*/}
+                {/*                        <div className="play-btn">*/}
+                {/*                            <span><i className="fa fa-play" aria-hidden="true"></i></span>*/}
+                {/*                        </div>*/}
+                {/*                    </div>*/}
+                {/*                </a>*/}
+                {/*                <Modal*/}
+                {/*                    open={isOpen}*/}
+                {/*                    onClose={{ open: false }}*/}
+                {/*                    id="video"*/}
+                {/*                    className="modal fade video-modal" center>*/}
+                {/*                    <iframe src="https://www.youtube.com/embed/FRIDLxM8Roc"*/}
+                {/*                            allowFullScreen></iframe>*/}
+                {/*                </Modal>*/}
+                {/*            </div>*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
+                {/*</section>*/}
+                {/*/!*Video Section End*!/*/}
 
                 {/*Product slider*/}
                 <TopCollection type={'beauty'} />
                 {/*Product slider End*/}
+
+                {/*service layout*/}
+                <div className="container">
+                    <section className="service border-section small-section ">
+                        <div className="row">
+                            <div className="col-md-4 service-block">
+                                <div className="media">
+                                    <div dangerouslySetInnerHTML={{ __html: svgFreeShipping }} />
+                                    <div className="media-body">
+                                        <h4>free shipping</h4>
+                                        <p>free shipping world wide</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-4 service-block">
+                                <div className="media">
+                                    <div dangerouslySetInnerHTML={{ __html: svgservice }} />
+                                    <div className="media-body">
+                                        <h4>24 X 7 service</h4>
+                                        <p>online service for new customer</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-4 service-block">
+                                <div className="media">
+                                    <div dangerouslySetInnerHTML={{ __html: svgoffer }} />
+                                    <div className="media-body">
+                                        <h4>festival offer</h4>
+                                        <p>new online special festival offer</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+
 
                 {/*Blog Section*/}
                 <div className="container">
@@ -200,8 +268,8 @@ class Beauty extends Component {
                 {/*<ThemeSettings />*/}
             </div>
         )
-    }
-}
+    };
+
 
 
 export default Beauty;
