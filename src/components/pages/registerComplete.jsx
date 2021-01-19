@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {auth} from '../../firebase';
-import {toast, ToastContainer} from "react-toastify";
+import {toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Breadcrumb from "../common/breadcrumb";
 
@@ -15,7 +15,40 @@ const RegisterComplete = ({history}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        // validation
+        if(!email || !password) {
+            toast.error('Email and password is required');
+            return;
+        }
 
+        if(password.length < 6) {
+            toast.error('Password must be at least 6 characters long');
+            return;
+        }
+
+        try {
+            const result = await auth.signInWithEmailLink(
+                email,
+                window.location.href
+                );
+            // console.log('RESULT', result);
+            if(result.user.emailVerified) {
+                // remove user email from local storage
+                window.localStorage.removeItem('emailForRegistration');
+                // get user id token
+                let user = auth.currentUser;
+                await user.updatePassword(password);
+                const idTokenResult = await user.getIdTokenResult();
+                // redux store
+                console.log('user', user, 'idTokenResult', idTokenResult);
+                // redirect
+                history.push('/')
+            }
+
+
+        } catch (e) {
+            toast.error(e.message)
+        }
     };
 
     const completeRegistrationForm = () =>
@@ -52,7 +85,7 @@ const RegisterComplete = ({history}) => {
                     <div className="row">
                         <div className="col-lg-6 offset-lg-3">
                             <h2>Complete Registration</h2>
-                            <ToastContainer/>
+
                             {completeRegistrationForm()}
                         </div>
                     </div>

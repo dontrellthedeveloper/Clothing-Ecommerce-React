@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {auth} from '../../firebase';
-import {toast, ToastContainer} from "react-toastify";
+import {toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Breadcrumb from "../common/breadcrumb";
 
@@ -52,7 +52,7 @@ const Register = () => {
                         <div className="row">
                             <div className="col-lg-6 offset-lg-3">
                                 <h2>Create Account</h2>
-                                <ToastContainer/>
+
                                 {registerForm()}
                             </div>
                         </div>
