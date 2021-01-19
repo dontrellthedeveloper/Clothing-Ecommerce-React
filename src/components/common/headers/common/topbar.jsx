@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
 import { withTranslate } from 'react-redux-multilingual'
 
-class TopBar extends Component {
+// class TopBar extends Component {
+const TopBar = (props) => {
 
-    render() {
-        const {translate} = this.props;
+        const {translate} = props;
         return (
             <div className="top-header">
                 <div className="container">
@@ -13,15 +13,12 @@ class TopBar extends Component {
                         <div className="col-lg-6">
                             <div className="header-contact">
                                 <ul>
-                                    {/*<li>{translate('topbar_title', { theme_name: ' Multikart' })}</li>*/}
                                     <li><i className="fa fa-phone" aria-hidden="true"></i>{translate('call_us')}:  311 - 808 - 6039</li>
                                 </ul>
                             </div>
                         </div>
                         <div className="col-lg-6 text-right">
                             <ul className="header-dropdown">
-                                {/*<li className="mobile-wishlist compare-mobile"><Link to={`${process.env.PUBLIC_URL}/compare`}><i className="fa fa-random" aria-hidden="true"></i>{translate('compare')}</Link></li>*/}
-                                {/*<li className="mobile-wishlist"><Link to={`${process.env.PUBLIC_URL}/wishlist`}><i className="fa fa-heart" aria-hidden="true"></i>{translate('wishlist')}</Link></li>*/}
                                 <li>
                                     <Link to={`${process.env.PUBLIC_URL}/pages/login`} data-lng="en"><i className="fa fa-sign-in" aria-hidden="true"></i>Login</Link>
                                 </li>
@@ -51,8 +48,6 @@ class TopBar extends Component {
                 </div>
             </div>
         )
-    }
-}
-
+    };
 
 export default withTranslate(TopBar);

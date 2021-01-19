@@ -15,11 +15,10 @@ import {connect} from "react-redux";
 
 // class HeaderOne extends Component {
 const HeaderOne = (props) => {
+
         const [isLoading, setIsLoading] = useState(false);
-        // const [isOpen, setIsOpen] = useState(false);
-		// this.state = {
-		// 	isLoading:false
-		// }
+
+
 
     /*=====================
          Pre loader
@@ -111,7 +110,50 @@ const HeaderOne = (props) => {
 					{isLoading ? <Pace color="#27ae60"/> : null}
 					<div className="mobile-fix-option"></div>
 					{/*Top Header Component*/}
+					{/*<TopBar/>*/}
+
 					<TopBar/>
+                    {/*<div className="top-header">*/}
+                    {/*    <div className="container">*/}
+                    {/*        <div className="row">*/}
+                    {/*            <div className="col-lg-6">*/}
+                    {/*                <div className="header-contact">*/}
+                    {/*                    <ul>*/}
+                    {/*                        <li><i className="fa fa-phone" aria-hidden="true"></i>{translate('Call Us')}:  311 - 808 - 6039</li>*/}
+                    {/*                    </ul>*/}
+                    {/*                </div>*/}
+                    {/*            </div>*/}
+                    {/*            <div className="col-lg-6 text-right">*/}
+                    {/*                <ul className="header-dropdown">*/}
+                    {/*                    <li>*/}
+                    {/*                        <Link to={`${process.env.PUBLIC_URL}/pages/login`} data-lng="en"><i className="fa fa-sign-in" aria-hidden="true"></i>Login</Link>*/}
+                    {/*                    </li>*/}
+                    {/*                    <li>*/}
+                    {/*                        <Link to={`${process.env.PUBLIC_URL}/pages/register`} data-lng="en">Register</Link>*/}
+                    {/*                    </li>*/}
+
+
+
+
+                    {/*                    <li className="onhover-dropdown mobile-account">*/}
+                    {/*                        <i className="fa fa-user" aria-hidden="true"></i> {translate('my_account')}*/}
+                    {/*                        <ul className="onhover-show-div">*/}
+                    {/*                            <li>*/}
+                    {/*                                <Link to={`${process.env.PUBLIC_URL}/pages/dashboard`} data-lng="en"><i className="fa fa-th-large" aria-hidden="true"></i>Dashboard</Link>*/}
+                    {/*                            </li>*/}
+                    {/*                            <li className="mobile-wishlist"><Link to={`${process.env.PUBLIC_URL}/wishlist`}><i className="fa fa-heart" aria-hidden="true"></i>{translate('wishlist')}</Link></li>*/}
+                    {/*                            <li>*/}
+                    {/*                                <Link to={`${process.env.PUBLIC_URL}/pages/register`} data-lng="en"><i className="fa fa-sign-out" aria-hidden="true"></i>Logout</Link>*/}
+                    {/*                            </li>*/}
+
+                    {/*                        </ul>*/}
+                    {/*                    </li>*/}
+                    {/*                </ul>*/}
+                    {/*            </div>*/}
+                    {/*        </div>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
+
 
 					<div className="container">
 						<div className="row">
@@ -140,25 +182,6 @@ const HeaderOne = (props) => {
 														<div><img src={`${process.env.PUBLIC_URL}/assets/images/icon/search.png`} onClick={openSearch} className="img-fluid" alt="" />
 															<i className="fa fa-search" onClick={openSearch}></i></div>
 													</li>
-													{/*<li className="onhover-div mobile-setting">*/}
-													{/*	<div><img src={`${process.env.PUBLIC_URL}/assets/images/icon/setting.png`} className="img-fluid" alt="" />*/}
-													{/*		<i className="fa fa-cog"></i></div>*/}
-													{/*	<div className="show-div setting">*/}
-													{/*		<h6>language</h6>*/}
-													{/*		<ul>*/}
-													{/*			<li><a href={null} onClick={() => this.changeLanguage('en')}>English</a> </li>*/}
-													{/*			<li><a href={null} onClick={() => this.changeLanguage('fn')}>French</a> </li>*/}
-													{/*		</ul>*/}
-													{/*		<h6>currency</h6>*/}
-													{/*		<ul className="list-inline">*/}
-													{/*			<li><a href={null} onClick={() => this.props.changeCurrency('€')}>euro</a> </li>*/}
-													{/*			<li><a href={null} onClick={() => this.props.changeCurrency('₹')}>rupees</a> </li>*/}
-													{/*			<li><a href={null} onClick={() => this.props.changeCurrency('£')}>pound</a> </li>*/}
-													{/*			<li><a href={null} onClick={() => this.props.changeCurrency('$')}>doller</a> </li>*/}
-													{/*		</ul>*/}
-													{/*	</div>*/}
-													{/*</li>*/}
-													{/*Header Cart Component */}
 													<CartContainer/>
 												</ul>
 											</div>

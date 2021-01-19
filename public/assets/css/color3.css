@@ -491,12 +491,12 @@ button {
 
 .btn-solid {
   padding: 13px 29px;
-  color: #ffffff !important;
+  color: #737373 !important;
   letter-spacing: 0.05em;
   /*border: 2px solid #f0b54d;*/
   /*background-image: linear-gradient(30deg, #f0b54d 50%, transparent 50%);*/
   border: 2px solid #444;
-  background-image: linear-gradient(30deg, #737373 50%, transparent 50%);
+  background-image: linear-gradient(30deg, #fff 50%, transparent 50%);
   background-size: 540px;
   background-repeat: no-repeat;
   background-position: 0;
@@ -506,7 +506,7 @@ button {
 .btn-solid:hover {
   background-position: 100%;
   color: #000000 !important;
-  background-color: #ffffff;
+  background-color: #737373;
 }
 .btn-solid.black-btn {
   background-image: linear-gradient(30deg, #222222 50%, transparent 50%);
@@ -933,24 +933,27 @@ header {
 
 .top-header {
   /*background-color: #f8f8f8;*/
-  background-color: #dcdcdc;
+  /*background-color: #dcdcdc;*/
+  background-color: #79868F;
 }
 .top-header .header-contact {
   padding: 15px 0;
 }
 .top-header .header-contact li {
-  color: #999999;
+  /*color: #999999;*/
+  color: #fff;
   font-size: 14px;
   padding-right: 25px;
 }
 .top-header .header-contact li i {
   /*color: #f0b54d;*/
-  color: #444;
+  color: #fff;
   padding-right: 10px;
 }
 .top-header .header-dropdown li {
   cursor: pointer;
-  color: #999999;
+  /*color: #999999;*/
+  color: #fff;
   padding: 15px 25px;
   padding-right: 20px;
 }
@@ -963,7 +966,8 @@ r
 }
 .top-header .header-dropdown li a {
   text-transform: capitalize;
-  color: #999999;
+  /*color: #999999;*/
+  color: #fff;
 }
 .top-header .header-dropdown li i {
   padding-right: 5px;
@@ -975,7 +979,8 @@ r
   padding-bottom: 0;
 }
 .top-header .header-dropdown li a i {
-  color: #999999;
+  /*color: #999999;*/
+  color: #fff;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
