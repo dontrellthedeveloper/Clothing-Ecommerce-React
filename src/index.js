@@ -6,6 +6,23 @@ import { ScrollContext } from 'react-router-scroll-4';
 import { IntlReducer as Intl, IntlProvider } from 'react-redux-multilingual'
 import './index.scss';
 
+
+
+
+// My Imports
+import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import RegisterComplete from "./components/pages/registerComplete";
+
+
+
+
+
+
+
+
+
+
 // Import custom components
 import store from './store';
 import translations from './constants/translations'
@@ -132,7 +149,7 @@ class Root extends React.Component {
 								<Route path={`${process.env.PUBLIC_URL}/left-image/product/:id`} component={LeftImage}/>
 								<Route path={`${process.env.PUBLIC_URL}/right-image/product/:id`} component={RightImage}/>
 								<Route path={`${process.env.PUBLIC_URL}/vertical/product/:id`} component={Vertical}/>
-								
+
 
 								{/*Routes For custom Features*/}
 								<Route path={`${process.env.PUBLIC_URL}/cart`} component={Cart}/>
@@ -149,6 +166,7 @@ class Root extends React.Component {
                                 <Route path={`${process.env.PUBLIC_URL}/pages/lookbook`} component={lookbook}/>
                                 <Route path={`${process.env.PUBLIC_URL}/pages/login`} component={Login}/>
                                 <Route path={`${process.env.PUBLIC_URL}/pages/register`} component={Register}/>
+                                <Route path={`${process.env.PUBLIC_URL}/pages/register-complete`} component={RegisterComplete}/>
                                 <Route path={`${process.env.PUBLIC_URL}/pages/search`} component={Search}/>
                                 <Route path={`${process.env.PUBLIC_URL}/pages/collection`} component={Collection}/>
                                 <Route path={`${process.env.PUBLIC_URL}/pages/forget-password`} component={ForgetPassword}/>

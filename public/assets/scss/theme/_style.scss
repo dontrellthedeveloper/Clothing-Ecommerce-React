@@ -475,11 +475,11 @@ button {
 }
 .btn-solid {
   padding:13px 29px;
-  color: $white !important;
+  color: #737373 !important;
   letter-spacing: 0.05em;
-  border: 2px solid $theme-deafult;
-  background-image: -webkit-linear-gradient(30deg, $theme-deafult 50%, transparent 50%);
-  background-image: linear-gradient(30deg, $theme-deafult 50%, transparent 50%);
+  border: 2px solid #444;
+  background-image: -webkit-linear-gradient(30deg, #fff 50%, transparent 50%);
+  background-image: linear-gradient(30deg, #fff 50%, transparent 50%);
   background-size: 540px;
   background-repeat: no-repeat;
   background-position: 0;
@@ -487,8 +487,8 @@ button {
   transition: background 300ms ease-in-out;
   &:hover{
     background-position: 100%;
-    color: $black !important;
-    background-color: $white;
+    color: #000 !important;
+    background-color: #737373;
   }
   &.black-btn {
     background-image: -webkit-linear-gradient(30deg, $dark-font 50%, transparent 50%);
@@ -918,15 +918,16 @@ header {
   }
 }
 .top-header {
-  background-color: $top-header;
+  //background-color: $top-header;
+  background-color: #79868F;
   .header-contact {
     padding: 15px 0;
     li {
-      color: $header-font;
+      color: #fff;
       font-size: 14px;
       padding-right: 25px;
       i {
-        color: $theme-deafult;
+        color: #fff;
         padding-right: 10px;
       }
     }
@@ -934,7 +935,8 @@ header {
   .header-dropdown {
     li {
       cursor: pointer;
-      color:$header-font;
+      //color:$header-font;
+      color:#fff;
       padding: 15px 25px;
       padding-right: 20px;
       font-size: 14px;
@@ -946,7 +948,8 @@ header {
       }
       a {
         text-transform: capitalize;
-        color:$header-font;
+        //color:$header-font;
+        color:#fff;
       }
       i {
         padding-right: 5px;
@@ -960,19 +963,20 @@ header {
       }
       a {
         i {
-          color:$header-font;
+          //color:$header-font;
+          color:#fff;
           transition:all 0.5s ease ;
         }
         &:hover {
           i {
-            color: $theme-deafult;
+            color: #737373;
             transition:all 0.5s ease ;
           }
         }
       }
       &:hover {
         i {
-          color: $theme-deafult;
+          color: #737373;
           transition:all 0.5s ease ;
         }
       }
@@ -998,9 +1002,10 @@ header {
     background-color: $dark-font;
     .header-contact {
       li {
-        color: $grey;
+        //color: $grey;
+        color: #fff;
         i {
-          color: $grey;
+          color: #fff;
         }
       }
     }
@@ -6443,7 +6448,7 @@ footer{
 }
 .cart-qty-cls {
   position: absolute;
-  background: $theme-deafult;
+  background: #444;
   width: 20px;
   height: 20px;
   color: #fff;

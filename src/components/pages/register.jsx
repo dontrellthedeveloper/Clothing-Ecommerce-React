@@ -5,17 +5,17 @@ import 'react-toastify/dist/ReactToastify.css';
 import Breadcrumb from "../common/breadcrumb";
 
 
-const Register = (props) => {
+const Register = () => {
     const [email, setEmail] = useState('');
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
         const config = {
-            url: 'http://localhost:3000/pages/register/complete',
+            url: process.env.REACT_APP_REGISTER_REDIRECT_URL,
             handleCodeInApp: true
-        }
+        };
 
-        await auth.sendSignInLinkToEmail(email, config)
+        await auth.sendSignInLinkToEmail(email, config);
         toast.success(`Email is send to ${email}. Click the link to complete your registration.`);
 
         // save user email in local storage
