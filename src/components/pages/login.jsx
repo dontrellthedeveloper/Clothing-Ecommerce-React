@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import {useDispatch} from "react-redux";
 
 import Breadcrumb from "../common/breadcrumb";
-import {auth} from "../../firebase";
+import {auth, googleAuthProvider} from "../../firebase";
 import {toast} from "react-toastify";
 
 
@@ -38,6 +38,26 @@ const Login = ({history}) => {
         }
     };
 
+    const googleLogin = async () => {
+        auth.signInWithPopup(googleAuthProvider)
+            .then(async (result) => {
+                const {user} = result
+                const idTokenResult = await user.getIdTokenResult();
+                dispatch({
+                    type: "LOGGED_IN_USER",
+                    payload: {
+                        email: user.email,
+                        token: idTokenResult.token
+                    }
+                });
+                history.push("/");
+            })
+            .catch((err) => {
+                console.log(err);
+                toast.error(err.message);
+            });
+    };
+
 
     const loginForm = () =>
         <form onSubmit={handleSubmit} className="theme-form">
@@ -65,8 +85,17 @@ const Login = ({history}) => {
                 onClick={handleSubmit}
                 type='submit'
                 className="btn btn-solid"
-            >Login</button>
-            <button style={{marginLeft: '25px'}} type='submit' href="#" className="btn btn-solid">Google Login</button>
+            >
+                Login
+            </button>
+            <button
+                onClick={googleLogin}
+                style={{marginLeft: '25px', backgroundColor: '#DB4437'}}
+                type='submit'
+                className="btn btn-solid"
+
+            >Google Login
+            </button>
         </form>;
 
 
@@ -80,7 +109,11 @@ const Login = ({history}) => {
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-6">
-                                <h3>Login</h3>
+                                {loading ? (
+                                    <h3>Loading...</h3>
+                                ) : (
+                                    <h3>Login</h3>
+                                )}
                                 <div className="theme-card">
                                     {loginForm()}
                                 </div>
