@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 import Breadcrumb from "../common/breadcrumb";
 import {auth, googleAuthProvider} from "../../firebase";
@@ -11,6 +11,14 @@ const Login = ({history}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
+
+    const {user} = useSelector((state) => ({...state}));
+
+    useEffect(() => {
+        if(user && user.token) {
+            history.push('/');
+        }
+    }, [user]);
 
     let dispatch = useDispatch();
 
