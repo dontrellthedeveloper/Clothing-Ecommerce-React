@@ -13,16 +13,17 @@ import LogoImage from "./common/logo";
 import {changeCurrency} from '../../../actions'
 import {connect} from "react-redux";
 
-// class HeaderOne extends Component {
+
+import firebase from "firebase";
+import {useDispatch} from 'react-redux';
+import {useHistory} from 'react-router-dom';
+
+
 const HeaderOne = (props) => {
+    let dispatch = useDispatch();
+    let history = useHistory();
 
-        const [isLoading, setIsLoading] = useState(false);
-
-
-
-    /*=====================
-         Pre loader
-         ==========================*/
+    const [isLoading, setIsLoading] = useState(false);
 
     //component did mount
     useEffect(() => {
@@ -37,10 +38,6 @@ const HeaderOne = (props) => {
         // window.addEventListener('scroll', handleScroll)
     }, []);
 
-    //component will mount
-    // useEffect(() => {
-    //     window.addEventListener('scroll', handleScroll)
-    // }, []);
 
     //component will unmount
     useEffect(() => {
@@ -49,19 +46,6 @@ const HeaderOne = (props) => {
         }
     }, []);
 
-    // componentDidMount() {
-    //     setTimeout(function() {
-    //         document.querySelector(".loader-wrapper").style = "display: none";
-    //     }, 2000);
-    //
-    //     this.setState({ open: true });
-    // }
-    // componentWillMount(){
-    //     window.addEventListener('scroll', this.handleScroll);
-	// }
-    // componentWillUnmount() {
-    //     window.removeEventListener('scroll', this.handleScroll);
-    // }
 
     const handleScroll = () => {
         let number = window.pageXOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
@@ -103,6 +87,18 @@ const HeaderOne = (props) => {
 	};
 
 
+	const logout = () => {
+	  firebase.auth().signOut();
+	  dispatch({
+          type: "LOGOUT",
+          payload: null
+      });
+	  history.push("/pages/login");
+    };
+
+
+
+
 
 		return (
 			<div>
@@ -112,47 +108,47 @@ const HeaderOne = (props) => {
 					{/*Top Header Component*/}
 					{/*<TopBar/>*/}
 
-					<TopBar/>
-                    {/*<div className="top-header">*/}
-                    {/*    <div className="container">*/}
-                    {/*        <div className="row">*/}
-                    {/*            <div className="col-lg-6">*/}
-                    {/*                <div className="header-contact">*/}
-                    {/*                    <ul>*/}
-                    {/*                        <li><i className="fa fa-phone" aria-hidden="true"></i>{translate('Call Us')}:  311 - 808 - 6039</li>*/}
-                    {/*                    </ul>*/}
-                    {/*                </div>*/}
-                    {/*            </div>*/}
-                    {/*            <div className="col-lg-6 text-right">*/}
-                    {/*                <ul className="header-dropdown">*/}
-                    {/*                    <li>*/}
-                    {/*                        <Link to={`${process.env.PUBLIC_URL}/pages/login`} data-lng="en"><i className="fa fa-sign-in" aria-hidden="true"></i>Login</Link>*/}
-                    {/*                    </li>*/}
-                    {/*                    <li>*/}
-                    {/*                        <Link to={`${process.env.PUBLIC_URL}/pages/register`} data-lng="en">Register</Link>*/}
-                    {/*                    </li>*/}
+					{/*<TopBar/>*/}
+                    <div className="top-header">
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-lg-6">
+                                    <div className="header-contact">
+                                        <ul>
+                                            <li><i className="fa fa-phone" aria-hidden="true"></i>{('Call Us')}:  311 - 808 - 6039</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div className="col-lg-6 text-right">
+                                    <ul className="header-dropdown">
+                                        <li>
+                                            <Link to={`${process.env.PUBLIC_URL}/pages/login`} data-lng="en"><i className="fa fa-sign-in" aria-hidden="true"></i>Login</Link>
+                                        </li>
+                                        <li>
+                                            <Link to={`${process.env.PUBLIC_URL}/pages/register`} data-lng="en">Register</Link>
+                                        </li>
 
 
 
 
-                    {/*                    <li className="onhover-dropdown mobile-account">*/}
-                    {/*                        <i className="fa fa-user" aria-hidden="true"></i> {translate('my_account')}*/}
-                    {/*                        <ul className="onhover-show-div">*/}
-                    {/*                            <li>*/}
-                    {/*                                <Link to={`${process.env.PUBLIC_URL}/pages/dashboard`} data-lng="en"><i className="fa fa-th-large" aria-hidden="true"></i>Dashboard</Link>*/}
-                    {/*                            </li>*/}
-                    {/*                            <li className="mobile-wishlist"><Link to={`${process.env.PUBLIC_URL}/wishlist`}><i className="fa fa-heart" aria-hidden="true"></i>{translate('wishlist')}</Link></li>*/}
-                    {/*                            <li>*/}
-                    {/*                                <Link to={`${process.env.PUBLIC_URL}/pages/register`} data-lng="en"><i className="fa fa-sign-out" aria-hidden="true"></i>Logout</Link>*/}
-                    {/*                            </li>*/}
+                                        <li className="onhover-dropdown mobile-account">
+                                            <i className="fa fa-user" aria-hidden="true"></i> {('My Account')}
+                                            <ul className="onhover-show-div">
+                                                <li>
+                                                    <Link to={`${process.env.PUBLIC_URL}/pages/dashboard`} data-lng="en"><i className="fa fa-th-large" aria-hidden="true"></i>Dashboard</Link>
+                                                </li>
+                                                <li className="mobile-wishlist"><Link to={`${process.env.PUBLIC_URL}/wishlist`}><i className="fa fa-heart" aria-hidden="true"></i>{('Wishlist')}</Link></li>
+                                                <li>
+                                                    <Link to='#' onClick={logout} data-lng="en"><i className="fa fa-sign-out" aria-hidden="true"></i>Logout</Link>
+                                                </li>
 
-                    {/*                        </ul>*/}
-                    {/*                    </li>*/}
-                    {/*                </ul>*/}
-                    {/*            </div>*/}
-                    {/*        </div>*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
 					<div className="container">

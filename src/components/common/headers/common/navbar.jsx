@@ -6,8 +6,6 @@ import { withTranslate } from 'react-redux-multilingual'
 const NavBar = (props) => {
 
         const [navClose, setNavClose] = useState({right: '0px'});
-
-
         const { translate } = props;
 
         useEffect(() => {

@@ -20,14 +20,14 @@ class ForgetPassword extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-6 offset-lg-3">
-                                <h2>Create Account</h2>
+                                <h2>Forgot Password</h2>
                                 <form className="theme-form">
                                     <div className="form-row">
                                         <div className="col-md-12">
                                             <input type="text" className="form-control" id="email"
                                                    placeholder="Enter Your Email" required="" />
                                         </div>
-                                        <a href="#" className="btn btn-solid">Register</a>
+                                        <a href="#" className="btn btn-solid">Forgot Password</a>
                                     </div>
                                 </form>
                             </div>
