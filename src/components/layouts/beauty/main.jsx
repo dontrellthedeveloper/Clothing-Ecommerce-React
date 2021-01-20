@@ -52,7 +52,7 @@ const Beauty = (props) => {
         return (
             <div>
                 <Helmet>
-                    <title>MultiKart | Beauty Store</title>
+                    <title>Hustle x Bustle</title>
                 </Helmet>
                 <HeaderOne logoName={'logo.png'}/>
                 <section className="p-0">
@@ -413,7 +413,7 @@ const Beauty = (props) => {
 
                 {/*Parallax banner*/}
                 <section className="p-0">
-                    <div className="full-banner parallax-banner1 parallax text-center p-left">
+                    <div className="full-banner parallax-banner2 parallax text-center p-left">
                         <div className="container">
                             <div className="row">
                                 <div className="col">
@@ -436,6 +436,8 @@ const Beauty = (props) => {
                 <div style={{paddingBottom: '70px'}}>
                     <MultiSlider type={'kids'} />
                 </div>
+
+
 
                 {/*Product Slider End*/}
 

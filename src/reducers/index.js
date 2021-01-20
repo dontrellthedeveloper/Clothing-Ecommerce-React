@@ -8,6 +8,8 @@ import filtersReducer from './filters';
 import wishlistReducer from './wishlist';
 import compareReducer from './compare';
 
+import {userReducer} from './userReducer'
+
 
 const rootReducer = combineReducers({
     data: productReducer,
@@ -15,6 +17,7 @@ const rootReducer = combineReducers({
     filters: filtersReducer,
     wishlist: wishlistReducer,
     compare: compareReducer,
+    user: userReducer,
     Intl
 });
 

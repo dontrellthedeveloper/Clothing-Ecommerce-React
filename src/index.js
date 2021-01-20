@@ -5,8 +5,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { ScrollContext } from 'react-router-scroll-4';
 import { IntlReducer as Intl, IntlProvider } from 'react-redux-multilingual'
 import './index.scss';
-
-
+import {createStore} from "redux";
 
 
 // My Imports
@@ -28,6 +27,7 @@ import store from './store';
 import translations from './constants/translations'
 import { getAllProducts } from './actions'
 import Landing from './components/landing'
+import {composeWithDevTools} from "redux-devtools-extension";
 
 
 // Layouts
@@ -104,11 +104,14 @@ import ElementProductTab from "./components/features/product/element-product-tab
 // Portfolio Features
 import GridCols from "./components/features/portfolio/grid-cols"
 import MasonaryGridCols from "./components/features/portfolio/masonary-grid-cols"
+import rootReducer from "./reducers";
 
 
-class Root extends React.Component {
+// class Root extends React.Component {
+const Root = () => {
 
-    render() {
+    // const store = createStore(rootReducer, composeWithDevTools());
+
         store.dispatch(getAllProducts());
 
         return(
@@ -210,8 +213,8 @@ class Root extends React.Component {
                 </Provider>
             </React.Fragment>
     	);
-    }
-}
+    };
+
 
 ReactDOM.render(<Root />, document.getElementById('root'));
 
