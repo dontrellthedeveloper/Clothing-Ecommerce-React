@@ -81,6 +81,9 @@ const Login = ({history}) => {
                     placeholder="Enter Your Password"
                 />
             </div>
+            <p>
+                <Link to={`${process.env.PUBLIC_URL}/pages/forget-password`} style={{color: '#737373'}}>Forgot Password?</Link>
+            </p>
             <button
                 onClick={handleSubmit}
                 type='submit'

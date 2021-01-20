@@ -15,12 +15,13 @@ import {connect} from "react-redux";
 
 
 import firebase from "firebase";
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 
 
 const HeaderOne = (props) => {
     let dispatch = useDispatch();
+    let {user} = useSelector((state) => ({...state}));
     let history = useHistory();
 
     const [isLoading, setIsLoading] = useState(false);
@@ -121,29 +122,33 @@ const HeaderOne = (props) => {
                                 </div>
                                 <div className="col-lg-6 text-right">
                                     <ul className="header-dropdown">
-                                        <li>
-                                            <Link to={`${process.env.PUBLIC_URL}/pages/login`} data-lng="en"><i className="fa fa-sign-in" aria-hidden="true"></i>Login</Link>
-                                        </li>
-                                        {/*<li>*/}
-                                        {/*    <Link to={`${process.env.PUBLIC_URL}/pages/register`} data-lng="en">Register</Link>*/}
-                                        {/*</li>*/}
 
-
-
-
-                                        <li className="onhover-dropdown mobile-account">
-                                            <i className="fa fa-user" aria-hidden="true"></i> {('My Account')}
-                                            <ul className="onhover-show-div">
-                                                <li>
-                                                    <Link to={`${process.env.PUBLIC_URL}/pages/dashboard`} data-lng="en"><i className="fa fa-th-large" aria-hidden="true"></i>Dashboard</Link>
-                                                </li>
-                                                <li className="mobile-wishlist"><Link to={`${process.env.PUBLIC_URL}/wishlist`}><i className="fa fa-heart" aria-hidden="true"></i>{('Wishlist')}</Link></li>
-                                                <li>
-                                                    <Link to='#' onClick={logout} data-lng="en"><i className="fa fa-sign-out" aria-hidden="true"></i>Logout</Link>
-                                                </li>
-
-                                            </ul>
-                                        </li>
+                                        {!user && (
+                                            <li>
+                                                <Link to={`${process.env.PUBLIC_URL}/pages/login`} data-lng="en"><i className="fa fa-sign-in" aria-hidden="true"></i>Login</Link>
+                                            </li>
+                                        )}
+                                        {/*{!user && (*/}
+                                        {/*    <li>*/}
+                                        {/*        <Link to={`${process.env.PUBLIC_URL}/pages/register`} data-lng="en">Register</Link>*/}
+                                        {/*    </li>*/}
+                                        {/*)}*/}
+                                        {user && (
+                                            <li className="onhover-dropdown mobile-account"
+                                            >
+                                                <i className="fa fa-user" aria-hidden="true"></i>
+                                                {user.email && user.email.split("@")[0]}
+                                                <ul className="onhover-show-div">
+                                                    <li>
+                                                        <Link to={`${process.env.PUBLIC_URL}/pages/dashboard`} data-lng="en"><i className="fa fa-th-large" aria-hidden="true"></i>Dashboard</Link>
+                                                    </li>
+                                                    <li className="mobile-wishlist"><Link to={`${process.env.PUBLIC_URL}/wishlist`}><i className="fa fa-heart" aria-hidden="true"></i>{('Wishlist')}</Link></li>
+                                                    <li>
+                                                        <Link to='#' onClick={logout} data-lng="en"><i className="fa fa-sign-out" aria-hidden="true"></i>Logout</Link>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        )}
                                     </ul>
                                 </div>
                             </div>
@@ -188,6 +193,14 @@ const HeaderOne = (props) => {
 						</div>
 					</div>
 				</header>
+
+
+
+                {/*<div className="ghostHidden">*/}
+                {/*    */}
+                {/*</div>*/}
+
+
 
                 <div id="search-overlay" className="search-overlay">
                     <div>

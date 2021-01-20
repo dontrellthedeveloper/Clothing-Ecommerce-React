@@ -790,7 +790,8 @@ header {
   content: "\f107";
   font-family: FontAwesome;
   position: absolute;
-  right: 3px;
+  /*right: 3px;*/
+  right: -15px;
 }
 .onhover-dropdown .onhover-show-div {
   top: 50px;
