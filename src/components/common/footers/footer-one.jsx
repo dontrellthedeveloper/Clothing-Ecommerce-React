@@ -121,13 +121,12 @@ class FooterOne extends Component {
                                     </div>
                                     <div className="footer-contant">
                                         <ul className="contact-list">
-                                            <li><i className="fa fa-map-marker"></i>Multikart Demo Store, Demo store
-                                                India 345-659
+                                            <li><i className="fa fa-map-marker"></i>100102 Westwood Blvd, Los Angeles, CA 90024
                                             </li>
-                                            <li><i className="fa fa-phone"></i>Call Us: 123-456-7898</li>
+                                            <li><i className="fa fa-phone"></i>Call Us: (311) 808 6039</li>
                                             <li><i className="fa fa-envelope-o"></i>Email Us: <a
-                                                href="#">Support@Fiot.com</a></li>
-                                            <li><i className="fa fa-fax"></i>Fax: 123456</li>
+                                                href="#">support@hustlexbustle.com</a></li>
+                                            <li><i className="fa fa-fax"></i>Fax: (818) 123 0453</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -140,8 +139,7 @@ class FooterOne extends Component {
                         <div className="row">
                             <div className="col-xl-6 col-md-6 col-sm-12">
                                 <div className="footer-end">
-                                    <p><i className="fa fa-copyright" aria-hidden="true"></i> 2018-19 themeforest
-                                        powered by pixelstrap</p>
+                                    <p><i className="fa fa-copyright" aria-hidden="true"></i> 2021 Hustle & Bustle, Inc.</p>
                                 </div>
                             </div>
                             <div className="col-xl-6 col-md-6 col-sm-12">

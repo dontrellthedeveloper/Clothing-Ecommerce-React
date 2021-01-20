@@ -124,9 +124,9 @@ const HeaderOne = (props) => {
                                         <li>
                                             <Link to={`${process.env.PUBLIC_URL}/pages/login`} data-lng="en"><i className="fa fa-sign-in" aria-hidden="true"></i>Login</Link>
                                         </li>
-                                        <li>
-                                            <Link to={`${process.env.PUBLIC_URL}/pages/register`} data-lng="en">Register</Link>
-                                        </li>
+                                        {/*<li>*/}
+                                        {/*    <Link to={`${process.env.PUBLIC_URL}/pages/register`} data-lng="en">Register</Link>*/}
+                                        {/*</li>*/}
 
 
 
