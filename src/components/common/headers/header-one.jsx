@@ -140,7 +140,7 @@ const HeaderOne = (props) => {
                                                 {user.email && user.email.split("@")[0]}
                                                 <ul className="onhover-show-div">
                                                     <li>
-                                                        <Link to={`${process.env.PUBLIC_URL}/pages/dashboard`} data-lng="en"><i className="fa fa-th-large" aria-hidden="true"></i>Dashboard</Link>
+                                                        <Link to={`${process.env.PUBLIC_URL}/admin/dashboard`} data-lng="en"><i className="fa fa-th-large" aria-hidden="true"></i>Dashboard</Link>
                                                     </li>
                                                     <li className="mobile-wishlist"><Link to={`${process.env.PUBLIC_URL}/wishlist`}><i className="fa fa-heart" aria-hidden="true"></i>{('Wishlist')}</Link></li>
                                                     <li>

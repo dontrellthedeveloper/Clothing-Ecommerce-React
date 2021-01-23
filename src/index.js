@@ -12,8 +12,8 @@ import {createStore} from "redux";
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import RegisterComplete from "./components/pages/registerComplete";
+import Dashboard from './components/pages/admin/dashboard';
 
-import {auth} from './firebase';
 
 
 
@@ -79,7 +79,7 @@ import Search from './components/pages/search'
 import Collection from './components/pages/collection'
 import ForgetPassword from './components/pages/forget-password'
 import Contact from './components/pages/contact'
-import Dashboard from './components/pages/dashboard'
+import Dashboard2 from './components/pages/dashboard2'
 import Faq from './components/pages/faq'
 
 // Blog Pages
@@ -121,9 +121,9 @@ const Root = () => {
                 <ToastContainer/>
                 <Provider store={store}>
                     <IntlProvider translations={translations} locale='en'>
-                        <ReducerConfig/>
-                    <BrowserRouter basename={'/'} >
 
+                    <BrowserRouter basename={'/'} >
+                        <ReducerConfig/>
                             <ScrollContext>
                                 <Switch>
                                     {/*<Route exact path={`${process.env.PUBLIC_URL}/`} component={Landing}/>*/}
@@ -180,7 +180,8 @@ const Root = () => {
                                         <Route path={`${process.env.PUBLIC_URL}/pages/collection`} component={Collection}/>
                                         <Route path={`${process.env.PUBLIC_URL}/pages/forget-password`} component={ForgetPassword}/>
                                         <Route path={`${process.env.PUBLIC_URL}/pages/contact`} component={Contact}/>
-                                        <Route path={`${process.env.PUBLIC_URL}/pages/dashboard`} component={Dashboard}/>
+                                        {/*<Route path={`${process.env.PUBLIC_URL}/pages/dashboard`} component={Dashboard2}/>*/}
+                                        <Route path={`${process.env.PUBLIC_URL}/admin/dashboard`} component={Dashboard}/>
                                         <Route path={`${process.env.PUBLIC_URL}/pages/faq`} component={Faq}/>
 
                                         {/*Features*/}

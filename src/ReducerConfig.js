@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import {auth} from './firebase';
 import {useDispatch} from "react-redux";
-import {createOrUpdateUser, currentUser} from "./functions/auth";
+import {currentUser} from "./functions/auth";
 
 
 const ReducerConfig = (props) => {

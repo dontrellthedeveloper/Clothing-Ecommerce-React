@@ -11,10 +11,8 @@ import {createOrUpdateUser} from "../../functions/auth";
 
 const Login = ({history}) => {
 
-
-
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('dontrellknight@gmail.com');
+    const [password, setPassword] = useState('password1234');
     const [loading, setLoading] = useState(false);
 
     const {user} = useSelector((state) => ({...state}));
@@ -24,6 +22,15 @@ const Login = ({history}) => {
             history.push('/');
         }
     }, [user]);
+/*
+    const roleBasedRedirect = (res) => {
+        if(res.data.role === 'admin') {
+            history.push('/admin/dashboard')
+        }  else {
+            history.push('/user/history')
+        }
+    };
+*/
 
     let dispatch = useDispatch();
 
@@ -48,9 +55,11 @@ const Login = ({history}) => {
                             _id: res.data._id
                         }
                     });
+                    // roleBasedRedirect(res)
                 })
                 .catch(err => console.log(err));
             history.push('/');
+
         } catch (error) {
             console.log(error);
             toast.error(error.message);
@@ -75,6 +84,7 @@ const Login = ({history}) => {
                                 _id: res.data._id
                             }
                         });
+                        // roleBasedRedirect(res)
                     })
                     .catch(err => console.log(err));
                 history.push("/");
