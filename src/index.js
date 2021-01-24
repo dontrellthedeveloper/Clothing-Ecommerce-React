@@ -13,7 +13,8 @@ import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import RegisterComplete from "./components/pages/registerComplete";
 import Dashboard from './components/pages/admin/dashboard';
-
+import UserHistory from "./components/pages/user/history";
+import UserRoute from "./components/routes/UserRoute";
 
 
 
@@ -180,9 +181,24 @@ const Root = () => {
                                         <Route path={`${process.env.PUBLIC_URL}/pages/collection`} component={Collection}/>
                                         <Route path={`${process.env.PUBLIC_URL}/pages/forget-password`} component={ForgetPassword}/>
                                         <Route path={`${process.env.PUBLIC_URL}/pages/contact`} component={Contact}/>
+                                        <Route path={`${process.env.PUBLIC_URL}/pages/faq`} component={Faq}/>
+
+
+
+
+
+
+
+                                        {/*Dashboard*/}
                                         {/*<Route path={`${process.env.PUBLIC_URL}/pages/dashboard`} component={Dashboard2}/>*/}
                                         <Route path={`${process.env.PUBLIC_URL}/admin/dashboard`} component={Dashboard}/>
-                                        <Route path={`${process.env.PUBLIC_URL}/pages/faq`} component={Faq}/>
+                                        <UserRoute path={`${process.env.PUBLIC_URL}/user/history`} component={UserHistory}/>
+
+
+
+
+
+
 
                                         {/*Features*/}
                                         {/*Theme Elements*/}

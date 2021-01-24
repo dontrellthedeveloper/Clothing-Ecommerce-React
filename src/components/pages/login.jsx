@@ -22,7 +22,10 @@ const Login = ({history}) => {
             history.push('/');
         }
     }, [user]);
-/*
+
+    let dispatch = useDispatch();
+
+    /*
     const roleBasedRedirect = (res) => {
         if(res.data.role === 'admin') {
             history.push('/admin/dashboard')
@@ -30,9 +33,9 @@ const Login = ({history}) => {
             history.push('/user/history')
         }
     };
-*/
+    */
 
-    let dispatch = useDispatch();
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -55,10 +58,10 @@ const Login = ({history}) => {
                             _id: res.data._id
                         }
                     });
-                    // roleBasedRedirect(res)
+                  //  roleBasedRedirect(res)
                 })
                 .catch(err => console.log(err));
-            history.push('/');
+             history.push('/');
 
         } catch (error) {
             console.log(error);
@@ -84,10 +87,10 @@ const Login = ({history}) => {
                                 _id: res.data._id
                             }
                         });
-                        // roleBasedRedirect(res)
+                       // roleBasedRedirect(res)
                     })
                     .catch(err => console.log(err));
-                history.push("/");
+                 history.push("/");
             })
             .catch((err) => {
                 console.log(err);
