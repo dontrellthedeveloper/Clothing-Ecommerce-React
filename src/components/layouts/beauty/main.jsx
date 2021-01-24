@@ -54,7 +54,9 @@ const Beauty = (props) => {
                 <Helmet>
                     <title>Hustle x Bustle</title>
                 </Helmet>
-                <HeaderOne logoName={'logo.png'}/>
+
+                {/*<HeaderOne logoName={'logo.png'}/>*/}
+
                 <section className="p-0">
                     <Slider className="slide-1 home-slider">
                         <div>
@@ -516,7 +518,7 @@ const Beauty = (props) => {
                 {/*</div>*/}
                 {/*Instagram Section End*/}
 
-                <FooterOne logoName={'layout3/logo.png'}/>
+                {/*<FooterOne logoName={'layout3/logo.png'}/>*/}
 
                 {/*<ThemeSettings />*/}
             </div>

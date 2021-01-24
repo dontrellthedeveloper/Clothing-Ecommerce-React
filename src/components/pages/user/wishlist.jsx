@@ -3,11 +3,11 @@ import Breadcrumb from "../../common/breadcrumb";
 import UserNav from "../../nav/UserNav";
 import {Link} from "react-router-dom";
 
-const UserHistory = (props) => {
+const UserWishlist = (props) => {
 
     return (
         <div>
-            <Breadcrumb title={'History'}/>
+            <Breadcrumb title={'Wishlist'}/>
 
 
             {/*Dashboard section*/}
@@ -20,7 +20,6 @@ const UserHistory = (props) => {
                                     my account
                                 </a>
                             </div>
-                            {/*<UserNav/>*/}
                             <div className="dashboard-left">
                                 <div className="collection-mobile-back">
                                     <span className="filter-back">
@@ -30,14 +29,14 @@ const UserHistory = (props) => {
                                 <div className="block-content">
                                     <ul>
                                         {/*<li className="active">*/}
-                                        <li className="active">
+                                        <li >
                                             <Link to={`${process.env.PUBLIC_URL}/user/history`}>History</Link>
                                         </li>
                                         <li>
                                             <Link to={`${process.env.PUBLIC_URL}/user/password`}>Password</Link>
 
                                         </li>
-                                        <li>
+                                        <li className="active">
                                             <Link to={`${process.env.PUBLIC_URL}/user/wishlist`}>Wishlist</Link>
                                         </li>
                                     </ul>
@@ -125,4 +124,4 @@ const UserHistory = (props) => {
 };
 
 
-export default UserHistory
+export default UserWishlist;

@@ -10378,6 +10378,7 @@ body.rtl {
 }
 .rtl .breadcrumb-item + .breadcrumb-item:before {
   padding-right: 0;
+  /*color: #fff !important;*/
   padding-left: 0.5rem;
 }
 .rtl .top-header .header-dropdown li:first-child {

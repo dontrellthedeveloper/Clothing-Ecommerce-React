@@ -8,13 +8,43 @@ import './index.scss';
 import {createStore} from "redux";
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // My Imports
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import RegisterComplete from "./components/pages/registerComplete";
+import HeaderOne from "./components/common/headers/header-one";
+import FooterOne from "./components/common/footers/footer-one";
+
+// Admin Routes
 import Dashboard from './components/pages/admin/dashboard';
-import UserHistory from "./components/pages/user/history";
+
+// User Routes
 import UserRoute from "./components/routes/UserRoute";
+import UserHistory from "./components/pages/user/history";
+import UserPassword from "./components/pages/user/password";
+import UserWishlist from "./components/pages/user/wishlist";
+
+
+
+
+
+
+
 
 
 
@@ -109,6 +139,7 @@ import MasonaryGridCols from "./components/features/portfolio/masonary-grid-cols
 import rootReducer from "./reducers";
 
 
+
 // class Root extends React.Component {
 const Root = () => {
 
@@ -125,7 +156,9 @@ const Root = () => {
 
                     <BrowserRouter basename={'/'} >
                         <ReducerConfig/>
+                        <HeaderOne logoName={'logo.png'}/>
                             <ScrollContext>
+
                                 <Switch>
                                     {/*<Route exact path={`${process.env.PUBLIC_URL}/`} component={Landing}/>*/}
                                     <Route exact path={`${process.env.PUBLIC_URL}/`} component={Beauty}/>
@@ -136,7 +169,8 @@ const Root = () => {
                                     <Route path={`${process.env.PUBLIC_URL}/watch`} component={Watch}/>
                                     <Route path={`${process.env.PUBLIC_URL}/kids`} component={Kids}/>
                                     <Route path={`${process.env.PUBLIC_URL}/beauty`} component={Beauty}/>
-                                    <Layout>
+
+                                    {/*<Layout>*/}
 
                                         {/*Routes For Layouts*/}
                                         <Route path={`${process.env.PUBLIC_URL}/fashion`} component={Fashion}/>
@@ -193,6 +227,8 @@ const Root = () => {
                                         {/*<Route path={`${process.env.PUBLIC_URL}/pages/dashboard`} component={Dashboard2}/>*/}
                                         <Route path={`${process.env.PUBLIC_URL}/admin/dashboard`} component={Dashboard}/>
                                         <UserRoute path={`${process.env.PUBLIC_URL}/user/history`} component={UserHistory}/>
+                                        <UserRoute path={`${process.env.PUBLIC_URL}/user/password`} component={UserPassword}/>
+                                        <UserRoute path={`${process.env.PUBLIC_URL}/user/wishlist`} component={UserWishlist}/>
 
 
 
@@ -226,9 +262,11 @@ const Root = () => {
                                         <Route path={`${process.env.PUBLIC_URL}/blog/blog-page`} component={BlogPage}/>
 
                                         {/* <Route exact path="*" component={PageNotFound} /> */}
-                                    </Layout>
+                                    {/*</Layout>*/}
                                  </Switch>
+
                               </ScrollContext>
+                        <FooterOne logoName={'layout3/logo.png'}/>
                         </BrowserRouter>
                     </IntlProvider>
                 </Provider>
