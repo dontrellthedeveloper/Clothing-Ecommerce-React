@@ -31,7 +31,8 @@ import HeaderOne from "./components/common/headers/header-one";
 import FooterOne from "./components/common/footers/footer-one";
 
 // Admin Routes
-import Dashboard from './components/pages/admin/dashboard';
+import AdminRoute from "./components/routes/AdminRoute";
+import AdminDashboard from './components/pages/admin/dashboard';
 
 // User Routes
 import UserRoute from "./components/routes/UserRoute";
@@ -224,11 +225,11 @@ const Root = () => {
 
 
                                         {/*Dashboard*/}
-                                        {/*<Route path={`${process.env.PUBLIC_URL}/pages/dashboard`} component={Dashboard2}/>*/}
-                                        <Route path={`${process.env.PUBLIC_URL}/admin/dashboard`} component={Dashboard}/>
                                         <UserRoute path={`${process.env.PUBLIC_URL}/user/history`} component={UserHistory}/>
                                         <UserRoute path={`${process.env.PUBLIC_URL}/user/password`} component={UserPassword}/>
                                         <UserRoute path={`${process.env.PUBLIC_URL}/user/wishlist`} component={UserWishlist}/>
+
+                                        <AdminRoute path={`${process.env.PUBLIC_URL}/admin/dashboard`} component={AdminDashboard}/>
 
 
 

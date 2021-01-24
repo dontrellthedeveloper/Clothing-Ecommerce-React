@@ -1,7 +1,7 @@
 import React from 'react';
 import Breadcrumb from "../../common/breadcrumb";
 
-const Dashboard = (props) => {
+const AdminDashboard = (props) => {
 
     return (
         <div>
@@ -119,4 +119,4 @@ const Dashboard = (props) => {
 };
 
 
-export default Dashboard
+export default AdminDashboard

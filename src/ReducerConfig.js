@@ -31,7 +31,7 @@ const ReducerConfig = (props) => {
             }
         });
         return () => unsubscribe();
-    }, []);
+    }, [dispatch]);
 
     return (
         <div>
