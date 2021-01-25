@@ -5,6 +5,7 @@ import {auth} from "../../../../firebase";
 import {toast} from "react-toastify";
 import {useSelector} from "react-redux";
 import {createCategory, getCategories, removeCategory} from "../../../../functions/category";
+import {DeleteOutlined, EditOutlined} from '@ant-design/icons';
 
 
 const CategoryCreate = (props) => {
@@ -28,13 +29,34 @@ const CategoryCreate = (props) => {
             .then(res => {
                 setLoading(false);
                 setName("");
-                toast.success(`"${res.data.name}" is created`)
+                toast.success(`"${res.data.name}" is created`);
+                loadCategories();
             })
             .catch(err => {
                 console.log(err);
                 setLoading(false);
                 if(err.response.status === 400) toast.error(err.response.data)
             })
+    };
+
+    const handeRemove = async (slug) => {
+        // let answer = window.confirm("Are you sure you want to delete");
+        // console.log(answer, slug );
+        if(window.confirm("Are you sure you want to delete?")) {
+            setLoading(true)
+            removeCategory(slug, user.token)
+                .then((res) => {
+                    setLoading(false);
+                    toast.error(`${res.data.name} deleted`);
+                    loadCategories();
+                })
+                .catch((err) => {
+                    if(err.response.status === 400) {
+                        setLoading(false);
+                        toast.error(err.response.data);
+                    }
+                });
+        }
     };
 
     const categoryForm = () => (
@@ -48,7 +70,7 @@ const CategoryCreate = (props) => {
                     <div className="box-content">
                         <form onSubmit={handleSubmit} style={{marginTop: '35px'}}>
                             <div className="form-group">
-                                <label>Name</label>
+                                <label>Category Name</label>
                                 <input
                                     type="text"
                                     onChange={(e) => setName(e.target.value)}
@@ -70,7 +92,22 @@ const CategoryCreate = (props) => {
                             >
                                 Save
                             </button>
-                            <h6>{JSON.stringify(categories)}</h6>
+                            <h4 style={{marginTop: "40px"}}>
+                                {categories.map((c) => (
+                                    <div className="alert alert-secondary" style={{ textAlign: "left"}} key={c._id}>
+                                        {c.name}
+                                        <div className="btn btn-sm" style={{float: "right", marginTop: "-5px"}}>
+                                            <Link style={{marginRight: '15px'}}  to={`/admin/category/${c.slug}`}>
+                                                <EditOutlined className="text-secondary"/>
+                                            </Link>
+                                            <span onClick={() => handeRemove(c.slug)} style={{marginRight: '5px'}}>
+                                                <DeleteOutlined className="text-danger"/>
+                                            </span>
+
+                                        </div>
+                                    </div>
+                                ))}
+                            </h4>
                         </form>
                     </div>
                 </div>
