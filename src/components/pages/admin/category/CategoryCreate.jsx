@@ -1,51 +1,61 @@
-import React, {useState} from 'react';
-import Breadcrumb from "../../common/breadcrumb";
-import UserNav from "../../nav/UserNav";
+import React, {useState, useEffect} from 'react';
+import Breadcrumb from "../../../common/breadcrumb";
 import {Link} from "react-router-dom";
-import {auth} from '../../../firebase';
-import {toast} from 'react-toastify';
+import {auth} from "../../../../firebase";
+import {toast} from "react-toastify";
+import {useSelector} from "react-redux";
+import {createCategory, getCategories, removeCategory} from "../../../../functions/category";
 
-const UserPassword = (props) => {
 
-    const [password, setPassword] = useState("");
+const CategoryCreate = (props) => {
+    const {user} = useSelector(state => ({...state}));
+    const [name, setName] = useState('');
     const [loading, setLoading] = useState(false);
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        loadCategories();
+    }, []);
+
+    const loadCategories = () => {
+        getCategories().then((c) => setCategories(c.data));
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-
-        await auth.currentUser
-            .updatePassword(password)
-            .then(() => {
+        createCategory({name}, user.token)
+            .then(res => {
                 setLoading(false);
-                setPassword('');
-                toast.success("Password updated");
+                setName("");
+                toast.success(`"${res.data.name}" is created`)
             })
-            .catch((err) => {
+            .catch(err => {
+                console.log(err);
                 setLoading(false);
-                toast.error(err.message);
+                if(err.response.status === 400) toast.error(err.response.data)
             })
     };
 
-    const passwordUpdateForm = () => (
+    const categoryForm = () => (
         <div className="row">
             <div className="col-sm-12">
                 <div className="box">
                     <div style={{marginTop: '30px'}} className="box-title">
-                        <h3 style={{fontWeight: '600'}}>Change Your Password</h3>
+                        <h3 style={{fontWeight: '600'}}>Create Product Category</h3>
                         {/*<a href="#">Edit</a>*/}
                     </div>
                     <div className="box-content">
                         <form onSubmit={handleSubmit} style={{marginTop: '35px'}}>
                             <div className="form-group">
-                                {/*<label>Enter Your New Password</label>*/}
+                                <label>Name</label>
                                 <input
-                                    type="password"
-                                    onChange={(e) => setPassword(e.target.value)}
+                                    type="text"
+                                    onChange={(e) => setName(e.target.value)}
                                     className="form-control"
-                                    placeholder="********"
-                                    disabled={loading}
-                                    value={password}
+                                    placeholder=""
+                                    value={name}
+                                    required
                                     style={{margin: "0 auto 40px auto", width: '50%', textAlign: "center"}}
                                 />
                             </div>
@@ -55,12 +65,12 @@ const UserPassword = (props) => {
                             {/*    <a href="#">Change Password</a>*/}
                             {/*</h6>*/}
                             <button
-                                disabled={!password || loading || password.length < 6 }
                                 type='submit'
                                 className="btn btn-solid"
                             >
-                                Change Password
+                                Save
                             </button>
+                            <h6>{JSON.stringify(categories)}</h6>
                         </form>
                     </div>
                 </div>
@@ -70,7 +80,7 @@ const UserPassword = (props) => {
 
     return (
         <div>
-            <Breadcrumb title={'Password'}/>
+            <Breadcrumb title={'Categories'}/>
 
 
             {/*Dashboard section*/}
@@ -91,16 +101,26 @@ const UserPassword = (props) => {
                                 </div>
                                 <div className="block-content">
                                     <ul>
-                                        {/*<li className="active">*/}
                                         <li >
-                                            <Link to={`${process.env.PUBLIC_URL}/user/history`}>History</Link>
-                                        </li>
-                                        <li className="active">
-                                            <Link to={`${process.env.PUBLIC_URL}/user/password`}>Password</Link>
-
+                                            <Link to={`${process.env.PUBLIC_URL}/admin/dashboard`}>Dashboard</Link>
                                         </li>
                                         <li>
-                                            <Link to={`${process.env.PUBLIC_URL}/user/wishlist`}>Wishlist</Link>
+                                            <Link to={`${process.env.PUBLIC_URL}/admin/product`}>Product</Link>
+                                        </li>
+                                        <li>
+                                            <Link to={`${process.env.PUBLIC_URL}/admin/products`}>Products</Link>
+                                        </li>
+                                        <li className="active">
+                                            <Link to={`${process.env.PUBLIC_URL}/admin/category`}>Category</Link>
+                                        </li>
+                                        <li>
+                                            <Link to={`${process.env.PUBLIC_URL}/admin/sub`}>Sub Category</Link>
+                                        </li>
+                                        <li>
+                                            <Link to={`${process.env.PUBLIC_URL}/admin/coupon`}>Coupons</Link>
+                                        </li>
+                                        <li>
+                                            <Link to={`${process.env.PUBLIC_URL}/user/password`}>Password</Link>
                                         </li>
                                     </ul>
                                 </div>
@@ -111,16 +131,16 @@ const UserPassword = (props) => {
                                 <div style={{textAlign: 'center'}} className="dashboard">
 
                                     <div  className="page-title">
-                                        <h2 style={{fontWeight: "800"}}>Password</h2>
+                                        {loading ? <h2 style={{fontWeight: "800"}}>Loading...</h2> : <h2 style={{fontWeight: "800"}}>Categories</h2> }
                                     </div>
 
 
                                     <div className="box-account box-info">
 
                                         <div className="box-head">
-                                            <h4>Account Information</h4>
+                                            <h4>Administrator</h4>
                                         </div>
-                                        {passwordUpdateForm()}
+                                        {categoryForm()}
 
 
 
@@ -138,4 +158,4 @@ const UserPassword = (props) => {
 };
 
 
-export default UserPassword;
+export default CategoryCreate;

@@ -1,5 +1,6 @@
 import React from 'react';
 import Breadcrumb from "../../common/breadcrumb";
+import {Link} from "react-router-dom";
 
 const AdminDashboard = (props) => {
 
@@ -26,14 +27,28 @@ const AdminDashboard = (props) => {
                                 </div>
                                 <div className="block-content">
                                     <ul>
-                                        <li className="active"><a href='#'>Account Info</a></li>
-                                        <li><a href="#">Address Book</a></li>
-                                        <li><a href="#">My Orders</a></li>
-                                        <li><a href="#">My Wishlist</a></li>
-                                        <li><a href="#">Newsletter</a></li>
-                                        <li><a href="#">My Account</a></li>
-                                        <li><a href="#">Change Password</a></li>
-                                        <li className="last"><a href="#">Log Out</a></li>
+                                        {/*<li className="active">*/}
+                                        <li className="active">
+                                            <Link to={`${process.env.PUBLIC_URL}/admin/dashboard`}>Dashboard</Link>
+                                        </li>
+                                        <li>
+                                            <Link to={`${process.env.PUBLIC_URL}/admin/product`}>Product</Link>
+                                        </li>
+                                        <li>
+                                            <Link to={`${process.env.PUBLIC_URL}/admin/products`}>Products</Link>
+                                        </li>
+                                        <li>
+                                            <Link to={`${process.env.PUBLIC_URL}/admin/category`}>Category</Link>
+                                        </li>
+                                        <li>
+                                            <Link to={`${process.env.PUBLIC_URL}/admin/sub`}>Sub Category</Link>
+                                        </li>
+                                        <li>
+                                            <Link to={`${process.env.PUBLIC_URL}/admin/coupon`}>Coupons</Link>
+                                        </li>
+                                        <li>
+                                            <Link to={`${process.env.PUBLIC_URL}/user/password`}>Password</Link>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>

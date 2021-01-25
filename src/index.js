@@ -33,6 +33,7 @@ import FooterOne from "./components/common/footers/footer-one";
 // Admin Routes
 import AdminRoute from "./components/routes/AdminRoute";
 import AdminDashboard from './components/pages/admin/dashboard';
+import CategoryCreate from './components/pages/admin/category/CategoryCreate';
 
 // User Routes
 import UserRoute from "./components/routes/UserRoute";
@@ -230,6 +231,7 @@ const Root = () => {
                                         <UserRoute path={`${process.env.PUBLIC_URL}/user/wishlist`} component={UserWishlist}/>
 
                                         <AdminRoute path={`${process.env.PUBLIC_URL}/admin/dashboard`} component={AdminDashboard}/>
+                                        <AdminRoute path={`${process.env.PUBLIC_URL}/admin/category`} component={CategoryCreate}/>
 
 
 
