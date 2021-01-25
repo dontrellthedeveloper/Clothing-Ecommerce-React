@@ -139,9 +139,17 @@ const HeaderOne = (props) => {
                                                 <i className="fa fa-user" aria-hidden="true"></i>
                                                 {user.email && user.email.split("@")[0]}
                                                 <ul className="onhover-show-div">
-                                                    <li>
-                                                        <Link to={`${process.env.PUBLIC_URL}/admin/dashboard`} data-lng="en"><i className="fa fa-th-large" aria-hidden="true"></i>Dashboard</Link>
-                                                    </li>
+                                                    {user && user.role === 'subscriber' && (
+                                                        <li>
+                                                            <Link to={`${process.env.PUBLIC_URL}/user/history`} data-lng="en"><i className="fa fa-th-large" aria-hidden="true"></i>Dashboard</Link>
+                                                        </li>
+                                                    )}
+
+                                                    {user && user.role === 'admin' && (
+                                                        <li>
+                                                            <Link to={`${process.env.PUBLIC_URL}/admin/dashboard`} data-lng="en"><i className="fa fa-th-large" aria-hidden="true"></i>Dashboard</Link>
+                                                        </li>
+                                                    )}
                                                     <li className="mobile-wishlist"><Link to={`${process.env.PUBLIC_URL}/wishlist`}><i className="fa fa-heart" aria-hidden="true"></i>{('Wishlist')}</Link></li>
                                                     <li>
                                                         <Link to='#' onClick={logout} data-lng="en"><i className="fa fa-sign-out" aria-hidden="true"></i>Logout</Link>
