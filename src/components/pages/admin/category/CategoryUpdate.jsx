@@ -1,36 +1,39 @@
 import React, {useState, useEffect} from 'react';
 import Breadcrumb from "../../../common/breadcrumb";
-import {Link} from "react-router-dom";
+import {Link} from 'react-router-dom';
 import {auth} from "../../../../firebase";
 import {toast} from "react-toastify";
 import {useSelector} from "react-redux";
-import {createCategory, getCategories, removeCategory} from "../../../../functions/category";
-import {DeleteOutlined, EditOutlined} from '@ant-design/icons';
+import {updateCategory, getCategory} from "../../../../functions/category";
 
 
-const CategoryCreate = (props) => {
+
+
+
+const CategoryUpdate = ({history, match}) => {
     const {user} = useSelector(state => ({...state}));
-    const [name, setName] = useState('');
+    const [name, setName] = useState(match.params.name);
     const [loading, setLoading] = useState(false);
-    const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        loadCategories();
+        // console.log(match);
+        // console.log((c) => c.data.name);
+        loadCategory()
     }, []);
 
-    const loadCategories = () => {
-        getCategories().then((c) => setCategories(c.data));
+    const loadCategory = () => {
+        getCategory(match.params.slug).then((c) => setName(c.data.name));
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        createCategory({name}, user.token)
+        updateCategory(match.params.slug,{name}, user.token)
             .then(res => {
                 setLoading(false);
                 setName("");
-                toast.success(`"${res.data.name}" is created`);
-                loadCategories();
+                toast.success(`"${name}" is updated`);
+                history.push('/admin/category');
             })
             .catch(err => {
                 console.log(err);
@@ -39,32 +42,13 @@ const CategoryCreate = (props) => {
             })
     };
 
-    const handeRemove = async (slug) => {
-        // let answer = window.confirm("Are you sure you want to delete");
-        // console.log(answer, slug );
-        if(window.confirm("Are you sure you want to delete?")) {
-            setLoading(true)
-            removeCategory(slug, user.token)
-                .then((res) => {
-                    setLoading(false);
-                    toast.error(`${res.data.name} deleted`);
-                    loadCategories();
-                })
-                .catch((err) => {
-                    if(err.response.status === 400) {
-                        setLoading(false);
-                        toast.error(err.response.data);
-                    }
-                });
-        }
-    };
 
-    const categoryForm = () => (
+    const updateForm = () => (
         <div className="row">
             <div className="col-sm-12">
                 <div className="box">
                     <div style={{marginTop: '30px'}} className="box-title">
-                        <h3 style={{fontWeight: '600'}}>Create Product Category</h3>
+                        <h3 style={{fontWeight: '600'}}>Update Category Name</h3>
                         {/*<a href="#">Edit</a>*/}
                     </div>
                     <div className="box-content">
@@ -75,8 +59,8 @@ const CategoryCreate = (props) => {
                                     type="text"
                                     onChange={(e) => setName(e.target.value)}
                                     className="form-control"
-                                    placeholder=""
-                                    value={name}
+
+                                    // value={name}
                                     required
                                     style={{margin: "0 auto 40px auto", width: '50%', textAlign: "center"}}
                                 />
@@ -92,22 +76,7 @@ const CategoryCreate = (props) => {
                             >
                                 Save
                             </button>
-                            <h4 style={{marginTop: "40px"}}>
-                                {categories.map((c) => (
-                                    <div className="alert alert-secondary" style={{ textAlign: "left"}} key={c._id}>
-                                        {c.name}
-                                        <div className="btn btn-sm" style={{float: "right", marginTop: "-5px"}}>
-                                            <Link style={{marginRight: '15px'}} to={`${process.env.PUBLIC_URL}/admin/category-${c.slug}`}>
-                                                <EditOutlined className="text-secondary"/>
-                                            </Link>
-                                            <span onClick={() => handeRemove(c.slug)} style={{marginRight: '5px'}}>
-                                                <DeleteOutlined className="text-danger"/>
-                                            </span>
 
-                                        </div>
-                                    </div>
-                                ))}
-                            </h4>
                         </form>
                     </div>
                 </div>
@@ -168,7 +137,7 @@ const CategoryCreate = (props) => {
                                 <div style={{textAlign: 'center'}} className="dashboard">
 
                                     <div  className="page-title">
-                                        {loading ? <h2 style={{fontWeight: "800"}}>Loading...</h2> : <h2 style={{fontWeight: "800"}}>Categories</h2> }
+                                        {loading ? <h2 style={{fontWeight: "800"}}>Loading...</h2> : <h2 style={{fontWeight: "800"}}>Update Category</h2> }
                                     </div>
 
 
@@ -177,11 +146,7 @@ const CategoryCreate = (props) => {
                                         <div className="box-head">
                                             <h4>Administrator</h4>
                                         </div>
-                                        {categoryForm()}
-
-
-
-
+                                        {updateForm()}
                                     </div>
                                 </div>
                             </div>
@@ -195,4 +160,4 @@ const CategoryCreate = (props) => {
 };
 
 
-export default CategoryCreate;
+export default CategoryUpdate;
