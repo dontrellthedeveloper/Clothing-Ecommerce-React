@@ -6,13 +6,18 @@ import {toast} from "react-toastify";
 import {useSelector} from "react-redux";
 import {createCategory, getCategories, removeCategory} from "../../../../functions/category";
 import {DeleteOutlined, EditOutlined} from '@ant-design/icons';
+import CategoryForm from "../../../forms/CategoryForm";
 
 
 const CategoryCreate = (props) => {
     const {user} = useSelector(state => ({...state}));
+
     const [name, setName] = useState('');
     const [loading, setLoading] = useState(false);
     const [categories, setCategories] = useState([]);
+
+    //step 1
+    const [keyword, setKeyword] = useState("");
 
     useEffect(() => {
         loadCategories();
@@ -59,61 +64,14 @@ const CategoryCreate = (props) => {
         }
     };
 
-    const categoryForm = () => (
-        <div className="row">
-            <div className="col-sm-12">
-                <div className="box">
-                    <div style={{marginTop: '30px'}} className="box-title">
-                        <h3 style={{fontWeight: '600'}}>Create Product Category</h3>
-                        {/*<a href="#">Edit</a>*/}
-                    </div>
-                    <div className="box-content">
-                        <form onSubmit={handleSubmit} style={{marginTop: '35px'}}>
-                            <div className="form-group">
-                                <label>Category Name</label>
-                                <input
-                                    type="text"
-                                    onChange={(e) => setName(e.target.value)}
-                                    className="form-control"
-                                    placeholder=""
-                                    value={name}
-                                    required
-                                    style={{margin: "0 auto 40px auto", width: '50%', textAlign: "center"}}
-                                />
-                            </div>
-                            {/*<h6>MARK JECNO</h6>*/}
-                            {/*<h6>MARk-JECNO@gmail.com</h6>*/}
-                            {/*<h6>*/}
-                            {/*    <a href="#">Change Password</a>*/}
-                            {/*</h6>*/}
-                            <button
-                                type='submit'
-                                className="btn btn-solid"
-                            >
-                                Save
-                            </button>
-                            <h4 style={{marginTop: "40px"}}>
-                                {categories.map((c) => (
-                                    <div className="alert alert-secondary" style={{ textAlign: "left"}} key={c._id}>
-                                        {c.name}
-                                        <div className="btn btn-sm" style={{float: "right", marginTop: "-5px"}}>
-                                            <Link style={{marginRight: '15px'}} to={`${process.env.PUBLIC_URL}/admin/category-${c.slug}`}>
-                                                <EditOutlined className="text-secondary"/>
-                                            </Link>
-                                            <span onClick={() => handeRemove(c.slug)} style={{marginRight: '5px'}}>
-                                                <DeleteOutlined className="text-danger"/>
-                                            </span>
+    /*{Step 3}*/
+    const handleSearchChange = (e) => {
+      e.preventDefault();
+      setKeyword(e.target.value.toLowerCase());
+    };
 
-                                        </div>
-                                    </div>
-                                ))}
-                            </h4>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
+    /*{Step 4}*/
+    const searched = (keyword) => (c) => c.name.toLowerCase().includes(keyword);
 
     return (
         <div>
@@ -177,9 +135,41 @@ const CategoryCreate = (props) => {
                                         <div className="box-head">
                                             <h4>Administrator</h4>
                                         </div>
-                                        {categoryForm()}
 
+                                        <CategoryForm
+                                            handleSubmit={handleSubmit}
+                                            name={name}
+                                            setName={setName}/>
 
+                                        {/*{Step 2}*/}
+                                        <label style={{marginTop: "40px"}}>Search Filter</label>
+                                        <input
+                                            type="search"
+                                            placeholder="Filter Categories"
+                                            value={keyword}
+                                            onChange={handleSearchChange}
+                                            className="form-control mb-4"
+                                            style={{margin: "0 auto 40px auto", width: '50%', textAlign: "center"}}
+                                        />
+
+                                        <h4 style={{marginTop: "40px"}}>
+
+                                            {/* Step 5 */}
+                                            {categories.filter(searched(keyword)).map((c) => (
+                                                <div className="alert alert-secondary" style={{ textAlign: "left"}} key={c._id}>
+                                                    {c.name}
+                                                    <div className="btn btn-sm" style={{float: "right", marginTop: "-5px"}}>
+                                                        <Link style={{marginRight: '15px'}} to={`${process.env.PUBLIC_URL}/admin/category-${c.slug}`}>
+                                                            <EditOutlined className="text-secondary"/>
+                                                        </Link>
+                                                        <span onClick={() => handeRemove(c.slug)} style={{marginRight: '5px'}}>
+                                                <DeleteOutlined className="text-danger"/>
+                                            </span>
+
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </h4>
 
 
                                     </div>

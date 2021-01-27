@@ -5,19 +5,20 @@ import {auth} from "../../../../firebase";
 import {toast} from "react-toastify";
 import {useSelector} from "react-redux";
 import {updateCategory, getCategory} from "../../../../functions/category";
-
+import CategoryForm from "../../../forms/CategoryForm";
+import UpdateForm from "../../../forms/UpdateForm";
 
 
 
 
 const CategoryUpdate = ({history, match}) => {
     const {user} = useSelector(state => ({...state}));
-    const [name, setName] = useState(match.params.name);
+    const [name, setName] = useState('');
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        // console.log(match);
-        // console.log((c) => c.data.name);
+        console.log(match);
+        console.log((c) => c.data.name);
         loadCategory()
     }, []);
 
@@ -43,7 +44,7 @@ const CategoryUpdate = ({history, match}) => {
     };
 
 
-    const updateForm = () => (
+    const categoryForm = () => (
         <div className="row">
             <div className="col-sm-12">
                 <div className="box">
@@ -60,16 +61,11 @@ const CategoryUpdate = ({history, match}) => {
                                     onChange={(e) => setName(e.target.value)}
                                     className="form-control"
 
-                                    // value={name}
+                                    value={match.params.slug}
                                     required
                                     style={{margin: "0 auto 40px auto", width: '50%', textAlign: "center"}}
                                 />
                             </div>
-                            {/*<h6>MARK JECNO</h6>*/}
-                            {/*<h6>MARk-JECNO@gmail.com</h6>*/}
-                            {/*<h6>*/}
-                            {/*    <a href="#">Change Password</a>*/}
-                            {/*</h6>*/}
                             <button
                                 type='submit'
                                 className="btn btn-solid"
@@ -83,6 +79,10 @@ const CategoryUpdate = ({history, match}) => {
             </div>
         </div>
     );
+
+
+
+
 
     return (
         <div>
@@ -146,7 +146,12 @@ const CategoryUpdate = ({history, match}) => {
                                         <div className="box-head">
                                             <h4>Administrator</h4>
                                         </div>
-                                        {updateForm()}
+                                        <UpdateForm
+                                            handleSubmit={handleSubmit}
+                                            name={name}
+                                            setName={setName}
+                                            match={match}
+                                        />
                                     </div>
                                 </div>
                             </div>
