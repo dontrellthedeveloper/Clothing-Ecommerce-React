@@ -4,9 +4,9 @@ import {Link} from "react-router-dom";
 import {auth} from "../../../../firebase";
 import {toast} from "react-toastify";
 import {useSelector} from "react-redux";
-import {createCategory, getCategories, removeCategory} from "../../../../functions/category";
+import {createSub, getSubs, removeSub} from "../../../../functions/sub";
+import {getCategories} from "../../../../functions/category";
 import {DeleteOutlined, EditOutlined} from '@ant-design/icons';
-import CategoryForm from "../../../forms/CategoryForm";
 import SubCategoryForm from "../../../forms/SubCategoryForm";
 
 
@@ -16,6 +16,7 @@ const SubCreate = (props) => {
     const [name, setName] = useState('');
     const [loading, setLoading] = useState(false);
     const [categories, setCategories] = useState([]);
+    const [category, setCategory] = useState("");
 
     //step 1
     const [keyword, setKeyword] = useState("");
@@ -31,12 +32,12 @@ const SubCreate = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        createCategory({name}, user.token)
+        createSub({name, parent: category}, user.token)
             .then(res => {
                 setLoading(false);
                 setName("");
                 toast.success(`"${res.data.name}" is created`);
-                loadCategories();
+                // loadCategories();
             })
             .catch(err => {
                 console.log(err);
@@ -50,11 +51,11 @@ const SubCreate = (props) => {
         // console.log(answer, slug );
         if(window.confirm("Are you sure you want to delete?")) {
             setLoading(true)
-            removeCategory(slug, user.token)
+            removeSub(slug, user.token)
                 .then((res) => {
                     setLoading(false);
                     toast.error(`${res.data.name} deleted`);
-                    loadCategories();
+
                 })
                 .catch((err) => {
                     if(err.response.status === 400) {
@@ -137,10 +138,16 @@ const SubCreate = (props) => {
                                             <h4>Administrator</h4>
                                         </div>
 
+
                                         <SubCategoryForm
                                             handleSubmit={handleSubmit}
                                             name={name}
-                                            setName={setName}/>
+                                            setName={setName}
+                                            categories={categories}
+                                            setCategory={setCategory}
+                                        />
+
+                                        {JSON.stringify(category)}
 
                                         {/*{Step 2}*/}
 
