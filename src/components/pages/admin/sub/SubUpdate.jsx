@@ -4,46 +4,50 @@ import {Link} from "react-router-dom";
 import {auth} from "../../../../firebase";
 import {toast} from "react-toastify";
 import {useSelector} from "react-redux";
-import {createSub, getSubs, removeSub, getSub} from "../../../../functions/sub";
+import {updateSub, removeSub, getSub} from "../../../../functions/sub";
 import {getCategories} from "../../../../functions/category";
 import {DeleteOutlined, EditOutlined} from '@ant-design/icons';
-import SubCategoryForm from "../../../forms/SubCategoryForm";
+import SubUpdateForm from "../../../forms/SubUpdateForm";
 
 
-const SubCreate = (props) => {
+const SubUpdate = ({match, history}) => {
     const {user} = useSelector(state => ({...state}));
 
     const [name, setName] = useState('');
     const [loading, setLoading] = useState(false);
     const [categories, setCategories] = useState([]);
-    const [subs, setSubs] = useState([]);
-    const [category, setCategory] = useState("");
+    const [category, setCategory] = useState('');
+    const [parent, setParent] = useState('');
 
-    //step 1
-    const [keyword, setKeyword] = useState("");
 
     useEffect(() => {
         loadCategories();
-        loadSubs()
+        loadSub()
     }, []);
 
     const loadCategories = () => {
         getCategories().then((c) => setCategories(c.data));
     };
 
-    const loadSubs = () => {
-        getSubs().then((s) => setSubs(s.data));
+    const loadSub = () => {
+        getSub(match.params.slug).then((s) => {
+
+            setName(s.data.name);
+            setParent(s.data.parent);
+        });
+        console.log(match);
+        console.log(getSub());
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        createSub({name, parent: category}, user.token)
+        updateSub( match.params.slug,{name, parent}, user.token)
             .then(res => {
                 setLoading(false);
                 setName("");
-                toast.success(`"${res.data.name}" is created`);
-                loadSubs();
+                toast.success(`"${res.data.name}" is updated`);
+                history.push('/admin/sub')
             })
             .catch(err => {
                 console.log(err);
@@ -52,35 +56,8 @@ const SubCreate = (props) => {
             })
     };
 
-    const handeRemove = async (slug) => {
-        // let answer = window.confirm("Are you sure you want to delete");
-        // console.log(answer, slug );
-        if(window.confirm("Are you sure you want to delete?")) {
-            setLoading(true)
-            removeSub(slug, user.token)
-                .then((res) => {
-                    setLoading(false);
-                    toast.error(`${res.data.name} deleted`);
-                    loadSubs();
 
-                })
-                .catch((err) => {
-                    if(err.response.status === 400) {
-                        setLoading(false);
-                        toast.error(err.response.data);
-                    }
-                });
-        }
-    };
 
-    /*{Step 3}*/
-    const handleSearchChange = (e) => {
-        e.preventDefault();
-        setKeyword(e.target.value.toLowerCase());
-    };
-
-    /*{Step 4}*/
-    const searched = (keyword) => (c) => c.name.toLowerCase().includes(keyword);
 
     return (
         <div>
@@ -135,7 +112,7 @@ const SubCreate = (props) => {
                                 <div style={{textAlign: 'center'}} className="dashboard">
 
                                     <div  className="page-title">
-                                        {loading ? <h2 style={{fontWeight: "800"}}>Loading...</h2> : <h2 style={{fontWeight: "800"}}>Sub Categories</h2> }
+                                        {loading ? <h2 style={{fontWeight: "800"}}>Loading...</h2> : <h2 style={{fontWeight: "800"}}>Update Sub Category</h2> }
                                     </div>
 
 
@@ -146,54 +123,42 @@ const SubCreate = (props) => {
                                         </div>
 
 
-                                        <SubCategoryForm
+                                        <SubUpdateForm
                                             handleSubmit={handleSubmit}
                                             name={name}
                                             setName={setName}
                                             categories={categories}
                                             setCategory={setCategory}
+                                            parent={parent}
                                         />
 
-                                        <div className="row" style={{marginTop: "30px"}}>
-                                            <div className="col-sm-12">
-                                                <div className="box">
-                                                    <div style={{marginTop: '30px'}} className="box-title">
-                                                        <h3 style={{fontWeight: '600'}}>Sub Categories</h3>
-                                                        {/*<a href="#">Edit</a>*/}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        {/*<div className="row" style={{marginTop: "30px"}}>*/}
+                                        {/*    <div className="col-sm-12">*/}
+                                        {/*        <div className="box">*/}
+                                        {/*            <div style={{marginTop: '30px'}} className="box-title">*/}
+                                        {/*                <h3 style={{fontWeight: '600'}}>Update Sub Categories</h3>*/}
+                                        {/*                /!*<a href="#">Edit</a>*!/*/}
+                                        {/*            </div>*/}
+                                        {/*        </div>*/}
+                                        {/*    </div>*/}
+                                        {/*</div>*/}
                                         {/*{JSON.stringify(category)}*/}
 
                                         {/*{Step 2}*/}
 
                                         {/*<label style={{marginTop: "40px"}}>Filter Categories</label>*/}
-                                        <input
-                                            type="search"
-                                            placeholder="Filter Sub Category"
-                                            value={keyword}
-                                            onChange={handleSearchChange}
-                                            className="form-control mb-4"
-                                            style={{margin: "40px auto 50px auto", width: '50%', textAlign: "center"}}
-                                        />
+                                        {/*<input*/}
+                                        {/*    type="search"*/}
+                                        {/*    placeholder="Filter Sub Category"*/}
+                                        {/*    value={keyword}*/}
+                                        {/*    onChange={handleSearchChange}*/}
+                                        {/*    className="form-control mb-4"*/}
+                                        {/*    style={{margin: "40px auto 50px auto", width: '50%', textAlign: "center"}}*/}
+                                        {/*/>*/}
 
                                         <h4 style={{marginTop: "40px"}}>
 
-                                            {/* Step 5 */}
-                                            {subs.filter(searched(keyword)).map((s) => (
-                                                <div className="alert alert-secondary" style={{ textAlign: "left"}} key={s._id}>
-                                                    {s.name}
-                                                    <div className="btn btn-sm" style={{float: "right", marginTop: "-5px"}}>
-                                                        <Link style={{marginRight: '15px'}} to={`${process.env.PUBLIC_URL}/admin/sub-${s.slug}`}>
-                                                            <EditOutlined className="text-secondary"/>
-                                                        </Link>
-                                                        <span onClick={() => handeRemove(s.slug)} style={{marginRight: '5px'}}>
-                                                            <DeleteOutlined className="text-danger"/>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            ))}
+
                                         </h4>
 
 
@@ -210,4 +175,4 @@ const SubCreate = (props) => {
 };
 
 
-export default SubCreate;
+export default SubUpdate;

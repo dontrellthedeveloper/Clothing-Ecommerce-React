@@ -146,7 +146,7 @@ const CategoryCreate = (props) => {
                                             <div className="col-sm-12">
                                                 <div className="box">
                                                     <div style={{marginTop: '30px'}} className="box-title">
-                                                        <h3 style={{fontWeight: '600'}}>Filter Categories</h3>
+                                                        <h3 style={{fontWeight: '600'}}>Categories</h3>
                                                         {/*<a href="#">Edit</a>*/}
                                                     </div>
                                                 </div>
@@ -157,7 +157,7 @@ const CategoryCreate = (props) => {
                                         {/*<label style={{marginTop: "40px"}}>Filter Categories</label>*/}
                                         <input
                                             type="search"
-                                            placeholder="Filter Category Name"
+                                            placeholder="Filter Category"
                                             value={keyword}
                                             onChange={handleSearchChange}
                                             className="form-control mb-4"
@@ -175,8 +175,8 @@ const CategoryCreate = (props) => {
                                                             <EditOutlined className="text-secondary"/>
                                                         </Link>
                                                         <span onClick={() => handeRemove(c.slug)} style={{marginRight: '5px'}}>
-                                                <DeleteOutlined className="text-danger"/>
-                                            </span>
+                                                            <DeleteOutlined className="text-danger"/>
+                                                        </span>
 
                                                     </div>
                                                 </div>

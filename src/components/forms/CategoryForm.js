@@ -17,7 +17,7 @@ const CategoryForm = ({handleSubmit, name, setName}) => (
                                 type="text"
                                 onChange={(e) => setName(e.target.value)}
                                 className="form-control"
-                                placeholder="New Category Name"
+                                placeholder="Category Name"
                                 value={name}
                                 required
                                 style={{margin: "0 auto 40px auto", width: '50%', textAlign: "center"}}
