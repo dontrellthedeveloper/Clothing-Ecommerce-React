@@ -35,6 +35,7 @@ import AdminRoute from "./components/routes/AdminRoute";
 import AdminDashboard from './components/pages/admin/dashboard';
 import CategoryCreate from './components/pages/admin/category/CategoryCreate';
 import CategoryUpdate from './components/pages/admin/category/CategoryUpdate';
+import SubCreate from './components/pages/admin/sub/SubCreate';
 
 // User Routes
 import UserRoute from "./components/routes/UserRoute";
@@ -143,6 +144,7 @@ import rootReducer from "./reducers";
 
 
 
+
 // class Root extends React.Component {
 const Root = () => {
 
@@ -234,6 +236,7 @@ const Root = () => {
                                         <AdminRoute path={`${process.env.PUBLIC_URL}/admin/dashboard`} component={AdminDashboard}/>
                                         <AdminRoute path={`${process.env.PUBLIC_URL}/admin/category`} component={CategoryCreate}/>
                                         <AdminRoute path={`${process.env.PUBLIC_URL}/admin/category-:slug`} component={CategoryUpdate}/>
+                                        <AdminRoute path={`${process.env.PUBLIC_URL}/admin/sub`} component={SubCreate}/>
 
 
 

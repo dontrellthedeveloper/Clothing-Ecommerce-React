@@ -7,9 +7,10 @@ import {useSelector} from "react-redux";
 import {createCategory, getCategories, removeCategory} from "../../../../functions/category";
 import {DeleteOutlined, EditOutlined} from '@ant-design/icons';
 import CategoryForm from "../../../forms/CategoryForm";
+import SubCategoryForm from "../../../forms/SubCategoryForm";
 
 
-const CategoryCreate = (props) => {
+const SubCreate = (props) => {
     const {user} = useSelector(state => ({...state}));
 
     const [name, setName] = useState('');
@@ -66,8 +67,8 @@ const CategoryCreate = (props) => {
 
     /*{Step 3}*/
     const handleSearchChange = (e) => {
-      e.preventDefault();
-      setKeyword(e.target.value.toLowerCase());
+        e.preventDefault();
+        setKeyword(e.target.value.toLowerCase());
     };
 
     /*{Step 4}*/
@@ -105,10 +106,10 @@ const CategoryCreate = (props) => {
                                         <li>
                                             <Link to={`${process.env.PUBLIC_URL}/admin/products`}>Products</Link>
                                         </li>
-                                        <li className="active">
+                                        <li >
                                             <Link to={`${process.env.PUBLIC_URL}/admin/category`}>Category</Link>
                                         </li>
-                                        <li>
+                                        <li className="active">
                                             <Link to={`${process.env.PUBLIC_URL}/admin/sub`}>Sub Category</Link>
                                         </li>
                                         <li>
@@ -126,7 +127,7 @@ const CategoryCreate = (props) => {
                                 <div style={{textAlign: 'center'}} className="dashboard">
 
                                     <div  className="page-title">
-                                        {loading ? <h2 style={{fontWeight: "800"}}>Loading...</h2> : <h2 style={{fontWeight: "800"}}>Categories</h2> }
+                                        {loading ? <h2 style={{fontWeight: "800"}}>Loading...</h2> : <h2 style={{fontWeight: "800"}}>Sub Categories</h2> }
                                     </div>
 
 
@@ -136,40 +137,41 @@ const CategoryCreate = (props) => {
                                             <h4>Administrator</h4>
                                         </div>
 
-                                        <CategoryForm
+                                        <SubCategoryForm
                                             handleSubmit={handleSubmit}
                                             name={name}
                                             setName={setName}/>
 
                                         {/*{Step 2}*/}
-                                        <label style={{marginTop: "40px"}}>Filter Categories</label>
-                                        <input
-                                            type="search"
-                                            placeholder=""
-                                            value={keyword}
-                                            onChange={handleSearchChange}
-                                            className="form-control mb-4"
-                                            style={{margin: "0 auto 40px auto", width: '50%', textAlign: "center"}}
-                                        />
 
-                                        <h4 style={{marginTop: "40px"}}>
+                                        {/*<label style={{marginTop: "40px"}}>Filter Categories</label>*/}
+                                        {/*<input*/}
+                                        {/*    type="search"*/}
+                                        {/*    placeholder=""*/}
+                                        {/*    value={keyword}*/}
+                                        {/*    onChange={handleSearchChange}*/}
+                                        {/*    className="form-control mb-4"*/}
+                                        {/*    style={{margin: "0 auto 40px auto", width: '50%', textAlign: "center"}}*/}
+                                        {/*/>*/}
 
-                                            {/* Step 5 */}
-                                            {categories.filter(searched(keyword)).map((c) => (
-                                                <div className="alert alert-secondary" style={{ textAlign: "left"}} key={c._id}>
-                                                    {c.name}
-                                                    <div className="btn btn-sm" style={{float: "right", marginTop: "-5px"}}>
-                                                        <Link style={{marginRight: '15px'}} to={`${process.env.PUBLIC_URL}/admin/category-${c.slug}`}>
-                                                            <EditOutlined className="text-secondary"/>
-                                                        </Link>
-                                                        <span onClick={() => handeRemove(c.slug)} style={{marginRight: '5px'}}>
-                                                <DeleteOutlined className="text-danger"/>
-                                            </span>
+                                        {/*<h4 style={{marginTop: "40px"}}>*/}
 
-                                                    </div>
-                                                </div>
-                                            ))}
-                                        </h4>
+                                        {/*    /!* Step 5 *!/*/}
+                                        {/*    {categories.filter(searched(keyword)).map((c) => (*/}
+                                        {/*        <div className="alert alert-secondary" style={{ textAlign: "left"}} key={c._id}>*/}
+                                        {/*            {c.name}*/}
+                                        {/*            <div className="btn btn-sm" style={{float: "right", marginTop: "-5px"}}>*/}
+                                        {/*                <Link style={{marginRight: '15px'}} to={`${process.env.PUBLIC_URL}/admin/sub-${c.slug}`}>*/}
+                                        {/*                    <EditOutlined className="text-secondary"/>*/}
+                                        {/*                </Link>*/}
+                                        {/*                <span onClick={() => handeRemove(c.slug)} style={{marginRight: '5px'}}>*/}
+                                        {/*        <DeleteOutlined className="text-danger"/>*/}
+                                        {/*    </span>*/}
+
+                                        {/*            </div>*/}
+                                        {/*        </div>*/}
+                                        {/*    ))}*/}
+                                        {/*</h4>*/}
 
 
                                     </div>
@@ -185,4 +187,4 @@ const CategoryCreate = (props) => {
 };
 
 
-export default CategoryCreate;
+export default SubCreate;

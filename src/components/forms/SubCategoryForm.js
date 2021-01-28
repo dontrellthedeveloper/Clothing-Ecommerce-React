@@ -1,18 +1,18 @@
 import React from 'react';
 
 
-const CategoryForm = ({handleSubmit, name, setName}) => (
+const SubCategoryForm = ({handleSubmit, name, setName}) => (
     <div className="row">
         <div className="col-sm-12">
             <div className="box">
                 <div style={{marginTop: '30px'}} className="box-title">
-                    <h3 style={{fontWeight: '600'}}>Create Category</h3>
+                    <h3 style={{fontWeight: '600'}}>Create Sub Category</h3>
                     {/*<a href="#">Edit</a>*/}
                 </div>
                 <div className="box-content">
                     <form onSubmit={handleSubmit} style={{marginTop: '35px'}}>
                         <div className="form-group">
-                            <label>Category Name</label>
+                            <label>Sub Category Name</label>
                             <input
                                 type="text"
                                 onChange={(e) => setName(e.target.value)}
@@ -37,4 +37,4 @@ const CategoryForm = ({handleSubmit, name, setName}) => (
     </div>
 );
 
-export default CategoryForm;
+export default SubCategoryForm;
