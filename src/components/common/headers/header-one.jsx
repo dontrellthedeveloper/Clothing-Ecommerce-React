@@ -28,7 +28,9 @@ const HeaderOne = (props) => {
 
     //component did mount
     useEffect(() => {
-        window.addEventListener('scroll', handleScroll)
+        // window.addEventListener('scroll',
+        //     handleScroll
+        // )
     }, []);
 
     useEffect(() => {
@@ -43,22 +45,24 @@ const HeaderOne = (props) => {
     //component will unmount
     useEffect(() => {
         return () => {
-            window.removeEventListener('scroll', handleScroll)
+            // window.removeEventListener('scroll',
+            //     handleScroll
+            // )
         }
     }, []);
 
 
-    const handleScroll = () => {
-        let number = window.pageXOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-        if (number >= 300) {
-            if (window.innerWidth < 576) {
-                document.getElementById("sticky").classList.remove('fixed');
-            }else
-            	document.getElementById("sticky").classList.add('fixed');
-        } else {
-            document.getElementById("sticky").classList.remove('fixed');
-        }
-    };
+    // const handleScroll = () => {
+    //     let number = window.pageXOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    //     if (number >= 300) {
+    //         if (window.innerWidth < 576) {
+    //             document.getElementById("sticky").classList.remove('fixed');
+    //         }else
+    //         	document.getElementById("sticky").classList.add('fixed');
+    //     } else {
+    //         document.getElementById("sticky").classList.remove('fixed');
+    //     }
+    // };
 
     const changeLanguage = (lang) => {
         store.dispatch(IntlActions.setLocale(lang))
