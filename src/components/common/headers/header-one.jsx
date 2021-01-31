@@ -173,13 +173,13 @@ const HeaderOne = (props) => {
 							<div className="col-sm-12">
 								<div className="main-menu">
 									<div className="menu-left">
-										<div className="navbar">
-											<a href="javascript:void(0)" onClick={openNav}>
-												<div className="bar-style"> <i className="fa fa-bars sidebar-bar" aria-hidden="true"></i></div>
-											</a>
-											{/*SideBar Navigation Component*/}
-											<SideBar/>
-										</div>
+										{/*<div className="navbar">*/}
+										{/*	<a href="javascript:void(0)" onClick={openNav}>*/}
+										{/*		<div className="bar-style"> <i className="fa fa-bars sidebar-bar" aria-hidden="true"></i></div>*/}
+										{/*	</a>*/}
+										{/*	/!*SideBar Navigation Component*!/*/}
+										{/*	<SideBar/>*/}
+										{/*</div>*/}
 										<div className="brand-logo">
 											<LogoImage />
 										</div>

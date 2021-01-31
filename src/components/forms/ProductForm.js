@@ -1,7 +1,9 @@
 import React from 'react';
+import {Select} from 'antd';
 
+const {Option} = Select;
 
-const ProductForm = ({handleSubmit,handleChange, values}) => {
+const ProductForm = ({handleSubmit,handleChange, values, handleCategoryChange, showSub, subOptions, setValues, handleSubChange}) => {
 
     const {
         title,
@@ -9,7 +11,7 @@ const ProductForm = ({handleSubmit,handleChange, values}) => {
         price,
         categories,
         category,
-        subs,
+        sub,
         shipping,
         quantity,
         images,
@@ -117,7 +119,7 @@ const ProductForm = ({handleSubmit,handleChange, values}) => {
                                     onChange={handleChange}
                                     className="form-control"
 
-                                    style={{margin: "20px auto 20px auto", width: '50%', textAlignLast: "center"}}
+                                    style={{margin: "20px auto 30px auto", width: '50%', textAlignLast: "center"}}
                                 >
                                     <option>Product Brand</option>
                                     {brands.map(b => <option key={b} value={b}>{b}</option>)}
@@ -126,7 +128,7 @@ const ProductForm = ({handleSubmit,handleChange, values}) => {
 
                             <div className="box">
                                 <div style={{marginBottom: '30px'}} className="box-title">
-                                    {/*<h3 style={{fontWeight: '600'}}>Create Product</h3>*/}
+                                    {/*<h3 style={{fontWeight: '600'}}>Choose Category</h3>*/}
                                     {/*<a href="#">Edit</a>*/}
                                 </div>
                             </div>
@@ -135,9 +137,9 @@ const ProductForm = ({handleSubmit,handleChange, values}) => {
                                 {/*<label>Parent Category</label>*/}
                                 <select
                                     name="category"
-                                    onChange={handleChange}
+                                    onChange={handleCategoryChange}
                                     className="form-control"
-                                    style={{margin: "5px auto 60px auto", width: '50%', textAlignLast: "center"}}
+                                    style={{margin: "10px auto 30px auto", width: '50%', textAlignLast: "center"}}
                                 >
                                     <option>Select Category</option>
                                     {categories.length > 0 &&
@@ -148,9 +150,35 @@ const ProductForm = ({handleSubmit,handleChange, values}) => {
                                     ))}
                                 </select>
                             </div>
+
+                            {showSub && <div className="form-group">
+                                <select
+                                    // mode="multiple"
+                                    // value={subs}
+                                    // placeholder="Select Sub Category"
+                                    // onChange={(value) => setValues({...values, subs: value})}
+                                    name={sub}
+                                    onChange={handleSubChange}
+                                    className="form-control"
+                                    style={{margin: "5px auto 30px auto", width: '50%', textAlignLast: "center"}}
+                                >
+                                    <option>Select Sub Category</option>
+                                    {subOptions.length &&
+                                        subOptions.map((s) => (
+                                            <option key={s._id} value={s._id}>
+                                                {s.name}
+                                            </option>
+                                    ))}
+
+                                    {/*<Option value="two">option two</Option>*/}
+                                </select>
+                            </div>
+                            }
+
                             <button
                                 type='submit'
                                 className="btn btn-solid"
+                                style={{marginTop: "30px"}}
                             >
                                 Save
                             </button>

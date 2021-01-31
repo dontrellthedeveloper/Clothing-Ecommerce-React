@@ -5,7 +5,7 @@ import {auth} from "../../../../firebase";
 import {toast} from "react-toastify";
 import {useSelector} from "react-redux";
 import {createProduct} from "../../../../functions/product";
-import {getCategories} from "../../../../functions/category";
+import {getCategories, getCategorySubs} from "../../../../functions/category";
 import {DeleteOutlined, EditOutlined} from '@ant-design/icons';
 import ProductForm from "../../../forms/ProductForm";
 
@@ -15,7 +15,7 @@ const initialState = {
     price: '',
     categories: [],
     category: '',
-    subs: [],
+    sub: '',
     shipping: '',
     quantity: '',
     images: [],
@@ -29,6 +29,9 @@ const ProductCreate = () => {
     const [values, setValues] = useState(initialState);
     const [loading, setLoading] = useState(false);
     const [name, setName] = useState('');
+    const [showSub, setShowSub] = useState(false);
+
+    const [subOptions, setSubOptions] = useState([]);
 
 
     //redux
@@ -69,10 +72,29 @@ const ProductCreate = () => {
     };
 
 
-    const handleChange = async (e) => {
+    const handleChange = (e) => {
         e.preventDefault();
         setValues({...values, [e.target.name]: e.target.value});
         // console.log(e.target.name, " ------ ", e.target.value);
+    };
+
+    const handleSubChange = (e) => {
+      e.preventDefault();
+        console.log('CLICKED SUB CATEGORY', e.target.value);
+        setValues({...values, sub: e.target.value});
+    };
+
+
+    const handleCategoryChange = (e) => {
+      e.preventDefault();
+      console.log('CLICKED CATEGORY', e.target.value);
+        setValues({...values,subs: [], category: e.target.value});
+        getCategorySubs(e.target.value)
+            .then(res => {
+                console.log("SUB OPTIONS ON CATEGORY CLICK", res);
+                setSubOptions(res.data);
+            });
+        setShowSub(true);
     };
 
     //
@@ -174,7 +196,11 @@ const ProductCreate = () => {
                                             handleSubmit={handleSubmit}
                                             handleChange={handleChange}
                                             values={values}
-
+                                            setValues={setValues}
+                                            handleCategoryChange={handleCategoryChange}
+                                            handleSubChange={handleSubChange}
+                                            subOptions={subOptions}
+                                            showSub={showSub}
                                         />
 
 
