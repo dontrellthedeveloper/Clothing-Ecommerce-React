@@ -4,7 +4,19 @@ import FileUpload from "./FileUpload";
 
 const {Option} = Select;
 
-const ProductForm = ({handleSubmit,handleChange, values, handleCategoryChange, showSub, subOptions, setValues, handleSubChange}) => {
+const ProductForm = ({
+         handleSubmit,
+         handleChange,
+         values,
+         handleCategoryChange,
+         showSub,
+         subOptions,
+         setValues,
+         handleSubChange,
+         loading,
+         setLoading
+}) => {
+
 
     const {
         title,
@@ -193,27 +205,13 @@ const ProductForm = ({handleSubmit,handleChange, values, handleCategoryChange, s
                                 </div>
                             </div>
 
-                            {/*<div className="box">*/}
-                            {/*    <div style={{marginBottom: '0', borderBottom: "none"}} className="box-title">*/}
-                            {/*        <h3 style={{fontWeight: '600'}}>Choose Product Images</h3>*/}
-                            {/*    </div>*/}
-                            {/*</div>*/}
+                            {JSON.stringify(values.images)}
 
-
-                            {/*<div className="form-group">*/}
-                            {/*    <div className="row">*/}
-                            {/*        /!*<label>Choose File</label>*!/*/}
-                            {/*        <input*/}
-                            {/*            type="file"*/}
-                            {/*            multiple accept="images/*"*/}
-                            {/*            className="form-control"*/}
-                            {/*            onChange={fileUploadAndResize}*/}
-                            {/*            style={{margin: "10px auto 20px auto", width: '48%', textAlignLast: "center"}}*/}
-                            {/*        />*/}
-                            {/*    </div>*/}
-                            {/*</div>*/}
-
-                            <FileUpload/>
+                            <FileUpload
+                                values={values}
+                                setValues={setValues}
+                                setLoading={setLoading}
+                            />
 
 
 

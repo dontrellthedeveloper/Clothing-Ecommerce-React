@@ -213,6 +213,8 @@ const ProductCreate = () => {
                                             handleSubChange={handleSubChange}
                                             subOptions={subOptions}
                                             showSub={showSub}
+                                            loading={loading}
+                                            setLoading={setLoading}
                                         />
 
 
