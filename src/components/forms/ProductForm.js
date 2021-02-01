@@ -1,6 +1,7 @@
 import React from 'react';
 import {Select} from 'antd';
 import FileUpload from "./FileUpload";
+import {LoadingOutlined} from '@ant-design/icons';
 
 const {Option} = Select;
 
@@ -147,10 +148,14 @@ const ProductForm = ({
                             </div>
 
 
-
+                            <div className="box">
+                                <div style={{marginBottom: '20px'}} className="box-title">
+                                </div>
+                            </div>
 
                             <div className="box">
-                                <div style={{marginBottom: '30px'}} className="box-title">
+                                <div style={{marginBottom: '20px', borderBottom: 'none'}} className="box-title">
+                                    <h3 style={{fontWeight: '600'}}>Category</h3>
                                 </div>
                             </div>
 
@@ -198,14 +203,19 @@ const ProductForm = ({
                             </div>
                             }
 
-
-
                             <div className="box">
-                                <div style={{marginBottom: '30px'}} className="box-title">
+                                <div style={{marginBottom: '10px'}} className="box-title">
                                 </div>
                             </div>
 
-                            {JSON.stringify(values.images)}
+
+                            <div className="box">
+                                <div style={{marginBottom: '30px', borderBottom: 'none'}} className="box-title">
+                                    {loading ? <LoadingOutlined className="h1"/> : <h3 style={{fontWeight: '600'}}>Images</h3>}
+                                </div>
+                            </div>
+
+                            {/*{JSON.stringify(values.images)}*/}
 
                             <FileUpload
                                 values={values}

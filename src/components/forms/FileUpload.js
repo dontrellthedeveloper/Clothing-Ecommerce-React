@@ -2,6 +2,8 @@ import React from 'react';
 import Resizer from 'react-image-file-resizer';
 import axios from 'axios';
 import {useSelector} from "react-redux";
+import {Badge} from 'antd';
+import {LoadingOutlined} from '@ant-design/icons';
 
 const FileUpload = ({values, setLoading, setValues}) => {
     const {user} = useSelector((state) => ({...state}));
@@ -37,21 +39,70 @@ const FileUpload = ({values, setLoading, setValues}) => {
         // set url images[] in the parent component - ProductCreate
     };
 
- return (
-     <div className="form-group">
-         <div className="row">
-             <label className="btn btn-secondary" style={{margin: "10px auto 20px auto", width: '48%', textAlignLast: "center"}}>Choose Images
-             <input
-                 type="file"
-                 multiple
-                 hidden
-                 accept="images/*"
-                 className="form-control"
-                 onChange={fileUploadAndResize}
+    const handleImageRemove = (public_id) => {
+      setLoading(true);
+      // console.log('remove image' , public_id);
+      axios.post(`${process.env.REACT_APP_API}/removeimage`, {public_id}, {
+          headers: {
+              authtoken: user ? user.token : ""
+          }
+      })
+          .then((res) => {
+              setLoading(false);
+              const {images} = values;
+              let filteredImages = images.filter((item) => {
+                  return item.public_id !== public_id
+              });
+              setValues({...values, images: filteredImages});
+          })
+          .catch((err) => {
+              console.log(err);
+              setLoading(false);
+          })
+    };
 
-             />
-             </label>
-         </div>
+ return (
+
+
+
+     <div className="form-group">
+
+
+             {values.images && values.images.map((image) => (
+                 <Badge
+                     key={image.public_id}
+                     count="X"
+                     onClick={() => handleImageRemove(image.public_id)}
+                     style={{cursor: 'pointer'}}
+                 >
+                 <img
+
+                    src={image.url}
+                    alt=""
+                    className="ml-3"
+                    width="120px"
+                    height="120px"
+                    // style={{borderRadius: "50%"}}
+                    // size={20}
+                 />
+                 </Badge>
+             ))}
+
+             <div className="row">
+                  <label className="btn btn-secondary" style={{margin: "10px auto 20px auto", width: '48%', textAlignLast: "center"}}>Choose Images
+                     <input
+                         type="file"
+                         multiple
+                         hidden
+                         accept="images/*"
+                         className="form-control"
+                         onChange={fileUploadAndResize}
+
+                     />
+                 </label>
+             </div>
+
+
      </div>
  )
 };
