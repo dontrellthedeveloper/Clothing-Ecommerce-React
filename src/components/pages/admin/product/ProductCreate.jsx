@@ -8,6 +8,8 @@ import {createProduct} from "../../../../functions/product";
 import {getCategories, getCategorySubs} from "../../../../functions/category";
 import {DeleteOutlined, EditOutlined} from '@ant-design/icons';
 import ProductForm from "../../../forms/ProductForm";
+import FileUpload from '../../../forms/FileUpload';
+
 
 const initialState = {
     title: '',
@@ -70,6 +72,11 @@ const ProductCreate = () => {
                 toast.error(err.response.data.err)
             })
     };
+
+
+
+
+
 
 
     const handleChange = (e) => {
@@ -191,6 +198,11 @@ const ProductCreate = () => {
                                         </div>
 
                                         {/*{JSON.stringify(values.categories)}*/}
+
+                                        {/*<div className="p-3">*/}
+                                        {/*    <FileUpload/>*/}
+                                        {/*</div>*/}
+
 
                                         <ProductForm
                                             handleSubmit={handleSubmit}

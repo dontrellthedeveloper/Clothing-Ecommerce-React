@@ -1,5 +1,6 @@
 import React from 'react';
 import {Select} from 'antd';
+import FileUpload from "./FileUpload";
 
 const {Option} = Select;
 
@@ -21,6 +22,10 @@ const ProductForm = ({handleSubmit,handleChange, values, handleCategoryChange, s
         brand
     } = values;
 
+    // const fileUploadAndResize = () => {
+    //
+    // };
+
     return (
         <div className="row">
             <div className="col-sm-12">
@@ -30,6 +35,9 @@ const ProductForm = ({handleSubmit,handleChange, values, handleCategoryChange, s
                         {/*<a href="#">Edit</a>*/}
                     </div>
                     <div className="box-content">
+
+
+
                         <form onSubmit={handleSubmit} style={{marginTop: '45px'}}>
                             <div className="form-group">
                                 {/*<label>Title</label>*/}
@@ -126,12 +134,15 @@ const ProductForm = ({handleSubmit,handleChange, values, handleCategoryChange, s
                                 </select>
                             </div>
 
+
+
+
                             <div className="box">
                                 <div style={{marginBottom: '30px'}} className="box-title">
-                                    {/*<h3 style={{fontWeight: '600'}}>Choose Category</h3>*/}
-                                    {/*<a href="#">Edit</a>*/}
                                 </div>
                             </div>
+
+
 
                             <div className="form-group">
                                 {/*<label>Parent Category</label>*/}
@@ -174,6 +185,37 @@ const ProductForm = ({handleSubmit,handleChange, values, handleCategoryChange, s
                                 </select>
                             </div>
                             }
+
+
+
+                            <div className="box">
+                                <div style={{marginBottom: '30px'}} className="box-title">
+                                </div>
+                            </div>
+
+                            {/*<div className="box">*/}
+                            {/*    <div style={{marginBottom: '0', borderBottom: "none"}} className="box-title">*/}
+                            {/*        <h3 style={{fontWeight: '600'}}>Choose Product Images</h3>*/}
+                            {/*    </div>*/}
+                            {/*</div>*/}
+
+
+                            {/*<div className="form-group">*/}
+                            {/*    <div className="row">*/}
+                            {/*        /!*<label>Choose File</label>*!/*/}
+                            {/*        <input*/}
+                            {/*            type="file"*/}
+                            {/*            multiple accept="images/*"*/}
+                            {/*            className="form-control"*/}
+                            {/*            onChange={fileUploadAndResize}*/}
+                            {/*            style={{margin: "10px auto 20px auto", width: '48%', textAlignLast: "center"}}*/}
+                            {/*        />*/}
+                            {/*    </div>*/}
+                            {/*</div>*/}
+
+                            <FileUpload/>
+
+
 
                             <button
                                 type='submit'
