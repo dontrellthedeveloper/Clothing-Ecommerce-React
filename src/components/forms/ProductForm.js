@@ -228,7 +228,7 @@ const ProductForm = ({
                             <button
                                 type='submit'
                                 className="btn btn-solid"
-                                style={{marginTop: "30px"}}
+                                style={{marginTop: "30px", marginBottom: "30px"}}
                             >
                                 Save
                             </button>

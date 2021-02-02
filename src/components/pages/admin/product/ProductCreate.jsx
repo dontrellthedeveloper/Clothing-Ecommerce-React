@@ -221,29 +221,29 @@ const ProductCreate = () => {
 
 
 
-                                        <div className="row" style={{marginTop: "30px"}}>
-                                            <div className="col-sm-12">
-                                                <div className="box">
-                                                    <div style={{marginTop: '30px'}} className="box-title">
-                                                        <h3 style={{fontWeight: '600'}}>Categories</h3>
-                                                        {/*<a href="#">Edit</a>*/}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        {/*<div className="row" style={{marginTop: "30px"}}>*/}
+                                        {/*    <div className="col-sm-12">*/}
+                                        {/*        <div className="box">*/}
+                                        {/*            <div style={{marginTop: '30px'}} className="box-title">*/}
+                                        {/*                <h3 style={{fontWeight: '600'}}>Categories</h3>*/}
+                                        {/*                /!*<a href="#">Edit</a>*!/*/}
+                                        {/*            </div>*/}
+                                        {/*        </div>*/}
+                                        {/*    </div>*/}
+                                        {/*</div>*/}
 
                                         {/*{Step 2}*/}
                                         {/*<label style={{marginTop: "40px"}}>Filter Categories</label>*/}
-                                        <input
-                                            type="search"
-                                            placeholder="Filter Category"
-                                            value={keyword}
-                                            onChange={handleSearchChange}
-                                            className="form-control mb-4"
-                                            style={{margin: "40px auto 50px auto", width: '50%', textAlign: "center"}}
-                                        />
+                                        {/*<input*/}
+                                        {/*    type="search"*/}
+                                        {/*    placeholder="Filter Category"*/}
+                                        {/*    value={keyword}*/}
+                                        {/*    onChange={handleSearchChange}*/}
+                                        {/*    className="form-control mb-4"*/}
+                                        {/*    style={{margin: "40px auto 50px auto", width: '50%', textAlign: "center"}}*/}
+                                        {/*/>*/}
 
-                                        <h4 style={{marginTop: "50px"}}>
+                                        {/*<h4 style={{marginTop: "50px"}}>*/}
 
                                             {/* Step 5 */}
                                             {/*{categories.filter(searched(keyword)).map((c) => (*/}
@@ -260,7 +260,7 @@ const ProductCreate = () => {
                                             {/*        </div>*/}
                                             {/*    </div>*/}
                                             {/*))}*/}
-                                        </h4>
+                                        {/*</h4>*/}
 
 
                                     </div>

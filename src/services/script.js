@@ -1,12 +1,12 @@
 
 
 export const Product4 = {
-    infinite: true,
-    speed: 300,
+    infinite: false,
+    // speed: 300,
     slidesToShow: 4,
     slidesToScroll: 4,
-    autoplay: true,
-    autoplaySpeed: 3000,
+    autoplay: false,
+    // autoplaySpeed: 3000,
     responsive: [
         {
             breakpoint: 1200,
@@ -30,7 +30,7 @@ export const Product4 = {
             }
         }
     ]
-}
+};
 export const Product5 = {
     dots: false,
     infinite: true,

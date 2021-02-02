@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import {connect} from "react-redux";
@@ -8,67 +8,74 @@ import {connect} from "react-redux";
 import {getRelatedItems} from "../../../services";
 
 
-class ProductItem extends Component {
+// class ProductItem extends Component {
+const ProductItem = ({product, symbol, onAddToCartClicked, onAddToWishlistClicked, onAddToCompareClicked, relatedItems, props}) => {
 
-    constructor(props){
-        super(props)
+    const [open, setOpen] = useState(false);
+    const [cartModalOpen, setCartModalOpen] = useState(false);
+    const [stock, setStock] = useState('InStock');
+    const [quantity, setQuantity] = useState(1);
+    const [image, setImage] = useState('');
 
-        this.state = {
-            open: false,
-            cartModalopen:false,
-            stock: 'InStock',
-            quantity: 1,
-            image: ''
+        // this.state = {
+        //     open: false,
+        //     cartModalopen:false,
+        //     stock: 'InStock',
+        //     quantity: 1,
+        //     image: ''
+        // }
+
+
+    const onClickHandle = (img) => {
+        setImage({ image : img} );
+    };
+
+    const onOpenModal = () => {
+        setOpen({ open: true });
+    };
+
+    const onCloseModal = () => {
+        setOpen({ open: false });
+    };
+
+    const onOpenCartModal = () => {
+        setCartModalOpen({ cartModalOpen: true });
+        onAddToCartClicked();
+    };
+    const onCloseCartModal = () => {
+        setCartModalOpen({ cartModalOpen: false });
+    };
+
+    const minusQty = () => {
+        if(quantity > 1) {
+            setStock({stock: 'InStock'});
+            setQuantity({quantity: quantity - 1})
         }
-    }
-
-    onClickHandle(img) {
-        this.setState({ image : img} );
-    }
-    onOpenModal = () => {
-        this.setState({ open: true });
-    };
-    onCloseModal = () => {
-        this.setState({ open: false });
     };
 
-    onOpenCartModal = () => {
-        this.setState({ cartModalopen: true });
-        this.props.onAddToCartClicked();
-    };
-    onCloseCartModal = () => {
-        this.setState({ cartModalopen: false });
-    };
-
-    minusQty = () => {
-        if(this.state.quantity > 1) {
-            this.setState({stock: 'InStock'})
-            this.setState({quantity: this.state.quantity - 1})
-        }
-    }
-
-    plusQty = () => {
-        if(this.props.product.stock >= this.state.quantity) {
-            this.setState({quantity: this.state.quantity+1})
+    const plusQty = () => {
+        if(product.stock >= quantity) {
+            setQuantity({quantity: quantity+1})
         }else{
-            this.setState({stock: 'Out of Stock !'})
+            setStock({stock: 'Out of Stock !'})
         }
-    }
-    changeQty = (e) => {
-        this.setState({ quantity: parseInt(e.target.value) })
-    }
+    };
 
-    render() {
-        const {product, symbol, onAddToCartClicked, onAddToWishlistClicked, onAddToCompareClicked, relatedItems} = this.props;
+    const changeQty = (e) => {
+        setQuantity({ quantity: parseInt(e.target.value) })
+    };
 
 
-        let RatingStars = []
+        // const {product, symbol, onAddToCartClicked, onAddToWishlistClicked, onAddToCompareClicked, relatedItems} = this.props;
+
+
+        let RatingStars = [];
         for(var i = 0; i < product.rating; i++) {
             RatingStars.push(<i className="fa fa-star" key={i}></i>)
         }
         return (
-            <div>
-                <div className="product-box">
+
+                <div className="product-box" style={{width: "180px", margin: "20px 10px"}}>
                     <div className="img-wrapper">
                         <div className="lable-block">
                             {(product.new == true)? <span className="lable3">new</span> : ''}
@@ -79,7 +86,7 @@ class ProductItem extends Component {
                             <Link to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.id}`} >
                                 <img src={`${
                                     product.variants?
-                                        this.state.image?this.state.image:product.variants[0].images
+                                        image?image:product.variants[0].images
                                         :product.pictures[0]
                                     }`}
                                 className="img-fluid lazyload bg-img"
@@ -87,7 +94,7 @@ class ProductItem extends Component {
                             </Link>
                         </div>
                         <div className="cart-info cart-wrap">
-                            <button title="Add to cart" onClick={() => this.onOpenCartModal()}>
+                            <button title="Add to cart" onClick={() => onOpenCartModal()}>
                                 <i className="fa fa-shopping-cart" aria-hidden="true"></i>
                             </button>
                             <a href="javascript:void(0)" title="Add to Wishlist" onClick={onAddToWishlistClicked}>
@@ -96,7 +103,7 @@ class ProductItem extends Component {
                             <a href="javascript:void(0)" data-toggle="modal"
                                data-target="#quick-view"
                                title="Quick View"
-                               onClick={this.onOpenModal}><i className="fa fa-search" aria-hidden="true"></i></a>
+                               onClick={onOpenModal}><i className="fa fa-search" aria-hidden="true"></i></a>
                             <Link to={`${process.env.PUBLIC_URL}/compare`} title="Compare" onClick={onAddToCompareClicked}>
                                 <i className="fa fa-refresh" aria-hidden="true"></i></Link>
                         </div>
@@ -116,7 +123,7 @@ class ProductItem extends Component {
                     </div>
 
                     {/*Quick-view modal popup Start*/}
-                    <Modal open={this.state.open} onClose={this.onCloseModal} center>
+                    <Modal open={open} onClose={onCloseModal} center>
                         <div className="modal-dialog modal-lg modal-dialog-centered" role="document">
                             <div className="modal-content quick-view-modal">
                                 <div className="modal-body">
@@ -125,7 +132,7 @@ class ProductItem extends Component {
                                             <div className="quick-view-img">
                                                 <img src={`${
                                                     product.variants?
-                                                        this.state.image?this.state.image:product.variants[0].images
+                                                        image?image:product.variants[0].images
                                                         :product.pictures[0]
                                                     }`} alt="" className="img-fluid" />
                                             </div>
@@ -137,7 +144,7 @@ class ProductItem extends Component {
                                                 {product.variants?
                                                 <ul className="color-variant">
                                                     {product.variants.map((vari, i) =>
-                                                        <li className={vari.color} key={i} title={vari.color} onClick={() => this.onClickHandle(vari.images)}></li>)
+                                                        <li className={vari.color} key={i} title={vari.color} onClick={() => onClickHandle(vari.images)}></li>)
                                                     }
                                                 </ul>:''}
                                                 <div className="border-product">
@@ -157,13 +164,13 @@ class ProductItem extends Component {
                                                     <div className="qty-box">
                                                         <div className="input-group">
                                                                   <span className="input-group-prepend">
-                                                                    <button type="button" className="btn quantity-left-minus" onClick={this.minusQty} data-type="minus" data-field="">
+                                                                    <button type="button" className="btn quantity-left-minus" onClick={minusQty} data-type="minus" data-field="">
                                                                      <i className="fa fa-angle-left"></i>
                                                                     </button>
                                                                   </span>
-                                                            <input type="text" name="quantity" value={this.state.quantity}  onChange={this.changeQty} className="form-control input-number" />
+                                                            <input type="text" name="quantity" value={quantity}  onChange={changeQty} className="form-control input-number" />
                                                             <span className="input-group-prepend">
-                                                                    <button type="button" className="btn quantity-right-plus" onClick={this.plusQty} data-type="plus" data-field="">
+                                                                    <button type="button" className="btn quantity-right-plus" onClick={plusQty} data-type="plus" data-field="">
                                                                     <i className="fa fa-angle-right"></i>
                                                                     </button>
                                                                    </span>
@@ -171,7 +178,7 @@ class ProductItem extends Component {
                                                     </div>
                                                 </div>
                                                 <div className="product-buttons">
-                                                    <button  className="btn btn-solid" onClick={() => onAddToCartClicked(product, this.state.quantity)} >add to cart</button>
+                                                    <button  className="btn btn-solid" onClick={() => onAddToCartClicked(product, quantity)} >add to cart</button>
                                                     <Link to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.id}`} className="btn btn-solid">view detail</Link>
                                                 </div>
                                             </div>
@@ -184,7 +191,7 @@ class ProductItem extends Component {
                     {/*Quick-view modal popup End*/}
 
                     {/* Add to cart modal popup start */}
-                    <Modal open={this.state.cartModalopen} onClose={this.onCloseCartModal} center className="cart-modal">
+                    <Modal open={cartModalOpen} onClose={onCloseCartModal} center className="cart-modal">
                         <div className="modal-dialog modal-lg modal-dialog-centered" role="document">
                             <div className="modal-content">
                                 <div className="modal-body modal1">
@@ -196,7 +203,7 @@ class ProductItem extends Component {
                                                         <a href="#">
                                                             <img src={`${
                                                                 product.variants?
-                                                                    this.state.image?this.state.image:product.variants[0].images
+                                                                    image?image:product.variants[0].images
                                                                     :product.pictures[0]
                                                                 }`} alt="" className="img-fluid blur-up lazyload pro-img" />
                                                         </a>
@@ -263,14 +270,14 @@ class ProductItem extends Component {
 
 
                 </div>
-            </div>
+
         )
-    }
-}
+    };
+
 
 const mapStateToProps = (state, ownProps) => ({
     relatedItems: getRelatedItems(state.data.products, ownProps.product.category),
     symbol: state.data.symbol
-})
+});
 
 export default connect(mapStateToProps) (ProductItem);

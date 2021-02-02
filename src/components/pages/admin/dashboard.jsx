@@ -1,12 +1,25 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Breadcrumb from "../../common/breadcrumb";
 import {Link} from "react-router-dom";
+import {getProductsByCount} from "../../../functions/product";
+import {useSelector} from "react-redux";
+import Collection from "../../layouts/pets/collection";
 
 const AdminDashboard = (props) => {
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    let {user} = useSelector((state) => ({...state}));
+
+    useEffect(() => {
+        getProductsByCount(100)
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err))
+    });
 
     return (
         <div>
-            <Breadcrumb title={'Dashboard'}/>
+            <Breadcrumb title={ 'Dashboard'}/>
 
 
             {/*Dashboard section*/}
@@ -55,72 +68,124 @@ const AdminDashboard = (props) => {
                         </div>
                         <div className="col-lg-9">
                             <div className="dashboard-right">
-                                <div className="dashboard">
+                                <div style={{textAlign: 'center'}} className="dashboard">
                                     <div className="page-title">
-                                        <h2>My Dashboard</h2>
+                                        <h2 style={{fontWeight: "800"}}>{user.email.split("@")[0]}'s Dashboard</h2>
                                     </div>
-                                    <div className="welcome-msg">
-                                        <p>Hello, MARK JECNO !</p>
-                                        <p>From your My Account Dashboard you have the ability to view a snapshot of
-                                            your recent account activity and update your account information. Select
-                                            a link below to view or edit information.</p>
-                                    </div>
+                                    {/*<div className="box-account box-info">*/}
+                                    {/*    <div className="box-head">*/}
+                                    {/*        <h4>Administrator</h4>*/}
+                                    {/*    </div>*/}
+                                    {/*</div>*/}
+
+
+
+
+
+
                                     <div className="box-account box-info">
                                         <div className="box-head">
-                                            <h2>Account Information</h2>
+                                            <h4>Administrator</h4>
                                         </div>
+
+
                                         <div className="row">
-                                            <div className="col-sm-6">
+                                            <div className="col-sm-12">
                                                 <div className="box">
-                                                    <div className="box-title">
-                                                        <h3>Contact Information</h3>
-                                                        <a href="#">Edit</a>
-                                                    </div>
-                                                    <div className="box-content">
-                                                        <h6>MARK JECNO</h6>
-                                                        <h6>MARk-JECNO@gmail.com</h6>
-                                                        <h6><a href="#">Change Password</a></h6>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="col-sm-6">
-                                                <div className="box">
-                                                    <div className="box-title">
-                                                        <h3>Newsletters</h3>
-                                                        <a href="#">Edit</a>
-                                                    </div>
-                                                    <div className="box-content">
-                                                        <p>
-                                                            You are currently not subscribed to any newsletter.
-                                                        </p>
+                                                    <div style={{marginTop: '30px'}} className="box-title">
+                                                        <h3 style={{fontWeight: '600'}}>Welcome to your Account Dashboard</h3>
+                                                        {/*<a href="#">Edit</a>*/}
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div>
-                                            <div className="box">
-                                                <div className="box-title">
-                                                    <h3>Address Book</h3>
-                                                    <a href="#">Manage Addresses</a>
-                                                </div>
-                                                <div className="row">
-                                                    <div className="col-sm-6">
-                                                        <h6>Default Billing Address</h6>
-                                                        <address>
-                                                            You have not set a default billing address.<br/>
-                                                            <a href="#">Edit Address</a>
-                                                        </address>
-                                                    </div>
-                                                    <div className="col-sm-6">
-                                                        <h6>Default Shipping Address</h6>
-                                                        <address>
-                                                            You have not set a default shipping address.<br />
-                                                            <a href="#">Edit Address</a>
-                                                        </address>
+
+                                        <div className="welcome-msg" style={{marginTop: "20px"}}>
+                                            {/*<p>Hello {user.email.split("@")[0]},</p>*/}
+                                            {/*<p>Welcome to your Account Dashboard.</p>*/}
+                                            <p style={{marginTop: "20px"}}> You have the ability to create products, view a snapshot of
+                                                your recent account activity, and update your account information. Select
+                                                a link from the menu to view or edit information.</p>
+                                        </div>
+
+
+                                        <div className="row">
+                                            <div className="col-sm-12">
+                                                <div className="box">
+                                                    <div  className="box-title">
+                                                        {/*<h3 style={{fontWeight: '600'}}>Welcome to your Account Dashboard</h3>*/}
+                                                        {/*<a href="#">Edit</a>*/}
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+
+
+
+
+                                        <Collection
+                                            type={'pets'}
+                                            title="Products"
+                                            subtitle="Edit"
+                                        />
+
+
+
+
+
+
+                                        {/*<div className="row">*/}
+                                        {/*    <div className="col-sm-6">*/}
+                                        {/*        <div className="box">*/}
+                                        {/*            <div className="box-title">*/}
+                                        {/*                <h3>Contact Information</h3>*/}
+                                        {/*                <a href="#">Edit</a>*/}
+                                        {/*            </div>*/}
+                                        {/*            <div className="box-content">*/}
+                                        {/*                <h6>MARK JECNO</h6>*/}
+                                        {/*                <h6>MARk-JECNO@gmail.com</h6>*/}
+                                        {/*                <h6><a href="#">Change Password</a></h6>*/}
+                                        {/*            </div>*/}
+                                        {/*        </div>*/}
+                                        {/*    </div>*/}
+                                        {/*    <div className="col-sm-6">*/}
+                                        {/*        <div className="box">*/}
+                                        {/*            <div className="box-title">*/}
+                                        {/*                <h3>Newsletters</h3>*/}
+                                        {/*                <a href="#">Edit</a>*/}
+                                        {/*            </div>*/}
+                                        {/*            <div className="box-content">*/}
+                                        {/*                <p>*/}
+                                        {/*                    You are currently not subscribed to any newsletter.*/}
+                                        {/*                </p>*/}
+                                        {/*            </div>*/}
+                                        {/*        </div>*/}
+                                        {/*    </div>*/}
+                                        {/*</div>*/}
+                                        {/*<div>*/}
+                                        {/*    <div className="box">*/}
+                                        {/*        <div className="box-title">*/}
+                                        {/*            <h3>Address Book</h3>*/}
+                                        {/*            <a href="#">Manage Addresses</a>*/}
+                                        {/*        </div>*/}
+                                        {/*        <div className="row">*/}
+                                        {/*            <div className="col-sm-6">*/}
+                                        {/*                <h6>Default Billing Address</h6>*/}
+                                        {/*                <address>*/}
+                                        {/*                    You have not set a default billing address.<br/>*/}
+                                        {/*                    <a href="#">Edit Address</a>*/}
+                                        {/*                </address>*/}
+                                        {/*            </div>*/}
+                                        {/*            <div className="col-sm-6">*/}
+                                        {/*                <h6>Default Shipping Address</h6>*/}
+                                        {/*                <address>*/}
+                                        {/*                    You have not set a default shipping address.<br />*/}
+                                        {/*                    <a href="#">Edit Address</a>*/}
+                                        {/*                </address>*/}
+                                        {/*            </div>*/}
+                                        {/*        </div>*/}
+                                        {/*    </div>*/}
+                                        {/*</div>*/}
                                     </div>
                                 </div>
                             </div>
