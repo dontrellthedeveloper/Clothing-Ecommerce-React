@@ -109,16 +109,16 @@ const ProductItem = ({product}) => {
                             {/*</Link>*/}
                         </div>
                         <div className="cart-info cart-wrap">
-                            <button title="Add to cart"
-                                    // onClick={() => onOpenCartModal()}
-                            >
-                                <i className="fa fa-shopping-cart" aria-hidden="true"></i>
-                            </button>
-                            <a href="javascript:void(0)" title="Add to Wishlist"
-                               // onClick={onAddToWishlistClicked}
-                            >
-                                <i className="fa fa-heart" aria-hidden="true"></i>
-                            </a>
+                            {/*<button title="Add to cart"*/}
+                            {/*         onClick={() => onOpenCartModal()}*/}
+                            {/*>*/}
+                            {/*    <i className="fa fa-shopping-cart" aria-hidden="true"></i>*/}
+                            {/*</button>*/}
+                            {/*<a href="javascript:void(0)" title="Add to Wishlist"*/}
+                            {/*    onClick={onAddToWishlistClicked}*/}
+                            {/*>*/}
+                            {/*    <i className="fa fa-heart" aria-hidden="true"></i>*/}
+                            {/*</a>*/}
                             <a href="javascript:void(0)" data-toggle="modal"
                                data-target="#quick-view"
                                title="Quick View"
@@ -127,7 +127,8 @@ const ProductItem = ({product}) => {
                             <Link to={`${process.env.PUBLIC_URL}/compare`} title="Compare"
                                   // onClick={onAddToCompareClicked}
                             >
-                                <i className="fa fa-refresh" aria-hidden="true"></i></Link>
+                                <i className="fa fa-refresh" aria-hidden="true"></i>
+                            </Link>
                         </div>
                     </div>
                     <div className="product-detail ">

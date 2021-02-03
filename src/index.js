@@ -38,6 +38,7 @@ import CategoryUpdate from './components/pages/admin/category/CategoryUpdate';
 import SubCreate from './components/pages/admin/sub/SubCreate';
 import SubUpdate from './components/pages/admin/sub/SubUpdate';
 import ProductCreate from './components/pages/admin/product/ProductCreate';
+import AllProducts from './components/pages/admin/product/AllProducts';
 
 // User Routes
 import UserRoute from "./components/routes/UserRoute";
@@ -241,6 +242,7 @@ const Root = () => {
                                         <AdminRoute path={`${process.env.PUBLIC_URL}/admin/sub`} component={SubCreate}/>
                                         <AdminRoute path={`${process.env.PUBLIC_URL}/admin/sub-:slug`} component={SubUpdate}/>
                                         <AdminRoute path={`${process.env.PUBLIC_URL}/admin/product`} component={ProductCreate}/>
+                                        <AdminRoute path={`${process.env.PUBLIC_URL}/admin/products`} component={AllProducts}/>
 
 
 

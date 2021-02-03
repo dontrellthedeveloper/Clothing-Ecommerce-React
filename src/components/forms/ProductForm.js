@@ -44,7 +44,7 @@ const ProductForm = ({
             <div className="col-sm-12">
                 <div className="box">
                     <div style={{marginTop: '30px'}} className="box-title">
-                        <h3 style={{fontWeight: '600'}}>Create Product</h3>
+                        <h3 style={{fontWeight: '600'}}>Product</h3>
                         {/*<a href="#">Edit</a>*/}
                     </div>
                     <div className="box-content">

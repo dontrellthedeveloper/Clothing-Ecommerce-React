@@ -16,15 +16,15 @@ const Collection = ({items, symbol, addToCart, addToWishlist, addToCompare, titl
         return (
             <div>
                 {/*Paragraph*/}
-                <section className="section-b-space j-box pets-box ratio_square" style={{paddingTop: "30px"}}>
+                <section className="section-b-space j-box pets-box ratio_square" style={{paddingTop: "10px"}}>
                     <div className="container">
                         <div className="row">
                             <div className="col">
-                                <div className="title1 title5">
-                                    {subtitle?<h4>{subtitle}</h4>:''}
-                                    <h2 className="title-inner1">{title}</h2>
-                                    <hr role="tournament6" />
-                                </div>
+                                {/*<div className="title1 title5">*/}
+                                {/*    {subtitle?<h4>{subtitle}</h4>:''}*/}
+                                {/*    <h2 className="title-inner1">{title}</h2>*/}
+                                {/*    <hr role="tournament6" />*/}
+                                {/*</div>*/}
                                 {/*<Slider {...Product4} className="product-4 product-m no-arrow">*/}
                                 <div className="product-4 product-m no-arrow">
                                     {/*{ items.map((product, index ) =>*/}

@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import Breadcrumb from "../../common/breadcrumb";
+import Breadcrumb from "../../../common/breadcrumb";
 import {Link} from "react-router-dom";
-import {getProductsByCount} from "../../../functions/product";
+import {getProductsByCount} from "../../../../functions/product";
 import {useSelector} from "react-redux";
-import Collection from "../../layouts/pets/collection";
+import Collection from "../../../layouts/pets/collection";
 
-const AdminDashboard = (props) => {
+const AllProducts = (props) => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -52,13 +52,13 @@ const AdminDashboard = (props) => {
                                 <div className="block-content">
                                     <ul>
                                         {/*<li className="active">*/}
-                                        <li className="active">
+                                        <li >
                                             <Link to={`${process.env.PUBLIC_URL}/admin/dashboard`}>Dashboard</Link>
                                         </li>
                                         <li>
                                             <Link to={`${process.env.PUBLIC_URL}/admin/product`}>Product</Link>
                                         </li>
-                                        <li>
+                                        <li className="active">
                                             <Link to={`${process.env.PUBLIC_URL}/admin/products`}>Products</Link>
                                         </li>
                                         <li>
@@ -81,7 +81,7 @@ const AdminDashboard = (props) => {
                             <div className="dashboard-right">
                                 <div style={{textAlign: 'center'}} className="dashboard">
                                     <div className="page-title">
-                                        <h2 style={{fontWeight: "800"}}>{user.email.split("@")[0]}'s Dashboard</h2>
+                                        {loading ? <h2 style={{fontWeight: "800"}}>Loading...</h2> : <h2 style={{fontWeight: "800"}}>Products Overview</h2> }
                                     </div>
                                     {/*<div className="box-account box-info">*/}
                                     {/*    <div className="box-head">*/}
@@ -99,32 +99,11 @@ const AdminDashboard = (props) => {
                                             <h4>Administrator</h4>
                                         </div>
 
-
                                         <div className="row">
                                             <div className="col-sm-12">
                                                 <div className="box">
                                                     <div style={{marginTop: '30px'}} className="box-title">
-                                                        <h3 style={{fontWeight: '600'}}>Welcome to your Account Dashboard</h3>
-                                                        {/*<a href="#">Edit</a>*/}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="welcome-msg" style={{marginTop: "20px"}}>
-                                            {/*<p>Hello {user.email.split("@")[0]},</p>*/}
-                                            {/*<p>Welcome to your Account Dashboard.</p>*/}
-                                            <p style={{marginTop: "20px"}}> You have the ability to create products, view a snapshot of
-                                                your recent account activity, and update your account information. Select
-                                                a link from the menu to view or edit information.</p>
-                                        </div>
-
-
-                                        <div className="row">
-                                            <div className="col-sm-12">
-                                                <div className="box">
-                                                    <div  className="box-title">
-                                                        {/*<h3 style={{fontWeight: '600'}}>Welcome to your Account Dashboard</h3>*/}
+                                                        <h3 style={{fontWeight: '600'}}>Edit Products</h3>
                                                         {/*<a href="#">Edit</a>*/}
                                                     </div>
                                                 </div>
@@ -132,18 +111,50 @@ const AdminDashboard = (props) => {
                                         </div>
 
 
+                                        {/*<div className="row">*/}
+                                        {/*    <div className="col-sm-12">*/}
+                                        {/*        <div className="box">*/}
+                                        {/*            <div style={{marginTop: '30px'}} className="box-title">*/}
+                                        {/*                <h3 style={{fontWeight: '600'}}>Welcome to your Account Dashboard</h3>*/}
+                                        {/*                /!*<a href="#">Edit</a>*!/*/}
+                                        {/*            </div>*/}
+                                        {/*        </div>*/}
+                                        {/*    </div>*/}
+                                        {/*</div>*/}
+
+                                        {/*<div className="welcome-msg" style={{marginTop: "20px"}}>*/}
+                                        {/*    /!*<p>Hello {user.email.split("@")[0]},</p>*!/*/}
+                                        {/*    /!*<p>Welcome to your Account Dashboard.</p>*!/*/}
+                                        {/*    <p style={{marginTop: "20px"}}> You have the ability to create products, view a snapshot of*/}
+                                        {/*        your recent account activity, and update your account information. Select*/}
+                                        {/*        a link from the menu to view or edit information.</p>*/}
+                                        {/*</div>*/}
 
 
-                                        {loading ? (<h4 className="text-danger">Loading...</h4>) : (<h4>All Products</h4>)}
+                                        {/*<div className="row">*/}
+                                        {/*    <div className="col-sm-12">*/}
+                                        {/*        <div className="box">*/}
+                                        {/*            <div  className="box-title">*/}
+                                        {/*                /!*<h3 style={{fontWeight: '600'}}>Welcome to your Account Dashboard</h3>*!/*/}
+                                        {/*                /!*<a href="#">Edit</a>*!/*/}
+                                        {/*            </div>*/}
+                                        {/*        </div>*/}
+                                        {/*    </div>*/}
+                                        {/*</div>*/}
+
+
+
+
+                                        {/*{loading ? (<h4 className="text-danger">Loading...</h4>) : (<h4>All Products</h4>)}*/}
 
                                         {/*<div className="col">{JSON.stringify(products)}</div>*/}
 
-                                        {/*<Collection*/}
-                                        {/*    products={products}*/}
-                                        {/*    type={'pets'}*/}
-                                        {/*    title="Products"*/}
-                                        {/*    subtitle="Edit"*/}
-                                        {/*/>*/}
+                                        <Collection
+                                            products={products}
+                                            type={'pets'}
+                                            title="Products"
+                                            subtitle="Edit"
+                                        />
 
 
 
@@ -227,4 +238,4 @@ const AdminDashboard = (props) => {
 };
 
 
-export default AdminDashboard
+export default AllProducts;

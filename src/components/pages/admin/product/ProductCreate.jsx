@@ -188,7 +188,7 @@ const ProductCreate = () => {
                                 <div style={{textAlign: 'center'}} className="dashboard">
 
                                     <div  className="page-title">
-                                        {loading ? <h2 style={{fontWeight: "800"}}>Loading...</h2> : <h2 style={{fontWeight: "800"}}>Product Overview</h2> }
+                                        {loading ? <h2 style={{fontWeight: "800"}}>Loading...</h2> : <h2 style={{fontWeight: "800"}}>Create Product</h2> }
                                     </div>
 
 
