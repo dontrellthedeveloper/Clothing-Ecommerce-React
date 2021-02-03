@@ -9,7 +9,7 @@ import {addToCart, addToWishlist, addToCompare} from "../../../actions";
 import ProductItem from './product-item';
 
 // class Collection extends Component {
-const Collection = ({items, symbol, addToCart, addToWishlist, addToCompare, title, subtitle}) => {
+const Collection = ({items, symbol, addToCart, addToWishlist, addToCompare, title, subtitle, products}) => {
 
 
         // const {items, symbol, addToCart, addToWishlist, addToCompare, title, subtitle} = this.props;
@@ -27,12 +27,17 @@ const Collection = ({items, symbol, addToCart, addToWishlist, addToCompare, titl
                                 </div>
                                 {/*<Slider {...Product4} className="product-4 product-m no-arrow">*/}
                                 <div className="product-4 product-m no-arrow">
-                                    { items.map((product, index ) =>
-
-                                            <ProductItem key={index} product={product} symbol={symbol}
-                                                         onAddToCompareClicked={() => addToCompare(product)}
-                                                         onAddToWishlistClicked={() => addToWishlist(product)}
-                                                         onAddToCartClicked={() => addToCart(product, 1)} key={index} />
+                                    {/*{ items.map((product, index ) =>*/}
+                                    { products.map((product) =>
+                                            <ProductItem
+                                                // key={index}
+                                                key={product._id}
+                                                product={product}
+                                                // symbol={symbol}
+                                                //          onAddToCompareClicked={() => addToCompare(product)}
+                                                //          onAddToWishlistClicked={() => addToWishlist(product)}
+                                                //          onAddToCartClicked={() => addToCart(product, 1)}
+                                            />
                                         )
                                     }
                                 </div>
@@ -45,9 +50,11 @@ const Collection = ({items, symbol, addToCart, addToWishlist, addToCompare, titl
     };
 
 
-const mapStateToProps = (state, ownProps) => ({
-    items: getTrendingCollection(state.data.products, ownProps.type),
-    symbol: state.data.symbol
-});
+// const mapStateToProps = (state, ownProps) => ({
+//     items: getTrendingCollection(state.data.products, ownProps.type),
+//     symbol: state.data.symbol
+// });
+//
+// export default connect(mapStateToProps, {addToCart, addToWishlist, addToCompare}) (Collection);
 
-export default connect(mapStateToProps, {addToCart, addToWishlist, addToCompare}) (Collection);
+export default Collection;

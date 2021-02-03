@@ -12,10 +12,21 @@ const AdminDashboard = (props) => {
     let {user} = useSelector((state) => ({...state}));
 
     useEffect(() => {
+        loadAllProducts()
+    }, []);
+
+    const loadAllProducts = () => {
+        setLoading(true);
         getProductsByCount(100)
-            .then(res => console.log(res.data))
-            .catch(err => console.log(err))
-    });
+            .then(res => {
+                setProducts(res.data);
+                setLoading(false);
+            })
+            .catch(err => {
+                setLoading(false);
+                console.log(err)
+            })
+    };
 
     return (
         <div>
@@ -123,11 +134,28 @@ const AdminDashboard = (props) => {
 
 
 
+                                        {loading ? (<h4 className="text-danger">Loading...</h4>) : (<h4>All Products</h4>)}
+
+                                        {/*<div className="col">{JSON.stringify(products)}</div>*/}
+
                                         <Collection
+                                            products={products}
                                             type={'pets'}
                                             title="Products"
                                             subtitle="Edit"
                                         />
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

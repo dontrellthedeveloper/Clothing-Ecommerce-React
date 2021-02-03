@@ -80,9 +80,12 @@ const FileUpload = ({values, setLoading, setValues}) => {
                     src={image.url}
                     alt=""
                     className="ml-3"
-                    width="120px"
-                    height="120px"
-                    // style={{borderRadius: "50%"}}
+                    // width="120px"
+                    // height="120px"
+                    style={{   width: "15vw",
+                        height: "15vw",
+                        // objectFit: "cover"
+                    }}
                     // size={20}
                  />
                  </Badge>
