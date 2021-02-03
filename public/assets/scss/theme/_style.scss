@@ -4332,7 +4332,8 @@ header {
   .product-box {
     .img-wrapper {
       .cart-info {
-        background-color: rgba($theme-deafult, 0.5);
+        //background-color: rgba($theme-deafult, 0.5);
+        background-color: #79868F;
         padding: 10px;
         border:none;
         transform: perspective(500px) rotateX(90deg);

@@ -4443,7 +4443,8 @@ r
       17.4.pets demo CSS start
 ==========================*/
 .pets-box .product-box .img-wrapper .cart-info {
-  background-color: rgba(240, 181, 77, 0.5);
+  /*background-color: rgba(240, 181, 77, 0.5);*/
+  background-color: #79868F;
   padding: 10px;
   border: none;
   -webkit-transform: perspective(500px) rotateX(90deg);

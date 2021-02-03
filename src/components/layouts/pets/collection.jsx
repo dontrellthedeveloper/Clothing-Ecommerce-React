@@ -9,14 +9,14 @@ import {addToCart, addToWishlist, addToCompare} from "../../../actions";
 import ProductItem from './product-item';
 
 // class Collection extends Component {
-const Collection = ({items, symbol, addToCart, addToWishlist, addToCompare, title, subtitle, products}) => {
+const Collection = ({items, symbol, addToCart, addToWishlist, addToCompare, title, subtitle, products, handleRemove}) => {
 
 
         // const {items, symbol, addToCart, addToWishlist, addToCompare, title, subtitle} = this.props;
         return (
             <div>
                 {/*Paragraph*/}
-                <section className="section-b-space j-box pets-box ratio_square" style={{paddingTop: "10px"}}>
+                <section className="section-b-space j-box pets-box ratio_square" style={{paddingTop: "20px"}}>
                     <div className="container">
                         <div className="row">
                             <div className="col">
@@ -33,6 +33,7 @@ const Collection = ({items, symbol, addToCart, addToWishlist, addToCompare, titl
                                                 // key={index}
                                                 key={product._id}
                                                 product={product}
+                                                handleRemove={handleRemove}
                                                 // symbol={symbol}
                                                 //          onAddToCompareClicked={() => addToCompare(product)}
                                                 //          onAddToWishlistClicked={() => addToWishlist(product)}

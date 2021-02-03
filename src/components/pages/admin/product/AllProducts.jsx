@@ -4,6 +4,8 @@ import {Link} from "react-router-dom";
 import {getProductsByCount} from "../../../../functions/product";
 import {useSelector} from "react-redux";
 import Collection from "../../../layouts/pets/collection";
+import {removeProduct} from "../../../../functions/product";
+import {toast} from "react-toastify";
 
 const AllProducts = (props) => {
     const [products, setProducts] = useState([]);
@@ -26,6 +28,22 @@ const AllProducts = (props) => {
                 setLoading(false);
                 console.log(err)
             })
+    };
+
+    const handleRemove = (slug) => {
+        let answer = window.confirm('Delete?');
+        if(answer) {
+            // console.log('send delete request', slug);
+            removeProduct(slug, user.token)
+                .then(res => {
+                    loadAllProducts();
+                    toast.error(`${res.data.title} is deleted`);
+                })
+                .catch(err => {
+                    if(err.response.status === 400) toast.error(err.response.data);
+                    console.log(err)
+                })
+        }
     };
 
     return (
@@ -151,6 +169,7 @@ const AllProducts = (props) => {
 
                                         <Collection
                                             products={products}
+                                            handleRemove={handleRemove}
                                             type={'pets'}
                                             title="Products"
                                             subtitle="Edit"

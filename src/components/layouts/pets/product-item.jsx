@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import {connect} from "react-redux";
+import defaultImage from '../../../images/default-product-image.png';
 
 
 
@@ -11,7 +12,7 @@ import {getRelatedItems} from "../../../services";
 // class ProductItem extends Component {
 // const ProductItem = ({product, symbol, onAddToCartClicked, onAddToWishlistClicked, onAddToCompareClicked, relatedItems, props}) => {
 
-const ProductItem = ({product}) => {
+const ProductItem = ({product, handleRemove}) => {
 
     const [open, setOpen] = useState(false);
     const [cartModalOpen, setCartModalOpen] = useState(false);
@@ -19,7 +20,7 @@ const ProductItem = ({product}) => {
     const [quantity, setQuantity] = useState(1);
     const [image, setImage] = useState('');
 
-    const {title, description, images} = product;
+    const {title, description, images, slug} = product;
 
         // this.state = {
         //     open: false,
@@ -97,7 +98,7 @@ const ProductItem = ({product}) => {
                             {/*        }`}*/}
                             {/*    className="img-fluid lazyload bg-img"*/}
                             {/*    alt="" />*/}
-                            <img src={images && images.length ? images[0].url : ""}
+                            <img src={images && images.length ? images[0].url : defaultImage}
                                  className="img-fluid lazyload bg-img"
                                  style={{borderBottom: "1px solid #e0e0e0",
                                      padding: "20px",
@@ -123,24 +124,26 @@ const ProductItem = ({product}) => {
                                data-target="#quick-view"
                                title="Quick View"
                                // onClick={onOpenModal}
-                            ><i className="fa fa-search" aria-hidden="true"></i></a>
-                            <Link to={`${process.env.PUBLIC_URL}/compare`} title="Compare"
+                            ><i className="fa fa-pencil" aria-hidden="true"></i></a>
+                            <Link onClick={() => handleRemove(slug)}
+                                  to="#"
+                                  title="Delete"
                                   // onClick={onAddToCompareClicked}
                             >
-                                <i className="fa fa-refresh" aria-hidden="true"></i>
+                                <i className="fa fa-trash" aria-hidden="true"></i>
                             </Link>
                         </div>
                     </div>
-                    <div className="product-detail ">
+                    <div className="product-detail " style={{paddingLeft: "0"}}>
                         <div>
                             <div className="rating">
                                 {/*{RatingStars}*/}
                             </div>
                             <Link to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.id}`}>
-                                <h6>{title}</h6>
+                                <h6 style={{whiteSpace: "nowrap"}}>{title}</h6>
                             </Link>
                             <h4>
-                                {description}
+                                ${product.price}
                             </h4>
                             {/*<h4>{symbol}{product.price-(product.price*product.discount/100)}*/}
                             {/*    <del><span className="money">{symbol}{product.price}</span></del>*/}
