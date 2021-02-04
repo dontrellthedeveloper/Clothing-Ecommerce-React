@@ -39,6 +39,7 @@ import SubCreate from './components/pages/admin/sub/SubCreate';
 import SubUpdate from './components/pages/admin/sub/SubUpdate';
 import ProductCreate from './components/pages/admin/product/ProductCreate';
 import AllProducts from './components/pages/admin/product/AllProducts';
+import ProductUpdate from './components/pages/admin/product/ProductUpdate';
 
 // User Routes
 import UserRoute from "./components/routes/UserRoute";
@@ -232,17 +233,18 @@ const Root = () => {
 
 
                                         {/*Dashboard*/}
-                                        <UserRoute path={`${process.env.PUBLIC_URL}/user/history`} component={UserHistory}/>
-                                        <UserRoute path={`${process.env.PUBLIC_URL}/user/password`} component={UserPassword}/>
-                                        <UserRoute path={`${process.env.PUBLIC_URL}/user/wishlist`} component={UserWishlist}/>
+                                        <UserRoute exact path={`${process.env.PUBLIC_URL}/user/history`} component={UserHistory}/>
+                                        <UserRoute exact path={`${process.env.PUBLIC_URL}/user/password`} component={UserPassword}/>
+                                        <UserRoute exact path={`${process.env.PUBLIC_URL}/user/wishlist`} component={UserWishlist}/>
 
-                                        <AdminRoute path={`${process.env.PUBLIC_URL}/admin/dashboard`} component={AdminDashboard}/>
-                                        <AdminRoute path={`${process.env.PUBLIC_URL}/admin/category`} component={CategoryCreate}/>
-                                        <AdminRoute path={`${process.env.PUBLIC_URL}/admin/category-:slug`} component={CategoryUpdate}/>
-                                        <AdminRoute path={`${process.env.PUBLIC_URL}/admin/sub`} component={SubCreate}/>
-                                        <AdminRoute path={`${process.env.PUBLIC_URL}/admin/sub-:slug`} component={SubUpdate}/>
-                                        <AdminRoute path={`${process.env.PUBLIC_URL}/admin/product`} component={ProductCreate}/>
-                                        <AdminRoute path={`${process.env.PUBLIC_URL}/admin/products`} component={AllProducts}/>
+                                        <AdminRoute exact path={`${process.env.PUBLIC_URL}/admin/dashboard`} component={AdminDashboard}/>
+                                        <AdminRoute exact path={`${process.env.PUBLIC_URL}/admin/category`} component={CategoryCreate}/>
+                                        <AdminRoute exact path={`${process.env.PUBLIC_URL}/admin/category/:slug`} component={CategoryUpdate}/>
+                                        <AdminRoute exact path={`${process.env.PUBLIC_URL}/admin/sub`} component={SubCreate}/>
+                                        <AdminRoute exact path={`${process.env.PUBLIC_URL}/admin/sub/:slug`} component={SubUpdate}/>
+                                        <AdminRoute exact path={`${process.env.PUBLIC_URL}/admin/product`} component={ProductCreate}/>
+                                        <AdminRoute exact path={`${process.env.PUBLIC_URL}/admin/products`} component={AllProducts}/>
+                                        <AdminRoute exact path={`${process.env.PUBLIC_URL}/admin/product/:slug`} component={ProductUpdate}/>
 
 
 

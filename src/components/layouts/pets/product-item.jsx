@@ -120,11 +120,13 @@ const ProductItem = ({product, handleRemove}) => {
                             {/*>*/}
                             {/*    <i className="fa fa-heart" aria-hidden="true"></i>*/}
                             {/*</a>*/}
-                            <a href="javascript:void(0)" data-toggle="modal"
-                               data-target="#quick-view"
-                               title="Quick View"
+                            <Link
+                                to={`/admin/product/${slug}`}
+                               title="Edit"
                                // onClick={onOpenModal}
-                            ><i className="fa fa-pencil" aria-hidden="true"></i></a>
+                            >
+                                <i className="fa fa-pencil" aria-hidden="true"></i>
+                            </Link>
                             <Link onClick={() => handleRemove(slug)}
                                   to="#"
                                   title="Delete"

@@ -171,7 +171,7 @@ const CategoryCreate = (props) => {
                                                 <div className="alert alert-secondary" style={{ textAlign: "left"}} key={c._id}>
                                                     {c.name}
                                                     <div className="btn btn-sm" style={{float: "right", marginTop: "-5px"}}>
-                                                        <Link style={{marginRight: '15px'}} to={`${process.env.PUBLIC_URL}/admin/category-${c.slug}`}>
+                                                        <Link style={{marginRight: '15px'}} to={`${process.env.PUBLIC_URL}/admin/category/${c.slug}`}>
                                                             <EditOutlined className="text-secondary"/>
                                                         </Link>
                                                         <span onClick={() => handeRemove(c.slug)} style={{marginRight: '5px'}}>

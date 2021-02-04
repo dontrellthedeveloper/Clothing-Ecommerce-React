@@ -121,7 +121,7 @@ const AllProducts = (props) => {
                                             <div className="col-sm-12">
                                                 <div className="box">
                                                     <div style={{marginTop: '30px'}} className="box-title">
-                                                        <h3 style={{fontWeight: '600'}}>Edit Products</h3>
+                                                        <h3 style={{fontWeight: '600'}}>Products</h3>
                                                         {/*<a href="#">Edit</a>*/}
                                                     </div>
                                                 </div>

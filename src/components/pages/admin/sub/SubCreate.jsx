@@ -185,7 +185,7 @@ const SubCreate = (props) => {
                                                 <div className="alert alert-secondary" style={{ textAlign: "left"}} key={s._id}>
                                                     {s.name}
                                                     <div className="btn btn-sm" style={{float: "right", marginTop: "-5px"}}>
-                                                        <Link style={{marginRight: '15px'}} to={`${process.env.PUBLIC_URL}/admin/sub-${s.slug}`}>
+                                                        <Link style={{marginRight: '15px'}} to={`${process.env.PUBLIC_URL}/admin/sub/${s.slug}`}>
                                                             <EditOutlined className="text-secondary"/>
                                                         </Link>
                                                         <span onClick={() => handeRemove(s.slug)} style={{marginRight: '5px'}}>
