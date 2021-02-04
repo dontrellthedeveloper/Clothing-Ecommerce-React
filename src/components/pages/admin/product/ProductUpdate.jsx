@@ -4,22 +4,50 @@ import {Link} from "react-router-dom";
 import {auth} from "../../../../firebase";
 import {toast} from "react-toastify";
 import {useSelector} from "react-redux";
-import {createProduct} from "../../../../functions/product";
+import {getProduct} from "../../../../functions/product";
 import {getCategories, getCategorySubs} from "../../../../functions/category";
 import {DeleteOutlined, EditOutlined} from '@ant-design/icons';
 import ProductUpdateForm from "../../../forms/ProductUpdateForm";
 import FileUpload from '../../../forms/FileUpload';
 
+const initialState = {
+    title: '',
+    description: '',
+    price: '',
+    categories: [],
+    category: '',
+    sub: '',
+    shipping: '',
+    quantity: '',
+    images: [],
+    colors: ["Black", "Brown", "Silver", "White", "Blue"],
+    brands: ["Apple", "Samsung", "Microsoft", "Lenovo", "ASUS"],
+    color: '',
+    brand: '',
+};
 
 
-const ProductUpdate = () => {
-
-
+const ProductUpdate = ({match}) => {
+    //state
+    const [values, setValues] = useState(initialState);
 
     //redux
     const {user} = useSelector((state) => ({...state}));
 
+    const {slug} = match.params;
 
+    useEffect(() => {
+        loadProduct();
+    }, []);
+
+    const loadProduct = () => {
+        getProduct(slug)
+            .then(p => {
+                // console.log('single product', p);
+                setValues({...values, ...p.data});
+            })
+
+    };
 
 
     return (
@@ -91,6 +119,8 @@ const ProductUpdate = () => {
                                         {/*    <FileUpload/>*/}
                                         {/*</div>*/}
 
+
+                                        {JSON.stringify(values)}
 
                                         <ProductUpdateForm/>
 

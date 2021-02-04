@@ -26,7 +26,7 @@ const initialState = {
     brands: ["Apple", "Samsung", "Microsoft", "Lenovo", "ASUS"],
     color: '',
     brand: '',
-}
+};
 
 const ProductCreate = () => {
     const [values, setValues] = useState(initialState);
