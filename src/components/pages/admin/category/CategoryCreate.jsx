@@ -75,7 +75,7 @@ const CategoryCreate = (props) => {
 
     return (
         <div>
-            <Breadcrumb title={'Categories'}/>
+            <Breadcrumb title={'Category'}/>
 
 
             {/*Dashboard section*/}
@@ -126,7 +126,7 @@ const CategoryCreate = (props) => {
                                 <div style={{textAlign: 'center'}} className="dashboard">
 
                                     <div  className="page-title">
-                                        {loading ? <h2 style={{fontWeight: "800"}}>Loading...</h2> : <h2 style={{fontWeight: "800"}}>Categories</h2> }
+                                        {loading ? <h2 style={{fontWeight: "800"}}>Loading...</h2> : <h2 style={{fontWeight: "800"}}>Category</h2> }
                                     </div>
 
 

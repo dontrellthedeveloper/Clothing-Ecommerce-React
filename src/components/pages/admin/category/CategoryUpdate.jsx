@@ -86,7 +86,7 @@ const CategoryUpdate = ({history, match}) => {
 
     return (
         <div>
-            <Breadcrumb title={'Categories'}/>
+            <Breadcrumb title={'Update Category'}/>
 
 
             {/*Dashboard section*/}
@@ -116,8 +116,11 @@ const CategoryUpdate = ({history, match}) => {
                                         <li>
                                             <Link to={`${process.env.PUBLIC_URL}/admin/products`}>Products</Link>
                                         </li>
-                                        <li className="active">
+                                        <li>
                                             <Link to={`${process.env.PUBLIC_URL}/admin/category`}>Category</Link>
+                                            <ul>
+                                                <li className="active"><Link to='#'>Update</Link></li>
+                                            </ul>
                                         </li>
                                         <li>
                                             <Link to={`${process.env.PUBLIC_URL}/admin/sub`}>Sub Category</Link>

@@ -32,6 +32,7 @@ const ProductUpdate = ({match}) => {
     const [values, setValues] = useState(initialState);
     const [subOptions, setSubOptions] = useState([]);
     const [categories, setCategories] = useState([]);
+    const [arrayOfSubs, setArrayOfSubIds] = useState('');
 
     //redux
     const {user} = useSelector((state) => ({...state}));
@@ -47,7 +48,24 @@ const ProductUpdate = ({match}) => {
         getProduct(slug)
             .then(p => {
                 // console.log('single product', p);
+                // single product
                 setValues({...values, ...p.data});
+                // load product sub category
+                getCategorySubs(p.data.category._id)
+                    .then(res => {
+                        setSubOptions(res.data); // on load, show default subs
+                    });
+                // prepare array of sub ids to show as default sub values
+                // let arr = [];
+                // p.data.sub.map((s) => {
+                //     arr.push(s._id);
+                // });
+                let subId = p.data.sub;
+                console.log(p.data.sub);
+                console.log(p.data.category);
+                console.log(p.data.category._id);
+                console.log('ARR', subId);
+                setArrayOfSubIds((prev) => subId);
             })
 
     };
@@ -56,6 +74,7 @@ const ProductUpdate = ({match}) => {
         getCategories().then((c) => {
             console.log('GET CATEGORIES IN UPDATE PRODUCT', c.data);
             setCategories(c.data);
+            // setSubs(c.data);
         });
     };
 
@@ -68,6 +87,14 @@ const ProductUpdate = ({match}) => {
         setValues({...values, [e.target.name]: e.target.value});
         // console.log(e.target.name, " ------ ", e.target.value);
     };
+
+
+    const handleSubChange = (e) => {
+        e.preventDefault();
+        console.log('CLICKED SUB CATEGORY', e.target.value);
+        setValues({...values, sub: e.target.value});
+    };
+
 
     const handleCategoryChange = (e) => {
         e.preventDefault();
@@ -84,7 +111,7 @@ const ProductUpdate = ({match}) => {
 
     return (
         <div>
-            <Breadcrumb title={'Categories'}/>
+            <Breadcrumb title={'Update Product'}/>
 
 
             {/*Dashboard section*/}
@@ -108,11 +135,15 @@ const ProductUpdate = ({match}) => {
                                         <li >
                                             <Link to={`${process.env.PUBLIC_URL}/admin/dashboard`}>Dashboard</Link>
                                         </li>
-                                        <li className="active">
+                                        <li >
                                             <Link to={`${process.env.PUBLIC_URL}/admin/product`}>Product</Link>
+
                                         </li>
                                         <li>
                                             <Link to={`${process.env.PUBLIC_URL}/admin/products`}>Products</Link>
+                                            <ul>
+                                                <li className="active"><Link to='#'>Update</Link></li>
+                                            </ul>
                                         </li>
                                         <li >
                                             <Link to={`${process.env.PUBLIC_URL}/admin/category`}>Category</Link>
@@ -158,10 +189,13 @@ const ProductUpdate = ({match}) => {
                                             categories={categories}
                                             subOptions={subOptions}
                                             handleCategoryChange={handleCategoryChange}
+                                            handleSubChange={handleSubChange}
                                             handleSubmit={handleSubmit}
                                             handleChange={handleChange}
                                             values={values}
                                             setValues={setValues}
+                                            arrayOfSubs={arrayOfSubs}
+                                            setArrayOfSubIds={setArrayOfSubIds}
                                         />
 
                                         {/*<ProductForm*/}

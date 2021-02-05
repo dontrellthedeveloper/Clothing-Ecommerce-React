@@ -61,7 +61,7 @@ const SubUpdate = ({match, history}) => {
 
     return (
         <div>
-            <Breadcrumb title={'Categories'}/>
+            <Breadcrumb title={'Update Sub Category'}/>
 
 
             {/*Dashboard section*/}
@@ -94,8 +94,11 @@ const SubUpdate = ({match, history}) => {
                                         <li >
                                             <Link to={`${process.env.PUBLIC_URL}/admin/category`}>Category</Link>
                                         </li>
-                                        <li className="active">
+                                        <li>
                                             <Link to={`${process.env.PUBLIC_URL}/admin/sub`}>Sub Category</Link>
+                                            <ul>
+                                                <li className="active"><Link to='#'>Update</Link></li>
+                                            </ul>
                                         </li>
                                         <li>
                                             <Link to={`${process.env.PUBLIC_URL}/admin/coupon`}>Coupons</Link>

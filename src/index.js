@@ -166,7 +166,7 @@ const Root = () => {
                     <BrowserRouter basename={'/'} >
                         <ReducerConfig/>
                         <HeaderOne logoName={'logo.png'}/>
-                            <ScrollContext>
+                            {/*<ScrollContext>*/}
 
                                 <Switch>
                                     {/*<Route exact path={`${process.env.PUBLIC_URL}/`} component={Landing}/>*/}
@@ -281,7 +281,7 @@ const Root = () => {
                                     {/*</Layout>*/}
                                  </Switch>
 
-                              </ScrollContext>
+                              {/*</ScrollContext>*/}
                         <FooterOne logoName={'layout3/logo.png'}/>
                         </BrowserRouter>
                     </IntlProvider>

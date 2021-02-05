@@ -11,9 +11,11 @@ const ProductUpdateForm = ({
     setValues,
     values,
     handleCategoryChange,
+    handleSubChange,
     subOptions,
-    categories
-
+    categories,
+    arrayOfSubs,
+    setArrayOfSubIds
 }) => {
 
 
@@ -50,9 +52,9 @@ const ProductUpdateForm = ({
 
                         <form
                             // onSubmit={handleSubmit}
-                            style={{marginTop: '45px'}}>
+                            style={{marginTop: '25px'}}>
                             <div className="form-group">
-                                {/*<label>Title</label>*/}
+                                <label>Title</label>
                                 <input
                                     type="text"
                                     name="title"
@@ -61,11 +63,11 @@ const ProductUpdateForm = ({
                                     placeholder="Product Title"
                                     value={title}
                                     required
-                                    style={{margin: "20px auto 30px auto", width: '50%', textAlign: "center"}}
+                                    style={{margin: "0 auto 20px auto", width: '50%', textAlign: "center"}}
                                 />
                             </div>
                             <div className="form-group">
-                                {/*<label>Description</label>*/}
+                                <label>Description</label>
                                 <input
                                     type="text"
                                     name="description"
@@ -74,11 +76,11 @@ const ProductUpdateForm = ({
                                     placeholder="Product Description"
                                     value={description}
                                     required
-                                    style={{margin: "20px auto 30px auto", width: '50%', textAlign: "center"}}
+                                    style={{margin: "0 auto 20px auto", width: '50%', textAlign: "center"}}
                                 />
                             </div>
                             <div className="form-group">
-                                {/*<label>Price</label>*/}
+                                <label>Price</label>
                                 <input
                                     type="number"
                                     name="price"
@@ -87,18 +89,18 @@ const ProductUpdateForm = ({
                                     placeholder="Product Price"
                                     value={price}
                                     required
-                                    style={{margin: "20px auto 30px auto", width: '50%', textAlign: "center"}}
+                                    style={{margin: "0 auto 20px auto", width: '50%', textAlign: "center"}}
                                 />
                             </div>
                             <div className="form-group">
-                                {/*<label>Shipping</label>*/}
+                                <label>Shipping</label>
                                 <select
                                     value={shipping === "Yes" ? "Yes" : "No"}
                                     name="shipping"
                                     onChange={handleChange}
                                     className="form-control"
 
-                                    style={{margin: "20px auto 30px auto", width: '50%', textAlignLast: "center"}}
+                                    style={{margin: "0 auto 20px auto", width: '50%', textAlignLast: "center"}}
                                 >
                                     {/*<option>Please select</option>*/}
                                     {/*<option>Product Shipping</option>*/}
@@ -107,7 +109,7 @@ const ProductUpdateForm = ({
                                 </select>
                             </div>
                             <div className="form-group">
-                                {/*<label>Quantity</label>*/}
+                                <label>Quantity</label>
                                 <input
                                     type="number"
                                     name="quantity"
@@ -116,18 +118,18 @@ const ProductUpdateForm = ({
                                     placeholder="Product Quantity"
                                     value={quantity}
                                     required
-                                    style={{margin: "20px auto 30px auto", width: '50%', textAlign: "center"}}
+                                    style={{margin: "0 auto 20px auto", width: '50%', textAlign: "center"}}
                                 />
                             </div>
                             <div className="form-group">
-                                {/*<label>Color</label>*/}
+                                <label>Color</label>
                                 <select
                                     value={color}
                                     name="color"
                                     onChange={handleChange}
                                     className="form-control"
 
-                                    style={{margin: "20px auto 30px auto", width: '50%', textAlignLast: "center"}}
+                                    style={{margin: "0 auto 20px auto", width: '50%', textAlignLast: "center"}}
                                 >
                                     {/*<option>Product Color</option>*/}
                                     {colors.map(c => <option key={c} value={c}>{c}</option>)}
@@ -135,14 +137,14 @@ const ProductUpdateForm = ({
                             </div>
 
                             <div className="form-group">
-                                {/*<label>Brand</label>*/}
+                                <label>Brand</label>
                                 <select
                                     value={brand}
                                     name="brand"
                                     onChange={handleChange}
                                     className="form-control"
 
-                                    style={{margin: "20px auto 30px auto", width: '50%', textAlignLast: "center"}}
+                                    style={{margin: "0 auto 30px auto", width: '50%', textAlignLast: "center"}}
                                 >
                                     {/*<option>Product Brand</option>*/}
                                     {brands.map(b => <option key={b} value={b}>{b}</option>)}
@@ -155,21 +157,21 @@ const ProductUpdateForm = ({
                                 </div>
                             </div>
 
-                            <div className="box">
-                                <div style={{marginBottom: '20px', borderBottom: 'none'}} className="box-title">
-                                    <h3 style={{fontWeight: '600'}}>Category</h3>
-                                </div>
-                            </div>
+                            {/*<div className="box">*/}
+                            {/*    <div style={{marginBottom: '20px', borderBottom: 'none'}} className="box-title">*/}
+                            {/*        <h3 style={{fontWeight: '600'}}>Category</h3>*/}
+                            {/*    </div>*/}
+                            {/*</div>*/}
 
 
 
                             <div className="form-group">
-                                {/*<label>Parent Category</label>*/}
+                                <label>Category</label>
                                 <select
                                     name="category"
                                     onChange={handleCategoryChange}
                                     className="form-control"
-                                    style={{margin: "10px auto 30px auto", width: '50%', textAlignLast: "center"}}
+                                    style={{margin: "0 auto 20px auto", width: '50%', textAlignLast: "center"}}
                                 >
                                     <option>{category ? category.name : "Please select"}</option>
                                     {categories.length > 0 &&
@@ -181,29 +183,31 @@ const ProductUpdateForm = ({
                                 </select>
                             </div>
 
-                            {/*{showSub && <div className="form-group">*/}
-                            {/*    <select*/}
-                            {/*        // mode="multiple"*/}
-                            {/*        // value={subs}*/}
-                            {/*        // placeholder="Select Sub Category"*/}
-                            {/*        // onChange={(value) => setValues({...values, subs: value})}*/}
-                            {/*        name={sub}*/}
-                            {/*        onChange={handleSubChange}*/}
-                            {/*        className="form-control"*/}
-                            {/*        style={{margin: "5px auto 30px auto", width: '50%', textAlignLast: "center"}}*/}
-                            {/*    >*/}
-                            {/*        <option>Select Sub Category</option>*/}
-                            {/*        {subOptions.length &&*/}
-                            {/*        subOptions.map((s) => (*/}
-                            {/*            <option key={s._id} value={s._id}>*/}
-                            {/*                {s.name}*/}
-                            {/*            </option>*/}
-                            {/*        ))}*/}
 
-                            {/*        /!*<Option value="two">option two</Option>*!/*/}
-                            {/*    </select>*/}
-                            {/*</div>*/}
-                            {/*}*/}
+                            <div className="form-group">
+                                <label>Sub Category</label>
+                                <select
+                                    // mode="multiple"
+                                    value={arrayOfSubs}
+                                    // placeholder="Select Sub Category"
+                                    // onChange={(value) => setValues({...values, subs: value})}
+                                    // name={arrayOfSubs}
+                                    onChange={(value) => setArrayOfSubIds(value)}
+                                    className="form-control"
+                                    style={{margin: "0 auto 30px auto", width: '50%', textAlignLast: "center"}}
+                                >
+                                    {/*<option>Select Sub Category</option>*/}
+                                    {subOptions.length &&
+                                    subOptions.map((s) => (
+                                        <option key={s._id} value={s._id}>
+                                            {s.name}
+                                        </option>
+                                    ))}
+
+                                    {/*<Option value="two">option two</Option>*/}
+                                </select>
+                            </div>
+
 
                             {/*<div className="box">*/}
                             {/*    <div style={{marginBottom: '10px'}} className="box-title">*/}
