@@ -15,7 +15,6 @@ const initialState = {
     title: '',
     description: '',
     price: '',
-    categories: [],
     category: '',
     sub: '',
     shipping: '',
@@ -31,6 +30,8 @@ const initialState = {
 const ProductUpdate = ({match}) => {
     //state
     const [values, setValues] = useState(initialState);
+    const [subOptions, setSubOptions] = useState([]);
+    const [categories, setCategories] = useState([]);
 
     //redux
     const {user} = useSelector((state) => ({...state}));
@@ -39,6 +40,7 @@ const ProductUpdate = ({match}) => {
 
     useEffect(() => {
         loadProduct();
+        loadCategories();
     }, []);
 
     const loadProduct = () => {
@@ -50,6 +52,13 @@ const ProductUpdate = ({match}) => {
 
     };
 
+    const loadCategories = () => {
+        getCategories().then((c) => {
+            console.log('GET CATEGORIES IN UPDATE PRODUCT', c.data);
+            setCategories(c.data);
+        });
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
     };
@@ -58,6 +67,18 @@ const ProductUpdate = ({match}) => {
         e.preventDefault();
         setValues({...values, [e.target.name]: e.target.value});
         // console.log(e.target.name, " ------ ", e.target.value);
+    };
+
+    const handleCategoryChange = (e) => {
+        e.preventDefault();
+        console.log('CLICKED CATEGORY', e.target.value);
+        setValues({...values,subs: [], category: e.target.value});
+        getCategorySubs(e.target.value)
+            .then(res => {
+                console.log("SUB OPTIONS ON CATEGORY CLICK", res);
+                setSubOptions(res.data);
+            });
+        // setShowSub(true);
     };
 
 
@@ -134,6 +155,9 @@ const ProductUpdate = ({match}) => {
                                         {/*{JSON.stringify(values)}*/}
 
                                         <ProductUpdateForm
+                                            categories={categories}
+                                            subOptions={subOptions}
+                                            handleCategoryChange={handleCategoryChange}
                                             handleSubmit={handleSubmit}
                                             handleChange={handleChange}
                                             values={values}

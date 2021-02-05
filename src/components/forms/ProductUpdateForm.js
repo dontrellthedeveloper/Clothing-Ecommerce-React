@@ -5,14 +5,22 @@ import {LoadingOutlined} from '@ant-design/icons';
 
 const {Option} = Select;
 
-const ProductUpdateForm = ({handleSubmit, handleChange, setValues, values}) => {
+const ProductUpdateForm = ({
+    handleSubmit,
+    handleChange,
+    setValues,
+    values,
+    handleCategoryChange,
+    subOptions,
+    categories
+
+}) => {
 
 
     const {
         title,
         description,
         price,
-        categories,
         category,
         sub,
         shipping,
@@ -155,23 +163,23 @@ const ProductUpdateForm = ({handleSubmit, handleChange, setValues, values}) => {
 
 
 
-                            {/*<div className="form-group">*/}
-                            {/*    /!*<label>Parent Category</label>*!/*/}
-                            {/*    <select*/}
-                            {/*        name="category"*/}
-                            {/*        onChange={handleCategoryChange}*/}
-                            {/*        className="form-control"*/}
-                            {/*        style={{margin: "10px auto 30px auto", width: '50%', textAlignLast: "center"}}*/}
-                            {/*    >*/}
-                            {/*        <option>Select Category</option>*/}
-                            {/*        {categories.length > 0 &&*/}
-                            {/*        categories.map((c) => (*/}
-                            {/*            <option key={c._id} value={c._id}>*/}
-                            {/*                {c.name}*/}
-                            {/*            </option>*/}
-                            {/*        ))}*/}
-                            {/*    </select>*/}
-                            {/*</div>*/}
+                            <div className="form-group">
+                                {/*<label>Parent Category</label>*/}
+                                <select
+                                    name="category"
+                                    onChange={handleCategoryChange}
+                                    className="form-control"
+                                    style={{margin: "10px auto 30px auto", width: '50%', textAlignLast: "center"}}
+                                >
+                                    <option>{category ? category.name : "Please select"}</option>
+                                    {categories.length > 0 &&
+                                    categories.map((c) => (
+                                        <option key={c._id} value={c._id}>
+                                            {c.name}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
 
                             {/*{showSub && <div className="form-group">*/}
                             {/*    <select*/}
