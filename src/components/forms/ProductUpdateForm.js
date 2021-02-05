@@ -5,24 +5,24 @@ import {LoadingOutlined} from '@ant-design/icons';
 
 const {Option} = Select;
 
-const ProductForm = () => {
+const ProductUpdateForm = ({handleSubmit, handleChange, setValues, values}) => {
 
 
-    // const {
-    //     title,
-    //     description,
-    //     price,
-    //     categories,
-    //     category,
-    //     sub,
-    //     shipping,
-    //     quantity,
-    //     images,
-    //     colors,
-    //     brands,
-    //     color,
-    //     brand
-    // } = values;
+    const {
+        title,
+        description,
+        price,
+        categories,
+        category,
+        sub,
+        shipping,
+        quantity,
+        images,
+        colors,
+        brands,
+        color,
+        brand
+    } = values;
 
     // const fileUploadAndResize = () => {
     //
@@ -48,10 +48,10 @@ const ProductForm = () => {
                                 <input
                                     type="text"
                                     name="title"
-                                    // onChange={handleChange}
+                                    onChange={handleChange}
                                     className="form-control"
                                     placeholder="Product Title"
-                                    // value={title}
+                                    value={title}
                                     required
                                     style={{margin: "20px auto 30px auto", width: '50%', textAlign: "center"}}
                                 />
@@ -61,10 +61,10 @@ const ProductForm = () => {
                                 <input
                                     type="text"
                                     name="description"
-                                    // onChange={handleChange}
+                                    onChange={handleChange}
                                     className="form-control"
                                     placeholder="Product Description"
-                                    // value={description}
+                                    value={description}
                                     required
                                     style={{margin: "20px auto 30px auto", width: '50%', textAlign: "center"}}
                                 />
@@ -74,10 +74,10 @@ const ProductForm = () => {
                                 <input
                                     type="number"
                                     name="price"
-                                    // onChange={handleChange}
+                                    onChange={handleChange}
                                     className="form-control"
                                     placeholder="Product Price"
-                                    // value={price}
+                                    value={price}
                                     required
                                     style={{margin: "20px auto 30px auto", width: '50%', textAlign: "center"}}
                                 />
@@ -86,7 +86,7 @@ const ProductForm = () => {
                                 {/*<label>Shipping</label>*/}
                                 <select
                                     name="shipping"
-                                    // onChange={handleChange}
+                                    onChange={handleChange}
                                     className="form-control"
 
                                     style={{margin: "20px auto 30px auto", width: '50%', textAlignLast: "center"}}
@@ -102,10 +102,10 @@ const ProductForm = () => {
                                 <input
                                     type="number"
                                     name="quantity"
-                                    // onChange={handleChange}
+                                    onChange={handleChange}
                                     className="form-control"
                                     placeholder="Product Quantity"
-                                    // value={quantity}
+                                    value={quantity}
                                     required
                                     style={{margin: "20px auto 30px auto", width: '50%', textAlign: "center"}}
                                 />
@@ -114,13 +114,13 @@ const ProductForm = () => {
                                 {/*<label>Color</label>*/}
                                 <select
                                     name="color"
-                                    // onChange={handleChange}
+                                    onChange={handleChange}
                                     className="form-control"
 
                                     style={{margin: "20px auto 30px auto", width: '50%', textAlignLast: "center"}}
                                 >
                                     <option>Product Color</option>
-                                    {/*{colors.map(c => <option key={c} value={c}>{c}</option>)}*/}
+                                    {colors.map(c => <option key={c} value={c}>{c}</option>)}
                                 </select>
                             </div>
 
@@ -128,13 +128,13 @@ const ProductForm = () => {
                                 {/*<label>Brand</label>*/}
                                 <select
                                     name="brand"
-                                    // onChange={handleChange}
+                                    onChange={handleChange}
                                     className="form-control"
 
                                     style={{margin: "20px auto 30px auto", width: '50%', textAlignLast: "center"}}
                                 >
                                     <option>Product Brand</option>
-                                    {/*{brands.map(b => <option key={b} value={b}>{b}</option>)}*/}
+                                    {brands.map(b => <option key={b} value={b}>{b}</option>)}
                                 </select>
                             </div>
 
@@ -232,4 +232,4 @@ const ProductForm = () => {
     );
 };
 
-export default ProductForm;
+export default ProductUpdateForm;

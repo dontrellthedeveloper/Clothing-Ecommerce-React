@@ -48,7 +48,7 @@ const AllProducts = (props) => {
 
     return (
         <div>
-            <Breadcrumb title={ 'Dashboard'}/>
+            <Breadcrumb title={ 'Products'}/>
 
 
             {/*Dashboard section*/}

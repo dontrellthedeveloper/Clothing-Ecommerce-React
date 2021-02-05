@@ -9,6 +9,7 @@ import {getCategories, getCategorySubs} from "../../../../functions/category";
 import {DeleteOutlined, EditOutlined} from '@ant-design/icons';
 import ProductUpdateForm from "../../../forms/ProductUpdateForm";
 import FileUpload from '../../../forms/FileUpload';
+import ProductForm from "../../../forms/ProductForm";
 
 const initialState = {
     title: '',
@@ -47,6 +48,16 @@ const ProductUpdate = ({match}) => {
                 setValues({...values, ...p.data});
             })
 
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    };
+
+    const handleChange = (e) => {
+        e.preventDefault();
+        setValues({...values, [e.target.name]: e.target.value});
+        // console.log(e.target.name, " ------ ", e.target.value);
     };
 
 
@@ -120,9 +131,14 @@ const ProductUpdate = ({match}) => {
                                         {/*</div>*/}
 
 
-                                        {JSON.stringify(values)}
+                                        {/*{JSON.stringify(values)}*/}
 
-                                        <ProductUpdateForm/>
+                                        <ProductUpdateForm
+                                            handleSubmit={handleSubmit}
+                                            handleChange={handleChange}
+                                            values={values}
+                                            setValues={setValues}
+                                        />
 
                                         {/*<ProductForm*/}
                                         {/*    handleSubmit={handleSubmit}*/}

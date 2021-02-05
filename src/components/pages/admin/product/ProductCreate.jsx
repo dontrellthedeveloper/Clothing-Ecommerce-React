@@ -137,7 +137,7 @@ const ProductCreate = () => {
 
     return (
         <div>
-            <Breadcrumb title={'Categories'}/>
+            <Breadcrumb title={'Product'}/>
 
 
             {/*Dashboard section*/}
