@@ -54,7 +54,7 @@ const ProductUpdateForm = ({
 
 
                         <form
-                            // onSubmit={handleSubmit}
+                            onSubmit={handleSubmit}
                             style={{marginTop: '25px'}}>
                             <div className="form-group">
                                 <label>Title</label>
@@ -171,11 +171,11 @@ const ProductUpdateForm = ({
                             <div className="form-group">
                                 <label>Category</label>
                                 <select
-                                    // name="category"
+                                    name="category"
                                     onChange={handleCategoryChange}
                                     className="form-control"
                                     style={{margin: "0 auto 20px auto", width: '50%', textAlignLast: "center"}}
-                                    name={selectedCategory ? selectedCategory : category._id}
+                                    // value={selectedCategory ? selectedCategory : category._id}
                                 >
                                     {/*<option>{category ? category.name : "Please select"}</option>*/}
                                     {categories.length > 0 &&
@@ -192,11 +192,11 @@ const ProductUpdateForm = ({
                                 <label>Sub Category</label>
                                 <select
                                     // mode="multiple"
-                                    // value={arrayOfSubs}
+                                    value={arrayOfSubs}
                                     // placeholder="Select Sub Category"
                                     // onChange={(value) => setValues({...values, sub: value})}
                                     // name={sub}
-                                    name={arrayOfSubs}
+                                    // name={arrayOfSubs}
                                     onChange={(value) => setArrayOfSubIds(value)}
                                     className="form-control"
                                     style={{margin: "0 auto 30px auto", width: '50%', textAlignLast: "center"}}

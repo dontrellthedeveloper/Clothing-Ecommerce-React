@@ -28,7 +28,7 @@ const initialState = {
     brand: '',
 };
 
-const ProductCreate = () => {
+const ProductCreate = ({history}) => {
     const [values, setValues] = useState(initialState);
     const [loading, setLoading] = useState(false);
     const [name, setName] = useState('');
@@ -65,7 +65,8 @@ const ProductCreate = () => {
             .then(res => {
                 console.log(res)
                 window.alert(`"${res.data.title}" is created`);
-                window.location.reload();
+                // window.location.reload();
+                history.push('/admin/products');
             })
             .catch(err => {
                 console.log(err);

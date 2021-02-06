@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {auth} from "../../../../firebase";
 import {toast} from "react-toastify";
 import {useSelector} from "react-redux";
-import {getProduct} from "../../../../functions/product";
+import {getProduct, updateProduct} from "../../../../functions/product";
 import {getCategories, getCategorySubs} from "../../../../functions/category";
 import {DeleteOutlined, EditOutlined} from '@ant-design/icons';
 import ProductUpdateForm from "../../../forms/ProductUpdateForm";
@@ -27,7 +27,7 @@ const initialState = {
 };
 
 
-const ProductUpdate = ({match}) => {
+const ProductUpdate = ({match, history}) => {
     //state
     const [values, setValues] = useState(initialState);
     const [subOptions, setSubOptions] = useState([]);
@@ -78,11 +78,29 @@ const ProductUpdate = ({match}) => {
             console.log('GET CATEGORIES IN UPDATE PRODUCT', c.data);
             setCategories(c.data);
             // setSubs(c.data);
+
+
         });
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setLoading(true);
+
+        values.sub = arrayOfSubs;
+        values.category = selectedCategory ? selectedCategory : values.category;
+
+        updateProduct(slug, values, user.token)
+            .then((res) => {
+                setLoading(false);
+                toast.success(`${res.data.title} is updated`);
+                history.push('/admin/products');
+            })
+            .catch(err => {
+                console.log(err);
+                setLoading(false);
+                toast.error(err.response.data.err);
+            })
     };
 
     const handleChange = (e) => {
