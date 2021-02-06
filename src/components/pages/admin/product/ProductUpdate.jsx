@@ -33,6 +33,7 @@ const ProductUpdate = ({match}) => {
     const [subOptions, setSubOptions] = useState([]);
     const [categories, setCategories] = useState([]);
     const [arrayOfSubs, setArrayOfSubIds] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState('');
 
     //redux
     const {user} = useSelector((state) => ({...state}));
@@ -60,12 +61,13 @@ const ProductUpdate = ({match}) => {
                 // p.data.sub.map((s) => {
                 //     arr.push(s._id);
                 // });
-                let subId = p.data.sub;
+
+                let arr = p.data.sub;
                 console.log(p.data.sub);
                 console.log(p.data.category);
                 console.log(p.data.category._id);
-                console.log('ARR', subId);
-                setArrayOfSubIds((prev) => subId);
+                console.log('ARR', arr);
+                setArrayOfSubIds((prev) => arr);
             })
 
     };
@@ -93,19 +95,43 @@ const ProductUpdate = ({match}) => {
         e.preventDefault();
         console.log('CLICKED SUB CATEGORY', e.target.value);
         setValues({...values, sub: e.target.value});
+
+        getCategorySubs(e.target.value)
+            .then(res => {
+                console.log("SUB OPTIONS ON CATEGORY CLICK", res);
+                setSubOptions(res.data);
+            });
     };
 
 
     const handleCategoryChange = (e) => {
         e.preventDefault();
         console.log('CLICKED CATEGORY', e.target.value);
-        setValues({...values,subs: [], category: e.target.value});
+        setValues({...values, sub: e.target.value});
+
+        // setSelectedCategory(e.target.value);
+
         getCategorySubs(e.target.value)
             .then(res => {
                 console.log("SUB OPTIONS ON CATEGORY CLICK", res);
                 setSubOptions(res.data);
             });
-        // setShowSub(true);
+
+        console.log('EXISTING CATEGORY values.category', values.category);
+
+        console.log(e.target.value);
+        console.log(e.target.name);
+        console.log(e.target);
+        console.log(values);
+
+        if (values.category._id === e.target.value) {
+
+            loadProduct();
+        }
+
+        setArrayOfSubIds('');
+
+
     };
 
 
@@ -196,6 +222,7 @@ const ProductUpdate = ({match}) => {
                                             setValues={setValues}
                                             arrayOfSubs={arrayOfSubs}
                                             setArrayOfSubIds={setArrayOfSubIds}
+                                            selectedCategory={selectedCategory}
                                         />
 
                                         {/*<ProductForm*/}
