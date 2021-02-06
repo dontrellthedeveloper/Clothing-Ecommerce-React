@@ -16,7 +16,9 @@ const ProductUpdateForm = ({
     categories,
     arrayOfSubs,
     setArrayOfSubIds,
-    selectedCategory
+    selectedCategory,
+    loading,
+    setLoading
 }) => {
 
 
@@ -212,25 +214,25 @@ const ProductUpdateForm = ({
                             </div>
 
 
-                            {/*<div className="box">*/}
-                            {/*    <div style={{marginBottom: '10px'}} className="box-title">*/}
-                            {/*    </div>*/}
-                            {/*</div>*/}
+                            <div className="box">
+                                <div style={{marginBottom: '10px'}} className="box-title">
+                                </div>
+                            </div>
 
 
-                            {/*<div className="box">*/}
-                            {/*    <div style={{marginBottom: '30px', borderBottom: 'none'}} className="box-title">*/}
-                            {/*        {loading ? <LoadingOutlined className="h1"/> : <h3 style={{fontWeight: '600'}}>Images</h3>}*/}
-                            {/*    </div>*/}
-                            {/*</div>*/}
+                            <div className="box">
+                                <div style={{marginBottom: '30px', borderBottom: 'none'}} className="box-title">
+                                    {loading ? <LoadingOutlined className="h1"/> : <h3 style={{fontWeight: '600'}}>Images</h3>}
+                                </div>
+                            </div>
 
                             {/*{JSON.stringify(values.images)}*/}
 
-                            {/*<FileUpload*/}
-                            {/*    values={values}*/}
-                            {/*    setValues={setValues}*/}
-                            {/*    setLoading={setLoading}*/}
-                            {/*/>*/}
+                            <FileUpload
+                                values={values}
+                                setValues={setValues}
+                                setLoading={setLoading}
+                            />
 
 
 

@@ -34,6 +34,7 @@ const ProductUpdate = ({match}) => {
     const [categories, setCategories] = useState([]);
     const [arrayOfSubs, setArrayOfSubIds] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('');
+    const [loading, setLoading] = useState(false);
 
     //redux
     const {user} = useSelector((state) => ({...state}));
@@ -223,6 +224,8 @@ const ProductUpdate = ({match}) => {
                                             arrayOfSubs={arrayOfSubs}
                                             setArrayOfSubIds={setArrayOfSubIds}
                                             selectedCategory={selectedCategory}
+                                            loading={loading}
+                                            setLoading={setLoading}
                                         />
 
                                         {/*<ProductForm*/}
