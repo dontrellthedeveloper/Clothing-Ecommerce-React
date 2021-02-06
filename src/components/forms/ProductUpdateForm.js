@@ -2,6 +2,7 @@ import React from 'react';
 import {Select} from 'antd';
 import FileUpload from "./FileUpload";
 import {LoadingOutlined} from '@ant-design/icons';
+import {Link} from "react-router-dom";
 
 const {Option} = Select;
 
@@ -52,10 +53,14 @@ const ProductUpdateForm = ({
                     <div className="box-content">
 
 
+                        <Link to={`${process.env.PUBLIC_URL}/admin/products`}>
+                            <p style={{marginTop: '20px', textAlign: 'left'}}><i className="fa fa-long-arrow-left" aria-hidden="true" style={{paddingRight: "5px"}}></i>Back to Products</p>
+                        </Link>
+
 
                         <form
                             onSubmit={handleSubmit}
-                            style={{marginTop: '25px'}}>
+                            style={{marginTop: '5px'}}>
                             <div className="form-group">
                                 <label>Title</label>
                                 <input

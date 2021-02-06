@@ -4,7 +4,11 @@ import '../../common/index.scss';
 import Slider from 'react-slick';
 import {Link} from 'react-router-dom';
 import Modal from 'react-responsive-modal';
-import ThemeSettings from "../../common/theme-settings"
+import ThemeSettings from "../../common/theme-settings";
+
+
+import {getProductsByCount} from "../../../functions/product";
+
 
 
 // Import custom components
@@ -22,30 +26,33 @@ import FooterOne from "../../common/footers/footer-one"
 import BlogSection from "../common/blogsection";
 import MultiSlider from "../kids/multiple-slider";
 
-// class Beauty extends Component {
+
+
+
+
+
+
 const Beauty = (props) => {
-    // const [isOpen, setIsOpen] = useState(false);
 
-    // this.state = {
-    // 	isLoading:false
-    // }
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(false);
 
 
-    // const onOpenModal = () => {
-    //     setIsOpen({ open: true });
-    // };
-    //
-    // const onCloseModal = () => {
-    //     setIsOpen({ open: false });
-    // };
-
+    // componentDidMount()
     useEffect(() => {
         document.getElementById("color").setAttribute("href", `${process.env.PUBLIC_URL}/assets/css/color3.css` );
+
+        loadAllProducts();
+
     }, []);
 
-    // componentDidMount() {
-    //     document.getElementById("color").setAttribute("href", `${process.env.PUBLIC_URL}/assets/css/color3.css` );
-    // }
+    const  loadAllProducts = () => {
+        getProductsByCount(4)
+            .then(res => {
+                setProducts(res.data);
+            })
+    };
+
 
 
 
@@ -98,6 +105,7 @@ const Beauty = (props) => {
 
 
 
+                {JSON.stringify(products)};
 
 
                 {/*Product slider*/}
