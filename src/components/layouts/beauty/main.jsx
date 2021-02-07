@@ -6,18 +6,10 @@ import {Link} from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import ThemeSettings from "../../common/theme-settings";
 
-
 import {getProductsByCount} from "../../../functions/product";
 
-
-
 // Import custom components
-import {
-    svgFreeShipping,
-    svgservice,
-    svgoffer,
-    svgpayment
-} from "../../../services/script"
+import {svgFreeShipping, svgservice, svgoffer, svgpayment} from "../../../services/script"
 import TopCollection from "../common/collection"
 import NewProduct from "../../common/new-product"
 import Instagram from "../common/instagram"
@@ -25,9 +17,6 @@ import HeaderOne from "../../common/headers/header-one"
 import FooterOne from "../../common/footers/footer-one"
 import BlogSection from "../common/blogsection";
 import MultiSlider from "../kids/multiple-slider";
-
-
-
 
 
 
@@ -43,13 +32,13 @@ const Beauty = (props) => {
         document.getElementById("color").setAttribute("href", `${process.env.PUBLIC_URL}/assets/css/color3.css` );
 
         loadAllProducts();
-
     }, []);
 
     const  loadAllProducts = () => {
         getProductsByCount(4)
             .then(res => {
                 setProducts(res.data);
+                setLoading(false);
             })
     };
 
@@ -105,11 +94,19 @@ const Beauty = (props) => {
 
 
 
-                {JSON.stringify(products)};
+                {/*{JSON.stringify(products)};*/}
 
 
                 {/*Product slider*/}
-                <TopCollection type={'beauty'} />
+                <TopCollection
+                    type={'beauty'}
+                    products={products}
+                    setProducts={setProducts}
+                    loading={loading}
+                    setLoading={setLoading}
+                />
+
+
                 {/*Product slider End*/}
 
 
@@ -117,14 +114,14 @@ const Beauty = (props) => {
                     <section className="section-b-space">
                         <Slider className="slide-1 home-slider">
                             <div>
-                                <div className="home home7 p-center text-center bg-size blur-up lazyloaded">
+                                <div className="home home8 p-center text-center bg-size blur-up lazyloaded">
                                     <div className="container">
                                         <div className="row">
                                             <div className="col">
-                                                <div className="slider-contain">
+                                                <div className="slider-contain" >
                                                     <div>
-                                                        <h4>welcome to fashion</h4>
-                                                        <h1>women fashion</h1>
+                                                        {/*<h4>welcome to fashion</h4>*/}
+                                                        <h1>Winter collection</h1>
                                                         <a href="#" className="btn btn-solid">shop now</a>
                                                     </div>
                                                 </div>
@@ -134,14 +131,14 @@ const Beauty = (props) => {
                                 </div>
                             </div>
                             <div>
-                                <div className="home home8 p-center text-center bg-size blur-up lazyloaded">
+                                <div className="home home7 p-center text-center bg-size blur-up lazyloaded">
                                     <div className="container">
                                         <div className="row">
                                             <div className="col">
                                                 <div className="slider-contain">
                                                     <div>
-                                                        <h4>welcome to fashion</h4>
-                                                        <h1>men fashion</h1>
+                                                        {/*<h4>welcome to fashion</h4>*/}
+                                                        <h1>Summer Collection</h1>
                                                         <a href="#" className="btn btn-solid">shop now</a>
                                                     </div>
                                                 </div>
@@ -206,7 +203,7 @@ const Beauty = (props) => {
                 {/*/!*Video Section End*!/*/}
 
                 {/*Product slider*/}
-                <TopCollection type={'beauty'} />
+                {/*<TopCollection type={'beauty'} />*/}
                 {/*Product slider End*/}
 
                 {/*service layout*/}
@@ -422,14 +419,14 @@ const Beauty = (props) => {
                     <section className="section-b-space">
                         <Slider className="slide-1 home-slider">
                             <div>
-                                <div className="home home7 p-center text-center bg-size blur-up lazyloaded">
+                                <div className="home home9 p-center text-center bg-size blur-up lazyloaded">
                                     <div className="container">
                                         <div className="row">
                                             <div className="col">
                                                 <div className="slider-contain">
                                                     <div>
-                                                        <h4>welcome to fashion</h4>
-                                                        <h1>women fashion</h1>
+                                                        {/*<h4>welcome to fashion</h4>*/}
+                                                        <h1>fall collection</h1>
                                                         <a href="#" className="btn btn-solid">shop now</a>
                                                     </div>
                                                 </div>
@@ -439,14 +436,14 @@ const Beauty = (props) => {
                                 </div>
                             </div>
                             <div>
-                                <div className="home home8 p-center text-center bg-size blur-up lazyloaded">
+                                <div className="home home10 p-center text-center bg-size blur-up lazyloaded">
                                     <div className="container">
                                         <div className="row">
                                             <div className="col">
                                                 <div className="slider-contain">
                                                     <div>
-                                                        <h4>welcome to fashion</h4>
-                                                        <h1>men fashion</h1>
+                                                        {/*<h4>welcome to fashion</h4>*/}
+                                                        <h1>spring collection</h1>
                                                         <a href="#" className="btn btn-solid">shop now</a>
                                                     </div>
                                                 </div>
@@ -461,21 +458,21 @@ const Beauty = (props) => {
 
 
                 {/*Parallax banner*/}
-                <section className="p-0">
-                    <div className="full-banner parallax-banner2 parallax text-center p-left">
-                        <div className="container">
-                            <div className="row">
-                                <div className="col">
-                                    <div className="banner-contain">
-                                        <h2>2018</h2>
-                                        <h3>fashion trends</h3>
-                                        <h4>special offer</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                {/*<section className="p-0">*/}
+                {/*    <div className="full-banner parallax-banner2 parallax text-center p-left">*/}
+                {/*        <div className="container">*/}
+                {/*            <div className="row">*/}
+                {/*                <div className="col">*/}
+                {/*                    <div className="banner-contain">*/}
+                {/*                        <h2>2018</h2>*/}
+                {/*                        <h3>fashion trends</h3>*/}
+                {/*                        <h4>special offer</h4>*/}
+                {/*                    </div>*/}
+                {/*                </div>*/}
+                {/*            </div>*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
+                {/*</section>*/}
                 {/*Parallax banner End*/}
 
 

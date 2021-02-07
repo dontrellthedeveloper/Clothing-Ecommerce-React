@@ -7,18 +7,19 @@ import {Product4, Product5} from '../../../services/script'
 import {addToCart, addToWishlist, addToCompare} from "../../../actions/index";
 import ProductItem from '../../features/product/common/product-style-five';
 
-class TopCollection extends Component {
+// class TopCollection extends Component {
+const TopCollection = ({items, symbol, addToCart, addToWishlist, addToCompare, type, products}) => {
 
-    render (){
-
-        const {items, symbol, addToCart, addToWishlist, addToCompare, type} = this.props;
-
-        var properties;
-        if(type === 'kids'){
-            properties = Product5
-        }else{
-            properties = Product4
-        }
+    // render (){
+    //
+    //     const {items, symbol, addToCart, addToWishlist, addToCompare, type, products} = this.props;
+    //
+    //     var properties;
+    //     if(type === 'kids'){
+    //         properties = Product5
+    //     }else{
+    //         properties = Product4
+    //     }
 
         return (
             <div>
@@ -32,28 +33,34 @@ class TopCollection extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col">
-                                <Slider {...properties} className="product-4 product-m no-arrow">
-                                    { items.map((product, index ) =>
-                                        <div key={index}>
-                                        <ProductItem product={product} symbol={symbol}
-                                                     onAddToCompareClicked={() => addToCompare(product)}
-                                                     onAddToWishlistClicked={() => addToWishlist(product)}
-                                                     onAddToCartClicked={() => addToCart(product, 1)} key={index} />
-                                        </div>)
+                                <div className="product-4 product-m no-arrow" style={{textAlign: 'center'}}>
+                                    { products.map((product) =>
+
+                                        <ProductItem product={product}
+                                                     key={product._id}
+                                                     // symbol={symbol}
+                                                     // onAddToCompareClicked={() => addToCompare(product)}
+                                                     // onAddToWishlistClicked={() => addToWishlist(product)}
+                                                     // onAddToCartClicked={() => addToCart(product, 1)}
+
+                                        />
+
+                                    )
                                     }
-                                </Slider>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </section>
             </div>
         )
-    }
-}
+    };
 
-const mapStateToProps = (state, ownProps) => ({
-    items: getTrendingCollection(state.data.products, ownProps.type),
-    symbol: state.data.symbol
-})
 
-export default connect(mapStateToProps, {addToCart, addToWishlist, addToCompare}) (TopCollection);
+// const mapStateToProps = (state, ownProps) => ({
+//     items: getTrendingCollection(state.data.products, ownProps.type),
+//     symbol: state.data.symbol
+// })
+
+// export default connect(mapStateToProps, {addToCart, addToWishlist, addToCompare}) (TopCollection);
+export default TopCollection;

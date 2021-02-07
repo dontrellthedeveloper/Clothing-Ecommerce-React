@@ -1390,16 +1390,16 @@ r
   background-image: url("/assets/images/home-banner/6.jpg");
 }
 .home-slider .home.home7, .center-slider .home.home7 {
-  background-image: url("/assets/images/home-banner/7.jpg");
+  background-image: url("/assets/images/home-banner/beach-homepage-blue.jpg");
 }
 .home-slider .home.home8, .center-slider .home.home8 {
-  background-image: url("/assets/images/home-banner/8.jpg");
+  background-image: url("/assets/images/home-banner/winter-homepage-blue.jpg");
 }
 .home-slider .home.home9, .center-slider .home.home9 {
-  background-image: url("/assets/images/home-banner/9.jpg");
+  background-image: url("/assets/images/home-banner/fall-homepage-blue.jpg");
 }
 .home-slider .home.home10, .center-slider .home.home10 {
-  background-image: url("/assets/images/home-banner/10.jpg");
+  background-image: url("/assets/images/home-banner/spring-homepage-blue.jpg");
 }
 .home-slider .home.home11, .center-slider .home.home11 {
   background-image: url("/assets/images/home-banner/11.jpg");
@@ -1553,12 +1553,14 @@ r
 .home-slider .slider-contain h1, .center-slider .slider-contain h1 {
   margin-bottom: 0;
   margin-top: 10px;
-  color: #222222;
+  /*color: #222222;*/
+  color: #fff;
 }
 .home-slider .slider-contain h4, .center-slider .slider-contain h4 {
   font-weight: 700;
   letter-spacing: 0.4em;
-  color: #777777;
+  /*color: #777777;*/
+  color: #fff;
   margin-bottom: 0;
 }
 .home-slider .slider-contain .btn-solid, .home-slider .slider-contain .btn-outline, .center-slider .slider-contain .btn-solid, .center-slider .slider-contain .btn-outline {
