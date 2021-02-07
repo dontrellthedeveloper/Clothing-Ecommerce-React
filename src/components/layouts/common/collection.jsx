@@ -25,8 +25,8 @@ const TopCollection = ({items, symbol, addToCart, addToWishlist, addToCompare, t
             <div>
                 {/*Paragraph*/}
                 <div className="title1  section-t-space">
-                    <h4>special offer</h4>
-                    <h2 className="title-inner1">top collection</h2>
+                    <h4>shop</h4>
+                    <h2 className="title-inner1">new arrivals</h2>
                 </div>
                 {/*Paragraph End*/}
                 <section className="section-b-space p-t-0">

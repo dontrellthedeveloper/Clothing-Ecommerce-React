@@ -18,6 +18,8 @@ import FooterOne from "../../common/footers/footer-one"
 import BlogSection from "../common/blogsection";
 import MultiSlider from "../kids/multiple-slider";
 
+import Jumbotron from "../../cards/Jumbotron";
+
 
 
 
@@ -61,8 +63,10 @@ const Beauty = (props) => {
                                     <div className="row">
                                         <div className="col">
                                             <div className="slider-contain">
-                                                <div style={{width: "100%", marginTop: "400px", textAlign: "center"}}>
-                                                    <h4></h4>
+                                                <div style={{width: "100%", marginTop: "30px", textAlign: "center"}}>
+                                                    <h2 style={{color: "#fff", marginBottom: "10px", fontSize: "40px"}}>
+                                                        <Jumbotron text={['Hustle x Bustle', "Top Urban Wear"]}/>
+                                                    </h2>
                                                     <h1></h1><a href="#" className="btn btn-solid">shop
                                                     now</a>
                                                 </div>
@@ -78,10 +82,13 @@ const Beauty = (props) => {
                                     <div className="row">
                                         <div className="col">
                                             <div className="slider-contain">
-                                                <div style={{width: "100%", marginTop: "400px", textAlign: "center"}}>
-                                                    <h4></h4>
+                                                <div style={{width: "100%", marginTop: "30px", textAlign: "center"}}>
+                                                    <h2 style={{color: "#fff", marginBottom: "30px"}}>
+                                                        <Jumbotron text={['Hustle x Bustle', "Urban Fashion"]}/>
+                                                    </h2>
                                                     <h1></h1><a href="#" className="btn btn-solid">shop
-                                                    now</a></div>
+                                                    now</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
