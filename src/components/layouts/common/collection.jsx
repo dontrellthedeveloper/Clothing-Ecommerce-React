@@ -21,6 +21,12 @@ const TopCollection = ({items, symbol, addToCart, addToWishlist, addToCompare, t
     //         properties = Product4
     //     }
 
+    const settings = {
+        slidesToShow: 4,
+        dots: true
+    };
+
+
         return (
             <div>
                 {/*Paragraph*/}
@@ -33,21 +39,16 @@ const TopCollection = ({items, symbol, addToCart, addToWishlist, addToCompare, t
                     <div className="container">
                         <div className="row">
                             <div className="col">
-                                <div className="product-4 product-m no-arrow" style={{textAlign: 'center'}}>
+                                <Slider {...settings} className="product-4 product-m " style={{textAlign: 'center'}}>
                                     { products.map((product) =>
-
+                                        <div key={product._id}>
                                         <ProductItem product={product}
                                                      key={product._id}
-                                                     // symbol={symbol}
-                                                     // onAddToCompareClicked={() => addToCompare(product)}
-                                                     // onAddToWishlistClicked={() => addToWishlist(product)}
-                                                     // onAddToCartClicked={() => addToCart(product, 1)}
-
                                         />
 
-                                    )
+                                        </div>)
                                     }
-                                </div>
+                                </Slider>
                             </div>
                         </div>
                     </div>

@@ -6,11 +6,14 @@ import {Link} from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import ThemeSettings from "../../common/theme-settings";
 
-import {getProductsByCount} from "../../../functions/product";
+import {getProducts} from "../../../functions/product";
 
 // Import custom components
 import {svgFreeShipping, svgservice, svgoffer, svgpayment} from "../../../services/script"
-import TopCollection from "../common/collection"
+import TopCollection from "../common/collection";
+import NewArrivals from '../../home/NewArrivals';
+import BestSellers from '../../home/BestSellers';
+
 import NewProduct from "../../common/new-product"
 import Instagram from "../common/instagram"
 import HeaderOne from "../../common/headers/header-one"
@@ -25,24 +28,25 @@ import Jumbotron from "../../cards/Jumbotron";
 
 const Beauty = (props) => {
 
-    const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(false);
+    // const [products, setProducts] = useState([]);
+    // const [loading, setLoading] = useState(false);
 
 
     // componentDidMount()
     useEffect(() => {
         document.getElementById("color").setAttribute("href", `${process.env.PUBLIC_URL}/assets/css/color3.css` );
 
-        loadAllProducts();
+        // loadAllProducts();
     }, []);
 
-    const  loadAllProducts = () => {
-        getProductsByCount(4)
-            .then(res => {
-                setProducts(res.data);
-                setLoading(false);
-            })
-    };
+    // const  loadAllProducts = () => {
+    //     // sort, order, limit
+    //     getProducts('createdAt', 'desc',4)
+    //         .then(res => {
+    //             setProducts(res.data);
+    //             setLoading(false);
+    //         })
+    // };
 
 
 
@@ -65,7 +69,11 @@ const Beauty = (props) => {
                                             <div className="slider-contain">
                                                 <div style={{width: "100%", marginTop: "30px", textAlign: "center"}}>
                                                     <h2 style={{color: "#fff", marginBottom: "10px", fontSize: "40px"}}>
-                                                        <Jumbotron text={['Hustle x Bustle', "Top Urban Wear"]}/>
+                                                        {/*<Jumbotron text={['Hustle x Bustle', "Top Urban Wear"]}/>*/}
+                                                        Hustle
+                                                        {/*<i className="fa fa-times" aria-hidden="true"></i>*/}
+                                                        <i style={{margin: "15px"}} className="fa fa-window-close" aria-hidden="true"></i>
+                                                        Bustle
                                                     </h2>
                                                     <h1></h1><a href="#" className="btn btn-solid">shop
                                                     now</a>
@@ -105,14 +113,21 @@ const Beauty = (props) => {
 
 
                 {/*Product slider*/}
-                <TopCollection
-                    type={'beauty'}
-                    products={products}
-                    setProducts={setProducts}
-                    loading={loading}
-                    setLoading={setLoading}
-                />
+                {/*<TopCollection*/}
+                {/*    type={'beauty'}*/}
+                {/*    products={products}*/}
+                {/*    setProducts={setProducts}*/}
+                {/*    loading={loading}*/}
+                {/*    setLoading={setLoading}*/}
+                {/*/>*/}
 
+                <NewArrivals
+                    type={'beauty'}
+                    // products={products}
+                    // setProducts={setProducts}
+                    // loading={loading}
+                    // setLoading={setLoading}
+                />
 
                 {/*Product slider End*/}
 
@@ -157,6 +172,18 @@ const Beauty = (props) => {
                         </Slider>
                     </section>
                 </div>
+
+
+
+                {/*<BestSellers*/}
+                {/*    type={'beauty'}*/}
+                {/*    products={products}*/}
+                {/*    setProducts={setProducts}*/}
+                {/*    loading={loading}*/}
+                {/*    setLoading={setLoading}*/}
+                {/*/>*/}
+
+
 
                 {/*Parallax banner*/}
                 {/*<section className="p-0">*/}
