@@ -122,7 +122,7 @@ const NewArrivals = () => {
 
     const  loadAllProducts = () => {
         // sort, order, limit
-        getProducts('createdAt', 'desc',20)
+        getProducts('createdAt', 'desc',12)
             .then(res => {
                 setProducts(res.data);
                 setLoading(false);
@@ -156,7 +156,7 @@ const NewArrivals = () => {
                     <div className="container">
                         <div className="row">
                             <div className="col">
-                                <Slider {...Product5} className="product-4 product-m no-arrow">
+                                <Slider {...Product5} className="product-4 product-m">
                                     { products.map((product ) =>
                                         <div key={product._id}>
                                             <ProductItem product={product}

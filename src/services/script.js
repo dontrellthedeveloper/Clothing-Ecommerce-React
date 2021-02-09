@@ -32,11 +32,14 @@ export const Product4 = {
     ]
 };
 export const Product5 = {
-    dots: false,
+    dots: true,
     infinite: true,
-    speed: 300,
+    speed: 800,
     slidesToShow: 5,
     slidesToScroll: 5,
+    autoplay: true,
+    autoplaySpeed: 8000,
+    pauseOnHover: true,
     responsive: [
         {
             breakpoint: 1367,
