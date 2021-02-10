@@ -29,6 +29,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import RegisterComplete from "./components/pages/registerComplete";
 import HeaderOne from "./components/common/headers/header-one";
 import FooterOne from "./components/common/footers/footer-one";
+import SingleProduct from "./components/pages/product";
 
 // Admin Routes
 import AdminRoute from "./components/routes/AdminRoute";
@@ -237,6 +238,7 @@ const Root = () => {
                                         <UserRoute exact path={`${process.env.PUBLIC_URL}/user/password`} component={UserPassword}/>
                                         <UserRoute exact path={`${process.env.PUBLIC_URL}/user/wishlist`} component={UserWishlist}/>
 
+
                                         <AdminRoute exact path={`${process.env.PUBLIC_URL}/admin/dashboard`} component={AdminDashboard}/>
                                         <AdminRoute exact path={`${process.env.PUBLIC_URL}/admin/category`} component={CategoryCreate}/>
                                         <AdminRoute exact path={`${process.env.PUBLIC_URL}/admin/category/:slug`} component={CategoryUpdate}/>
@@ -245,6 +247,9 @@ const Root = () => {
                                         <AdminRoute exact path={`${process.env.PUBLIC_URL}/admin/product`} component={ProductCreate}/>
                                         <AdminRoute exact path={`${process.env.PUBLIC_URL}/admin/products`} component={AllProducts}/>
                                         <AdminRoute exact path={`${process.env.PUBLIC_URL}/admin/product/:slug`} component={ProductUpdate}/>
+
+
+                                        <Route exact path={`${process.env.PUBLIC_URL}/product/:slug`} component={SingleProduct}/>
 
 
 

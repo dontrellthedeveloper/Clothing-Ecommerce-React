@@ -1,10 +1,11 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.scss';
 import {Link} from 'react-router-dom'
 
-class DetailsTopTabs extends Component {
-    render (){
+const DetailsTopTabs = ({product}) => {
+// class DetailsTopTabs extends Component {
+//     render (){
 
         return (
             <section className="tab-product m-0">
@@ -36,24 +37,24 @@ class DetailsTopTabs extends Component {
                                 <table className="table table-striped mb-0">
                                     <tbody>
                                     <tr>
-                                        <th>Ideal For :</th>
-                                        <td>Women's</td>
+                                        <th>Quantity Available :</th>
+                                        <td>{product.quantity}</td>
                                     </tr>
                                     <tr>
-                                        <th>Pattern :</th>
-                                        <td>Embroidered</td>
+                                        <th>Color :</th>
+                                        <td>{product.color}</td>
                                     </tr>
                                     <tr>
-                                        <th>Dress Fabric :</th>
-                                        <td>Silk</td>
+                                        <th>Brand :</th>
+                                        <td>{product.brand}</td>
                                     </tr>
                                     <tr>
-                                        <th>Type :</th>
-                                        <td>Ghagra, Choli, Dupatta Set</td>
+                                        <th>Shipping :</th>
+                                        <td>{product.shipping}</td>
                                     </tr>
                                     <tr>
-                                        <th>Neck :</th>
-                                        <td>Round Neck</td>
+                                        <th>Amount Sold :</th>
+                                        <td>{product.sold}</td>
                                     </tr>
                                     <tr>
                                         <th>Sleeve :</th>
@@ -68,16 +69,17 @@ class DetailsTopTabs extends Component {
                             </TabPanel>
                             <TabPanel>
                                 <p className="mt-4 p-0">
-                                    Lorem Ipsum is simply dummy text of the printing and
-                                    typesetting industry. Lorem Ipsum has been the industry's
-                                    standard dummy text ever since the 1500s, when an unknown
-                                    printer took a galley of type and scrambled it to make a
-                                    type specimen book. It has survived not only five centuries,
-                                    but also the leap into electronic typesetting, remaining
-                                    essentially unchanged. It was popularised in the 1960s with
-                                    the release of Letraset sheets containing Lorem Ipsum
-                                    passages, and more recently with desktop publishing software
-                                    like Aldus PageMaker including versions of Lorem Ipsum.
+                                    {/*Lorem Ipsum is simply dummy text of the printing and*/}
+                                    {/*typesetting industry. Lorem Ipsum has been the industry's*/}
+                                    {/*standard dummy text ever since the 1500s, when an unknown*/}
+                                    {/*printer took a galley of type and scrambled it to make a*/}
+                                    {/*type specimen book. It has survived not only five centuries,*/}
+                                    {/*but also the leap into electronic typesetting, remaining*/}
+                                    {/*essentially unchanged. It was popularised in the 1960s with*/}
+                                    {/*the release of Letraset sheets containing Lorem Ipsum*/}
+                                    {/*passages, and more recently with desktop publishing software*/}
+                                    {/*like Aldus PageMaker including versions of Lorem Ipsum.*/}
+                                    {product.description}
                                 </p>
                             </TabPanel>
                             <TabPanel>
@@ -135,7 +137,7 @@ class DetailsTopTabs extends Component {
                 </div>
             </section>
         )
-    }
-}
+    };
+
 
 export default DetailsTopTabs;
