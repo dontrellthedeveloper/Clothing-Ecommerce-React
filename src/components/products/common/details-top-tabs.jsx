@@ -22,11 +22,11 @@ const DetailsTopTabs = ({product}) => {
                                     <span className="nav-link" ><i className="icofont icofont-man-in-glasses"></i>Details</span>
                                     <div className="material-border"></div>
                                 </Tab>
-                                <Tab className="nav-item">
-                                    <span className="nav-link" >
-                                        <i className="icofont icofont-contacts"></i>Video</span>
-                                    <div className="material-border"></div>
-                                </Tab>
+                                {/*<Tab className="nav-item">*/}
+                                {/*    <span className="nav-link" >*/}
+                                {/*        <i className="icofont icofont-contacts"></i>Video</span>*/}
+                                {/*    <div className="material-border"></div>*/}
+                                {/*</Tab>*/}
                                 <Tab className="nav-item">
                                     <span className="nav-link" >
                                         <i className="icofont icofont-contacts"></i>Write Review</span>
@@ -82,17 +82,17 @@ const DetailsTopTabs = ({product}) => {
                                     {product.description}
                                 </p>
                             </TabPanel>
-                            <TabPanel>
-                                <div className="mt-4 text-center">
-                                    <div className="embed-responsive embed-responsive-16by9">
-                                        <iframe
-                                            src="https://www.youtube.com/embed/BUWzX78Ye_8"
-                                            allow="autoplay; encrypted-media"
-                                            allowFullScreen>
-                                        </iframe>
-                                    </div>
-                                </div>
-                            </TabPanel>
+                            {/*<TabPanel>*/}
+                            {/*    <div className="mt-4 text-center">*/}
+                            {/*        <div className="embed-responsive embed-responsive-16by9">*/}
+                            {/*            <iframe*/}
+                            {/*                src="https://www.youtube.com/embed/BUWzX78Ye_8"*/}
+                            {/*                allow="autoplay; encrypted-media"*/}
+                            {/*                allowFullScreen>*/}
+                            {/*            </iframe>*/}
+                            {/*        </div>*/}
+                            {/*    </div>*/}
+                            {/*</TabPanel>*/}
                             <TabPanel>
                                 <form className="theme-form mt-4">
                                     <div className="form-row">

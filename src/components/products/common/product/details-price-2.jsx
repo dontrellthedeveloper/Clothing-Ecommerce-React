@@ -84,9 +84,10 @@ class DetailsWithPrice2 extends Component {
                     <div className="product-description border-product">
                         {/*{item.size?*/}
                         <div>
-                            <h6 className="product-title size-text">select size
+                            {/*<h6 className="product-title size-text">select size*/}
                                 <span><a href="#" data-toggle="modal"
-                                         data-target="#sizemodal" onClick={this.onOpenModal} >size chart</a></span></h6>
+                                         data-target="#sizemodal" onClick={this.onOpenModal} >size chart</a></span>
+                            {/*</h6>*/}
                             <div className="modal fade" id="sizemodal" tabIndex="-1"
                                  role="dialog" aria-labelledby="exampleModalLabel"
                                  aria-hidden="true">
@@ -109,17 +110,21 @@ class DetailsWithPrice2 extends Component {
                                 </div>
                             </div>
                             <div className="size-box">
+                                {/*<i className="fa fa-heart-o" aria-hidden="true"></i>*/}
                                 <ul>
                                     {/*{item.size.map((size, i) => {*/}
                                     {/*    return <li key={i}><a href="#">{size}</a></li>*/}
                                     {/*})}*/}
+
                                 </ul>
                             </div>
                         </div>
                         {/*:''}*/}
+
+
                         <span className="instock-cls">{this.state.stock}</span>
                         <h6 className="product-title">quantity</h6>
-                        <div className="qty-box">
+                        <div className="qty-box" style={{display: 'inline-block'}}>
                             <div className="input-group">
                                   <span className="input-group-prepend">
                                     <button type="button" className="btn quantity-left-minus" onClick={this.minusQty} data-type="minus" data-field="">
@@ -139,26 +144,43 @@ class DetailsWithPrice2 extends Component {
                         <a className="btn btn-solid" onClick={() => addToCartClicked(item, this.state.quantity)}>add to cart</a>
                         <Link to={`${process.env.PUBLIC_URL}/checkout`} className="btn btn-solid" onClick={() => BuynowClicked(item, this.state.quantity)} >buy now</Link>
                     </div>
+                    {/*<div className="border-product">*/}
+                    {/*    <h6 className="product-title">product details</h6>*/}
+                    {/*    /!*<p>{item.shortDetails}</p>*!/*/}
+                    {/*    {product.description}*/}
+                    {/*</div>*/}
                     <div className="border-product">
-                        <h6 className="product-title">product details</h6>
-                        {/*<p>{item.shortDetails}</p>*/}
-                        {product.description}
-                    </div>
-                    <div className="border-product">
-                        <h6 className="product-title">share it</h6>
-                        <div className="product-icon">
-                            <ul className="product-social">
+                        <h6 className="product-title">favorite</h6>
+                        <div className="product-icon" style={{display: 'block'}}>
+                            <ul className="product-social" style={{display: 'none'}}>
                                 <li><a href="https://www.facebook.com/" target="_blank"><i className="fa fa-facebook"></i></a></li>
                                 <li><a href="https://plus.google.com/discover" target="_blank"><i className="fa fa-google-plus"></i></a></li>
                                 <li><a href="https://twitter.com/" target="_blank"><i className="fa fa-twitter"></i></a></li>
                                 <li><a href="https://www.instagram.com/" target="_blank"><i className="fa fa-instagram"></i></a></li>
                             </ul>
                             <button className="wishlist-btn" onClick={() => addToWishlistClicked(item)}><i
-                                className="fa fa-heart"></i><span
+                                className="fa fa-heart" style={{borderLeft: 'none'}}></i><span
                                 className="title-font">Add To WishList</span>
                             </button>
                         </div>
                     </div>
+
+                    <div className="border-product">
+                        <h6 className="product-title">share it</h6>
+                        <div className="product-icon" style={{display: 'block'}}>
+                            <ul className="product-social" >
+                                <li><a href="https://www.facebook.com/" target="_blank"><i className="fa fa-facebook"></i></a></li>
+                                <li><a href="https://plus.google.com/discover" target="_blank"><i className="fa fa-google-plus"></i></a></li>
+                                <li><a href="https://twitter.com/" target="_blank"><i className="fa fa-twitter"></i></a></li>
+                                <li><a href="https://www.instagram.com/" target="_blank"><i className="fa fa-instagram"></i></a></li>
+                            </ul>
+                            <button className="wishlist-btn" style={{display: 'none'}} onClick={() => addToWishlistClicked(item)}><i
+                                className="fa fa-heart" style={{borderLeft: 'none'}}></i><span
+                                className="title-font">Add To WishList</span>
+                            </button>
+                        </div>
+                    </div>
+
                     <div className="border-product">
                         <h6 className="product-title">Time Reminder</h6>
                         <div className="timer">
