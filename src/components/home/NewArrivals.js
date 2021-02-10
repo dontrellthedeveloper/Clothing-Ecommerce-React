@@ -6,7 +6,8 @@ import {getTrendingCollection} from '../../services/index'
 
 import {addToCart, addToWishlist, addToCompare} from "../../actions/index";
 import ProductItem from '../features/product/common/product-style-five';
-import {getProducts} from "../../functions/product";
+import {getProducts, getProductsCount} from "../../functions/product";
+
 
 // class TopCollection extends Component {
 // const NewArrivals = () => {
@@ -104,6 +105,7 @@ import {getProducts} from "../../functions/product";
 // import Slider from 'react-slick';
 
 import {Product5} from '../../services/script'
+import {Pagination} from "antd";
 // import {addToCart, addToWishlist, addToCompare} from "../../actions/index";
 // import ProductItem from '../features/product/common/product-style-five';
 
@@ -113,11 +115,17 @@ const NewArrivals = () => {
 
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [page, setPage] = useState(1);
+    const [productsCount, setProductsCount] = useState(0);
 
 
     // componentDidMount()
     useEffect(() => {
         loadAllProducts();
+    }, []);
+
+    useEffect(() => {
+        getProductsCount().then(res => setProductsCount(res.data))
     }, []);
 
     const  loadAllProducts = () => {
@@ -150,6 +158,7 @@ const NewArrivals = () => {
                 <div className="title1  section-t-space">
                     <h4>shop</h4>
                     <h2 className="title-inner1">new arrivals</h2>
+                    {/*{productsCount}*/}
                 </div>
                 {/*Paragraph End*/}
                 <section className="section-b-space p-t-0">
@@ -171,11 +180,15 @@ const NewArrivals = () => {
                                     )
                                     }
                                 </Slider>
+                                {/*<Pagination current={page} total={(productsCount / 3) * 10}*/}
+                                {/*onChange={(value) => setPage(value)}/>*/}
                             </div>
                         </div>
                     </div>
                 </section>
+
             </div>
+
         )
     };
 

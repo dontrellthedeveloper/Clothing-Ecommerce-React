@@ -506,7 +506,8 @@ button {
 .btn-solid:hover {
   background-position: 100%;
   color: #000000 !important;
-  background-color: #737373;
+  /*background-color: #737373;*/
+  background-color: #79868F;
 }
 .btn-solid.black-btn {
   background-image: linear-gradient(30deg, #222222 50%, transparent 50%);
@@ -1354,6 +1355,16 @@ r
       -ms-flex-align: center;
           align-items: center;
 }
+
+
+
+.slick-next:before,
+.slick-prev:before {
+  color: #000000 !important;
+}
+
+
+
 .home-slider .slick-next, .center-slider .slick-next {
   right: 1px;
 }
@@ -3517,7 +3528,7 @@ r
   background-attachment: fixed;
 }
 .full-banner.p-left .banner-contain {
-  float: left;
+  /*float: left;*/
 }
 .full-banner.p-right .banner-contain {
   float: right;
@@ -3533,7 +3544,8 @@ r
 .full-banner .banner-contain h2 {
   font-size: 100px;
   font-weight: 700;
-  color: #f0b54d;
+  /*color: #f0b54d;*/
+  color: #fff;
   text-transform: uppercase;
   margin-top: -15px;
 }
@@ -11235,7 +11247,7 @@ body.dark {
   color: #e7eaec;
 }
 .dark .theme-card .slick-prev:before, .dark .theme-card .slick-next:before {
-  color: #ffffff;
+  color: #000;
 }
 .dark .theme-card h5.title-border {
   border-color: #404040;

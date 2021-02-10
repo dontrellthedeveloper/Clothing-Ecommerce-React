@@ -28,6 +28,16 @@ import Jumbotron from "../../cards/Jumbotron";
 
 const Beauty = (props) => {
 
+    const [open, isOpen] = useState(false);
+
+    const onOpenModal = () => {
+        isOpen(true );
+    };
+
+    const onCloseModal = () => {
+        isOpen(false );
+    };
+
     // const [products, setProducts] = useState([]);
     // const [loading, setLoading] = useState(false);
 
@@ -204,9 +214,10 @@ const Beauty = (props) => {
                             <div className="row">
                                 <div className="col">
                                     <div className="banner-contain">
-                                        <h2>2018</h2>
-                                        <h3>fashion trends</h3>
-                                        <h4>special offer</h4>
+                                        <h2 style={{color: "#fff"}}>2021</h2>
+                                        <h3 style={{color: "#fff"}}>fashion lookbook</h3>
+                                        {/*<h4>special offer</h4>*/}
+                                        <a href="#" className="btn btn-solid">latest trends</a>
                                     </div>
                                 </div>
                             </div>
@@ -453,7 +464,7 @@ const Beauty = (props) => {
 
 
                 {/*/!*Video Section*!/*/}
-                <section className="video-section pt-0">
+                <section className="video-section pt-0" style={{marginTop: "60px"}}>
                     <div className="title1">
                         <h4>special offer</h4>
                         <h2 className="title-inner1">product tutorial</h2>
@@ -462,7 +473,7 @@ const Beauty = (props) => {
                         <div className="row">
                             <div className="col-md-8 offset-md-2">
                                 <a href="javascript:void(0)"
-                                    // onClick={onOpenModal}
+                                    onClick={onOpenModal}
                                 >
                                     <div className="video-img">
                                         <img src={`${process.env.PUBLIC_URL}/assets/images/beauty/video_1.jpg`} alt="" className="img-fluid blur-up lazyload" />
@@ -472,11 +483,11 @@ const Beauty = (props) => {
                                     </div>
                                 </a>
                                 <Modal
-                                    // open={isOpen}
-                                    onClose={{ open: false }}
+                                    open={open}
+                                    onClose={onCloseModal}
                                     id="video"
                                     className="modal fade video-modal" center>
-                                    <iframe src="https://www.youtube.com/embed/FRIDLxM8Roc"
+                                    <iframe width="750" height="700" src="https://www.youtube.com/embed/FRIDLxM8Roc"
                                             allowFullScreen></iframe>
                                 </Modal>
                             </div>

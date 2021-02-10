@@ -3,7 +3,7 @@ import Slider from 'react-slick';
 import {Link} from 'react-router-dom'
 import {getProducts} from "../../../functions/product";
 import defaultImage from "../../../images/default-product-image.png";
-
+import {Product4, Product5} from '../../../services/script'
 
 
 // class MultiSliderItem extends Component {
@@ -30,7 +30,7 @@ const MultiSliderItem = () => {
 
     const  loadAllProducts = () => {
         // sort, order, limit
-        getProducts('createdAt', 'desc',3)
+        getProducts('createdAt', 'desc',4)
             .then(res => {
                 setProducts(res.data);
                 setLoading(false);
@@ -46,7 +46,7 @@ const MultiSliderItem = () => {
 
 
         return (
-                <Slider  className="offer-slider slide-1">
+                <Slider className="offer-slider slide-1">
                     {products.map((product) =>
                         <div key={product._id}>
                             {products.map((product) =>

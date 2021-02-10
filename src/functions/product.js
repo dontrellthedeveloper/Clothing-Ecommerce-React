@@ -35,3 +35,6 @@ export const getProducts = async (sort, order, limit) =>
         order,
         limit,
     });
+
+export const getProductsCount = async () =>
+    await axios.get(`${process.env.REACT_APP_API}/products/total`);

@@ -3308,7 +3308,7 @@ header {
   }
   &.p-left {
     .banner-contain{
-      float: left;
+      //float: left;
     }
   }
   &.p-right {
@@ -3629,7 +3629,8 @@ header {
     top:-35px;
     &:before {
       font: normal normal normal 30px/1 $font-awesome;
-      color: $dark-font;
+      //color: $dark-font;
+      color: #000;
       opacity:0.6;
     }
   }
@@ -7220,7 +7221,8 @@ footer{
     top:-45px;
     &:before {
       font: normal normal normal 30px/1 $font-awesome;
-      color: $dark-font;
+      //color: $dark-font;
+      color: #000;
       opacity: 0.6;
     }
   }
@@ -10362,7 +10364,7 @@ body.rtl {
     }
     &.p-left {
       .banner-contain {
-        float: left;
+        //float: left;
       }
     }
     &.p-right {
@@ -12350,7 +12352,8 @@ body {
     }
     .slick-prev, .slick-next {
       &:before {
-        color: $white;
+        //color: $white;
+        color: #000;
       }
     }
   }
