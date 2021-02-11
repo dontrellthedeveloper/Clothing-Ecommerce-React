@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom'
 import Slider from 'react-slick';
 import Modal from 'react-responsive-modal';
-
+import StarRatings from 'react-star-ratings';
 
 const DetailsWithPrice2 = ({symbol, item, addToCartClicked, BuynowClicked, addToWishlistClicked, product}) => {
     const [open, isOpen] = useState(false);
@@ -63,8 +63,35 @@ const DetailsWithPrice2 = ({symbol, item, addToCartClicked, BuynowClicked, addTo
                     </h4>
                     <h3>
                         {/*{symbol}{item.price-(item.price*item.discount/100)}*/}
-                        ${product.price}
+                        {/*${product.price}*/}
                     </h3>
+                    <div className="border-product">
+                        <h3>${product.price}</h3>
+
+                    </div>
+                    <div className="border-product">
+                        {/*<h6 className="product-title">Rating</h6>*/}
+                        <StarRatings
+                            name={product._id}
+                            numberOfStars={5}
+                            rating={2}
+                            changeRating={(newRating, name) => console.log('newRating', newRating, 'name', name)}
+                            isSelectable={true}
+                            starRatedColor='#79868F'
+                        />
+                        {/*<div className="product-icon" style={{display: 'block'}}>*/}
+                        {/*    <ul className="product-social" style={{display: 'none'}}>*/}
+                        {/*        <li><a href="https://www.facebook.com/" target="_blank"><i className="fa fa-facebook"></i></a></li>*/}
+                        {/*        <li><a href="https://plus.google.com/discover" target="_blank"><i className="fa fa-google-plus"></i></a></li>*/}
+                        {/*        <li><a href="https://twitter.com/" target="_blank"><i className="fa fa-twitter"></i></a></li>*/}
+                        {/*        <li><a href="https://www.instagram.com/" target="_blank"><i className="fa fa-instagram"></i></a></li>*/}
+                        {/*    </ul>*/}
+                        {/*    <button className="wishlist-btn" onClick={() => addToWishlistClicked(item)}><i*/}
+                        {/*        className="fa fa-heart" style={{borderLeft: 'none'}}></i><span*/}
+                        {/*        className="title-font">Add To WishList</span>*/}
+                        {/*    </button>*/}
+                        {/*</div>*/}
+                    </div>
                     {/*{item.variants?*/}
                     {/*<ul >*/}
                     {/*    <Slider {...colorsnav} asNavFor={this.props.navOne} ref={slider => (this.slider1 = slider)} className="color-variant">*/}
@@ -121,22 +148,31 @@ const DetailsWithPrice2 = ({symbol, item, addToCartClicked, BuynowClicked, addTo
 
 
                         {/*<span className="instock-cls">{stock}</span>*/}
-                        <h6 className="product-title">quantity</h6>
-                        <div className="qty-box" style={{display: 'inline-block'}}>
-                            <div className="input-group">
-                                  <span className="input-group-prepend">
-                                    <button type="button" className="btn quantity-left-minus" onClick={minusQty} data-type="minus" data-field="">
-                                     <i className="fa fa-angle-left"></i>
-                                    </button>
-                                  </span>
-                                <input type="text" name="quantity" value={quantity} onChange={changeQty} className="form-control input-number" />
-                                <span className="input-group-prepend">
-                                <button type="button" className="btn quantity-right-plus" onClick={plusQty} data-type="plus" data-field="">
-                                <i className="fa fa-angle-right"></i>
-                                </button>
-                               </span>
-                            </div>
-                        </div>
+                        {/*<h6 className="product-title">quantity</h6>*/}
+                        {/*<div className="qty-box" style={{display: 'inline-block'}}>*/}
+                        {/*    <div className="input-group">*/}
+                        {/*          <span className="input-group-prepend">*/}
+                        {/*            <button type="button" className="btn quantity-left-minus" onClick={minusQty} data-type="minus" data-field="">*/}
+                        {/*             <i className="fa fa-angle-left"></i>*/}
+                        {/*            </button>*/}
+                        {/*          </span>*/}
+                        {/*        <input type="text" name="quantity" value={quantity} onChange={changeQty} className="form-control input-number" />*/}
+                        {/*        <span className="input-group-prepend">*/}
+                        {/*        <button type="button" className="btn quantity-right-plus" onClick={plusQty} data-type="plus" data-field="">*/}
+                        {/*        <i className="fa fa-angle-right"></i>*/}
+                        {/*        </button>*/}
+                        {/*       </span>*/}
+                        {/*    </div>*/}
+                        {/*</div>*/}
+
+
+
+
+
+
+
+
+
                     </div>
                     <div className="product-buttons" >
                         <a className="btn btn-solid" onClick={() => addToCartClicked(item, quantity)}>add to cart</a>
@@ -169,6 +205,8 @@ const DetailsWithPrice2 = ({symbol, item, addToCartClicked, BuynowClicked, addTo
                             </button>
                         </div>
                     </div>
+
+
 
                     <div className="border-product">
                         <h6 className="product-title">share it</h6>

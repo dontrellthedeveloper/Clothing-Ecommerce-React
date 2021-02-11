@@ -102,7 +102,7 @@ const SingleProduct = ({match, symbol, item, addToCart, addToCartUnsafe, addToWi
                     // parent={product.category}
                     title={title} />
 
-                {JSON.stringify(product)}
+                {/*{JSON.stringify(product)}*/}
                 {/*Section Start*/}
                     <section className="section-b-space">
                         <div className="collection-wrapper">
