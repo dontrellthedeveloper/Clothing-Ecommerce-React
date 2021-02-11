@@ -18,7 +18,7 @@ const initialState = {
     price: '',
     categories: [],
     category: '',
-    sub: '',
+    sub: [],
     shipping: '',
     quantity: '',
     images: [],
@@ -97,7 +97,7 @@ const ProductCreate = ({history}) => {
     const handleCategoryChange = (e) => {
       e.preventDefault();
       console.log('CLICKED CATEGORY', e.target.value);
-        setValues({...values,subs: [], category: e.target.value});
+        setValues({...values,sub: [], category: e.target.value});
         getCategorySubs(e.target.value)
             .then(res => {
                 console.log("SUB OPTIONS ON CATEGORY CLICK", res);

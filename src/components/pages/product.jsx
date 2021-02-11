@@ -29,6 +29,8 @@ const SingleProduct = ({match, symbol, item, addToCart, addToCartUnsafe, addToWi
 
     const {slug} = match.params;
 
+    const {images, quantity, category, color, brand, shipping, sold, description, title} = product;
+
     useEffect(() => {
         loadSingleProduct();
     }, [slug]);
@@ -98,9 +100,9 @@ const SingleProduct = ({match, symbol, item, addToCart, addToCartUnsafe, addToWi
 
                 <Breadcrumb
                     // parent={product.category}
-                    title={product.title} />
+                    title={title} />
 
-                {/*{JSON.stringify(product)}*/}
+                {JSON.stringify(product)}
                 {/*Section Start*/}
                     <section className="section-b-space">
                         <div className="collection-wrapper">
@@ -136,7 +138,7 @@ const SingleProduct = ({match, symbol, item, addToCart, addToCartUnsafe, addToWi
                                             </div>
                                             <div className="row">
                                                 <div className="col-lg-6 product-thumbnail">
-                                                    <img src={product.images && product.images.length ? product.images[0].url : defaultImage} alt={product.title}
+                                                    <img src={images && images.length ? images[0].url : defaultImage} alt={title}
                                                          style={{
                                                              width: "100%",
                                                              // padding: "20px",

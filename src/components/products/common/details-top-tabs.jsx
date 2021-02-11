@@ -4,6 +4,8 @@ import 'react-tabs/style/react-tabs.scss';
 import {Link} from 'react-router-dom'
 
 const DetailsTopTabs = ({product}) => {
+
+    const {quantity, category, sub, color, brand, shipping, sold, description} = product;
 // class DetailsTopTabs extends Component {
 //     render (){
 
@@ -36,34 +38,37 @@ const DetailsTopTabs = ({product}) => {
                             <TabPanel className="tab-pane fade mt-4 show active">
                                 <table className="table table-striped mb-0">
                                     <tbody>
-                                    <tr>
-                                        <th>Quantity Available :</th>
-                                        <td>{product.quantity}</td>
-                                    </tr>
+                                    {category && <tr>
+                                        <th>Category :</th>
+
+                                        <td><Link to={`/category/${category.slug}`}>{category.name}</Link></td>
+                                    </tr>}
+                                    {sub && <tr>
+                                        <th>Sub Category :</th>
+
+                                        <td><Link to={`/category/${category.slug}/${sub.slug}`}>{sub.name}</Link></td>
+                                    </tr>}
                                     <tr>
                                         <th>Color :</th>
-                                        <td>{product.color}</td>
+                                        <td>{color}</td>
                                     </tr>
                                     <tr>
                                         <th>Brand :</th>
-                                        <td>{product.brand}</td>
+                                        <td>{brand}</td>
                                     </tr>
                                     <tr>
                                         <th>Shipping :</th>
-                                        <td>{product.shipping}</td>
+                                        <td>{shipping}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Quantity Available :</th>
+                                        <td>{quantity}</td>
                                     </tr>
                                     <tr>
                                         <th>Amount Sold :</th>
-                                        <td>{product.sold}</td>
+                                        <td>{sold}</td>
                                     </tr>
-                                    <tr>
-                                        <th>Sleeve :</th>
-                                        <td>3/4 Sleeve</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Work :</th>
-                                        <td>N/A</td>
-                                    </tr>
+
                                     </tbody>
                                 </table>
                             </TabPanel>
@@ -79,7 +84,7 @@ const DetailsTopTabs = ({product}) => {
                                     {/*the release of Letraset sheets containing Lorem Ipsum*/}
                                     {/*passages, and more recently with desktop publishing software*/}
                                     {/*like Aldus PageMaker including versions of Lorem Ipsum.*/}
-                                    {product.description}
+                                    {description}
                                 </p>
                             </TabPanel>
                             {/*<TabPanel>*/}
