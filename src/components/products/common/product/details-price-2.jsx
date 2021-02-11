@@ -1,63 +1,56 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom'
 import Slider from 'react-slick';
 import Modal from 'react-responsive-modal';
 
 
-class DetailsWithPrice2 extends Component {
+const DetailsWithPrice2 = ({symbol, item, addToCartClicked, BuynowClicked, addToWishlistClicked, product}) => {
+    const [open, isOpen] = useState(false);
+    const [quantity, setQuantity] = useState(1);
+    const [stock, setStock] = useState('InStock');
+    const [nav3, setNav3] = useState(null);
+    let [slider3, setSlider3] = useState({});
 
-    constructor (props) {
-        super (props)
-        this.state = {
-            open:false,
-            quantity:1,
-            stock: 'InStock',
-            nav3: null
-        }
-    }
-
-    onOpenModal = () => {
-        this.setState({ open: true });
+    const onOpenModal = () => {
+        isOpen( true );
     };
 
-    onCloseModal = () => {
-        this.setState({ open: false });
+    const onCloseModal = () => {
+        isOpen(false );
     };
 
-    componentDidMount() {
-        this.setState({
-            nav3: this.slider3
-        });
-    }
+    useEffect(() => {
+        setNav3(slider3);
+    }, []);
 
-    minusQty = () => {
-        if(this.state.quantity > 1) {
-            this.setState({stock: 'InStock'})
-            this.setState({quantity: this.state.quantity - 1})
+
+    const minusQty = () => {
+        if(quantity > 1) {
+            setStock('InStock');
+            setQuantity(quantity - 1);
         }
-    }
+    };
 
-    plusQty = () => {
-        if(this.props.item.stock >= this.state.quantity) {
-            this.setState({quantity: this.state.quantity+1})
+    const plusQty = () => {
+        if(stock >= quantity) {
+            setQuantity(quantity+1)
         }else{
-            this.setState({stock: 'Out of Stock !'})
+            setStock('Out of Stock !');
         }
-    }
-    changeQty = (e) => {
-        this.setState({ quantity: parseInt(e.target.value) })
-    }
+    };
 
-    render (){
-        const {symbol, item, addToCartClicked, BuynowClicked, addToWishlistClicked, product} = this.props
+    const changeQty = (e) => {
+        setQuantity(parseInt(e.target.value))
+    };
 
-        var colorsnav = {
+        let colorsnav = {
             slidesToShow: 6,
             swipeToSlide:true,
             arrows: false,
             dots: false,
             focusOnSelect: true
         };
+
 
         return (
             <div className="col-lg-6 rtl-text">
@@ -70,7 +63,7 @@ class DetailsWithPrice2 extends Component {
                     </h4>
                     <h3>
                         {/*{symbol}{item.price-(item.price*item.discount/100)}*/}
-                        {product.price}
+                        ${product.price}
                     </h3>
                     {/*{item.variants?*/}
                     {/*<ul >*/}
@@ -81,12 +74,16 @@ class DetailsWithPrice2 extends Component {
                     {/*    </Slider>*/}
                     {/*</ul>:''*/}
                     {/*}*/}
+                    {/*<div className="border-product">*/}
+                    {/*    <span className="instock-cls">{stock}</span>*/}
+                    {/*</div>*/}
                     <div className="product-description border-product">
                         {/*{item.size?*/}
                         <div>
                             {/*<h6 className="product-title size-text">select size*/}
-                                <span><a href="#" data-toggle="modal"
-                                         data-target="#sizemodal" onClick={this.onOpenModal} >size chart</a></span>
+                            {/*    <span><a href="#" data-toggle="modal"*/}
+                            {/*             data-target="#sizemodal" onClick={onOpenModal} >size chart</a>*/}
+                            {/*    </span>*/}
                             {/*</h6>*/}
                             <div className="modal fade" id="sizemodal" tabIndex="-1"
                                  role="dialog" aria-labelledby="exampleModalLabel"
@@ -122,18 +119,19 @@ class DetailsWithPrice2 extends Component {
                         {/*:''}*/}
 
 
-                        <span className="instock-cls">{this.state.stock}</span>
+
+                        {/*<span className="instock-cls">{stock}</span>*/}
                         <h6 className="product-title">quantity</h6>
                         <div className="qty-box" style={{display: 'inline-block'}}>
                             <div className="input-group">
                                   <span className="input-group-prepend">
-                                    <button type="button" className="btn quantity-left-minus" onClick={this.minusQty} data-type="minus" data-field="">
+                                    <button type="button" className="btn quantity-left-minus" onClick={minusQty} data-type="minus" data-field="">
                                      <i className="fa fa-angle-left"></i>
                                     </button>
                                   </span>
-                                <input type="text" name="quantity" value={this.state.quantity} onChange={this.changeQty} className="form-control input-number" />
+                                <input type="text" name="quantity" value={quantity} onChange={changeQty} className="form-control input-number" />
                                 <span className="input-group-prepend">
-                                <button type="button" className="btn quantity-right-plus" onClick={this.plusQty} data-type="plus" data-field="">
+                                <button type="button" className="btn quantity-right-plus" onClick={plusQty} data-type="plus" data-field="">
                                 <i className="fa fa-angle-right"></i>
                                 </button>
                                </span>
@@ -141,14 +139,21 @@ class DetailsWithPrice2 extends Component {
                         </div>
                     </div>
                     <div className="product-buttons" >
-                        <a className="btn btn-solid" onClick={() => addToCartClicked(item, this.state.quantity)}>add to cart</a>
-                        <Link to={`${process.env.PUBLIC_URL}/checkout`} className="btn btn-solid" onClick={() => BuynowClicked(item, this.state.quantity)} >buy now</Link>
+                        <a className="btn btn-solid" onClick={() => addToCartClicked(item, quantity)}>add to cart</a>
+                        {/*<Link to={`${process.env.PUBLIC_URL}/checkout`} className="btn btn-solid" onClick={() => BuynowClicked(item, this.state.quantity)} >*/}
+                        {/*    buy now*/}
+                        {/*</Link>*/}
                     </div>
                     {/*<div className="border-product">*/}
-                    {/*    <h6 className="product-title">product details</h6>*/}
-                    {/*    /!*<p>{item.shortDetails}</p>*!/*/}
-                    {/*    {product.description}*/}
+                        {/*<h6 className="product-title">product details</h6>*/}
+                        {/*/!*<p>{item.shortDetails}</p>*!/*/}
+                        {/*{product.description}*/}
+
+                        {/*<Link to={`${process.env.PUBLIC_URL}/checkout`} className="btn btn-solid" onClick={() => BuynowClicked(item, quantity)} >*/}
+                        {/*    buy now*/}
+                        {/*</Link>*/}
                     {/*</div>*/}
+
                     <div className="border-product">
                         <h6 className="product-title">favorite</h6>
                         <div className="product-icon" style={{display: 'block'}}>
@@ -204,22 +209,21 @@ class DetailsWithPrice2 extends Component {
                         </div>
                     </div>
                 </div>
-                <Modal open={this.state.open} onClose={this.onCloseModal} center>
-                    <div className="modal-dialog modal-dialog-centered" role="document">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h5 className="modal-title" id="exampleModalLabel">Sheer Straight Kurta</h5>
-                            </div>
-                            <div className="modal-body">
-                                <img src={`${process.env.PUBLIC_URL}/assets/images/size-chart.jpg`} alt="" className="img-fluid" />
-                            </div>
-                        </div>
-                    </div>
-                </Modal>
+                {/*<Modal open={open} onClose={onCloseModal} center>*/}
+                {/*    <div className="modal-dialog modal-dialog-centered" role="document">*/}
+                {/*        <div className="modal-content">*/}
+                {/*            <div className="modal-header">*/}
+                {/*                <h5 className="modal-title" id="exampleModalLabel">Sheer Straight Kurta</h5>*/}
+                {/*            </div>*/}
+                {/*            <div className="modal-body">*/}
+                {/*                <img src={`${process.env.PUBLIC_URL}/assets/images/size-chart.jpg`} alt="" className="img-fluid" />*/}
+                {/*            </div>*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
+                {/*</Modal>*/}
             </div>
         )
-    }
-}
+    };
 
 
 export default DetailsWithPrice2;
