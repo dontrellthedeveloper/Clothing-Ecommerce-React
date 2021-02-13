@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import Slider from 'react-slick';
 import Modal from 'react-responsive-modal';
 import StarRatings from 'react-star-ratings';
+import RatingModal from "../../../modal/RatingModal";
 
 const DetailsWithPrice2 = ({symbol, item, addToCartClicked, BuynowClicked, addToWishlistClicked, product}) => {
     const [open, isOpen] = useState(false);
@@ -71,6 +72,7 @@ const DetailsWithPrice2 = ({symbol, item, addToCartClicked, BuynowClicked, addTo
                     </div>
                     <div className="border-product">
                         {/*<h6 className="product-title">Rating</h6>*/}
+                        <RatingModal>
                         <StarRatings
                             name={product._id}
                             numberOfStars={5}
@@ -79,6 +81,7 @@ const DetailsWithPrice2 = ({symbol, item, addToCartClicked, BuynowClicked, addTo
                             isSelectable={true}
                             starRatedColor='#79868F'
                         />
+                        </RatingModal>
                         {/*<div className="product-icon" style={{display: 'block'}}>*/}
                         {/*    <ul className="product-social" style={{display: 'none'}}>*/}
                         {/*        <li><a href="https://www.facebook.com/" target="_blank"><i className="fa fa-facebook"></i></a></li>*/}
@@ -91,6 +94,10 @@ const DetailsWithPrice2 = ({symbol, item, addToCartClicked, BuynowClicked, addTo
                         {/*        className="title-font">Add To WishList</span>*/}
                         {/*    </button>*/}
                         {/*</div>*/}
+                    </div>
+                    <div className="border-product">
+                        {/*<h3></h3>*/}
+
                     </div>
                     {/*{item.variants?*/}
                     {/*<ul >*/}
@@ -112,27 +119,27 @@ const DetailsWithPrice2 = ({symbol, item, addToCartClicked, BuynowClicked, addTo
                             {/*             data-target="#sizemodal" onClick={onOpenModal} >size chart</a>*/}
                             {/*    </span>*/}
                             {/*</h6>*/}
-                            <div className="modal fade" id="sizemodal" tabIndex="-1"
-                                 role="dialog" aria-labelledby="exampleModalLabel"
-                                 aria-hidden="true">
-                                <div className="modal-dialog modal-dialog-centered"
-                                     role="document">
-                                    <div className="modal-content">
-                                        <div className="modal-header">
-                                            <h5 className="modal-title"
-                                                id="exampleModalLabel">Sheer Straight
-                                                Kurta</h5>
-                                            <button type="button" className="close"
-                                                    data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div className="modal-body">
-                                            <img src={`${process.env.PUBLIC_URL}/assets/images/size-chart.jpg`} alt="" className="img-fluid"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            {/*<div className="modal fade" id="sizemodal" tabIndex="-1"*/}
+                            {/*     role="dialog" aria-labelledby="exampleModalLabel"*/}
+                            {/*     aria-hidden="true">*/}
+                            {/*    <div className="modal-dialog modal-dialog-centered"*/}
+                            {/*         role="document">*/}
+                            {/*        <div className="modal-content">*/}
+                            {/*            <div className="modal-header">*/}
+                            {/*                <h5 className="modal-title"*/}
+                            {/*                    id="exampleModalLabel">Sheer Straight*/}
+                            {/*                    Kurta</h5>*/}
+                            {/*                <button type="button" className="close"*/}
+                            {/*                        data-dismiss="modal" aria-label="Close">*/}
+                            {/*                    <span aria-hidden="true">&times;</span>*/}
+                            {/*                </button>*/}
+                            {/*            </div>*/}
+                            {/*            <div className="modal-body">*/}
+                            {/*                <img src={`${process.env.PUBLIC_URL}/assets/images/size-chart.jpg`} alt="" className="img-fluid"/>*/}
+                            {/*            </div>*/}
+                            {/*        </div>*/}
+                            {/*    </div>*/}
+                            {/*</div>*/}
                             <div className="size-box">
                                 {/*<i className="fa fa-heart-o" aria-hidden="true"></i>*/}
                                 <ul>
