@@ -4,6 +4,8 @@ import Slider from 'react-slick';
 import Modal from 'react-responsive-modal';
 import StarRatings from 'react-star-ratings';
 import RatingModal from "../../../modal/RatingModal";
+import {useSelector} from "react-redux";
+import { StarOutlined } from "@ant-design/icons";
 
 const DetailsWithPrice2 = ({symbol, item, addToCartClicked, BuynowClicked, addToWishlistClicked, product}) => {
     const [open, isOpen] = useState(false);
@@ -11,6 +13,8 @@ const DetailsWithPrice2 = ({symbol, item, addToCartClicked, BuynowClicked, addTo
     const [stock, setStock] = useState('InStock');
     const [nav3, setNav3] = useState(null);
     let [slider3, setSlider3] = useState({});
+
+    const { user } = useSelector((state) => ({ ...state }));
 
     const onOpenModal = () => {
         isOpen( true );
@@ -72,16 +76,24 @@ const DetailsWithPrice2 = ({symbol, item, addToCartClicked, BuynowClicked, addTo
                     </div>
                     <div className="border-product">
                         {/*<h6 className="product-title">Rating</h6>*/}
-                        <RatingModal>
-                        <StarRatings
+                        {/*<RatingModal/>*/}
+                        {user ? <StarRatings
                             name={product._id}
                             numberOfStars={5}
                             rating={2}
                             changeRating={(newRating, name) => console.log('newRating', newRating, 'name', name)}
                             isSelectable={true}
                             starRatedColor='#79868F'
-                        />
-                        </RatingModal>
+                        />  :
+                            <>
+                                <Link to={`${process.env.PUBLIC_URL}/pages/login`}>
+                                    <StarOutlined className="text-danger" />
+                                    <br />{" "}
+                                    Login to leave rating
+                                </Link>
+
+                            </>
+                        }
                         {/*<div className="product-icon" style={{display: 'block'}}>*/}
                         {/*    <ul className="product-social" style={{display: 'none'}}>*/}
                         {/*        <li><a href="https://www.facebook.com/" target="_blank"><i className="fa fa-facebook"></i></a></li>*/}

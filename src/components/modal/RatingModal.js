@@ -25,8 +25,8 @@ const RatingModal = ({ children }) => {
 
     return (
         <>
-            <div className="product-buttons" onClick={() => setModalVisible(true)}>
-                {/*<a className="btn btn-solid" >add to cart</a>*/}
+            <div className="product-buttons">
+                <a className="btn btn-solid" onClick={() => setModalVisible(true)}>add to cart</a>
                 {/*<Link to={`${process.env.PUBLIC_URL}/checkout`} className="btn btn-solid" onClick={() => BuynowClicked(item, this.state.quantity)} >*/}
                 {/*    buy now*/}
                 {/*</Link>*/}

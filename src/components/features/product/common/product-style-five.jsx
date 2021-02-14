@@ -357,11 +357,11 @@ const ProductStyleFive = ({props, product}) => {
                         >
                             <i className="fa fa-heart" aria-hidden="true"></i>
                         </a>
-                                                <a href="javascript:void(0)" data-toggle="modal"
-                                                   data-target="#quick-view"
-                                                   title="Quick View"
-                                                   onClick={onOpenModal}
-                                                ><i className="fa fa-search" aria-hidden="true"></i></a>
+                        <a href="javascript:void(0)" data-toggle="modal"
+                           data-target="#quick-view"
+                           title="Quick View"
+                           onClick={onOpenModal}
+                        ><i className="fa fa-search" aria-hidden="true"></i></a>
                         {/*<Link to={`${process.env.PUBLIC_URL}/compare`}*/}
                         {/*      title="Compare"*/}
                         {/*      // onClick={onAddToCompareClicked}*/}
