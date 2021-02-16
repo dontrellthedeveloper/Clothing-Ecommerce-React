@@ -460,7 +460,7 @@ const ProductStyleFive = ({props, product}) => {
                                                 <button  className="btn btn-solid"
                                                          // onClick={() => onAddToCartClicked(product, this.state.quantity)}
                                                 >add to cart</button>
-                                                <Link to={`${process.env.PUBLIC_URL}/left-sidebar/product/${product.id}`} className="btn btn-solid">view detail</Link>
+                                                <Link to={`${process.env.PUBLIC_URL}/product/${slug}`} className="btn btn-solid">view detail</Link>
                                             </div>
                                         </div>
                                     </div>
