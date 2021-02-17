@@ -25,26 +25,30 @@ const RatingModal = ({ children }) => {
 
     return (
         <>
-            <div className="product-buttons">
-                <a className="btn btn-solid" onClick={() => setModalVisible(true)}>add to cart</a>
-                {/*<Link to={`${process.env.PUBLIC_URL}/checkout`} className="btn btn-solid" onClick={() => BuynowClicked(item, this.state.quantity)} >*/}
-                {/*    buy now*/}
-                {/*</Link>*/}
-                <StarOutlined className="text-danger"/><br/>{" "}
-                {user ? "leave rating" : "Login to leave rating"}
-            </div>
-            <Modal
-                title="Leave your rating"
-                centered
-                visible={modalVisible}
-                onOk={() => {
-                    setModalVisible(false);
-                    toast.success("Thanks for your review. It will apper soon");
-                }}
-                onCancel={() => setModalVisible(false)}
-            >
-                {children}
-            </Modal>
+            {/*<div className="product-buttons">*/}
+            {/*    <a className="btn btn-solid" onClick={() => setModalVisible(true)}>add to cart</a>*/}
+            {/*    /!*<Link to={`${process.env.PUBLIC_URL}/checkout`} className="btn btn-solid" onClick={() => BuynowClicked(item, this.state.quantity)} >*!/*/}
+            {/*    /!*    buy now*!/*/}
+            {/*    /!*</Link>*!/*/}
+            {/*    <StarOutlined className="text-danger"/><br/>{" "}*/}
+            {/*    {user ? "leave rating" : "Login to leave rating"}*/}
+            {/*</div>*/}
+            {/*<Modal*/}
+            {/*    title="Leave your rating"*/}
+            {/*    centered*/}
+            {/*    visible={modalVisible}*/}
+            {/*    onOk={() => {*/}
+            {/*        setModalVisible(false);*/}
+            {/*        toast.success("Thanks for your review. It will apper soon");*/}
+            {/*    }}*/}
+            {/*    onCancel={() => setModalVisible(false)}*/}
+            {/*>*/}
+            {/*    {children}*/}
+            {/*</Modal>*/}
+
+
+
+
         </>
     )
 };

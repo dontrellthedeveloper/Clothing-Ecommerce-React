@@ -7,8 +7,9 @@ import RatingModal from "../../../modal/RatingModal";
 import {useSelector} from "react-redux";
 import { StarOutlined } from "@ant-design/icons";
 import {toast} from "react-toastify";
+import defaultImage from "../../../../images/default-product-image.png";
 
-const DetailsWithPrice2 = ({symbol, item, addToCartClicked, BuynowClicked, addToWishlistClicked, product}) => {
+const DetailsWithPrice2 = ({symbol, item, addToCartClicked, BuynowClicked, addToWishlistClicked, product, onStarClick, star}) => {
     const [open, isOpen] = useState(false);
     const [quantity, setQuantity] = useState(1);
     const [stock, setStock] = useState('InStock');
@@ -23,6 +24,11 @@ const DetailsWithPrice2 = ({symbol, item, addToCartClicked, BuynowClicked, addTo
 
     const onCloseModal = () => {
         isOpen(false );
+    };
+
+    const onCloseRatingModal = () => {
+        isOpen(false );
+        toast.success("Thanks for your review. It will appear soon");
     };
 
     useEffect(() => {
@@ -139,31 +145,86 @@ const DetailsWithPrice2 = ({symbol, item, addToCartClicked, BuynowClicked, addTo
 
 
 
-                    <div className="border-product">
+                    <div className="border-product" style={{paddingTop: '20px'}}>
                         {/*<h6 className="product-title">Rating</h6>*/}
                         {/*<RatingModal/>*/}
 
+
                         {user ?
-                            <>
-                                <StarRatings
-                                    name={product._id}
-                                    numberOfStars={5}
-                                    rating={2}
-                                    changeRating={(newRating, name) => console.log('newRating', newRating, 'name', name)}
-                                    isSelectable={true}
-                                    starRatedColor='#79868F'
-                                />
-                                {/*<a className="btn btn-solid" >leave rating</a>*/}
+                        <>
+                            <div>
+
+                                <a href="javascript:void(0)" data-toggle="modal"
+                                   data-target="#quick-view"
+                                   title="Rating Modal"
+                                   onClick={onOpenModal}
+                                >
+                                    <h6 className="product-title" >
+                                        <i className="fa fa-star" style={{borderLeft: 'none'}}></i></h6>
+                                    {/*<i className="fa fa-star" aria-hidden="true"></i>*/}
+                                    <div className="product-icon" style={{display: 'block'}}>
+                                        <button className="wishlist-btn">
+                                            {/*<i*/}
+                                            {/*className="fa fa-star" style={{borderLeft: 'none'}}></i>*/}
+                                            <span
+                                                className="title-font">Leave Rating</span>
+                                        </button>
+                                    </div>
+                                </a>
+                            </div>
+
+
+                            <Modal open={open} onClose={onCloseModal} center>
+                                <div className="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                    <div className="modal-content quick-view-modal">
+                                        <div className="modal-body">
+                                            <div className="row">
+                                                <h5 className="product-title" style={{margin: '5px auto'}} >
+                                                    Leave Your Rating</h5>
+                                                <div className='container' style={{padding: '35px 50px 10px 50px', borderTop: '1px solid #e0e0e0'}}>
+                                                    {/*{user ?*/}
+                                                        <>
+                                                            <div style={{textAlign: 'center', paddingBottom: '10px'}}>
+                                                                <StarRatings
+                                                                    name={product._id}
+                                                                    changeRating={onStarClick}
+                                                                    // changeRating={(newRating, name) => console.log("new rating", newRating, "name", name)}
+                                                                    numberOfStars={5}
+                                                                    rating={star}
+                                                                    isSelectable={true}
+                                                                    starRatedColor='#79868F'
+                                                                />
+                                                                {/*<a className="btn btn-solid" >leave rating</a>*/}
 
 
 
-                                <div className="product-icon" style={{display: 'block', marginTop: '20px'}}>
-                                    <button className="wishlist-btn" onClick={() => {toast.success("Thanks for your review. It will apper soon")}}><i
-                                        className="fa fa-star" style={{borderLeft: 'none'}}></i><span
-                                        className="title-font">Leave Rating</span>
-                                    </button>
+
+                                                            </div>
+                                                            <div className="product-icon" style={{display: 'block', marginTop: '20px', textAlign: 'center'}}>
+
+                                                                <button className="wishlist-btn"
+                                                                        onClick={onCloseModal}
+                                                                        style={{marginRight: '5px', padding: '4px 15px'}}>
+                                                                    <span className="title-font">Cancel</span>
+                                                                </button>
+
+                                                                <button className="wishlist-btn"
+                                                                        style={{padding: '4px 15px'}}
+                                                                        onClick={onCloseRatingModal}>
+                                                                    <span className="title-font">Ok</span>
+                                                                </button>
+
+                                                            </div>
+                                                        </>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </>
+                            </Modal>
+                        </>
                             :
                             <>
                                 <Link to={`${process.env.PUBLIC_URL}/pages/login`}>
@@ -174,6 +235,7 @@ const DetailsWithPrice2 = ({symbol, item, addToCartClicked, BuynowClicked, addTo
 
                             </>
                         }
+
 
 
                     </div>

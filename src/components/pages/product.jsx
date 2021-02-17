@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Helmet} from 'react-helmet'
 import Slider from 'react-slick';
 import '../common/index.scss';
-import {connect} from "react-redux";
+import {useSelector} from "react-redux";
 
 // import custom Components
 import Service from "../products/common/service";
@@ -15,7 +15,7 @@ import { addToCart, addToCartUnsafe, addToWishlist } from '../../actions'
 import ImageZoom from '../products/common/product/image-zoom'
 import SmallImages from '../products/common/product/small-image'
 
-import {getProduct} from "../../functions/product";
+import {getProduct, productStar} from "../../functions/product";
 import defaultImage from "../../images/default-product-image.png";
 
 const SingleProduct = ({match, symbol, item, addToCart, addToCartUnsafe, addToWishlist}) => {
@@ -26,6 +26,12 @@ const SingleProduct = ({match, symbol, item, addToCart, addToCartUnsafe, addToWi
     let [slider2, setSlider2] = useState({});
 
     const [product, setProduct] = useState({});
+    const [star, setStar] = useState(0);
+
+
+
+    // redux
+    const { user } = useSelector((state) => ({ ...state }));
 
     const {slug} = match.params;
 
@@ -41,8 +47,21 @@ const SingleProduct = ({match, symbol, item, addToCart, addToCartUnsafe, addToWi
 
     }, []);
 
-    const loadSingleProduct = () => getProduct(slug).then(res => setProduct(res.data));
+    const loadSingleProduct = () => {
+        getProduct(slug).then(res => {
+            setProduct(res.data)
+        })
+    };
 
+
+    const onStarClick = (newRating, name) => {
+        setStar(newRating);
+        productStar(name, newRating, user.token)
+            .then(res => {
+                console.log('rating clicked', star,res.data);
+                loadSingleProduct();
+            })
+    };
 
     // constructor() {
     //     super();
@@ -149,37 +168,10 @@ const SingleProduct = ({match, symbol, item, addToCart, addToCartUnsafe, addToWi
                                                          className="img-fluid"
                                                     />
 
-
-                                                    {/*<Slider*/}
-                                                    {/*    {...products}*/}
-                                                    {/*    asNavFor={nav2}*/}
-                                                    {/*    // asNavFor={this.state.nav2}*/}
-                                                    {/*    // ref={slider1}*/}
-                                                    {/*    ref={slider => (slider1 = slider)}*/}
-                                                    {/*    className="product-slick"*/}
-                                                    {/*>*/}
-                                                    {/*    /!*{item.variants?*!/*/}
-                                                    {/*    /!*    item.variants.map((vari, index) =>*!/*/}
-                                                    {/*    /!*        <div key={index}>*!/*/}
-                                                    {/*    /!*            <ImageZoom image={vari.images} />*!/*/}
-                                                    {/*    /!*        </div>*!/*/}
-                                                    {/*    /!*    ):*!/*/}
-                                                    {/*    /!*    item.pictures.map((vari, index) =>*!/*/}
-                                                    {/*    /!*        <div key={index}>*!/*/}
-                                                    {/*    /!*            <ImageZoom image={vari} />*!/*/}
-                                                    {/*    /!*        </div>*!/*/}
-                                                    {/*    /!*    )}*!/*/}
-                                                    {/*</Slider>*/}
-                                                    {/*<SmallImages*/}
-                                                    {/*    item={item}*/}
-                                                    {/*    settings={productsnav}*/}
-                                                    {/*    navOne={nav1}*/}
-                                                    {/*    slider2={slider2}*/}
-                                                    {/*    setNav2={setNav2}*/}
-                                                    {/*    product={product}*/}
-                                                    {/*/>*/}
                                                 </div>
                                                 <DetailsWithPrice2
+                                                    star={star}
+                                                    onStarClick={onStarClick}
                                                     symbol={symbol}
                                                     item={item}
                                                     navOne={nav1}
@@ -187,6 +179,7 @@ const SingleProduct = ({match, symbol, item, addToCart, addToCartUnsafe, addToWi
                                                     BuynowClicked={addToCartUnsafe}
                                                     addToWishlistClicked={addToWishlist}
                                                     product={product}
+
                                                 />
                                             </div>
                                         </div>
