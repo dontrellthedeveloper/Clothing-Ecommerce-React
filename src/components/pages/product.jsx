@@ -13,7 +13,8 @@ import DetailsWithPrice2 from "../products/common/product/details-price-2";
 import DetailsTopTabs from "../products/common/details-top-tabs";
 import { addToCart, addToCartUnsafe, addToWishlist } from '../../actions'
 import ImageZoom from '../products/common/product/image-zoom'
-import SmallImages from '../products/common/product/small-image'
+import SmallImages from '../products/common/product/small-image';
+
 
 import {getProduct, productStar} from "../../functions/product";
 import defaultImage from "../../images/default-product-image.png";
@@ -40,6 +41,17 @@ const SingleProduct = ({match, symbol, item, addToCart, addToCartUnsafe, addToWi
     useEffect(() => {
         loadSingleProduct();
     }, [slug]);
+
+
+    useEffect(() => {
+        if (product.ratings && user) {
+            let existingRatingObject = product.ratings.find(
+                (ele) => ele.postedBy.toString() === user._id.toString()
+            );
+            existingRatingObject && setStar(existingRatingObject.star); // current user's star
+        }
+    });
+
 
 
     useEffect(() => {

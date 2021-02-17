@@ -8,6 +8,7 @@ import {useSelector} from "react-redux";
 import { StarOutlined } from "@ant-design/icons";
 import {toast} from "react-toastify";
 import defaultImage from "../../../../images/default-product-image.png";
+import {showAverage} from "../../../../functions/rating";
 
 const DetailsWithPrice2 = ({symbol, item, addToCartClicked, BuynowClicked, addToWishlistClicked, product, onStarClick, star}) => {
     const [open, isOpen] = useState(false);
@@ -77,27 +78,24 @@ const DetailsWithPrice2 = ({symbol, item, addToCartClicked, BuynowClicked, addTo
                         {/*{symbol}{item.price-(item.price*item.discount/100)}*/}
                         {/*${product.price}*/}
                     </h3>
-                    <div className="border-product">
-                        <h3>${product.price}</h3>
+
+                    <div className="border-product" style={{paddingTop: '20px'}}>
+                        {product && product.ratings && product.ratings.length > 0 ? (
+                            showAverage(product)
+                        ) : (
+                            <div className="text-center">No rating yet</div>
+                        )}
 
                     </div>
 
 
-                    <div className="border-product">
-                        <h6 className="product-title">favorite</h6>
-                        <div className="product-icon" style={{display: 'block'}}>
-                            <ul className="product-social" style={{display: 'none'}}>
-                                <li><a href="https://www.facebook.com/" target="_blank"><i className="fa fa-facebook"></i></a></li>
-                                <li><a href="https://plus.google.com/discover" target="_blank"><i className="fa fa-google-plus"></i></a></li>
-                                <li><a href="https://twitter.com/" target="_blank"><i className="fa fa-twitter"></i></a></li>
-                                <li><a href="https://www.instagram.com/" target="_blank"><i className="fa fa-instagram"></i></a></li>
-                            </ul>
-                            <button className="wishlist-btn" onClick={() => addToWishlistClicked(item)}><i
-                                className="fa fa-heart" style={{borderLeft: 'none'}}></i><span
-                                className="title-font">Add To WishList</span>
-                            </button>
-                        </div>
+                    <div className="border-product" style={{paddingTop: '20px'}}>
+                        <h3 style={{marginBottom: '0'}}>${product.price}</h3>
+
                     </div>
+
+
+
 
 
 
@@ -122,6 +120,23 @@ const DetailsWithPrice2 = ({symbol, item, addToCartClicked, BuynowClicked, addTo
 
 
 
+
+
+                    <div className="border-product">
+                        <h6 className="product-title">favorite</h6>
+                        <div className="product-icon" style={{display: 'block'}}>
+                            <ul className="product-social" style={{display: 'none'}}>
+                                <li><a href="https://www.facebook.com/" target="_blank"><i className="fa fa-facebook"></i></a></li>
+                                <li><a href="https://plus.google.com/discover" target="_blank"><i className="fa fa-google-plus"></i></a></li>
+                                <li><a href="https://twitter.com/" target="_blank"><i className="fa fa-twitter"></i></a></li>
+                                <li><a href="https://www.instagram.com/" target="_blank"><i className="fa fa-instagram"></i></a></li>
+                            </ul>
+                            <button className="wishlist-btn" onClick={() => addToWishlistClicked(item)}><i
+                                className="fa fa-heart" style={{borderLeft: 'none'}}></i><span
+                                className="title-font">Add To WishList</span>
+                            </button>
+                        </div>
+                    </div>
 
 
                     {/*<div className="border-product">*/}
