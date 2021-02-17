@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import defaultImage from "../../../../images/default-product-image.png";
-
+import {showAverage} from "../../../../functions/rating";
 
 // // class ProductStyleFive extends Component {
 // const ProductStyleFive = ({props, product}) => {
@@ -377,10 +377,15 @@ const ProductStyleFive = ({props, product}) => {
                         <Link to={`${process.env.PUBLIC_URL}/left-sidebar/product/`}>
                             <h6>{title}</h6>
                         </Link>
-                        <h4>
+                        <h4 style={{paddingBottom: '10px'}}>
                             {/*{symbol}{product.price-(product.price*product.discount/100)}*/}
                             ${price}
                         </h4>
+                        {product && product.ratings && product.ratings.length > 0 ? (
+                            showAverage(product)
+                        ) : (
+                            <div className="text-center"></div>
+                        )}
                         {/*{product.variants?*/}
                         {/*    <ul className="color-variant">*/}
                         {/*        {product.variants.map((vari, i) => {*/}
