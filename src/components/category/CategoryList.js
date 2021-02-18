@@ -51,10 +51,10 @@ const CategoryList = () => {
     return (
         <section className="banner-goggles ratio2_1" style={{paddingTop: '50px'}}>
             {/*Paragraph*/}
-            <div className="title1" >
-                <h4>select</h4>
-                <h2 className="title-inner1">sub category</h2>
-            </div>
+            {/*<div className="title1" >*/}
+            {/*    <h4>select</h4>*/}
+            {/*    <h2 className="title-inner1">sub category</h2>*/}
+            {/*</div>*/}
             {/*Paragraph End*/}
             <div className="container">
                 <Slider {...Product6} className="row partition3">

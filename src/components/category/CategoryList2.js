@@ -53,8 +53,8 @@ const CategoryList = () => {
         <section className="pb-0 ratio2_1" style={{paddingTop: '30px'}}>
             {/*Paragraph*/}
             <div className="title1" >
-                <h4>select</h4>
-                <h2 className="title-inner1">category</h2>
+                <h4>shop</h4>
+                <h2 className="title-inner1">categories</h2>
             </div>
             {/*Paragraph End*/}
             <div className="container">

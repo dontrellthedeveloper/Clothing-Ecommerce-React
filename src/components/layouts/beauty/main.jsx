@@ -145,7 +145,7 @@ const Beauty = (props) => {
 
 
                 <div className="container">
-                    <section className="section-b-space">
+                    <section className="section-b-space" style={{paddingBottom: '0', paddingTop: '0'}}>
                         <Slider className="slide-1 home-slider">
                             <div>
                                 <div className="home home8 p-center text-center bg-size blur-up lazyloaded">
@@ -209,24 +209,6 @@ const Beauty = (props) => {
 
 
 
-                {/*Parallax banner*/}
-                <section className="p-0">
-                    <div className="full-banner parallax-banner1 parallax text-center p-left">
-                        <div className="container">
-                            <div className="row">
-                                <div className="col">
-                                    <div className="banner-contain">
-                                        <h2 style={{color: "#fff"}}>2021</h2>
-                                        <h3 style={{color: "#fff"}}>fashion lookbook</h3>
-                                        {/*<h4>special offer</h4>*/}
-                                        <a href="#" className="btn btn-solid">latest trends</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                {/*Parallax banner End*/}
 
 
 
@@ -250,7 +232,7 @@ const Beauty = (props) => {
 
 
                 <div className="container">
-                    <section className="section-b-space">
+                    <section className="section-b-space" style={{paddingTop: '0'}}>
                         <Slider className="slide-1 home-slider">
                             <div>
                                 <div className="home home9 p-center text-center bg-size blur-up lazyloaded">
@@ -359,76 +341,76 @@ const Beauty = (props) => {
 
 
                 {/*Four Banner*/}
-                {/*<section className=" ratio2_1">*/}
-                {/*    <div className="container">*/}
-                {/*        <div className="row partition4">*/}
-                {/*            <div className="col-lg-3 col-md-6">*/}
-                {/*                <a href="#">*/}
-                {/*                    <div className="collection-banner p-left">*/}
-                {/*                        <div className="img-part">*/}
-                {/*                            <img src={`${process.env.PUBLIC_URL}/assets/images/banner.jpg`}*/}
-                {/*                                 className="img-fluid blur-up lazyload bg-img" />*/}
-                {/*                        </div>*/}
-                {/*                        <div className="contain-banner banner-4">*/}
-                {/*                            <div>*/}
-                {/*                                <h4>save 30%</h4>*/}
-                {/*                                <h2>men</h2>*/}
-                {/*                            </div>*/}
-                {/*                        </div>*/}
-                {/*                    </div>*/}
-                {/*                </a>*/}
-                {/*            </div>*/}
-                {/*            <div className="col-lg-3 col-md-6">*/}
-                {/*                <a href="#">*/}
-                {/*                    <div className="collection-banner p-left">*/}
-                {/*                        <div className="img-part">*/}
-                {/*                            <img src={`${process.env.PUBLIC_URL}/assets/images/banner1.jpg`}*/}
-                {/*                                 className="img-fluid blur-up lazyload bg-img" />*/}
-                {/*                        </div>*/}
-                {/*                        <div className="contain-banner banner-4">*/}
-                {/*                            <div>*/}
-                {/*                                <h4>save 60%</h4>*/}
-                {/*                                <h2>women</h2>*/}
-                {/*                            </div>*/}
-                {/*                        </div>*/}
-                {/*                    </div>*/}
-                {/*                </a>*/}
-                {/*            </div>*/}
-                {/*            <div className="col-lg-3 col-md-6">*/}
-                {/*                <a href="#">*/}
-                {/*                    <div className="collection-banner p-left">*/}
-                {/*                        <div className="img-part">*/}
-                {/*                            <img src={`${process.env.PUBLIC_URL}/assets/images/banner.jpg`}*/}
-                {/*                                 className="img-fluid blur-up lazyload bg-img" />*/}
-                {/*                        </div>*/}
-                {/*                        <div className="contain-banner banner-4">*/}
-                {/*                            <div>*/}
-                {/*                                <h4>save 60%</h4>*/}
-                {/*                                <h2>women</h2>*/}
-                {/*                            </div>*/}
-                {/*                        </div>*/}
-                {/*                    </div>*/}
-                {/*                </a>*/}
-                {/*            </div>*/}
-                {/*            <div className="col-lg-3 col-md-6">*/}
-                {/*                <a href="#">*/}
-                {/*                    <div className="collection-banner p-left">*/}
-                {/*                        <div className="img-part">*/}
-                {/*                            <img src={`${process.env.PUBLIC_URL}/assets/images/banner1.jpg`}*/}
-                {/*                                 className="img-fluid blur-up lazyload bg-img" />*/}
-                {/*                        </div>*/}
-                {/*                        <div className="contain-banner banner-4">*/}
-                {/*                            <div>*/}
-                {/*                                <h4>save 60%</h4>*/}
-                {/*                                <h2>women</h2>*/}
-                {/*                            </div>*/}
-                {/*                        </div>*/}
-                {/*                    </div>*/}
-                {/*                </a>*/}
-                {/*            </div>*/}
-                {/*        </div>*/}
-                {/*    </div>*/}
-                {/*</section>*/}
+                <section className=" ratio2_1" style={{paddingBottom: '70px'}}>
+                    <div className="container">
+                        <div className="row partition4">
+                            <div className="col-lg-3 col-md-6">
+                                <a href="#">
+                                    <div className="collection-banner p-left">
+                                        <div className="img-part">
+                                            <img src={`${process.env.PUBLIC_URL}/assets/images/banner.jpg`}
+                                                 className="img-fluid blur-up lazyload bg-img" />
+                                        </div>
+                                        <div className="contain-banner banner-4">
+                                            <div>
+                                                <h4>save 30%</h4>
+                                                <h2>men</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div className="col-lg-3 col-md-6">
+                                <a href="#">
+                                    <div className="collection-banner p-left">
+                                        <div className="img-part">
+                                            <img src={`${process.env.PUBLIC_URL}/assets/images/banner1.jpg`}
+                                                 className="img-fluid blur-up lazyload bg-img" />
+                                        </div>
+                                        <div className="contain-banner banner-4">
+                                            <div>
+                                                <h4>save 60%</h4>
+                                                <h2>women</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div className="col-lg-3 col-md-6">
+                                <a href="#">
+                                    <div className="collection-banner p-left">
+                                        <div className="img-part">
+                                            <img src={`${process.env.PUBLIC_URL}/assets/images/banner.jpg`}
+                                                 className="img-fluid blur-up lazyload bg-img" />
+                                        </div>
+                                        <div className="contain-banner banner-4">
+                                            <div>
+                                                <h4>save 60%</h4>
+                                                <h2>women</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div className="col-lg-3 col-md-6">
+                                <a href="#">
+                                    <div className="collection-banner p-left">
+                                        <div className="img-part">
+                                            <img src={`${process.env.PUBLIC_URL}/assets/images/banner1.jpg`}
+                                                 className="img-fluid blur-up lazyload bg-img" />
+                                        </div>
+                                        <div className="contain-banner banner-4">
+                                            <div>
+                                                <h4>save 60%</h4>
+                                                <h2>women</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
                 {/*Four Banner End*/}
 
                 {/*Three Banner*/}
@@ -492,38 +474,54 @@ const Beauty = (props) => {
 
 
 
-                {/*/!*Video Section*!/*/}
-                <section className="video-section pt-0" style={{marginTop: "60px"}}>
-                    <div className="title1">
-                        <h4>special offer</h4>
-                        <h2 className="title-inner1">product tutorial</h2>
-                    </div>
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-md-8 offset-md-2">
-                                <a href="javascript:void(0)"
-                                    onClick={onOpenModal}
-                                >
-                                    <div className="video-img">
-                                        <img src={`${process.env.PUBLIC_URL}/assets/images/beauty/video_1.jpg`} alt="" className="img-fluid blur-up lazyload" />
-                                        <div className="play-btn">
-                                            <span><i className="fa fa-play" aria-hidden="true"></i></span>
-                                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                {/*Parallax banner*/}
+                <section className="p-0">
+                    <div className="full-banner parallax-banner1 parallax text-center p-left">
+                        <div className="container">
+                            <div className="row">
+                                <div className="col">
+                                    <div className="banner-contain">
+                                        <h2 style={{color: "#fff"}}>2021</h2>
+                                        <h3 style={{color: "#fff"}}>fashion lookbook</h3>
+                                        {/*<h4>special offer</h4>*/}
+                                        <a href="#" className="btn btn-solid">latest trends</a>
                                     </div>
-                                </a>
-                                <Modal
-                                    open={open}
-                                    onClose={onCloseModal}
-                                    id="video"
-                                    className="modal fade video-modal" center>
-                                    <iframe width="750" height="700" src="https://www.youtube.com/embed/FRIDLxM8Roc"
-                                            allowFullScreen></iframe>
-                                </Modal>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </section>
-                {/*/!*Video Section End*!/*/}
+                {/*Parallax banner End*/}
+
+
+                <BestSellers
+                    type={'beauty'}
+                    // products={products}
+                    // setProducts={setProducts}
+                    // loading={loading}
+                    // setLoading={setLoading}
+                />
+
+
+
 
 
 
@@ -706,23 +704,16 @@ const Beauty = (props) => {
 
 
 
-                {/*Parallax banner*/}
-                {/*<section className="p-0">*/}
-                {/*    <div className="full-banner parallax-banner2 parallax text-center p-left">*/}
-                {/*        <div className="container">*/}
-                {/*            <div className="row">*/}
-                {/*                <div className="col">*/}
-                {/*                    <div className="banner-contain">*/}
-                {/*                        <h2>2018</h2>*/}
-                {/*                        <h3>fashion trends</h3>*/}
-                {/*                        <h4>special offer</h4>*/}
-                {/*                    </div>*/}
-                {/*                </div>*/}
-                {/*            </div>*/}
-                {/*        </div>*/}
-                {/*    </div>*/}
-                {/*</section>*/}
-                {/*Parallax banner End*/}
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -738,10 +729,98 @@ const Beauty = (props) => {
 
 
 
+                {/*Parallax banner*/}
+                <section className="p-0">
+                    <div className="full-banner parallax-banner2 parallax text-center p-left">
+                        <div className="container">
+                            <div className="row">
+                                <div className="col">
+                                    <div className="banner-contain">
+                                        <h2>2018</h2>
+                                        <h3>fashion trends</h3>
+                                        <h4>special offer</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                {/*Parallax banner End*/}
 
 
+                {/*/!*Video Section*!/*/}
+                <section className="video-section pt-0" style={{marginTop: "60px", marginBottom: "60px"}}>
+                    <div className="title1">
+                        <h4>special offer</h4>
+                        <h2 className="title-inner1">product tutorial</h2>
+                    </div>
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-md-8 offset-md-2">
+                                <a href="javascript:void(0)"
+                                   onClick={onOpenModal}
+                                >
+                                    <div className="video-img">
+                                        <img src={`${process.env.PUBLIC_URL}/assets/images/beauty/video_1.jpg`} alt="" className="img-fluid blur-up lazyload" />
+                                        <div className="play-btn">
+                                            <span><i className="fa fa-play" aria-hidden="true"></i></span>
+                                        </div>
+                                    </div>
+                                </a>
+                                <Modal
+                                    open={open}
+                                    onClose={onCloseModal}
+                                    id="video"
+                                    className="modal fade video-modal" center>
+                                    <iframe width="750" height="700" src="https://www.youtube.com/embed/FRIDLxM8Roc"
+                                            allowFullScreen></iframe>
+                                </Modal>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                {/*/!*Video Section End*!/*/}
 
 
+                {/*About Section*/}
+                {/*<section className="beauty-about" style={{marginBottom: "60px"}}>*/}
+                {/*    <div className="container">*/}
+                {/*        <div className="row">*/}
+                {/*            <div className="col-xl-5 col-lg-6 col-md-12 offset-xl-1 text-center">*/}
+                {/*                <img src={`${process.env.PUBLIC_URL}/assets/images/beauty/about-us.jpg`} alt="" className="img-fluid blur-up lazyload" />*/}
+                {/*            </div>*/}
+                {/*            <div className="col-xl-5 col-lg-6 col-md-12">*/}
+                {/*                <div className="about-section">*/}
+                {/*                    <div>*/}
+                {/*                        <h2>about us</h2>*/}
+                {/*                        <div className="about-text">*/}
+                {/*                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem*/}
+                {/*                                accusantium doloremque laudantium, totam rem aperiam.sit voluptatem*/}
+                {/*                                accusantium doloremque laudantium,totam rem aperiam.</p>*/}
+                {/*                        </div>*/}
+                {/*                        <div className="service small-section pb-0">*/}
+                {/*                            <div className="row">*/}
+                {/*                                <div className="col-sm-4 service-block1">*/}
+                {/*                                    <div dangerouslySetInnerHTML={{ __html: svgFreeShipping }} />*/}
+                {/*                                    <h5>free shipping</h5>*/}
+                {/*                                </div>*/}
+                {/*                                <div className="col-sm-4 service-block1">*/}
+                {/*                                    <div dangerouslySetInnerHTML={{ __html: svgservice }} />*/}
+                {/*                                    <h5>24 X 7 service</h5>*/}
+                {/*                                </div>*/}
+                {/*                                <div className="col-sm-4 service-block1">*/}
+                {/*                                    <div dangerouslySetInnerHTML={{ __html: svgoffer }} />*/}
+                {/*                                    <h5>festival offer</h5>*/}
+                {/*                                </div>*/}
+                {/*                            </div>*/}
+                {/*                        </div>*/}
+                {/*                    </div>*/}
+                {/*                </div>*/}
+                {/*            </div>*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
+                {/*</section>*/}
+                {/*About Section End*/}
 
 
                 {/*Product Slider End*/}
@@ -776,45 +855,6 @@ const Beauty = (props) => {
 
 
 
-                {/*About Section*/}
-                <section className="beauty-about" style={{marginBottom: "60px"}}>
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-xl-5 col-lg-6 col-md-12 offset-xl-1 text-center">
-                                <img src={`${process.env.PUBLIC_URL}/assets/images/beauty/about-us.jpg`} alt="" className="img-fluid blur-up lazyload" />
-                            </div>
-                            <div className="col-xl-5 col-lg-6 col-md-12">
-                                <div className="about-section">
-                                    <div>
-                                        <h2>about us</h2>
-                                        <div className="about-text">
-                                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                                                accusantium doloremque laudantium, totam rem aperiam.sit voluptatem
-                                                accusantium doloremque laudantium,totam rem aperiam.</p>
-                                        </div>
-                                        <div className="service small-section pb-0">
-                                            <div className="row">
-                                                <div className="col-sm-4 service-block1">
-                                                    <div dangerouslySetInnerHTML={{ __html: svgFreeShipping }} />
-                                                    <h5>free shipping</h5>
-                                                </div>
-                                                <div className="col-sm-4 service-block1">
-                                                    <div dangerouslySetInnerHTML={{ __html: svgservice }} />
-                                                    <h5>24 X 7 service</h5>
-                                                </div>
-                                                <div className="col-sm-4 service-block1">
-                                                    <div dangerouslySetInnerHTML={{ __html: svgoffer }} />
-                                                    <h5>festival offer</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                {/*About Section End*/}
 
 
                 {/*service layout*/}
