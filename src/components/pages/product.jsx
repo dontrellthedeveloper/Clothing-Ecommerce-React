@@ -16,8 +16,9 @@ import ImageZoom from '../products/common/product/image-zoom'
 import SmallImages from '../products/common/product/small-image';
 
 
-import {getProduct, productStar} from "../../functions/product";
+import {getProduct, productStar, getRelated} from "../../functions/product";
 import defaultImage from "../../images/default-product-image.png";
+import RelatedProducts from "../home/RelatedProducts";
 
 const SingleProduct = ({match, symbol, item, addToCart, addToCartUnsafe, addToWishlist}) => {
     const [open, isOpen] = useState(false);
@@ -25,6 +26,7 @@ const SingleProduct = ({match, symbol, item, addToCart, addToCartUnsafe, addToWi
     const [nav2, setNav2] = useState(null);
     let [slider1, setSlider1] = useState({});
     let [slider2, setSlider2] = useState({});
+    const [related, setRelated] = useState([]);
 
     const [product, setProduct] = useState({});
     const [star, setStar] = useState(0);
@@ -61,7 +63,8 @@ const SingleProduct = ({match, symbol, item, addToCart, addToCartUnsafe, addToWi
 
     const loadSingleProduct = () => {
         getProduct(slug).then(res => {
-            setProduct(res.data)
+            setProduct(res.data);
+            getRelated(res.data._id).then((res) => setRelated(res.data));
         })
     };
 
@@ -152,7 +155,7 @@ const SingleProduct = ({match, symbol, item, addToCart, addToCartUnsafe, addToWi
                                          <BrandBlock/>
                                         <Service/>
                                         {/*side-bar single product slider start*/}
-                                        <NewProduct/>
+                                        {/*<NewProduct/>*/}
                                         {/*side-bar single product slider end*/}
                                     </div>
                                     <div className="col-lg-9 col-sm-12 col-xs-12">
@@ -195,11 +198,39 @@ const SingleProduct = ({match, symbol, item, addToCart, addToCartUnsafe, addToWi
                                                 />
                                             </div>
                                         </div>
+                                        {/*<DetailsTopTabs*/}
+                                        {/*    item={item}*/}
+                                        {/*    product={product}*/}
+                                        {/*/>*/}
+                                    </div>
+
+                                    <div className="col-lg-12 col-sm-12 col-xs-12" style={{padding: '40px 0 10px 0'}}>
                                         <DetailsTopTabs
                                             item={item}
                                             product={product}
                                         />
                                     </div>
+
+
+                                    <div className="col-lg-12 col-sm-12 col-xs-12" style={{padding: '40px 0 10px 0'}}>
+
+                                            {/*<hr/>*/}
+                                            {/*<h4>Related Products</h4>*/}
+                                            {/*<hr/>*/}
+                                            {/*{JSON.stringify(related)}*/}
+
+
+                                            <RelatedProducts
+                                                type={'beauty'}
+                                                related={related}
+                                                // products={products}
+                                                // setProducts={setProducts}
+                                                // loading={loading}
+                                                // setLoading={setLoading}
+                                            />
+
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
