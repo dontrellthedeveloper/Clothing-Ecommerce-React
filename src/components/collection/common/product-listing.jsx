@@ -12,66 +12,61 @@ import {getCategory} from "../../../functions/category";
 import {getProducts} from "../../../functions/product";
 
 
-const ProductListing = ({match}) => {
+const ProductListing = ({match, products,slug,setLoading,loading,category,setProducts}) => {
 
     const [limit, setLimit] = useState(5);
     const [hasMoreItems, setHasMoreItems] = useState(true);
     const [colSize, setColSize] = useState('');
-    const [products, setProducts] = useState([]);
-    const [category, setCategory] = useState([]);
-    const [loading, setLoading] = useState(false);
+    // const [products, setProducts] = useState([]);
+    // const [category, setCategory] = useState([]);
+    // const [loading, setLoading] = useState(false);
 
-    const {slug} = match.params;
+    // const {slug} = match.params;
 
-    // constructor (props) {
-    //     super (props)
+    // useEffect(() => {
+    //     // fetchMoreItems()
+    //     setLoading(true);
+    //     getCategory(slug)
+    //         .then((res) => {
+    //             console.log(JSON.stringify(res.data, null, 4));
+    //             setCategory(res.data.category);
+    //             setProducts(res.data.products);
+    //             setLoading(false);
+    //         })
+    // },[]);
+
+
+    // useEffect(() => {
+    //     loadAllProducts();
+    // }, []);
     //
-    //     this.state = { limit: 5, hasMoreItems: true };
-    //
-    // }
-
-    useEffect(() => {
-        // fetchMoreItems()
-        setLoading(true);
-        getCategory(slug)
-            .then(c => {
-                console.log(JSON.stringify(c.data, null, 4));
-                setCategory(c.data);
-            })
-    },[]);
-
-
-    useEffect(() => {
-        loadAllProducts();
-    }, []);
-
-    const  loadAllProducts = () => {
-        // sort, order, limit
-        getProducts('sold', 'desc',20)
-            .then(res => {
-                setProducts(res.data);
-                setLoading(false);
-            })
-    };
+    // const  loadAllProducts = () => {
+    //     // sort, order, limit
+    //     getProducts('sold', 'desc',20)
+    //         .then(res => {
+    //             setProducts(res.data);
+    //             setLoading(false);
+    //         })
+    // };
 
     // componentWillMount(){
     //     this.fetchMoreItems();
     // }
 
-    const fetchMoreItems = () => {
-        if (limit >= products.length) {
-            setHasMoreItems(false );
-            return;
-        }
-        // a fake async api call
-        setTimeout(() => {
-            setLimit({
-                limit: limit + 5
-            });
-        }, 3000);
-
-
-    };
+    // const fetchMoreItems = () => {
+    //     if (limit >= products.length) {
+    //         setHasMoreItems(false );
+    //         return;
+    //     }
+    //     // a fake async api call
+    //     setTimeout(() => {
+    //         setLimit({
+    //             limit: limit + 5
+    //         });
+    //     }, 3000);
+    //
+    //
+    // };
 
 
 
@@ -99,6 +94,7 @@ const ProductListing = ({match}) => {
                                             className="col-md-4"
                                             key={product._id}>
                                         <ProductListItem product={product}
+                                                         category={category}
                                                          // symbol={symbol}
                                                          onAddToCompareClicked={() => addToCompare(product)}
                                                          onAddToWishlistClicked={() => addToWishlist(product)}

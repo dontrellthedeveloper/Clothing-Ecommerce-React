@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import defaultImage from "../../../images/default-product-image.png";
+import {showAverage} from "../../../functions/rating";
 
 
 const ProductListItem = ({slug,product, symbol, onAddToCartClicked, onAddToWishlistClicked, onAddToCompareClicked}) => {
@@ -58,7 +59,7 @@ const ProductListItem = ({slug,product, symbol, onAddToCartClicked, onAddToWishl
 
         return (
 
-                    <div className="product-box">
+                    <div className="product-box" style={{textAlign: 'center'}}>
                         <div className="img-wrapper">
                             <div className="front">
                                 <Link to={`${process.env.PUBLIC_URL}/product/${product.slug}`} ><img
@@ -106,10 +107,7 @@ const ProductListItem = ({slug,product, symbol, onAddToCartClicked, onAddToWishl
                         </div>
                         <div className="product-detail">
                             <div>
-                                <div className="rating">
-                                    {/*{RatingStars}*/}
-                                    test
-                                </div>
+
                                 <Link to={`${process.env.PUBLIC_URL}/product/${slug}`}>
                                     <h6>{product.title}</h6>
                                 </Link>
@@ -118,6 +116,14 @@ const ProductListItem = ({slug,product, symbol, onAddToCartClicked, onAddToWishl
                                     {/*<del><span className="money">{symbol}{product.price}</span></del>*/}
                                     {product.price}
                                 </h4>
+                                <div className="rating">
+                                    {/*{RatingStars}*/}
+                                    {product && product.ratings && product.ratings.length > 0 ? (
+                                        showAverage(product)
+                                    ) : (
+                                        <div className="text-center"></div>
+                                    )}
+                                </div>
                                 {/*{product.variants?*/}
                                 {/*<ul className="color-variant">*/}
                                 {/*    {product.variants.map((vari, i) => {*/}

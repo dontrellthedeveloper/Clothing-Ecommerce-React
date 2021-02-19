@@ -86,14 +86,30 @@ import FilterBar from "../../collection/common/filter-bar";
 import ProductListing from "../../collection/common/product-listing";
 import StickyBox from "react-sticky-box";
 import {Link} from "react-router-dom";
+import {getCategory} from "../../../functions/category";
 
 const CategoryHome = ({match}) => {
     const [layoutColumns, setLayoutColumns] = useState(3);
 
 
-    // state = {
-    //     layoutColumns:3
-    // }
+    const [products, setProducts] = useState([]);
+    const [category, setCategory] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    const {slug} = match.params;
+
+    useEffect(() => {
+        // fetchMoreItems()
+        setLoading(true);
+        getCategory(slug)
+            .then((res) => {
+                console.log(JSON.stringify(res.data, null, 4));
+                setCategory(res.data.category);
+                setProducts(res.data.products);
+                setLoading(false);
+            })
+    },[]);
+
 
     const LayoutViewClicked = (colums) => {
         setLayoutColumns({
@@ -153,7 +169,7 @@ const CategoryHome = ({match}) => {
                                                             <div className="contain-banner">
                                                                 <div style={{margin: '0 auto'}}>
                                                                     {/*<h4>10% off</h4>*/}
-                                                                    <h2 >test</h2>
+                                                                    <h2 style={{fontSize: '40px', color: '#fff'}}>{category.name}</h2>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -185,7 +201,10 @@ const CategoryHome = ({match}) => {
                                                                 </div>
                                                                 <div className="row">
                                                                     <div className="col-12">
-                                                                        <FilterBar onLayoutViewClicked={(colmuns) => LayoutViewClicked(colmuns)}/>
+                                                                        <FilterBar
+                                                                            products={products}
+                                                                            category={category}
+                                                                            onLayoutViewClicked={(colmuns) => LayoutViewClicked(colmuns)}/>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -193,7 +212,13 @@ const CategoryHome = ({match}) => {
 
                                                         {/*Products Listing Component*/}
                                                         <ProductListing
+                                                            products={products}
+                                                            category={category}
+                                                            loading={loading}
                                                             match={match}
+                                                            slug={slug}
+                                                            setProducts={setProducts}
+                                                            setLoading={setLoading}
                                                         />
 
                                                     </div>
