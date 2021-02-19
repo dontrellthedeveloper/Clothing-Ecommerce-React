@@ -30,6 +30,7 @@ import RegisterComplete from "./components/pages/registerComplete";
 import HeaderOne from "./components/common/headers/header-one";
 import FooterOne from "./components/common/footers/footer-one";
 import SingleProduct from "./components/pages/product";
+import CategoryHome from "./components/pages/category/CategoryHome";
 
 // Admin Routes
 import AdminRoute from "./components/routes/AdminRoute";
@@ -250,6 +251,7 @@ const Root = () => {
 
 
                                         <Route exact path={`${process.env.PUBLIC_URL}/product/:slug`} component={SingleProduct}/>
+                                        <Route exact path={`${process.env.PUBLIC_URL}/category/:slug`} component={CategoryHome}/>
 
 
 
