@@ -9,6 +9,7 @@ import wishlistReducer from './wishlist';
 import compareReducer from './compare';
 
 import {userReducer} from './userReducer'
+import {searchReducer} from './searchReducer'
 
 
 const rootReducer = combineReducers({
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
     wishlist: wishlistReducer,
     compare: compareReducer,
     user: userReducer,
+    search: searchReducer,
     Intl
 });
 

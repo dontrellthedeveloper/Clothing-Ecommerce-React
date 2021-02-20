@@ -17,6 +17,7 @@ import {connect} from "react-redux";
 import firebase from "firebase";
 import {useDispatch, useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
+import SearchContainer from "../../forms/Search";
 
 
 const HeaderOne = (props) => {
@@ -75,13 +76,13 @@ const HeaderOne = (props) => {
 		}
     };
 
-    const openSearch = () => {
-        document.getElementById("search-overlay").style.display = "block";
-    };
-
-    const closeSearch = () => {
-        document.getElementById("search-overlay").style.display = "none";
-    };
+    // const openSearch = () => {
+    //     document.getElementById("search-overlay").style.display = "block";
+    // };
+    //
+    // const closeSearch = () => {
+    //     document.getElementById("search-overlay").style.display = "none";
+    // };
 
 	const load = () =>{
 		setIsLoading({isLoading: true});
@@ -120,7 +121,20 @@ const HeaderOne = (props) => {
                                 <div className="col-lg-6">
                                     <div className="header-contact">
                                         <ul>
-                                            <li><i className="fa fa-phone" aria-hidden="true"></i>{('Call Us')}:  311 - 808 - 6039</li>
+                                            <li>
+                                                <i className="fa fa-phone" aria-hidden="true"></i>{('Call Us')}:  311 - 808 - 6039
+
+  {/*                                              <div className="input-group rounded">*/}
+  {/*                                                  <input type="search" className="form-control rounded"*/}
+  {/*                                                         placeholder="Search" aria-label="Search"*/}
+  {/*                                                         aria-describedby="search-addon"/>*/}
+  {/*                                                  <span className="input-group-text border-0"*/}
+  {/*                                                        id="search-addon">*/}
+  {/*  <i className="fa fa-search"></i>*/}
+  {/*</span>*/}
+  {/*                                              </div>*/}
+
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -191,10 +205,18 @@ const HeaderOne = (props) => {
 										<div>
 											<div className="icon-nav">
 												<ul>
-													<li className="onhover-div mobile-search">
-														<div><img src={`${process.env.PUBLIC_URL}/assets/images/icon/search.png`} onClick={openSearch} className="img-fluid" alt="" />
-															<i className="fa fa-search" onClick={openSearch}></i></div>
-													</li>
+													{/*<li className="onhover-div mobile-search">*/}
+													{/*	<div><img src={`${process.env.PUBLIC_URL}/assets/images/icon/search.png`} onClick={openSearch} className="img-fluid" alt="" />*/}
+													{/*		<i className="fa fa-search" onClick={openSearch}></i></div>*/}
+
+													{/*</li>*/}
+
+                                                    <SearchContainer
+                                                        // openSearch={openSearch}
+                                                        // closeSearch={closeSearch}
+                                                    />
+
+
 													<CartContainer/>
 												</ul>
 											</div>
@@ -214,25 +236,25 @@ const HeaderOne = (props) => {
 
 
 
-                <div id="search-overlay" className="search-overlay">
-                    <div>
-                        <span className="closebtn" onClick={closeSearch} title="Close Overlay">×</span>
-                        <div className="overlay-content">
-                            <div className="container">
-                                <div className="row">
-                                    <div className="col-xl-12">
-                                        <form>
-                                            <div className="form-group">
-                                                <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Search a Product" />
-                                            </div>
-                                            <button type="submit" className="btn btn-primary"><i className="fa fa-search"></i></button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {/*<div id="search-overlay" className="search-overlay">*/}
+                {/*    <div>*/}
+                {/*        <span className="closebtn" onClick={closeSearch} title="Close Overlay">×</span>*/}
+                {/*        <div className="overlay-content">*/}
+                {/*            <div className="container">*/}
+                {/*                <div className="row">*/}
+                {/*                    <div className="col-xl-12">*/}
+                {/*                        <form>*/}
+                {/*                            <div className="form-group">*/}
+                {/*                                <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Search a Product" />*/}
+                {/*                            </div>*/}
+                {/*                            <button type="submit" className="btn btn-primary"><i className="fa fa-search"></i></button>*/}
+                {/*                        </form>*/}
+                {/*                    </div>*/}
+                {/*                </div>*/}
+                {/*            </div>*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
 
 			</div>
 			)
