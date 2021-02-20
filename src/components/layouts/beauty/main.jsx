@@ -24,6 +24,7 @@ import MultiSlider from "../kids/multiple-slider";
 import Jumbotron from "../../cards/Jumbotron";
 import CategoryList from "../../category/CategoryList";
 import CategoryList2 from "../../category/CategoryList2";
+import SubList from "../../sub/SubList";
 
 
 
@@ -337,80 +338,82 @@ const Beauty = (props) => {
 
                 <CategoryList/>
 
+                <SubList/>
+
 
 
 
                 {/*Four Banner*/}
-                <section className=" ratio2_1" style={{paddingBottom: '70px'}}>
-                    <div className="container">
-                        <div className="row partition4">
-                            <div className="col-lg-3 col-md-6">
-                                <a href="#">
-                                    <div className="collection-banner p-left">
-                                        <div className="img-part">
-                                            <img src={`${process.env.PUBLIC_URL}/assets/images/banner.jpg`}
-                                                 className="img-fluid blur-up lazyload bg-img" />
-                                        </div>
-                                        <div className="contain-banner banner-4">
-                                            <div>
-                                                <h4>save 30%</h4>
-                                                <h2>men</h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div className="col-lg-3 col-md-6">
-                                <a href="#">
-                                    <div className="collection-banner p-left">
-                                        <div className="img-part">
-                                            <img src={`${process.env.PUBLIC_URL}/assets/images/banner1.jpg`}
-                                                 className="img-fluid blur-up lazyload bg-img" />
-                                        </div>
-                                        <div className="contain-banner banner-4">
-                                            <div>
-                                                <h4>save 60%</h4>
-                                                <h2>women</h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div className="col-lg-3 col-md-6">
-                                <a href="#">
-                                    <div className="collection-banner p-left">
-                                        <div className="img-part">
-                                            <img src={`${process.env.PUBLIC_URL}/assets/images/banner.jpg`}
-                                                 className="img-fluid blur-up lazyload bg-img" />
-                                        </div>
-                                        <div className="contain-banner banner-4">
-                                            <div>
-                                                <h4>save 60%</h4>
-                                                <h2>women</h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div className="col-lg-3 col-md-6">
-                                <a href="#">
-                                    <div className="collection-banner p-left">
-                                        <div className="img-part">
-                                            <img src={`${process.env.PUBLIC_URL}/assets/images/banner1.jpg`}
-                                                 className="img-fluid blur-up lazyload bg-img" />
-                                        </div>
-                                        <div className="contain-banner banner-4">
-                                            <div>
-                                                <h4>save 60%</h4>
-                                                <h2>women</h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                {/*<section className=" ratio2_1" style={{paddingBottom: '70px'}}>*/}
+                {/*    <div className="container">*/}
+                {/*        <div className="row partition4">*/}
+                {/*            <div className="col-lg-3 col-md-6">*/}
+                {/*                <a href="#">*/}
+                {/*                    <div className="collection-banner p-left">*/}
+                {/*                        <div className="img-part">*/}
+                {/*                            <img src={`${process.env.PUBLIC_URL}/assets/images/banner.jpg`}*/}
+                {/*                                 className="img-fluid blur-up lazyload bg-img" />*/}
+                {/*                        </div>*/}
+                {/*                        <div className="contain-banner banner-4">*/}
+                {/*                            <div>*/}
+                {/*                                <h4>save 30%</h4>*/}
+                {/*                                <h2>men</h2>*/}
+                {/*                            </div>*/}
+                {/*                        </div>*/}
+                {/*                    </div>*/}
+                {/*                </a>*/}
+                {/*            </div>*/}
+                {/*            <div className="col-lg-3 col-md-6">*/}
+                {/*                <a href="#">*/}
+                {/*                    <div className="collection-banner p-left">*/}
+                {/*                        <div className="img-part">*/}
+                {/*                            <img src={`${process.env.PUBLIC_URL}/assets/images/banner1.jpg`}*/}
+                {/*                                 className="img-fluid blur-up lazyload bg-img" />*/}
+                {/*                        </div>*/}
+                {/*                        <div className="contain-banner banner-4">*/}
+                {/*                            <div>*/}
+                {/*                                <h4>save 60%</h4>*/}
+                {/*                                <h2>women</h2>*/}
+                {/*                            </div>*/}
+                {/*                        </div>*/}
+                {/*                    </div>*/}
+                {/*                </a>*/}
+                {/*            </div>*/}
+                {/*            <div className="col-lg-3 col-md-6">*/}
+                {/*                <a href="#">*/}
+                {/*                    <div className="collection-banner p-left">*/}
+                {/*                        <div className="img-part">*/}
+                {/*                            <img src={`${process.env.PUBLIC_URL}/assets/images/banner.jpg`}*/}
+                {/*                                 className="img-fluid blur-up lazyload bg-img" />*/}
+                {/*                        </div>*/}
+                {/*                        <div className="contain-banner banner-4">*/}
+                {/*                            <div>*/}
+                {/*                                <h4>save 60%</h4>*/}
+                {/*                                <h2>women</h2>*/}
+                {/*                            </div>*/}
+                {/*                        </div>*/}
+                {/*                    </div>*/}
+                {/*                </a>*/}
+                {/*            </div>*/}
+                {/*            <div className="col-lg-3 col-md-6">*/}
+                {/*                <a href="#">*/}
+                {/*                    <div className="collection-banner p-left">*/}
+                {/*                        <div className="img-part">*/}
+                {/*                            <img src={`${process.env.PUBLIC_URL}/assets/images/banner1.jpg`}*/}
+                {/*                                 className="img-fluid blur-up lazyload bg-img" />*/}
+                {/*                        </div>*/}
+                {/*                        <div className="contain-banner banner-4">*/}
+                {/*                            <div>*/}
+                {/*                                <h4>save 60%</h4>*/}
+                {/*                                <h2>women</h2>*/}
+                {/*                            </div>*/}
+                {/*                        </div>*/}
+                {/*                    </div>*/}
+                {/*                </a>*/}
+                {/*            </div>*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
+                {/*</section>*/}
                 {/*Four Banner End*/}
 
                 {/*Three Banner*/}
@@ -730,21 +733,21 @@ const Beauty = (props) => {
 
 
                 {/*Parallax banner*/}
-                <section className="p-0">
-                    <div className="full-banner parallax-banner2 parallax text-center p-left">
-                        <div className="container">
-                            <div className="row">
-                                <div className="col">
-                                    <div className="banner-contain">
-                                        <h2>2018</h2>
-                                        <h3>fashion trends</h3>
-                                        <h4>special offer</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                {/*<section className="p-0">*/}
+                {/*    <div className="full-banner parallax-banner2 parallax text-center p-left">*/}
+                {/*        <div className="container">*/}
+                {/*            <div className="row">*/}
+                {/*                <div className="col">*/}
+                {/*                    <div className="banner-contain">*/}
+                {/*                        <h2>2018</h2>*/}
+                {/*                        <h3>fashion trends</h3>*/}
+                {/*                        <h4>special offer</h4>*/}
+                {/*                    </div>*/}
+                {/*                </div>*/}
+                {/*            </div>*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
+                {/*</section>*/}
                 {/*Parallax banner End*/}
 
 
