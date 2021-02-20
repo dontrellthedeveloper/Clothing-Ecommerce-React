@@ -46,7 +46,7 @@ const DetailsTopTabs = ({product}) => {
                                     {sub && <tr>
                                         <th>Sub Category :</th>
 
-                                        <td><Link to={`/category/${category.slug}/${sub.slug}`}>{sub.name}</Link></td>
+                                        <td><Link to={`/sub/${sub.slug}`}>{sub.name}</Link></td>
                                     </tr>}
                                     <tr>
                                         <th>Color :</th>

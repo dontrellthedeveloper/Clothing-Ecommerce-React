@@ -144,7 +144,6 @@ const Beauty = (props) => {
 
                 {/*Product slider End*/}
 
-
                 <div className="container">
                     <section className="section-b-space" style={{paddingBottom: '0', paddingTop: '0'}}>
                         <Slider className="slide-1 home-slider">
@@ -187,50 +186,11 @@ const Beauty = (props) => {
                 </div>
 
 
+                <CategoryList2/>
 
+                <CategoryList/>
 
-                {/*<NewArrivals*/}
-                {/*    type={'beauty'}*/}
-                {/*    // products={products}*/}
-                {/*    // setProducts={setProducts}*/}
-                {/*    // loading={loading}*/}
-                {/*    // setLoading={setLoading}*/}
-                {/*/>*/}
-
-
-
-                <BestSellers
-                    type={'beauty'}
-                    // products={products}
-                    // setProducts={setProducts}
-                    // loading={loading}
-                    // setLoading={setLoading}
-                />
-
-
-
-
-
-
-
-
-
-
-                {/*Product slider*/}
-                {/*<TopCollection type={'beauty'} />*/}
-                {/*Product slider End*/}
-
-
-
-
-
-
-
-
-
-
-
-
+                <SubList/>
 
                 <div className="container">
                     <section className="section-b-space" style={{paddingTop: '0'}}>
@@ -272,6 +232,74 @@ const Beauty = (props) => {
                         </Slider>
                     </section>
                 </div>
+
+                <BestSellers
+                    type={'beauty'}
+                    // products={products}
+                    // setProducts={setProducts}
+                    // loading={loading}
+                    // setLoading={setLoading}
+                />
+
+                {/*<NewArrivals*/}
+                {/*    type={'beauty'}*/}
+                {/*    // products={products}*/}
+                {/*    // setProducts={setProducts}*/}
+                {/*    // loading={loading}*/}
+                {/*    // setLoading={setLoading}*/}
+                {/*/>*/}
+
+
+
+
+                {/*Parallax banner*/}
+                <section className="p-0">
+                    <div className="full-banner parallax-banner1 parallax text-center p-left">
+                        <div className="container">
+                            <div className="row">
+                                <div className="col">
+                                    <div className="banner-contain">
+                                        <h2 style={{color: "#fff"}}>2021</h2>
+                                        <h3 style={{color: "#fff"}}>fashion lookbook</h3>
+                                        {/*<h4>special offer</h4>*/}
+                                        <a href="#" className="btn btn-solid">latest trends</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                {/*Parallax banner End*/}
+
+
+
+
+
+
+
+
+
+
+
+
+
+                {/*Product slider*/}
+                {/*<TopCollection type={'beauty'} />*/}
+                {/*Product slider End*/}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -334,11 +362,7 @@ const Beauty = (props) => {
 
 
 
-                <CategoryList2/>
 
-                <CategoryList/>
-
-                <SubList/>
 
 
 
@@ -486,6 +510,13 @@ const Beauty = (props) => {
 
 
 
+                {/*<BestSellers*/}
+                {/*    type={'beauty'}*/}
+                {/*    // products={products}*/}
+                {/*    // setProducts={setProducts}*/}
+                {/*    // loading={loading}*/}
+                {/*    // setLoading={setLoading}*/}
+                {/*/>*/}
 
 
 
@@ -495,33 +526,12 @@ const Beauty = (props) => {
 
 
 
-                {/*Parallax banner*/}
-                <section className="p-0">
-                    <div className="full-banner parallax-banner1 parallax text-center p-left">
-                        <div className="container">
-                            <div className="row">
-                                <div className="col">
-                                    <div className="banner-contain">
-                                        <h2 style={{color: "#fff"}}>2021</h2>
-                                        <h3 style={{color: "#fff"}}>fashion lookbook</h3>
-                                        {/*<h4>special offer</h4>*/}
-                                        <a href="#" className="btn btn-solid">latest trends</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                {/*Parallax banner End*/}
 
 
-                <BestSellers
-                    type={'beauty'}
-                    // products={products}
-                    // setProducts={setProducts}
-                    // loading={loading}
-                    // setLoading={setLoading}
-                />
+
+
+
+
 
 
 

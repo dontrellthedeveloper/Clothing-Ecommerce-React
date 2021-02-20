@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import {filterSort} from '../../../actions'
 import {getVisibleproducts} from '../../../services';
 
-const FilterBar2 = ({sub, products, product}) => {
+const FilterBar3 = ({sub, products, product}) => {
 
 
     //List Layout View
@@ -49,7 +49,8 @@ const FilterBar2 = ({sub, products, product}) => {
     return (
         <div className="product-filter-content">
             <div className="search-count">
-                <h5>1-{products.length} Result in {sub.name}</h5>
+                {/*<h5>1-{products.length} Result in {sub.name}</h5>*/}
+                <h5>All Products</h5>
             </div>
             {/*<div className="collection-view">*/}
             {/*    <ul>*/}
@@ -111,4 +112,4 @@ const FilterBar2 = ({sub, products, product}) => {
 
 // export default connect(mapStateToProps, {filterSort})(FilterBar);
 
-export default FilterBar2;
+export default FilterBar3;

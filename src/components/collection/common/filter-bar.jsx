@@ -51,54 +51,54 @@ const FilterBar = ({category, products, product}) => {
                 <div className="search-count">
                     <h5>1-{products.length} Result in {category.name}</h5>
                 </div>
-                <div className="collection-view">
-                    <ul>
-                        <li><i
-                            className="fa fa-th grid-layout-view" onClick={gridLayout}></i>
-                        </li>
-                        <li><i
-                            className="fa fa-list-ul list-layout-view" onClick={listLayout}></i>
-                        </li>
-                    </ul>
-                </div>
-                <div className="collection-grid-view">
-                    <ul>
-                        <li>
-                            <img
-                                src={`${process.env.PUBLIC_URL}/assets/images/icon/2.png`}
-                                alt=""
-                                className="product-2-layout-view" onClick={() => LayoutView(6)} />
-                        </li>
-                        <li>
-                            <img
-                                src={`${process.env.PUBLIC_URL}/assets/images/icon/3.png`}
-                                alt=""
-                                className="product-3-layout-view" onClick={() => LayoutView(4)} />
-                        </li>
-                        <li>
-                            <img
-                                src={`${process.env.PUBLIC_URL}/assets/images/icon/4.png`}
-                                alt=""
-                                className="product-4-layout-view" onClick={() => LayoutView(3)} />
-                        </li>
-                        <li>
-                            <img
-                                src={`${process.env.PUBLIC_URL}/assets/images/icon/6.png`}
-                                alt=""
-                                className="product-6-layout-view" onClick={() => LayoutView(2)} />
-                        </li>
-                    </ul>
-                </div>
-                <div className="product-page-filter">
-                    <select onChange={(e) => filterSort(e.target.value)}>
-                        <option value="">Sorting items</option>
-                        <option value="HighToLow">Price: High to Low</option>
-                        <option value="LowToHigh">Price: Low to High</option>
-                        <option value="Newest">Newest Items</option>
-                        <option value="AscOrder">Sort By Name: A To Z</option>
-                        <option value="DescOrder">Sort By Name: Z To A</option>
-                    </select>
-                </div>
+                {/*<div className="collection-view">*/}
+                {/*    <ul>*/}
+                {/*        <li><i*/}
+                {/*            className="fa fa-th grid-layout-view" onClick={gridLayout}></i>*/}
+                {/*        </li>*/}
+                {/*        <li><i*/}
+                {/*            className="fa fa-list-ul list-layout-view" onClick={listLayout}></i>*/}
+                {/*        </li>*/}
+                {/*    </ul>*/}
+                {/*</div>*/}
+                {/*<div className="collection-grid-view">*/}
+                {/*    <ul>*/}
+                {/*        <li>*/}
+                {/*            <img*/}
+                {/*                src={`${process.env.PUBLIC_URL}/assets/images/icon/2.png`}*/}
+                {/*                alt=""*/}
+                {/*                className="product-2-layout-view" onClick={() => LayoutView(6)} />*/}
+                {/*        </li>*/}
+                {/*        <li>*/}
+                {/*            <img*/}
+                {/*                src={`${process.env.PUBLIC_URL}/assets/images/icon/3.png`}*/}
+                {/*                alt=""*/}
+                {/*                className="product-3-layout-view" onClick={() => LayoutView(4)} />*/}
+                {/*        </li>*/}
+                {/*        <li>*/}
+                {/*            <img*/}
+                {/*                src={`${process.env.PUBLIC_URL}/assets/images/icon/4.png`}*/}
+                {/*                alt=""*/}
+                {/*                className="product-4-layout-view" onClick={() => LayoutView(3)} />*/}
+                {/*        </li>*/}
+                {/*        <li>*/}
+                {/*            <img*/}
+                {/*                src={`${process.env.PUBLIC_URL}/assets/images/icon/6.png`}*/}
+                {/*                alt=""*/}
+                {/*                className="product-6-layout-view" onClick={() => LayoutView(2)} />*/}
+                {/*        </li>*/}
+                {/*    </ul>*/}
+                {/*</div>*/}
+                {/*<div className="product-page-filter">*/}
+                {/*    <select onChange={(e) => filterSort(e.target.value)}>*/}
+                {/*        <option value="">Sorting items</option>*/}
+                {/*        <option value="HighToLow">Price: High to Low</option>*/}
+                {/*        <option value="LowToHigh">Price: Low to High</option>*/}
+                {/*        <option value="Newest">Newest Items</option>*/}
+                {/*        <option value="AscOrder">Sort By Name: A To Z</option>*/}
+                {/*        <option value="DescOrder">Sort By Name: Z To A</option>*/}
+                {/*    </select>*/}
+                {/*</div>*/}
             </div>
         )
     };

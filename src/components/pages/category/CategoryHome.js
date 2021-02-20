@@ -130,7 +130,7 @@ const CategoryHome = ({match}) => {
                 </Helmet>
                 {/*SEO Support End */}
 
-                <Breadcrumb title={'Collection'}/>
+                <Breadcrumb title={category.name}/>
 
                 <section className="section-b-space">
                     <div className="collection-wrapper">
@@ -141,12 +141,12 @@ const CategoryHome = ({match}) => {
                                     <StickyBox offsetTop={20} offsetBottom={20}>
                                         <div>
                                             <Filter/>
-                                            <NewProduct/>
-                                            <div className="collection-sidebar-banner">
-                                                <a href="#">
-                                                    <img src={`${process.env.PUBLIC_URL}/assets/images/side-banner.png`} className="img-fluid" alt="" />
-                                                </a>
-                                            </div>
+                                            {/*<NewProduct/>*/}
+                                            {/*<div className="collection-sidebar-banner">*/}
+                                            {/*    <a href="#">*/}
+                                            {/*        <img src={`${process.env.PUBLIC_URL}/assets/images/side-banner.png`} className="img-fluid" alt="" />*/}
+                                            {/*    </a>*/}
+                                            {/*</div>*/}
                                         </div>
                                     </StickyBox>
                                     {/*side-bar banner end here*/}
@@ -164,6 +164,7 @@ const CategoryHome = ({match}) => {
                                                         <div className="collection-banner text-center">
                                                             <div className="img-part">
                                                                 <img src={`${process.env.PUBLIC_URL}/assets/images/sub-banner-category-shop.jpg`}
+                                                                     style={{height: '15vh'}}
                                                                      className="img-fluid blur-up lazyload bg-img" alt="" />
                                                             </div>
                                                             <div className="contain-banner">

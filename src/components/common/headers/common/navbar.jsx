@@ -83,7 +83,7 @@ const NavBar = (props) => {
                                 </Link>
                             </li>
                             <li >
-                                <Link to={`${process.env.PUBLIC_URL}/left-sidebar/collection`} className="nav-link">
+                                <Link to={`${process.env.PUBLIC_URL}/shop`} className="nav-link">
                                     {translate('shop')}
                                 </Link>
                             </li>

@@ -79,37 +79,69 @@
 
 import React, {useState, useEffect} from 'react';
 import {Helmet} from 'react-helmet'
-import Breadcrumb from "../../common/breadcrumb";
-import NewProduct from "../../common/new-product";
-import Filter from "../../collection/common/filter";
-import FilterBar2 from "../../collection/common/filter-bar2";
-import ProductListing2 from "../../collection/common/product-listing2";
+import Breadcrumb from "../common/breadcrumb";
+import NewProduct from "../common/new-product";
+import Filter from "../collection/common/filter";
+import FilterBar3 from "../collection/common/filter-bar3";
+import ProductListing from "../collection/common/product-listing";
 import StickyBox from "react-sticky-box";
 import {Link} from "react-router-dom";
-import {getSub} from "../../../functions/sub";
+import {getCategory} from "../../functions/category";
+import ProductListItem2 from "../collection/common/product-list-item2";
+// import {addToCart, addToCompare, addToWishlist} from "../../actions";
+import {getProducts, getProductsCount} from "../../functions/product";
 
-
-const SubHome = ({match}) => {
+const Shop = () => {
     const [layoutColumns, setLayoutColumns] = useState(3);
-
-
+    //
+    // const [product, setProduct] = useState([]);
     const [products, setProducts] = useState([]);
-    const [sub, setSub] = useState([]);
+
+    // const [category, setCategory] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    const {slug} = match.params;
+    // const {slug} = match.params;
+
+    // useEffect(() => {
+    //     // fetchMoreItems()
+    //     setLoading(true);
+    //     getCategory(slug)
+    //         .then((res) => {
+    //             console.log(JSON.stringify(res.data, null, 4));
+    //             setCategory(res.data.category);
+    //             setProducts(res.data.products);
+    //             setLoading(false);
+    //         })
+    // },[]);
+
+
+    // useEffect(() => {
+    //     // fetchMoreItems()
+    // loadAllProducts()
+    // },[]);
+    //
+    // const loadAllProducts = () => {
+    //     getProductsCount(12).then((p) => {
+    //         console.log(p);
+    //         setProducts(p.data);
+    //
+    //         setLoading(false);
+    //     })
+    // };
+
 
     useEffect(() => {
-        // fetchMoreItems()
-        setLoading(true);
-        getSub(slug)
-            .then((res) => {
-                console.log(JSON.stringify(res.data, null, 4));
-                setSub(res.data.sub);
-                setProducts(res.data.products);
+        loadAllProducts();
+    }, []);
+
+    const  loadAllProducts = () => {
+        // sort, order, limit
+        getProducts('sold', 'desc',100)
+            .then(res => {
+                setProducts(res.data);
                 setLoading(false);
             })
-    },[]);
+    };
 
 
     const LayoutViewClicked = (colums) => {
@@ -131,7 +163,7 @@ const SubHome = ({match}) => {
             </Helmet>
             {/*SEO Support End */}
 
-            <Breadcrumb title={sub.name}/>
+            <Breadcrumb title={'shop'}/>
 
             <section className="section-b-space">
                 <div className="collection-wrapper">
@@ -164,15 +196,14 @@ const SubHome = ({match}) => {
 
                                                     <div className="collection-banner text-center">
                                                         <div className="img-part">
-                                                            <img
-                                                                src={`${process.env.PUBLIC_URL}/assets/images/sub-banner-category-shop.jpg`}
-                                                                style={{height: '15vh'}}
+                                                            <img src={`${process.env.PUBLIC_URL}/assets/images/sub-banner-category-shop.jpg`}
+                                                                 style={{height: '15vh'}}
                                                                  className="img-fluid blur-up lazyload bg-img" alt="" />
                                                         </div>
                                                         <div className="contain-banner">
                                                             <div style={{margin: '0 auto'}}>
                                                                 {/*<h4>10% off</h4>*/}
-                                                                <h2 style={{fontSize: '40px', color: '#fff'}}>{sub.name}</h2>
+                                                                <h2 style={{fontSize: '40px', color: '#fff'}}>shop all</h2>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -204,25 +235,61 @@ const SubHome = ({match}) => {
                                                             </div>
                                                             <div className="row">
                                                                 <div className="col-12">
-                                                                    <FilterBar2
+                                                                    <FilterBar3
                                                                         products={products}
-                                                                        sub={sub}
+                                                                        // category={category}
                                                                         onLayoutViewClicked={(colmuns) => LayoutViewClicked(colmuns)}/>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
 
+                                                    <div>
+                                                        <div className="product-wrapper-grid">
+                                                            <div className="container-fluid">
+                                                                <div className="row">
+                                                                    { products.map((product) =>
+                                                                        <div
+                                                                            className="col-md-4"
+                                                                            key={product._id}
+                                                                        >
+                                                                            <ProductListItem2
+                                                                                product={product}
+                                                                                key={product._id}
+                                                                                             // category={category}
+                                                                                             // onAddToCompareClicked={() => addToCompare(product)}
+                                                                                             // onAddToWishlistClicked={() => addToWishlist(product)}
+                                                                                             // onAddToCartClicked={addToCart}
+                                                                                             // slug={slug}
+                                                                            />
+                                                                        </div>
+                                                                    )}
+                                                                </div>
+                                                                {/*</InfiniteScroll>*/}
+
+                                                                {/*<div className="row">*/}
+                                                                {/*    <div className="col-sm-12 text-center section-b-space mt-5 no-found" >*/}
+                                                                {/*        <img src={`${process.env.PUBLIC_URL}/assets/images/empty-search.jpg`} className="img-fluid mb-4" />*/}
+                                                                {/*        <h3>Sorry! Couldn't find the product you were looking For!!!    </h3>*/}
+                                                                {/*        <p>Please check if you have misspelt something or try searching with other words.</p>*/}
+                                                                {/*        <Link to={`${process.env.PUBLIC_URL}/`} className="btn btn-solid">continue shopping</Link>*/}
+                                                                {/*    </div>*/}
+                                                                {/*</div>*/}
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                     {/*Products Listing Component*/}
-                                                    <ProductListing2
-                                                        products={products}
-                                                        sub={sub}
-                                                        loading={loading}
-                                                        match={match}
-                                                        slug={slug}
-                                                        setProducts={setProducts}
-                                                        setLoading={setLoading}
-                                                    />
+                                                    {/*<ProductListing*/}
+                                                    {/*    products={products}*/}
+                                                    {/*    category={category}*/}
+                                                    {/*    loading={loading}*/}
+                                                    {/*    match={match}*/}
+                                                    {/*    slug={slug}*/}
+                                                    {/*    setProducts={setProducts}*/}
+                                                    {/*    setLoading={setLoading}*/}
+                                                    {/*/>*/}
 
                                                 </div>
                                             </div>
@@ -240,4 +307,4 @@ const SubHome = ({match}) => {
 };
 
 
-export default SubHome;
+export default Shop;
