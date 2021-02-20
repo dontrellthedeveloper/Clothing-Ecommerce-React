@@ -860,6 +860,7 @@ header {
   z-index: 999;
   top: 0;
   left: 0;
+  opacity: .7;
   background-color: lighten($white, 5%);
   > div{
     height: 100%;
@@ -5239,6 +5240,7 @@ footer {
   }
   .search-overlay {
     padding-left: 300px;
+
   }
 }
 .left-sidebar_space {

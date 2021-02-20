@@ -89,7 +89,8 @@ import {Link} from "react-router-dom";
 import {getCategory} from "../../functions/category";
 import ProductListItem2 from "../collection/common/product-list-item2";
 // import {addToCart, addToCompare, addToWishlist} from "../../actions";
-import {getProducts, getProductsCount} from "../../functions/product";
+import {getProducts, getProductsCount, fetchProductsByFilter} from "../../functions/product";
+import {useSelector} from "react-redux";
 
 const Shop = () => {
     const [layoutColumns, setLayoutColumns] = useState(3);
@@ -100,40 +101,24 @@ const Shop = () => {
     // const [category, setCategory] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    // const {slug} = match.params;
-
-    // useEffect(() => {
-    //     // fetchMoreItems()
-    //     setLoading(true);
-    //     getCategory(slug)
-    //         .then((res) => {
-    //             console.log(JSON.stringify(res.data, null, 4));
-    //             setCategory(res.data.category);
-    //             setProducts(res.data.products);
-    //             setLoading(false);
-    //         })
-    // },[]);
 
 
-    // useEffect(() => {
-    //     // fetchMoreItems()
-    // loadAllProducts()
-    // },[]);
-    //
-    // const loadAllProducts = () => {
-    //     getProductsCount(12).then((p) => {
-    //         console.log(p);
-    //         setProducts(p.data);
-    //
-    //         setLoading(false);
-    //     })
-    // };
+    let {search} = useSelector((state) => ({...state}));
+    const {text} = search;
 
 
     useEffect(() => {
         loadAllProducts();
     }, []);
 
+
+    const fetchProducts = (arg) => {
+        fetchProductsByFilter(arg).then((res) => {
+            setProducts(res.data);
+        });
+    };
+
+    // 1. load products by default on page load
     const  loadAllProducts = () => {
         // sort, order, limit
         getProducts('sold', 'desc',100)
@@ -142,6 +127,17 @@ const Shop = () => {
                 setLoading(false);
             })
     };
+
+    // 2. load products on user search input
+    useEffect(() => {
+        const delayed = setTimeout(() => {
+            fetchProducts({ query: text });
+            if (!text) {
+                loadAllProducts();
+            }
+        }, 300);
+        return () => clearTimeout(delayed);
+    }, [text]);
 
 
     const LayoutViewClicked = (colums) => {
