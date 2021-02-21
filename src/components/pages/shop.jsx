@@ -89,43 +89,56 @@ import {Link} from "react-router-dom";
 import {getCategory} from "../../functions/category";
 import ProductListItem2 from "../collection/common/product-list-item2";
 // import {addToCart, addToCompare, addToWishlist} from "../../actions";
-import {getProducts, getProductsCount, fetchProductsByFilter} from "../../functions/product";
-import {useSelector} from "react-redux";
+import {getProducts, getProductsCount, fetchProductsByFilter, getProductsByCount} from "../../functions/product";
+import {useSelector, useDispatch} from "react-redux";
+import {SlideToggle} from "react-slide-toggle";
+import InputRange from "react-input-range";
+import {Slider} from 'antd';
 
 const Shop = () => {
     const [layoutColumns, setLayoutColumns] = useState(3);
     //
-    // const [product, setProduct] = useState([]);
+    const [product, setProduct] = useState([]);
     const [products, setProducts] = useState([]);
+    const [price, setPrice] = useState({min: 0, max: 400});
+    const [ok, setOk] = useState(false);
 
     // const [category, setCategory] = useState([]);
     const [loading, setLoading] = useState(false);
 
 
-
+    let dispatch = useDispatch();
     let {search} = useSelector((state) => ({...state}));
     const {text} = search;
 
 
     useEffect(() => {
         loadAllProducts();
+
     }, []);
 
 
     const fetchProducts = (arg) => {
         fetchProductsByFilter(arg).then((res) => {
+            console.log(arg);
             setProducts(res.data);
         });
     };
 
+
     // 1. load products by default on page load
     const  loadAllProducts = () => {
         // sort, order, limit
-        getProducts('sold', 'desc',100)
-            .then(res => {
-                setProducts(res.data);
-                setLoading(false);
-            })
+        // getProducts('sold', 'desc',100)
+        //     .then(res => {
+        //         setProducts(res.data);
+        //         setLoading(false);
+        //     })
+
+        getProductsByCount(12).then((p) => {
+            setProducts(p.data);
+            setLoading(false);
+        });
     };
 
     // 2. load products on user search input
@@ -138,6 +151,34 @@ const Shop = () => {
         }, 300);
         return () => clearTimeout(delayed);
     }, [text]);
+
+
+
+
+    // 3. load products based on price range
+    useEffect(() => {
+        console.log("ok to request");
+        fetchProducts({ price });
+    }, [ok]);
+
+
+
+    const handleSlider = (value) => {
+        dispatch({
+            type: "SEARCH_QUERY",
+            payload: { text: "" },
+        });
+        // reset
+        setPrice(value);
+        setTimeout(() => {
+            setOk(!ok);
+        }, 300);
+    };
+
+
+    const closeFilter = () => {
+        document.querySelector(".collection-filter").style = "left: -365px";
+    }
 
 
     const LayoutViewClicked = (colums) => {
@@ -169,13 +210,113 @@ const Shop = () => {
 
                                 <StickyBox offsetTop={20} offsetBottom={20}>
                                     <div>
-                                        <Filter/>
+                                        {/*<Filter*/}
+                                        {/*    handleSlider={handleSlider}*/}
+                                        {/*    price={price}*/}
+                                        {/*    setPrice={setPrice}*/}
+                                        {/*/>*/}
+
+
+                                        <div className="collection-filter-block">
+                                            {/*brand filter start*/}
+                                            <div className="collection-mobile-back">
+                        <span className="filter-back" onClick={(e) => closeFilter(e)} >
+                            <i className="fa fa-angle-left" aria-hidden="true"></i> back
+                        </span>
+                                            </div>
+                                            {/*price filter start here */}
+                                            <SlideToggle>
+                                                {({onToggle, setCollapsibleElement}) => (
+                                                    <div className="collection-collapse-block open">
+                                                        <h3 className="collapse-block-title" onClick={onToggle}>price</h3>
+                                                        <div className="collection-collapse-block-content block-price-content" ref={setCollapsibleElement}>
+                                                            <div className="collection-brand-filter">
+                                                                <div className="custom-control custom-checkbox collection-filter-checkbox">
+                                                                    <InputRange
+                                                                        maxValue={400}
+                                                                        minValue={0}
+                                                                        value={price}
+                                                                        onChange={handleSlider}
+                                                                        formatLabel={value => `$${value}`}
+                                                                    />
+
+
+
+                                                                    {/*<Slider*/}
+                                                                    {/*    className="ml-4 mr-4"*/}
+                                                                    {/*    tipFormatter={(v) => `$${v}`}*/}
+                                                                    {/*    range*/}
+                                                                    {/*    value={price}*/}
+                                                                    {/*    onChange={handleSlider}*/}
+                                                                    {/*    max="4999"*/}
+                                                                    {/*/>*/}
+
+
+
+
+                                                                    {/*<InputRange*/}
+                                                                    {/*    maxValue={20}*/}
+                                                                    {/*    minValue={0}*/}
+                                                                    {/*    formatLabel={value => `${value} kg`}*/}
+                                                                    {/*    value={this.state.value4}*/}
+                                                                    {/*    onChange={value => this.setState({ value4: value })}*/}
+                                                                    {/*    onChangeComplete={value => console.log(value)} />*/}
+
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                )}
+                                            </SlideToggle>
+                                            <SlideToggle>
+                                                {({onToggle, setCollapsibleElement}) => (
+                                                    <div className="collection-collapse-block">
+                                                        <h3 className="collapse-block-title" onClick={onToggle}>brand</h3>
+                                                        <div className="collection-collapse-block-content"  ref={setCollapsibleElement}>
+                                                            <div className="collection-brand-filter">
+                                                                {/*{brands.map((brand, index) => {*/}
+                                                                {/*    return (*/}
+                                                                {/*        <div className="custom-control custom-checkbox collection-filter-checkbox" key={index}>*/}
+                                                                {/*            <input type="checkbox" onClick={(e) => clickBrandHendle(e,filteredBrands)} value={brand} defaultChecked={filteredBrands.includes(brand)? true : false}  className="custom-control-input" id={brand} />*/}
+                                                                {/*            <label className="custom-control-label"*/}
+                                                                {/*                   htmlFor={brand}>{brand}</label>*/}
+                                                                {/*        </div> )*/}
+                                                                {/*})}*/}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                )}
+                                            </SlideToggle>
+
+                                            {/*color filter start here*/}
+                                            <SlideToggle>
+                                                {({onToggle, setCollapsibleElement}) => (
+                                                    <div className="collection-collapse-block">
+                                                        <h3 className="collapse-block-title" onClick={onToggle}>colors</h3>
+                                                        <div className="collection-collapse-block-content" ref={setCollapsibleElement}>
+                                                            <div className="color-selector">
+                                                                <ul>
+                                                                    {/*{colors.map((color, index) => {*/}
+                                                                    {/*    return (*/}
+                                                                    {/*        <li className={color} title={color} onClick={(e) => colorHandle(e, color)} key={index}></li> )*/}
+                                                                    {/*})}*/}
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                )}
+                                            </SlideToggle>
+
+                                        </div>
+
                                         {/*<NewProduct/>*/}
                                         {/*<div className="collection-sidebar-banner">*/}
                                         {/*    <a href="#">*/}
                                         {/*        <img src={`${process.env.PUBLIC_URL}/assets/images/side-banner.png`} className="img-fluid" alt="" />*/}
                                         {/*    </a>*/}
                                         {/*</div>*/}
+
                                     </div>
                                 </StickyBox>
                                 {/*side-bar banner end here*/}
