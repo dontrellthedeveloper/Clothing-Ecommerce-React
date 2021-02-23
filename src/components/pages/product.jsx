@@ -194,7 +194,6 @@ const SingleProduct = ({match, symbol, item, addToCart, addToCartUnsafe, addToWi
                                                     BuynowClicked={addToCartUnsafe}
                                                     addToWishlistClicked={addToWishlist}
                                                     product={product}
-
                                                 />
                                             </div>
                                         </div>

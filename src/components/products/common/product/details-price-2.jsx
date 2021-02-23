@@ -4,11 +4,12 @@ import Slider from 'react-slick';
 import Modal from 'react-responsive-modal';
 import StarRatings from 'react-star-ratings';
 import RatingModal from "../../../modal/RatingModal";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { StarOutlined } from "@ant-design/icons";
 import {toast} from "react-toastify";
 import defaultImage from "../../../../images/default-product-image.png";
 import {showAverage} from "../../../../functions/rating";
+import _ from "lodash";
 
 const DetailsWithPrice2 = ({symbol, item, addToCartClicked, BuynowClicked, addToWishlistClicked, product, onStarClick, star}) => {
     const [open, isOpen] = useState(false);
@@ -16,8 +17,13 @@ const DetailsWithPrice2 = ({symbol, item, addToCartClicked, BuynowClicked, addTo
     const [stock, setStock] = useState('InStock');
     const [nav3, setNav3] = useState(null);
     let [slider3, setSlider3] = useState({});
+    const [tooltip, setTooltip] = useState("Click to add");
 
-    const { user } = useSelector((state) => ({ ...state }));
+    // redux
+    const { user, cart } = useSelector((state) => ({ ...state }));
+    const dispatch = useDispatch();
+
+    // const { user } = useSelector((state) => ({ ...state }));
 
     const onOpenModal = () => {
         isOpen( true );
@@ -26,6 +32,38 @@ const DetailsWithPrice2 = ({symbol, item, addToCartClicked, BuynowClicked, addTo
     const onCloseModal = () => {
         isOpen(false );
     };
+
+
+
+    const handleAddToCart = () => {
+        // create cart array
+        let cart = [];
+        if(typeof window !== 'undefined') {
+            // if cart is in localstorage GET it
+            if(localStorage.getItem('cart')) {
+                cart = JSON.parse(localStorage.getItem('cart'));
+            }
+            // push new product to cart
+            cart.push({
+                ...product,
+                count: 1,
+            });
+            // remove duplicates
+            let unique = _.uniqWith(cart, _.isEqual);
+            // save to local storage
+            // console.log('unique', unique)
+            localStorage.setItem("cart", JSON.stringify(unique));
+            // show tooltip
+            toast.success(`Added ${product.title} to cart!`);
+            // add to redux state
+            dispatch({
+                type: "ADD_TO_CART",
+                payload: unique,
+            });
+        }
+    };
+
+
 
     const onCloseRatingModal = () => {
         isOpen(false );
@@ -103,13 +141,20 @@ const DetailsWithPrice2 = ({symbol, item, addToCartClicked, BuynowClicked, addTo
                     <div className="border-product" style={{paddingTop: '20px'}}>
                         {/*{item.size?*/}
 
+                        <button title={tooltip}
+                                onClick={handleAddToCart}
+                                className='btn btn-solid'
+                        >
+                            <i className="fa fa-shopping-cart" style={{marginRight: '5px'}} aria-hidden="true"></i>
+                            add to cart
+                        </button>
+                        {/*<div className="product-buttons" style={{marginBottom: '0'}}>*/}
+                        {/*    <a className="btn btn-solid" onClick={() => addToCartClicked(item, quantity)}>add to cart</a>*/}
 
-                        <div className="product-buttons" style={{marginBottom: '0'}}>
-                            <a className="btn btn-solid" onClick={() => addToCartClicked(item, quantity)}>add to cart</a>
                             {/*<Link to={`${process.env.PUBLIC_URL}/checkout`} className="btn btn-solid" onClick={() => BuynowClicked(item, this.state.quantity)} >*/}
                             {/*    buy now*/}
                             {/*</Link>*/}
-                        </div>
+                        {/*</div>*/}
 
 
 
