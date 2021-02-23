@@ -86,7 +86,7 @@ import FilterBar3 from "../collection/common/filter-bar3";
 import ProductListing from "../collection/common/product-listing";
 import StickyBox from "react-sticky-box";
 import {Link} from "react-router-dom";
-import {getCategory} from "../../functions/category";
+import {getCategory, getCategories} from "../../functions/category";
 import ProductListItem2 from "../collection/common/product-list-item2";
 // import {addToCart, addToCompare, addToWishlist} from "../../actions";
 import {getProducts, getProductsCount, fetchProductsByFilter, getProductsByCount} from "../../functions/product";
@@ -100,6 +100,8 @@ const Shop = () => {
     //
     const [product, setProduct] = useState([]);
     const [products, setProducts] = useState([]);
+    const [categories, setCategories] = useState([]);
+    const [categoryIds, setCategoryIds] = useState([]);
     const [price, setPrice] = useState({min: 0, max: 400});
     const [ok, setOk] = useState(false);
 
@@ -114,6 +116,8 @@ const Shop = () => {
 
     useEffect(() => {
         loadAllProducts();
+        // fetch categories
+        getCategories().then((res) => setCategories(res.data));
 
     }, []);
 
@@ -163,6 +167,64 @@ const Shop = () => {
 
 
 
+    // 4. load products based on category
+    // show categories in a list of checkbox
+    const showCategories = () =>
+        categories.map((c) => (
+            <div className="custom-control custom-checkbox collection-filter-checkbox"
+                     key={c._id}
+                >
+                {/*<Checkbox*/}
+                {/*    // onChange={handleCheck}*/}
+                {/*    className="pb-2 pl-4 pr-4"*/}
+                {/*    value={c._id}*/}
+                {/*    name="category"*/}
+                {/*    // checked={categoryIds.includes(c._id)}*/}
+                {/*>*/}
+                <input
+                    type="checkbox"
+                    // onClick={(e) => clickBrandHendle(e,filteredBrands)}
+                    value={c._id}
+                    name='category'
+                    onChange={handleCheck}
+                    checked={categoryIds.includes(c._id)}
+                    // defaultChecked={filteredBrands.includes(brand)? true : false}
+                    // className="custom-control-input" id={brand}
+                    style={{marginRight: '5px'}}
+                />
+                    {c.name}
+                {/*</Checkbox>*/}
+                <br />
+            </div>
+        ));
+
+
+    // handle check for categories
+    const handleCheck = (e) => {
+        // console.log(e.target.value);
+        // reset
+        dispatch({
+            type: "SEARCH_QUERY",
+            payload: { text: "" },
+        });
+        let inTheState = [...categoryIds];
+        let justChecked = e.target.value;
+        let foundInTheState = inTheState.indexOf(justChecked); // index or -1
+
+        // indexOf method ?? if not found returns -1 else return index [1,2,3,4,5]
+        if (foundInTheState === -1) {
+            inTheState.push(justChecked);
+        } else {
+            // if found pull out one item from index
+            inTheState.splice(foundInTheState, 1);
+        }
+
+        setCategoryIds(inTheState);
+        // console.log(inTheState);
+        fetchProducts({ category: inTheState });
+    };
+
+
     const handleSlider = (value) => {
         dispatch({
             type: "SEARCH_QUERY",
@@ -206,6 +268,9 @@ const Shop = () => {
                 <div className="collection-wrapper">
                     <div className="container">
                         <div className="row">
+
+
+
                             <div className="col-sm-3 collection-filter">
 
                                 <StickyBox offsetTop={20} offsetBottom={20}>
@@ -220,9 +285,9 @@ const Shop = () => {
                                         <div className="collection-filter-block">
                                             {/*brand filter start*/}
                                             <div className="collection-mobile-back">
-                        <span className="filter-back" onClick={(e) => closeFilter(e)} >
-                            <i className="fa fa-angle-left" aria-hidden="true"></i> back
-                        </span>
+                                            <span className="filter-back" onClick={(e) => closeFilter(e)} >
+                                                <i className="fa fa-angle-left" aria-hidden="true"></i> back
+                                            </span>
                                             </div>
                                             {/*price filter start here */}
                                             <SlideToggle>
@@ -239,30 +304,6 @@ const Shop = () => {
                                                                         onChange={handleSlider}
                                                                         formatLabel={value => `$${value}`}
                                                                     />
-
-
-
-                                                                    {/*<Slider*/}
-                                                                    {/*    className="ml-4 mr-4"*/}
-                                                                    {/*    tipFormatter={(v) => `$${v}`}*/}
-                                                                    {/*    range*/}
-                                                                    {/*    value={price}*/}
-                                                                    {/*    onChange={handleSlider}*/}
-                                                                    {/*    max="4999"*/}
-                                                                    {/*/>*/}
-
-
-
-
-                                                                    {/*<InputRange*/}
-                                                                    {/*    maxValue={20}*/}
-                                                                    {/*    minValue={0}*/}
-                                                                    {/*    formatLabel={value => `${value} kg`}*/}
-                                                                    {/*    value={this.state.value4}*/}
-                                                                    {/*    onChange={value => this.setState({ value4: value })}*/}
-                                                                    {/*    onChangeComplete={value => console.log(value)} />*/}
-
-
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -272,16 +313,24 @@ const Shop = () => {
                                             <SlideToggle>
                                                 {({onToggle, setCollapsibleElement}) => (
                                                     <div className="collection-collapse-block">
-                                                        <h3 className="collapse-block-title" onClick={onToggle}>brand</h3>
+                                                        <h3 className="collapse-block-title" onClick={onToggle}>categories</h3>
                                                         <div className="collection-collapse-block-content"  ref={setCollapsibleElement}>
                                                             <div className="collection-brand-filter">
                                                                 {/*{brands.map((brand, index) => {*/}
                                                                 {/*    return (*/}
-                                                                {/*        <div className="custom-control custom-checkbox collection-filter-checkbox" key={index}>*/}
-                                                                {/*            <input type="checkbox" onClick={(e) => clickBrandHendle(e,filteredBrands)} value={brand} defaultChecked={filteredBrands.includes(brand)? true : false}  className="custom-control-input" id={brand} />*/}
-                                                                {/*            <label className="custom-control-label"*/}
-                                                                {/*                   htmlFor={brand}>{brand}</label>*/}
-                                                                {/*        </div> )*/}
+
+                                                                            {/*{JSON.stringify((categories))}*/}
+
+                                                                {showCategories()}
+
+                                                                            {/*<label className="custom-control-label"*/}
+                                                                            {/*       // htmlFor={brand}*/}
+                                                                            {/*>*/}
+                                                                            {/*    /!*{brand}*!/*/}
+                                                                            {/*    test*/}
+                                                                            {/*</label>*/}
+
+                                                                {/*)*/}
                                                                 {/*})}*/}
                                                             </div>
                                                         </div>
@@ -321,6 +370,8 @@ const Shop = () => {
                                 </StickyBox>
                                 {/*side-bar banner end here*/}
                             </div>
+
+
                             <div className="collection-content col">
                                 <div className="page-main-content ">
                                     <div className="">
