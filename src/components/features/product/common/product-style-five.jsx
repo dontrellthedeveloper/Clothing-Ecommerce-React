@@ -300,6 +300,7 @@ import {showAverage} from "../../../../functions/rating";
 // import React, {Component} from 'react';
 // import {Link} from 'react-router-dom';
 // import Modal from 'react-responsive-modal';
+import _ from "lodash";
 
 
 const ProductStyleFive = ({props, product}) => {
@@ -313,6 +314,27 @@ const ProductStyleFive = ({props, product}) => {
 
     const onCloseModal = () => {
         isOpen(false );
+    };
+
+    const handleAddToCart = () => {
+      // create cart array
+      let cart = [];
+      if(typeof window !== 'undefined') {
+          // if cart is in localstorage GET it
+          if(localStorage.getItem('cart')) {
+              cart = JSON.parse(localStorage.getItem('cart'));
+          }
+          // push new product to cart
+          cart.push({
+              ...product,
+              count: 1,
+          })
+          // remove duplicates
+          let unique = _.uniqWith(cart, _.isEqual);
+          // save to local storage
+          // console.log('unique', unique)
+          localStorage.setItem("cart", JSON.stringify(unique));
+      }
     };
 
 
@@ -348,7 +370,7 @@ const ProductStyleFive = ({props, product}) => {
                     </div>
                     <div className="cart-box">
                         <button title="Add to cart"
-                                // onClick={() => onAddToCartClicked(product, 1)}
+                                onClick={handleAddToCart}
                         >
                             <i className="fa fa-shopping-cart" aria-hidden="true"></i>
                         </button>

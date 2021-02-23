@@ -10,6 +10,7 @@ import {getVisibleproducts} from '../../../services';
 import ProductListItem from "./product-list-item";
 import {getCategory} from "../../../functions/category";
 import {getProducts} from "../../../functions/product";
+import ProductItem from "../../features/product/common/product-style-five";
 
 
 const ProductListing = ({match, products,slug,setLoading,loading,category,setProducts}) => {
@@ -93,15 +94,25 @@ const ProductListing = ({match, products,slug,setLoading,loading,category,setPro
                                             // className={`'col-xl-3 col-md-6 col-grid-box':'col-lg-'+colSize}`}
                                             className="col-md-4"
                                             key={product._id}>
-                                        <ProductListItem product={product}
-                                                         category={category}
-                                                         // symbol={symbol}
-                                                         onAddToCompareClicked={() => addToCompare(product)}
-                                                         onAddToWishlistClicked={() => addToWishlist(product)}
-                                                         onAddToCartClicked={addToCart}
-                                                         slug={slug}
-                                                         // key={index}
-                                        />
+                                        {/*<ProductListItem product={product}*/}
+                                        {/*                 category={category}*/}
+                                        {/*                 // symbol={symbol}*/}
+                                        {/*                 onAddToCompareClicked={() => addToCompare(product)}*/}
+                                        {/*                 onAddToWishlistClicked={() => addToWishlist(product)}*/}
+                                        {/*                 onAddToCartClicked={addToCart}*/}
+                                        {/*                 slug={slug}*/}
+                                        {/*                 // key={index}*/}
+                                        {/*/>*/}
+
+
+                                            <ProductItem product={product}
+                                                         key={product._id}
+                                                // symbol={symbol}
+                                                // onAddToCompareClicked={() => addToCompare(product)}
+                                                // onAddToWishlistClicked={() => addToWishlist(product)}
+                                                // onAddToCartClicked={() => addToCart(product, 1)}
+                                                // key={index}
+                                            />
                                         </div>
                                     )}
                                 </div>

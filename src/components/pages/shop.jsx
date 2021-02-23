@@ -94,6 +94,7 @@ import {useSelector, useDispatch} from "react-redux";
 import {SlideToggle} from "react-slide-toggle";
 import InputRange from "react-input-range";
 import {Slider} from 'antd';
+import ProductItem from "../features/product/common/product-style-five";
 
 const Shop = () => {
     const [layoutColumns, setLayoutColumns] = useState(3);
@@ -441,14 +442,22 @@ const Shop = () => {
                                                                             className="col-md-4"
                                                                             key={product._id}
                                                                         >
-                                                                            <ProductListItem2
-                                                                                product={product}
-                                                                                key={product._id}
-                                                                                             // category={category}
-                                                                                             // onAddToCompareClicked={() => addToCompare(product)}
-                                                                                             // onAddToWishlistClicked={() => addToWishlist(product)}
-                                                                                             // onAddToCartClicked={addToCart}
-                                                                                             // slug={slug}
+                                                                            {/*<ProductListItem2*/}
+                                                                            {/*    product={product}*/}
+                                                                            {/*    key={product._id}*/}
+                                                                            {/*                 // category={category}*/}
+                                                                            {/*                 // onAddToCompareClicked={() => addToCompare(product)}*/}
+                                                                            {/*                 // onAddToWishlistClicked={() => addToWishlist(product)}*/}
+                                                                            {/*                 // onAddToCartClicked={addToCart}*/}
+                                                                            {/*                 // slug={slug}*/}
+                                                                            {/*/>*/}
+                                                                            <ProductItem product={product}
+                                                                                         key={product._id}
+                                                                                // symbol={symbol}
+                                                                                // onAddToCompareClicked={() => addToCompare(product)}
+                                                                                // onAddToWishlistClicked={() => addToWishlist(product)}
+                                                                                // onAddToCartClicked={() => addToCart(product, 1)}
+                                                                                // key={index}
                                                                             />
                                                                         </div>
                                                                     )}
