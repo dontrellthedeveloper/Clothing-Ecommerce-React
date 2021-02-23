@@ -301,10 +301,13 @@ import {showAverage} from "../../../../functions/rating";
 // import {Link} from 'react-router-dom';
 // import Modal from 'react-responsive-modal';
 import _ from "lodash";
+import {Tooltip} from "antd";
+import {toast} from "react-toastify";
 
 
 const ProductStyleFive = ({props, product}) => {
     const [open, isOpen] = useState(false);
+    const [tooltip, setTooltip] = useState("Click to add");
 
     const {images, title, description, price, slug} = product;
 
@@ -328,12 +331,14 @@ const ProductStyleFive = ({props, product}) => {
           cart.push({
               ...product,
               count: 1,
-          })
+          });
           // remove duplicates
           let unique = _.uniqWith(cart, _.isEqual);
           // save to local storage
           // console.log('unique', unique)
           localStorage.setItem("cart", JSON.stringify(unique));
+          // show tooltip
+          toast.success("Added");
       }
     };
 
@@ -369,12 +374,15 @@ const ProductStyleFive = ({props, product}) => {
                         {/*    alt="" /></Link>*/}
                     </div>
                     <div className="cart-box">
-                        <button title="Add to cart"
-                                onClick={handleAddToCart}
-                        >
-                            <i className="fa fa-shopping-cart" aria-hidden="true"></i>
-                        </button>
-                        <a href="javascript:void(0)" title="Add to Wishlist"
+
+                            <button title={tooltip}
+                                    onClick={handleAddToCart}
+                            >
+                                <i className="fa fa-shopping-cart" aria-hidden="true"></i>
+                            </button>
+
+
+                        <a href="javascript:void(0)" title="Add to favorites"
                            // onClick={onAddToWishlistClicked}
                         >
                             <i className="fa fa-heart" aria-hidden="true"></i>
