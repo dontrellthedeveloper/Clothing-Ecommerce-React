@@ -338,7 +338,7 @@ const ProductStyleFive = ({props, product}) => {
           // console.log('unique', unique)
           localStorage.setItem("cart", JSON.stringify(unique));
           // show tooltip
-          toast.success("Added");
+          toast.success(`Added ${title} to cart!`);
       }
     };
 

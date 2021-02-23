@@ -217,7 +217,7 @@ const HeaderOne = (props) => {
                                                     />
 
 
-													<CartContainer/>
+													{/*<CartContainer/>*/}
 												</ul>
 											</div>
 										</div>
