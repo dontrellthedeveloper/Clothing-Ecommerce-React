@@ -3,6 +3,7 @@ import {useSelector, useDispatch} from "react-redux";
 import {Link} from 'react-router-dom';
 import defaultImage from "../../images/default-product-image.png";
 import { toast } from "react-toastify";
+import ModalImage from 'react-modal-image';
 
 const ProductCardInCheckout = ({p}) => {
     let dispatch = useDispatch();
@@ -37,18 +38,51 @@ const ProductCardInCheckout = ({p}) => {
         }
     };
 
+
+    const handleRemove = () => {
+        // console.log(p._id, "to remove");
+        let cart = [];
+
+        if (typeof window !== "undefined") {
+            if (localStorage.getItem("cart")) {
+                cart = JSON.parse(localStorage.getItem("cart"));
+            }
+            // [1,2,3,4,5]
+            cart.map((product, i) => {
+                if (product._id === p._id) {
+                    cart.splice(i, 1);
+                }
+            });
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+            dispatch({
+                type: "ADD_TO_CART",
+                payload: cart,
+            });
+        }
+    };
+
+
     return (
     <tbody key={p._id}>
         <tr>
             <td>
                 <Link
 
-                    to={`${process.env.PUBLIC_URL}/left-sidebar/product/`}>
-                    <img src={p.images && p.images.length ? p.images[0].url : defaultImage} alt="" />
+                    to={`${process.env.PUBLIC_URL}/product/${p.slug}`}>
+                    <img src={p.images && p.images.length ? p.images[0].url : defaultImage}
+                         style={{
+                             // width: "100%",
+                             // padding: "20px",
+                             // height: "25vw",
+                             // border: '1px solid #e0e0e0',
+                             objectFit: 'cover'
+                         }}
+                         alt="" />
                 </Link>
             </td>
             <td>
-                <Link to={`${process.env.PUBLIC_URL}/left-sidebar/product/`}>
+                <Link to={`${process.env.PUBLIC_URL}/product/${p.slug}`}>
                     {p.title}
                 </Link>
                 <div className="mobile-cart-content row">
@@ -64,7 +98,7 @@ const ProductCardInCheckout = ({p}) => {
                     </div>
                     <div className="col-xs-3">
                         <h2 className="td-color">
-                           {/*{p.price}*/}
+                           {p.price}
                             {/*{symbol}{item.price-(item.price*item.discount/100)}*/}
                         </h2>
                     </div>
@@ -123,17 +157,21 @@ const ProductCardInCheckout = ({p}) => {
                     type="number"
                     className="form-control"
                     value={p.count}
+                    style={{textAlignLast: 'center'}}
                     onChange={handleQuantityChange}
                 />
             </td>
 
 
             <td>
-                <a href="#" className="icon"
-                   // onClick={() => this.props.removeFromCart(item)}
-                >
-                    <i className="fa fa-times"></i>
-                </a>
+                {/*<a href="#" className="icon"*/}
+                {/*    onClick={() => handleRemove(p._id)}*/}
+                {/*>*/}
+                    <i className="fa fa-times"
+                       style={{cursor: 'pointer'}}
+                       onClick={() => handleRemove(p._id)}
+                    ></i>
+                {/*</a>*/}
             </td>
             <td><h2 className="td-color">
                 {/*{symbol}{item.sum}*/}
