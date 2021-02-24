@@ -1,22 +1,19 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Helmet} from 'react-helmet'
 import { connect } from 'react-redux'
 import {Link} from 'react-router-dom'
+import {useSelector, useDispatch} from "react-redux";
 
 
 import Breadcrumb from "../common/breadcrumb";
 import {getCartTotal} from "../../services";
 import {removeFromCart, incrementQty, decrementQty} from '../../actions'
 
-class cartComponent extends Component {
 
-    constructor (props) {
-        super (props)
-    }
+const cartComponent = ({cartItems, symbol, total}) => {
+const {cart, user} = useSelector((state) => ({...state}));
+const dispatch = useDispatch();
 
-    render (){
-
-        const {cartItems, symbol, total} = this.props;
         return (
             <div>
                 {/*SEO Support*/}
@@ -148,14 +145,8 @@ class cartComponent extends Component {
             </div>
         )
     }
-}
-const mapStateToProps = (state) => ({
-    cartItems: state.cartList.cart,
-    symbol: state.data.symbol,
-    total: getCartTotal(state.cartList.cart)
-})
 
-export default connect(
-    mapStateToProps,
-    {removeFromCart, incrementQty, decrementQty}
-)(cartComponent)
+
+
+
+export default cartComponent;
