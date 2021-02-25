@@ -10,9 +10,10 @@ import {getCartTotal} from "../../services";
 import {removeFromCart, incrementQty, decrementQty} from '../../actions'
 import defaultImage from "../../images/default-product-image.png";
 import ProductCardInCheckout from './ProductCardInCheckout';
+import { userCart } from "../../functions/user";
 
 
-const cartComponent = ({cartItems, symbol, total}) => {
+const cartComponent = ({history}) => {
 const {cart, user} = useSelector((state) => ({...state}));
 const dispatch = useDispatch();
 
@@ -22,17 +23,18 @@ const getTotal = () => {
         }, 0);
     };
 
-console.log(getTotal());
+// console.log(getTotal());
 
 
 const saveOrderToDb = () => {
-    // console.log("cart", JSON.stringify(cart, null, 4));
-    // userCart(cart, user.token)
-    //     .then((res) => {
-    //         console.log("CART POST RES", res);
-    //         if (res.data.ok) history.push("/checkout");
-    //     })
-    //     .catch((err) => console.log("cart save err", err));
+
+    console.log("cart", JSON.stringify(cart, null, 4));
+    userCart(cart, user.token)
+        .then((res) => {
+            console.log("CART POST RES", res);
+            if (res.data.ok) history.push("/checkout");
+        })
+        .catch((err) => console.log("cart save err", err));
 };
 
 
