@@ -22,7 +22,7 @@ import SearchContainer from "../../forms/Search";
 
 const HeaderOne = (props) => {
     let dispatch = useDispatch();
-    let {user, cart} = useSelector((state) => ({...state}));
+    let {user, cart,drawer} = useSelector((state) => ({...state}));
     let history = useHistory();
 
     const [isLoading, setIsLoading] = useState(false);
@@ -218,6 +218,7 @@ const HeaderOne = (props) => {
 
 
 													<CartContainer
+                                                    visible={drawer}
                                                     cart={cart}
                                                     />
 												</ul>

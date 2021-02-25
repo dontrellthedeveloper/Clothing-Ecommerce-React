@@ -60,6 +60,11 @@ const DetailsWithPrice2 = ({symbol, item, addToCartClicked, BuynowClicked, addTo
                 type: "ADD_TO_CART",
                 payload: unique,
             });
+            // show cart items in side drawer
+            dispatch({
+                type: "SET_VISIBLE",
+                payload: true,
+            });
         }
     };
 

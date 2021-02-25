@@ -8,6 +8,7 @@ import { cartReducer } from "./cartReducer";
 import filtersReducer from './filters';
 import wishlistReducer from './wishlist';
 import compareReducer from './compare';
+import {drawerReducer} from './drawerReducer';
 
 import {userReducer} from './userReducer'
 import {searchReducer} from './searchReducer'
@@ -16,6 +17,7 @@ import {searchReducer} from './searchReducer'
 const rootReducer = combineReducers({
     data: productReducer,
     cart: cartReducer,
+    drawer: drawerReducer,
     filters: filtersReducer,
     wishlist: wishlistReducer,
     compare: compareReducer,

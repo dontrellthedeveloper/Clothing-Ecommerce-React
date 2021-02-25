@@ -3,24 +3,34 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import CartPage from '../components/common/headers/common/cart-header'
+import CartPage from '../components/common/headers/common/cart-header';
+import {useSelector, useDispatch} from 'react-redux';
 import {removeFromCart} from '../actions'
 import {getCartTotal} from '../services'
 
-const CartContainer = ({cart}) => (
+const CartContainer = () => {
+    const dispatch = useDispatch();
+    const {drawer, cart} = useSelector((state) => ({...state}));
+
+    return (
      <li  className="onhover-div mobile-cart"><div className="cart-qty-cls">{cart.length}</div>
         <Link to={`${process.env.PUBLIC_URL}/cart`}><img src={`${process.env.PUBLIC_URL}/assets/images/icon/cart.png`} className="img-fluid" alt=""/>
             <i className="fa fa-shopping-cart"></i></Link>
         <ul className="show-div shopping-cart">
-            {/*{ cartList.map((item,index) => (*/}
-                <CartPage
-                    // key={index}
-                    // item={item}
-                    // total={total}
-                    // symbol={symbol}
-                    // removeFromCart={() => removeFromCart(item)}
-                />
-            {/*))}*/}
+            { cart.map((p) => (
+            // {JSON.stringify(cart)}
+                <div key={p._id}>
+                    <CartPage
+                        p={p}
+                        // key={index}
+                        // item={item}
+                        // total={total}
+                        // symbol={symbol}
+                        // removeFromCart={() => removeFromCart(item)}
+                    />
+                </div>
+
+            ))}
             {/*{(cartList.length > 0) ?*/}
                 <div>
             <li>
@@ -41,7 +51,8 @@ const CartContainer = ({cart}) => (
         </ul>
 
     </li>
-);
+    )
+};
 
 
 // function mapStateToProps(state) {
