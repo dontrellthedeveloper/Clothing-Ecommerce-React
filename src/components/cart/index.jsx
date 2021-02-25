@@ -22,6 +22,9 @@ const getTotal = () => {
         }, 0);
     };
 
+console.log(getTotal());
+
+
 const saveOrderToDb = () => {
     // console.log("cart", JSON.stringify(cart, null, 4));
     // userCart(cart, user.token)
@@ -181,7 +184,7 @@ const saveOrderToDb = () => {
                                         <td>total price :</td>
                                         {/*<td><h2>{symbol} {total} </h2></td>*/}
                                         <td><h2>
-                                            ${getTotal()}
+                                            ${getTotal().toFixed(2)}
                                         </h2></td>
                                     </tr>
                                     </tfoot>
@@ -199,7 +202,7 @@ const saveOrderToDb = () => {
 
                                     </div>
                                 ))}
-                                <p style={{borderTop: '1px solid #dee2e6', paddingTop: '15px'}}><b>Total Price: ${getTotal()}</b></p>
+                                <p style={{borderTop: '1px solid #dee2e6', paddingTop: '15px'}}><b>Total Price: ${getTotal().toFixed(2)}</b></p>
 
                                 {
                                     user ? (
