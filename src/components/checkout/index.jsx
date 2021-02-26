@@ -132,10 +132,17 @@ const checkOut = () => {
                                                         <div>Product <span> Total</span></div>
                                                     </div>
                                                     <ul className="qty">
-                                                        {/*{cartItems.map((item, index) => {*/}
-                                                        {/*    return <li key={index}>{item.name} × {item.qty} <span>{symbol} {item.sum}</span></li> })*/}
-                                                        {/*}*/}
-                                                        {JSON.stringify(products)}
+                                                        {products.map((p, i) => {
+                                                            return <li key={i}>{p.product.title} × {p.count}
+                                                            <span>
+                                                                {/*{symbol} {item.sum}*/}
+                                                                {p.product.price * p.count}
+                                                            </span>
+                                                            </li>
+                                                        }
+                                                                )
+                                                        }
+                                                        {/*{JSON.stringify(products)}*/}
                                                     </ul>
                                                     <ul className="sub-total">
                                                         {/*<li>Subtotal <span className="count">{symbol}{total}</span></li>*/}
@@ -153,7 +160,9 @@ const checkOut = () => {
                                                     </ul>
 
                                                     <ul className="total">
-                                                        {/*<li>Total <span className="count">{symbol}{total}</span></li>*/}
+                                                         <li >Total <span className="count">
+                                                            {total.toFixed(2)}
+                                                            </span></li>
                                                     </ul>
                                                 </div>
 
