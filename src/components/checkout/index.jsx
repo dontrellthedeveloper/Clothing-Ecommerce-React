@@ -4,6 +4,7 @@ import {Helmet} from 'react-helmet'
 import {
     getUserCart
 } from "../../functions/user";
+import { toast } from "react-toastify";
 import {Link, Redirect } from 'react-router-dom'
 import PaypalExpressBtn from 'react-paypal-express-checkout';
 import SimpleReactValidator from 'simple-react-validator';
@@ -11,6 +12,7 @@ import SimpleReactValidator from 'simple-react-validator';
 import Breadcrumb from "../common/breadcrumb";
 import {removeFromWishlist} from '../../actions'
 import {getCartTotal} from "../../services";
+import {emptyUserCart} from "../../functions/user";
 
 const checkOut = () => {
     const [products, setProducts] = useState([]);
@@ -29,6 +31,23 @@ const checkOut = () => {
         });
     }, []);
 
+    const emptyCart = () => {
+        // remove from local storage
+        if (typeof window !== "undefined") {
+            localStorage.removeItem("cart");
+        }
+        // remove from redux
+        dispatch({
+            type: "ADD_TO_CART",
+            payload: [],
+        });
+        // remove from backend
+        emptyUserCart(user.token).then((res) => {
+            setProducts([]);
+            setTotal(0);
+            toast.success("Cart is empty. Continue shopping.");
+        });
+    }
 
     const saveAddressToDb = () => {
 
@@ -195,7 +214,8 @@ const checkOut = () => {
                                                                 <button
                                                                     type="button"
                                                                     className="btn-solid btn"
-                                                                    // onClick={() => this.StripeClick()}
+                                                                    disabled={!products.length}
+                                                                    onClick={emptyCart}
                                                                 >
                                                                     Empty Cart
                                                                 </button>
