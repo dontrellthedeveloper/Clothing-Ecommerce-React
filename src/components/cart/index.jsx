@@ -26,16 +26,15 @@ const getTotal = () => {
 // console.log(getTotal());
 
 
-const saveOrderToDb = () => {
-
-    console.log("cart", JSON.stringify(cart, null, 4));
-    userCart(cart, user.token)
-        .then((res) => {
-            console.log("CART POST RES", res);
-            if (res.data.ok) history.push("/checkout");
-        })
-        .catch((err) => console.log("cart save err", err));
-};
+    const saveOrderToDb = () => {
+        // console.log("cart", JSON.stringify(cart, null, 4));
+        userCart(cart, user.token)
+            .then((res) => {
+                console.log("CART POST RES", res);
+                if (res.data.ok) history.push("/checkout");
+            })
+            .catch((err) => console.log("cart save err", err));
+    };
 
 
 

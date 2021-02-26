@@ -1,6 +1,9 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect} from 'react';
+import { useSelector, useDispatch } from "react-redux";
 import {Helmet} from 'react-helmet'
-import { connect } from 'react-redux'
+import {
+    getUserCart
+} from "../../functions/user";
 import {Link, Redirect } from 'react-router-dom'
 import PaypalExpressBtn from 'react-paypal-express-checkout';
 import SimpleReactValidator from 'simple-react-validator';
@@ -10,104 +13,26 @@ import {removeFromWishlist} from '../../actions'
 import {getCartTotal} from "../../services";
 
 const checkOut = () => {
+    const [products, setProducts] = useState([]);
+    const [total, setTotal] = useState(0);
+
+    const dispatch = useDispatch();
+
+    const { user } = useSelector((state) => ({ ...state }));
 
 
-    // constructor (props) {
-    //     super (props)
-    //
-    //     this.state = {
-    //         payment:'stripe',
-    //         first_name:'',
-    //         last_name:'',
-    //         phone:'',
-    //         email:'',
-    //         country:'',
-    //         address:'',
-    //         city:'',
-    //         state:'',
-    //         pincode:'',
-    //         create_account: ''
-    //     }
-    //     this.validator = new SimpleReactValidator();
-    // }
-
-    // setStateFromInput = (event) => {
-    //     var obj = {};
-    //     obj[event.target.name] = event.target.value;
-    //     this.setState(obj);
-    //
-    //   }
-    //
-    //   setStateFromCheckbox = (event) => {
-    //       var obj = {};
-    //       obj[event.target.name] = event.target.checked;
-    //       this.setState(obj);
-    //
-    //       if(!this.validator.fieldValid(event.target.name))
-    //       {
-    //           this.validator.showMessages();
-    //       }
-    //     }
-    //
-    // checkhandle(value) {
-    //     this.setState({
-    //         payment: value
-    //     })
-    // }
-
-    // StripeClick = () => {
-    //
-    //     if (this.validator.allValid()) {
-    //         alert('You submitted the form and stuff!');
-    //
-    //         var handler = (window).StripeCheckout.configure({
-    //             key: 'pk_test_glxk17KhP7poKIawsaSgKtsL',
-    //             locale: 'auto',
-    //             token: (token: any) => {
-    //                 console.log(token)
-    //                   this.props.history.push({
-    //                       pathname: '/order-success',
-    //                           state: { payment: token, items: this.props.cartItems, orderTotal: this.props.total, symbol: this.props.symbol }
-    //                   })
-    //             }
-    //           });
-    //           handler.open({
-    //             name: 'Multikart',
-    //             description: 'Online Fashion Store',
-    //             amount: this.amount * 100
-    //           })
-    //     } else {
-    //       this.validator.showMessages();
-    //       // rerender to show messages for the first time
-    //       this.forceUpdate();
-    //     }
-    // }
+    useEffect(() => {
+        getUserCart(user.token).then((res) => {
+            console.log("user cart res", JSON.stringify(res.data, null, 4));
+            setProducts(res.data.products);
+            setTotal(res.data.cartTotal);
+        });
+    }, []);
 
 
-        // const {cartItems, symbol, total} = this.props;
-        //
-        // // Paypal Integration
-        // const onSuccess = (payment) => {
-        //     console.log("The payment was succeeded!", payment);
-        //     this.props.history.push({
-        //         pathname: '/order-success',
-        //             state: { payment: payment, items: cartItems, orderTotal: total, symbol: symbol }
-        //     })
-        //
-        // }
-        //
-        // const onCancel = (data) => {
-        //     console.log('The payment was cancelled!', data);
-        // }
-        //
-        // const onError = (err) => {
-        //     console.log("Error!", err);
-        // }
-        //
-        // const client = {
-        //     sandbox:    'AZ4S98zFa01vym7NVeo_qthZyOnBhtNvQDsjhaZSMH-2_Y9IAJFbSD3HPueErYqN8Sa8WYRbjP7wWtd_',
-        //     production: 'AZ4S98zFa01vym7NVeo_qthZyOnBhtNvQDsjhaZSMH-2_Y9IAJFbSD3HPueErYqN8Sa8WYRbjP7wWtd_',
-        // }
+    const saveAddressToDb = () => {
+
+    };
 
 
         return (
@@ -154,16 +79,23 @@ const checkOut = () => {
                                                     {/*{this.validator.message('email', this.state.email, 'required|email')}*/}
                                                 </div>
                                                 <div className="form-group col-md-12 col-sm-12 col-xs-12">
-                                                    <div className="field-label">Country</div>
-                                                    <select name="country"
-                                                            // value={this.state.country}
-                                                            // onChange={this.setStateFromInput}
+                                                    {/*<div className="field-label">Country</div>*/}
+                                                    {/*<select name="country"*/}
+                                                    {/*        // value={this.state.country}*/}
+                                                    {/*        // onChange={this.setStateFromInput}*/}
+                                                    {/*>*/}
+                                                    {/*    <option>India</option>*/}
+                                                    {/*    <option>South Africa</option>*/}
+                                                    {/*    <option>United State</option>*/}
+                                                    {/*    <option>Australia</option>*/}
+                                                    {/*</select>*/}
+                                                    <button
+
+                                                        className="btn-solid btn"
+                                                        onClick={saveAddressToDb}
                                                     >
-                                                        <option>India</option>
-                                                        <option>South Africa</option>
-                                                        <option>United State</option>
-                                                        <option>Australia</option>
-                                                    </select>
+                                                        Save
+                                                    </button>
                                                     {/*{this.validator.message('country', this.state.country, 'required')}*/}
                                                 </div>
                                                 <div className="form-group col-md-12 col-sm-12 col-xs-12">
@@ -203,6 +135,7 @@ const checkOut = () => {
                                                         {/*{cartItems.map((item, index) => {*/}
                                                         {/*    return <li key={index}>{item.name} × {item.qty} <span>{symbol} {item.sum}</span></li> })*/}
                                                         {/*}*/}
+                                                        {JSON.stringify(products)}
                                                     </ul>
                                                     <ul className="sub-total">
                                                         {/*<li>Subtotal <span className="count">{symbol}{total}</span></li>*/}
