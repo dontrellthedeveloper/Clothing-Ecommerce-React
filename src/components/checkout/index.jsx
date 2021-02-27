@@ -2,21 +2,41 @@ import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import {Helmet} from 'react-helmet'
 import {
-    getUserCart
+    getUserCart,
+    saveUserAddress
 } from "../../functions/user";
 import { toast } from "react-toastify";
 import {Link, Redirect } from 'react-router-dom'
 import PaypalExpressBtn from 'react-paypal-express-checkout';
 import SimpleReactValidator from 'simple-react-validator';
+import ReactQuill from "react-quill";
+import 'react-quill/dist/quill.snow.css';
 
 import Breadcrumb from "../common/breadcrumb";
 import {removeFromWishlist} from '../../actions'
 import {getCartTotal} from "../../services";
 import {emptyUserCart} from "../../functions/user";
 
-const checkOut = () => {
+const checkOut = ({history}) => {
     const [products, setProducts] = useState([]);
     const [total, setTotal] = useState(0);
+    const [address, setAddress] = useState('' +
+        '<li>First Name:</li>' +
+        '<br/>' +
+        '<li>Last Name:</li>' +
+        '<br/>' +
+        '<li>Phone:</li>' +
+        '<br/>' +
+        '<li>Email Address:</li>' +
+        '<br/>' +
+        '<li>Address:</li>' +
+        '<br/>' +
+        '<li>Town/City:</li>' +
+        '<br/>' +
+        '<li>State/County:</li>' +
+        '<br/>' +
+        '<li>Zip:</li>');
+    const [addressSaved, setAddressSaved] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -30,6 +50,8 @@ const checkOut = () => {
             setTotal(res.data.cartTotal);
         });
     }, []);
+
+
 
     const emptyCart = () => {
         // remove from local storage
@@ -49,9 +71,18 @@ const checkOut = () => {
         });
     }
 
-    const saveAddressToDb = () => {
 
+
+    const saveAddressToDb = () => {
+        console.log(address);
+        saveUserAddress(user.token, address).then((res) => {
+            if (res.data.ok) {
+                setAddressSaved(true);
+                toast.success("Address saved");
+            }
+        });
     };
+
 
 
         return (
@@ -70,34 +101,15 @@ const checkOut = () => {
                     <div className="container padding-cls">
                         <div className="checkout-page">
                             <div className="checkout-form">
-                                <form>
+                                <>
                                     <div className="checkout row">
-                                        <div className="col-lg-6 col-sm-12 col-xs-12">
+                                        <div className="col-lg-6 col-sm-12 col-xs-12" style={{textAlign: 'center'}}>
                                             <div className="checkout-title">
                                                 <h3>Billing Details</h3>
                                             </div>
+
                                             <div className="row check-out">
-                                                <div className="form-group col-md-6 col-sm-6 col-xs-12">
-                                                    <div className="field-label">First Name</div>
-                                                    {/*<input type="text" name="first_name" value={this.state.first_name} onChange={this.setStateFromInput} />*/}
-                                                    {/*{this.validator.message('first_name', this.state.first_name, 'required|alpha')}*/}
-                                                </div>
-                                                <div className="form-group col-md-6 col-sm-6 col-xs-12">
-                                                    <div className="field-label">Last Name</div>
-                                                    {/*<input type="text" name="last_name" value={this.state.last_name} onChange={this.setStateFromInput} />*/}
-                                                    {/*{this.validator.message('last_name', this.state.last_name, 'required|alpha')}*/}
-                                                </div>
-                                                <div className="form-group col-md-6 col-sm-6 col-xs-12">
-                                                    <div className="field-label">Phone</div>
-                                                    {/*<input type="text" name="phone"  value={this.state.phone} onChange={this.setStateFromInput} />*/}
-                                                    {/*{this.validator.message('phone', this.state.phone, 'required|phone')}*/}
-                                                </div>
-                                                <div className="form-group col-md-6 col-sm-6 col-xs-12">
-                                                    <div className="field-label">Email Address</div>
-                                                    {/*<input type="text" name="email" value={this.state.email} onChange={this.setStateFromInput} />*/}
-                                                    {/*{this.validator.message('email', this.state.email, 'required|email')}*/}
-                                                </div>
-                                                <div className="form-group col-md-12 col-sm-12 col-xs-12">
+                                                <div className="col-md-12 col-sm-12 col-xs-12" >
                                                     {/*<div className="field-label">Country</div>*/}
                                                     {/*<select name="country"*/}
                                                     {/*        // value={this.state.country}*/}
@@ -108,35 +120,43 @@ const checkOut = () => {
                                                     {/*    <option>United State</option>*/}
                                                     {/*    <option>Australia</option>*/}
                                                     {/*</select>*/}
+
+                                                    <ReactQuill theme="snow" value={address} onChange={setAddress} />
+
+                                                        {/*<ul>*/}
+                                                        {/*    <li><b>First Name:</b></li>*/}
+                                                        {/*    <br/>*/}
+                                                        {/*    <li><b>Last Name:</b></li>*/}
+                                                        {/*    <br/>*/}
+                                                        {/*    <li><b>Phone:</b></li>*/}
+                                                        {/*    <br/>*/}
+                                                        {/*    <li><b>Email Address:</b></li>*/}
+                                                        {/*    <br/>*/}
+                                                        {/*    <li><b>Address:</b></li>*/}
+                                                        {/*    <br/>*/}
+                                                        {/*    <li><b>Town/City:</b></li>*/}
+                                                        {/*    <br/>*/}
+                                                        {/*    <li><b>State/County:</b></li>*/}
+                                                        {/*    <br/>*/}
+                                                        {/*    <li><b>Postal Code:</b></li>*/}
+
+                                                        {/*</ul>*/}
+
+
                                                     <button
 
                                                         className="btn-solid btn"
+                                                        style={{marginTop: '20px'}}
                                                         onClick={saveAddressToDb}
                                                     >
-                                                        Save
+
+                                                            Save
+
+
                                                     </button>
                                                     {/*{this.validator.message('country', this.state.country, 'required')}*/}
                                                 </div>
-                                                <div className="form-group col-md-12 col-sm-12 col-xs-12">
-                                                    <div className="field-label">Address</div>
-                                                    {/*<input type="text" name="address" value={this.state.address} onChange={this.setStateFromInput} placeholder="Street address" />*/}
-                                                    {/*{this.validator.message('address', this.state.address, 'required|min:20|max:120')}*/}
-                                                </div>
-                                                <div className="form-group col-md-12 col-sm-12 col-xs-12">
-                                                    <div className="field-label">Town/City</div>
-                                                    {/*<input type="text" name="city" value={this.state.city} onChange={this.setStateFromInput} />*/}
-                                                    {/*{this.validator.message('city', this.state.city, 'required|alpha')}*/}
-                                                </div>
-                                                <div className="form-group col-md-12 col-sm-6 col-xs-12">
-                                                    <div className="field-label">State / County</div>
-                                                    {/*<input type="text" name="state" value={this.state.state} onChange={this.setStateFromInput} />*/}
-                                                    {/*{this.validator.message('state', this.state.state, 'required|alpha')}*/}
-                                                </div>
-                                                <div className="form-group col-md-12 col-sm-6 col-xs-12">
-                                                    <div className="field-label">Postal Code</div>
-                                                    {/*<input type="text" name="pincode" value={this.state.spincode} onChange={this.setStateFromInput} />*/}
-                                                    {/*{this.validator.message('pincode', this.state.pincode, 'required|integer')}*/}
-                                                </div>
+
                                                 <div className="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                     {/*<input type="checkbox" name="create_account" id="account-option"  checked={this.state.create_account} onChange={this.setStateFromCheckbox}/>*/}
                                                     &ensp; <label htmlFor="account-option">Got a Coupon?</label>
@@ -224,6 +244,7 @@ const checkOut = () => {
                                                                 <button
                                                                     type="button"
                                                                     className="btn-solid btn"
+                                                                    disabled={!addressSaved || !products.length}
                                                                     // onClick={() => this.StripeClick()}
                                                                 >
                                                                     Place Order
@@ -304,7 +325,7 @@ const checkOut = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </form>
+                                </>
                             </div>
                         </div>
                     </div>
