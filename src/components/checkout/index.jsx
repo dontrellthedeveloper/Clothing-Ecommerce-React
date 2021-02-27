@@ -37,6 +37,10 @@ const checkOut = ({history}) => {
         '<br/>' +
         '<li>Zip:</li>');
     const [addressSaved, setAddressSaved] = useState(false);
+    const [coupon, setCoupon] = useState("");
+    // discount price
+    const [totalAfterDiscount, setTotalAfterDiscount] = useState(0);
+    const [discountError, setDiscountError] = useState("");
 
     const dispatch = useDispatch();
 
@@ -69,7 +73,7 @@ const checkOut = ({history}) => {
             setTotal(0);
             toast.success("Cart is empty. Continue shopping.");
         });
-    }
+    };
 
 
 
@@ -82,6 +86,76 @@ const checkOut = ({history}) => {
             }
         });
     };
+
+
+    const applyDiscountCoupon = () => {
+        console.log("send coupon to backend", coupon);
+        // applyCoupon(user.token, coupon).then((res) => {
+        //     console.log("RES ON COUPON APPLIED", res.data);
+        //     if (res.data) {
+        //         setTotalAfterDiscount(res.data);
+        //         // update redux coupon applied true/false
+        //         dispatch({
+        //             type: "COUPON_APPLIED",
+        //             payload: true,
+        //         });
+        //     }
+        //     // error
+        //     if (res.data.err) {
+        //         setDiscountError(res.data.err);
+        //         // update redux coupon applied true/false
+        //         dispatch({
+        //             type: "COUPON_APPLIED",
+        //             payload: false,
+        //         });
+        //     }
+        // });
+    };
+
+
+
+    const showAddress = () => (
+        <>
+            <ReactQuill theme="snow" value={address} onChange={setAddress} />
+            <button
+                className="btn-solid btn"
+                style={{marginTop: '20px'}}
+                onClick={saveAddressToDb}
+            >
+                Save
+            </button>
+        </>
+    );
+
+    const showProductSummary = () =>
+    {products.map((p, i) => {
+            return <li key={i}>{p.product.title} × {p.count}
+                <span>
+                    {p.product.price * p.count}
+                </span>
+            </li>
+        })};
+
+
+    const showApplyCoupon = () => (
+        <>
+            <input
+                onChange={(e) => {
+                    setCoupon(e.target.value);
+                    setDiscountError("");
+                }}
+                value={coupon}
+                type="text"
+                style={{textAlign: 'center'}}
+                className="form-control"
+            />
+            <button onClick={applyDiscountCoupon}
+                    style={{marginTop: '20px'}}
+                    className="btn-solid btn">
+                Apply
+            </button>
+        </>
+    );
 
 
 
@@ -121,46 +195,26 @@ const checkOut = ({history}) => {
                                                     {/*    <option>Australia</option>*/}
                                                     {/*</select>*/}
 
-                                                    <ReactQuill theme="snow" value={address} onChange={setAddress} />
+                                                    {showAddress()}
 
-                                                        {/*<ul>*/}
-                                                        {/*    <li><b>First Name:</b></li>*/}
-                                                        {/*    <br/>*/}
-                                                        {/*    <li><b>Last Name:</b></li>*/}
-                                                        {/*    <br/>*/}
-                                                        {/*    <li><b>Phone:</b></li>*/}
-                                                        {/*    <br/>*/}
-                                                        {/*    <li><b>Email Address:</b></li>*/}
-                                                        {/*    <br/>*/}
-                                                        {/*    <li><b>Address:</b></li>*/}
-                                                        {/*    <br/>*/}
-                                                        {/*    <li><b>Town/City:</b></li>*/}
-                                                        {/*    <br/>*/}
-                                                        {/*    <li><b>State/County:</b></li>*/}
-                                                        {/*    <br/>*/}
-                                                        {/*    <li><b>Postal Code:</b></li>*/}
-
-                                                        {/*</ul>*/}
-
-
-                                                    <button
-
-                                                        className="btn-solid btn"
-                                                        style={{marginTop: '20px'}}
-                                                        onClick={saveAddressToDb}
-                                                    >
-
-                                                            Save
-
-
-                                                    </button>
-                                                    {/*{this.validator.message('country', this.state.country, 'required')}*/}
+                                                    {/*<ReactQuill theme="snow" value={address} onChange={setAddress} />*/}
+                                                    {/*<button*/}
+                                                    {/*    className="btn-solid btn"*/}
+                                                    {/*    style={{marginTop: '20px'}}*/}
+                                                    {/*    onClick={saveAddressToDb}*/}
+                                                    {/*>*/}
+                                                    {/*        Save*/}
+                                                    {/*</button>*/}
                                                 </div>
 
                                                 <div className="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                     {/*<input type="checkbox" name="create_account" id="account-option"  checked={this.state.create_account} onChange={this.setStateFromCheckbox}/>*/}
-                                                    &ensp; <label htmlFor="account-option">Got a Coupon?</label>
+                                                    {/*&ensp; <label htmlFor="account-option">Got a Coupon?</label>*/}
                                                     {/*{this.validator.message('checkbox', this.state.create_account, 'create_account')}*/}
+                                                    <div className="checkout-title" style={{marginTop: '60px'}}>
+                                                        <h4>Got a Coupon?</h4>
+                                                    </div>
+                                                    {showApplyCoupon()}
                                                 </div>
                                             </div>
                                         </div>
@@ -171,6 +225,8 @@ const checkOut = ({history}) => {
                                                         <div>Product <span> Total</span></div>
                                                     </div>
                                                     <ul className="qty">
+
+                                                        {/*{showProductSummary()}*/}
                                                         {products.map((p, i) => {
                                                             return <li key={i}>{p.product.title} × {p.count}
                                                             <span>
