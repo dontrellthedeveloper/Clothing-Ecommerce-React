@@ -21,8 +21,6 @@ const createCouponPage = (props) => {
     const [coupons, setCoupons] = useState([]);
 
 
-    //step 1
-    const [keyword, setKeyword] = useState("");
 
     useEffect(() => {
         loadAllCoupons();
@@ -46,34 +44,35 @@ const createCouponPage = (props) => {
             .catch((err) => console.log("create coupon err", err));
     };
 
-    const handeRemove = async (slug) => {
-        // let answer = window.confirm("Are you sure you want to delete");
-        // console.log(answer, slug );
-        // if(window.confirm("Are you sure you want to delete?")) {
-        //     setLoading(true)
-        //     removeCategory(slug, user.token)
-        //         .then((res) => {
-        //             setLoading(false);
-        //             toast.error(`${res.data.name} deleted`);
-        //             loadCategories();
-        //         })
-        //         .catch((err) => {
-        //             if(err.response.status === 400) {
-        //                 setLoading(false);
-        //                 toast.error(err.response.data);
-        //             }
-        //         });
-        // }
+    const handleRemove = couponId => {
+
+        if(window.confirm("Delete?")) {
+            setLoading(true);
+            removeCoupon(couponId, user.token)
+
+                .then((res) => {
+                    loadAllCoupons();
+                    setLoading(false);
+                    toast.error(`Coupon ${res.data.name} deleted`);
+
+                })
+                .catch((err) => {
+                    if(err.response.status === 400) {
+                        setLoading(false);
+                        toast.error(err.response.data);
+                    }
+                });
+        }
     };
 
-    /*{Step 3}*/
-    const handleSearchChange = (e) => {
-        e.preventDefault();
-        setKeyword(e.target.value.toLowerCase());
-    };
-
-    /*{Step 4}*/
-    const searched = (keyword) => (c) => c.name.toLowerCase().includes(keyword);
+    // /*{Step 3}*/
+    // const handleSearchChange = (e) => {
+    //     e.preventDefault();
+    //     setKeyword(e.target.value.toLowerCase());
+    // };
+    //
+    // /*{Step 4}*/
+    // const searched = (keyword) => (c) => c.name.toLowerCase().includes(keyword);
 
     return (
         <div>
@@ -161,19 +160,44 @@ const createCouponPage = (props) => {
 
                                         {/*{Step 2}*/}
                                         {/*<label style={{marginTop: "40px"}}>Filter Categories</label>*/}
-                                        <input
-                                            type="search"
-                                            placeholder="Filter Category"
-                                            value={keyword}
-                                            onChange={handleSearchChange}
-                                            className="form-control mb-4"
-                                            style={{margin: "40px auto 50px auto", width: '50%', textAlign: "center"}}
-                                        />
+                                        {/*<input*/}
+                                        {/*    type="search"*/}
+                                        {/*    placeholder="Filter Category"*/}
+                                        {/*    value={keyword}*/}
+                                        {/*    onChange={handleSearchChange}*/}
+                                        {/*    className="form-control mb-4"*/}
+                                        {/*    style={{margin: "40px auto 50px auto", width: '50%', textAlign: "center"}}*/}
+                                        {/*/>*/}
 
-                                        <h4 style={{marginTop: "50px"}}>
+                                        <table className='table table-bordered'>
+                                            <thead className='thead-light'>
+                                                <tr>
+                                                    <th scope='col'>Name</th>
+                                                    <th scope='col'>Expires</th>
+                                                    <th scope='col'>Discount</th>
+                                                    <th scope='col'>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            {coupons.map((c) => (
+                                                <tr key={c._id}>
+                                                    <td>{c.name}</td>
+                                                    <td>{new Date(c.expiry).toLocaleDateString()}</td>
+                                                    <td>{c.discount}%</td>
+                                                    <td>
+                                                        <DeleteOutlined
+                                                            onClick={() => handleRemove(c._id)}
+                                                            className='text-danger pointer'/>
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                            </tbody>
+                                        </table>
+                                        {/*<h4 style={{marginTop: "50px"}}>*/}
 
                                             {/* Step 5 */}
-                                            {/*{categories.filter(searched(keyword)).map((c) => (*/}
+
+                                            {/*{coupons.map((c) => (*/}
                                             {/*    <div className="alert alert-secondary" style={{ textAlign: "left"}} key={c._id}>*/}
                                             {/*        {c.name}*/}
                                             {/*        <div className="btn btn-sm" style={{float: "right", marginTop: "-5px"}}>*/}
@@ -187,7 +211,7 @@ const createCouponPage = (props) => {
                                             {/*        </div>*/}
                                             {/*    </div>*/}
                                             {/*))}*/}
-                                        </h4>
+                                        {/*</h4>*/}
 
 
                                     </div>
