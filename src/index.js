@@ -44,6 +44,7 @@ import SubUpdate from './components/pages/admin/sub/SubUpdate';
 import ProductCreate from './components/pages/admin/product/ProductCreate';
 import AllProducts from './components/pages/admin/product/AllProducts';
 import ProductUpdate from './components/pages/admin/product/ProductUpdate';
+import CreateCouponPage from './components/pages/admin/coupon/CreateCouponPage';
 
 // User Routes
 import UserRoute from "./components/routes/UserRoute";
@@ -250,6 +251,7 @@ const Root = () => {
                                         <AdminRoute exact path={`${process.env.PUBLIC_URL}/admin/product`} component={ProductCreate}/>
                                         <AdminRoute exact path={`${process.env.PUBLIC_URL}/admin/products`} component={AllProducts}/>
                                         <AdminRoute exact path={`${process.env.PUBLIC_URL}/admin/product/:slug`} component={ProductUpdate}/>
+                                        <AdminRoute exact path={`${process.env.PUBLIC_URL}/admin/coupon`} component={CreateCouponPage}/>
 
 
                                         <Route exact path={`${process.env.PUBLIC_URL}/product/:slug`} component={SingleProduct}/>
