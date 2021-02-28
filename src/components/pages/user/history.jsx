@@ -6,6 +6,14 @@ import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 import ShowPaymentInfo from "../../../components/cards/ShowPaymentInfo";
 import { getUserOrders } from "../../../functions/user";
 import { useSelector, useDispatch } from "react-redux";
+import { PDFDownloadLink,
+Page,
+    Text,
+    View,
+    Stylesheet,
+    PDFViewer
+} from "@react-pdf/renderer";
+import Invoice from "../../../components/order/Invoice";
 
 const UserHistory = (props) => {
     const [orders, setOrders] = useState([]);
@@ -65,9 +73,7 @@ const UserHistory = (props) => {
                 <ShowPaymentInfo order={order} />
                 {showOrderInTable(order)}
                 <div className="row">
-                    <div className="col">
-                        <p>PDF download</p>
-                    </div>
+                    <div className="col">{showDownloadLink(order)}</div>
                 </div>
             </div>
         ));
@@ -77,7 +83,7 @@ const UserHistory = (props) => {
             <div className="col-sm-12">
                 <div className="box">
                     <div style={{marginTop: '30px'}} className="box-title">
-                        <h3 style={{fontWeight: '600'}}>User Purchase Orders</h3>
+                        <h3 style={{fontWeight: '600'}}>{user.name}'s Orders History</h3>
                         {/*<a href="#">Edit</a>*/}
                     </div>
                     <div className="box-content">
@@ -89,6 +95,15 @@ const UserHistory = (props) => {
     );
 
 
+    const showDownloadLink = (order) => (
+        <PDFDownloadLink
+            document={<Invoice order={order} />}
+            fileName="invoice.pdf"
+            className="btn-solid btn"
+        >
+            Download PDF
+        </PDFDownloadLink>
+    );
 
     return (
         <div>
