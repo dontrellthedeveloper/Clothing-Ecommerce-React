@@ -3,8 +3,9 @@ import {Link} from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import defaultImage from "../../../../images/default-product-image.png";
 import {showAverage} from "../../../../functions/rating";
-
+import { addToWishlist } from "../../../../functions/user";
 import {useSelector, useDispatch} from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import _ from "lodash";
 import {Tooltip} from "antd";
@@ -20,6 +21,9 @@ const ProductStyleFive = ({props, product}) => {
     const dispatch = useDispatch();
 
     const {images, title, description, price, slug} = product;
+
+    // router
+    let history = useHistory();
 
     const onOpenModal = () => {
         isOpen(true );
@@ -60,6 +64,16 @@ const ProductStyleFive = ({props, product}) => {
               payload: true,
           });
       }
+    };
+
+
+    const handleAddToWishlist = (e) => {
+        e.preventDefault();
+        addToWishlist(product._id, user.token).then((res) => {
+            console.log("ADDED TO WISHLIST", res.data);
+            toast.success("Added to wishlist");
+            history.push("/user/wishlist");
+        });
     };
 
 
@@ -104,7 +118,7 @@ const ProductStyleFive = ({props, product}) => {
 
 
                         <a href="javascript:void(0)" title="Add to favorites"
-                           // onClick={onAddToWishlistClicked}
+                           onClick={handleAddToWishlist}
                         >
                             <i className="fa fa-heart" aria-hidden="true"></i>
                         </a>

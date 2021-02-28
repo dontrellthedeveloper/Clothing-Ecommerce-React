@@ -1,9 +1,120 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import Breadcrumb from "../../common/breadcrumb";
 import UserNav from "../../nav/UserNav";
 import {Link} from "react-router-dom";
+import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
+
+import { getWishlist, removeWishlist } from "../../../functions/user";
+import ShowPaymentInfo from "../../../components/cards/ShowPaymentInfo";
+import { getUserOrders } from "../../../functions/user";
+import { useSelector, useDispatch } from "react-redux";
+import { DeleteOutlined } from "@ant-design/icons";
+
+
 
 const UserWishlist = (props) => {
+    const [wishlist, setWishlist] = useState([]);
+    const { user } = useSelector((state) => ({ ...state }));
+
+    useEffect(() => {
+        loadWishlist();
+    }, []);
+
+    const loadWishlist = () =>
+        getWishlist(user.token).then((res) => {
+            // console.log(res);
+            setWishlist(res.data.wishlist);
+        });
+
+    const handleRemove = (productId) =>
+        removeWishlist(productId, user.token).then((res) => {
+            loadWishlist();
+        });
+
+    // const showOrderInTable = (order) => (
+    //     <table className="table table-bordered">
+    //         <thead className="thead-light">
+    //         <tr>
+    //             <th scope="col">Title</th>
+    //             <th scope="col">Price</th>
+    //             <th scope="col">Brand</th>
+    //             <th scope="col">Color</th>
+    //             <th scope="col">Count</th>
+    //             <th scope="col">Shipping</th>
+    //         </tr>
+    //         </thead>
+    //
+    //         <tbody>
+    //         {order.products.map((p, i) => (
+    //             <tr key={i}>
+    //                 <td>
+    //                     <b>{p.product.title}</b>
+    //                 </td>
+    //                 <td>{p.product.price}</td>
+    //                 <td>{p.product.brand}</td>
+    //                 <td>{p.color}</td>
+    //                 <td>{p.count}</td>
+    //                 <td>
+    //                     {p.product.shipping === "Yes" ? (
+    //                         <CheckCircleOutlined style={{ color: "green" }} />
+    //                     ) : (
+    //                         <CloseCircleOutlined style={{ color: "red" }} />
+    //                     )}
+    //                 </td>
+    //             </tr>
+    //         ))}
+    //         </tbody>
+    //     </table>
+    // );
+
+
+    // const showEachOrders = () =>
+    //     orders.map((order, i) => (
+    //         <div key={i} className="m-5 p-3 card">
+    //             <ShowPaymentInfo order={order} />
+    //             {showOrderInTable(order)}
+    //             <div className="row">
+    //                 <div className="col">{showDownloadLink(order)}</div>
+    //             </div>
+    //         </div>
+    //     ));
+
+    const userWishlistForm = () => (
+        <div className="row">
+            <div className="col-sm-12">
+                <div className="box">
+                    <div style={{marginTop: '30px'}} className="box-title">
+                        <h3 style={{fontWeight: '600'}}>{user.name}'s Wishlist</h3>
+                        {/*<a href="#">Edit</a>*/}
+                    </div>
+                    <div className="box-content">
+                        {wishlist.map((p) => (
+                            <div key={p._id} className="alert alert-secondary">
+                                <Link to={`/product/${p.slug}`}>{p.title}</Link>
+                                <span
+                                    onClick={() => handleRemove(p._id)}
+                                    className="btn btn-sm float-right"
+                                >
+                                <DeleteOutlined className="text-danger" />
+                              </span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+
+
+    // const showDownloadLink = (order) => (
+    //     <PDFDownloadLink
+    //         document={<Invoice order={order} />}
+    //         fileName="invoice.pdf"
+    //         className="btn-solid btn"
+    //     >
+    //         Download PDF
+    //     </PDFDownloadLink>
+    // );
 
     return (
         <div>
@@ -20,6 +131,7 @@ const UserWishlist = (props) => {
                                     my account
                                 </a>
                             </div>
+                            {/*<UserNav/>*/}
                             <div className="dashboard-left">
                                 <div className="collection-mobile-back">
                                     <span className="filter-back">
@@ -45,76 +157,100 @@ const UserWishlist = (props) => {
                         </div>
                         <div className="col-lg-9">
                             <div className="dashboard-right">
-                                <div className="dashboard">
-                                    <div className="page-title">
-                                        <h2>My Dashboard</h2>
+                                <div style={{textAlign: 'center'}} className="dashboard">
+
+                                    <div  className="page-title">
+                                        <h2 style={{fontWeight: "800"}}>Wishlist</h2>
                                     </div>
-                                    <div className="welcome-msg">
-                                        <p>Hello, MARK JECNO !</p>
-                                        <p>From your My Account Dashboard you have the ability to view a snapshot of
-                                            your recent account activity and update your account information. Select
-                                            a link below to view or edit information.</p>
-                                    </div>
+
+
                                     <div className="box-account box-info">
+
                                         <div className="box-head">
-                                            <h2>Account Information</h2>
+                                            <h4>Account Information</h4>
                                         </div>
-                                        <div className="row">
-                                            <div className="col-sm-6">
-                                                <div className="box">
-                                                    <div className="box-title">
-                                                        <h3>Contact Information</h3>
-                                                        <a href="#">Edit</a>
-                                                    </div>
-                                                    <div className="box-content">
-                                                        <h6>MARK JECNO</h6>
-                                                        <h6>MARk-JECNO@gmail.com</h6>
-                                                        <h6><a href="#">Change Password</a></h6>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="col-sm-6">
-                                                <div className="box">
-                                                    <div className="box-title">
-                                                        <h3>Newsletters</h3>
-                                                        <a href="#">Edit</a>
-                                                    </div>
-                                                    <div className="box-content">
-                                                        <p>
-                                                            You are currently not subscribed to any newsletter.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div className="box">
-                                                <div className="box-title">
-                                                    <h3>Address Book</h3>
-                                                    <a href="#">Manage Addresses</a>
-                                                </div>
-                                                <div className="row">
-                                                    <div className="col-sm-6">
-                                                        <h6>Default Billing Address</h6>
-                                                        <address>
-                                                            You have not set a default billing address.<br/>
-                                                            <a href="#">Edit Address</a>
-                                                        </address>
-                                                    </div>
-                                                    <div className="col-sm-6">
-                                                        <h6>Default Shipping Address</h6>
-                                                        <address>
-                                                            You have not set a default shipping address.<br />
-                                                            <a href="#">Edit Address</a>
-                                                        </address>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        {userWishlistForm()}
+
+
+
+
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        {/*<div className="col-lg-9">*/}
+                        {/*    <div className="dashboard-right">*/}
+                        {/*        <div className="dashboard">*/}
+                        {/*            <div className="page-title">*/}
+                        {/*                <h2>My Dashboard</h2>*/}
+                        {/*            </div>*/}
+                        {/*            {orders.length > 0 ? "user purchase orders" : 'no purchase orders'}*/}
+                        {/*            <div className="welcome-msg">*/}
+                        {/*                <p>Hello, MARK JECNO !</p>*/}
+                        {/*                <p>From your My Account Dashboard you have the ability to view a snapshot of*/}
+                        {/*                    your recent account activity and update your account information. Select*/}
+                        {/*                    a link below to view or edit information.</p>*/}
+                        {/*            </div>*/}
+                        {/*            <div className="box-account box-info">*/}
+                        {/*                <div className="box-head">*/}
+                        {/*                    <h2>Account Information</h2>*/}
+                        {/*                </div>*/}
+                        {/*                <div className="row">*/}
+                        {/*                    <div className="col-sm-6">*/}
+                        {/*                        <div className="box">*/}
+                        {/*                            <div className="box-title">*/}
+                        {/*                                <h3>Contact Information</h3>*/}
+                        {/*                                <a href="#">Edit</a>*/}
+                        {/*                            </div>*/}
+                        {/*                            <div className="box-content">*/}
+                        {/*                                <h6>MARK JECNO</h6>*/}
+                        {/*                                <h6>MARk-JECNO@gmail.com</h6>*/}
+                        {/*                                <h6><a href="#">Change Password</a></h6>*/}
+                        {/*                            </div>*/}
+                        {/*                        </div>*/}
+                        {/*                    </div>*/}
+                        {/*                    <div className="col-sm-6">*/}
+                        {/*                        <div className="box">*/}
+                        {/*                            <div className="box-title">*/}
+                        {/*                                <h3>Newsletters</h3>*/}
+                        {/*                                <a href="#">Edit</a>*/}
+                        {/*                            </div>*/}
+                        {/*                            <div className="box-content">*/}
+                        {/*                                <p>*/}
+                        {/*                                    You are currently not subscribed to any newsletter.*/}
+                        {/*                                </p>*/}
+                        {/*                            </div>*/}
+                        {/*                        </div>*/}
+                        {/*                    </div>*/}
+                        {/*                </div>*/}
+                        {/*                <div>*/}
+                        {/*                    <div className="box">*/}
+                        {/*                        <div className="box-title">*/}
+                        {/*                            <h3>Address Book</h3>*/}
+                        {/*                            <a href="#">Manage Addresses</a>*/}
+                        {/*                        </div>*/}
+                        {/*                        <div className="row">*/}
+                        {/*                            <div className="col-sm-6">*/}
+                        {/*                                <h6>Default Billing Address</h6>*/}
+                        {/*                                <address>*/}
+                        {/*                                    You have not set a default billing address.<br/>*/}
+                        {/*                                    <a href="#">Edit Address</a>*/}
+                        {/*                                </address>*/}
+                        {/*                            </div>*/}
+                        {/*                            <div className="col-sm-6">*/}
+                        {/*                                <h6>Default Shipping Address</h6>*/}
+                        {/*                                <address>*/}
+                        {/*                                    You have not set a default shipping address.<br />*/}
+                        {/*                                    <a href="#">Edit Address</a>*/}
+                        {/*                                </address>*/}
+                        {/*                            </div>*/}
+                        {/*                        </div>*/}
+                        {/*                    </div>*/}
+                        {/*                </div>*/}
+                        {/*            </div>*/}
+                        {/*        </div>*/}
+                        {/*    </div>*/}
+                        {/*</div>*/}
                     </div>
                 </div>
             </section>
