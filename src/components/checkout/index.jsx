@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import {Helmet} from 'react-helmet'
 import {
     getUserCart,
-    saveUserAddress
+    saveUserAddress,
+    applyCoupon
 } from "../../functions/user";
 import { toast } from "react-toastify";
 import {Link, Redirect } from 'react-router-dom'
@@ -90,26 +91,26 @@ const checkOut = ({history}) => {
 
     const applyDiscountCoupon = () => {
         console.log("send coupon to backend", coupon);
-        // applyCoupon(user.token, coupon).then((res) => {
-        //     console.log("RES ON COUPON APPLIED", res.data);
-        //     if (res.data) {
-        //         setTotalAfterDiscount(res.data);
-        //         // update redux coupon applied true/false
-        //         dispatch({
-        //             type: "COUPON_APPLIED",
-        //             payload: true,
-        //         });
-        //     }
-        //     // error
-        //     if (res.data.err) {
-        //         setDiscountError(res.data.err);
-        //         // update redux coupon applied true/false
-        //         dispatch({
-        //             type: "COUPON_APPLIED",
-        //             payload: false,
-        //         });
-        //     }
-        // });
+        applyCoupon(user.token, coupon).then((res) => {
+            console.log("RES ON COUPON APPLIED", res.data);
+            if (res.data) {
+                setTotalAfterDiscount(res.data);
+                // update redux coupon applied true/false
+                dispatch({
+                    type: "COUPON_APPLIED",
+                    payload: true,
+                });
+            }
+            // error
+            if (res.data.err) {
+                setDiscountError(res.data.err);
+                // update redux coupon applied true/false
+                dispatch({
+                    type: "COUPON_APPLIED",
+                    payload: false,
+                });
+            }
+        });
     };
 
 
@@ -231,7 +232,7 @@ const checkOut = ({history}) => {
                                                             return <li key={i}>{p.product.title} × {p.count}
                                                             <span>
                                                                 {/*{symbol} {item.sum}*/}
-                                                                {p.product.price * p.count}
+                                                                ${p.product.price * p.count}
                                                             </span>
                                                             </li>
                                                         }
@@ -256,7 +257,7 @@ const checkOut = ({history}) => {
 
                                                     <ul className="total">
                                                          <li >Total <span className="count">
-                                                            {total.toFixed(2)}
+                                                            ${total.toFixed(2)}
                                                             </span></li>
                                                     </ul>
                                                 </div>
