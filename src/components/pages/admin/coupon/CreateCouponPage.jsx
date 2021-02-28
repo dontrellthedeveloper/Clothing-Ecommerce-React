@@ -106,13 +106,13 @@ const createCouponPage = (props) => {
                                         <li>
                                             <Link to={`${process.env.PUBLIC_URL}/admin/products`}>Products</Link>
                                         </li>
-                                        <li className="active">
+                                        <li >
                                             <Link to={`${process.env.PUBLIC_URL}/admin/category`}>Category</Link>
                                         </li>
                                         <li>
                                             <Link to={`${process.env.PUBLIC_URL}/admin/sub`}>Sub Category</Link>
                                         </li>
-                                        <li>
+                                        <li className="active">
                                             <Link to={`${process.env.PUBLIC_URL}/admin/coupon`}>Coupons</Link>
                                         </li>
                                         <li>

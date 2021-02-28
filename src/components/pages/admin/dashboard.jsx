@@ -2,30 +2,36 @@ import React, {useEffect, useState} from 'react';
 import Breadcrumb from "../../common/breadcrumb";
 import {Link} from "react-router-dom";
 import {getProductsByCount} from "../../../functions/product";
-import {useSelector} from "react-redux";
 import Collection from "../../layouts/pets/collection";
+import { getOrders, changeStatus } from "../../../functions/admin";
+import { useSelector, useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import Orders from "../../../components/order/Orders";
 
 const AdminDashboard = (props) => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    let {user} = useSelector((state) => ({...state}));
+    const [orders, setOrders] = useState([]);
+    const { user } = useSelector((state) => ({ ...state }));
+
+    // let {user} = useSelector((state) => ({...state}));
 
     useEffect(() => {
-        loadAllProducts()
+        loadOrders();
     }, []);
 
-    const loadAllProducts = () => {
-        setLoading(true);
-        getProductsByCount(100)
-            .then(res => {
-                setProducts(res.data);
-                setLoading(false);
-            })
-            .catch(err => {
-                setLoading(false);
-                console.log(err)
-            })
+    const loadOrders = () =>
+        getOrders(user.token).then((res) => {
+            console.log(JSON.stringify(res.data, null, 4));
+            setOrders(res.data);
+        });
+
+    const handleStatusChange = (orderId, orderStatus) => {
+        changeStatus(orderId, orderStatus, user.token).then((res) => {
+            toast.success("Status updated");
+            loadOrders();
+        });
     };
 
     return (
@@ -133,8 +139,22 @@ const AdminDashboard = (props) => {
 
 
 
+                                        <div className="row">
+                                            <div className="col-sm-12">
+                                                <div className="box">
+                                                    <div  className="box-title">
+                                                        <h3 style={{fontWeight: '600'}}>All Orders</h3>
+                                                        {/*<a href="#">Edit</a>*/}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                                        {loading ? (<h4 className="text-danger">Loading...</h4>) : (<h4>All Products</h4>)}
+
+
+                                        {/*{loading ? (<h4 className="text-danger">Loading...</h4>) : (<h4>All Orders</h4>)}*/}
+                                        <Orders orders={orders} handleStatusChange={handleStatusChange} />
+
 
                                         {/*<div className="col">{JSON.stringify(products)}</div>*/}
 
