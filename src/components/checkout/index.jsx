@@ -72,6 +72,8 @@ const checkOut = ({history}) => {
         emptyUserCart(user.token).then((res) => {
             setProducts([]);
             setTotal(0);
+            setTotalAfterDiscount(0);
+            setCoupon('');
             toast.success("Cart is empty. Continue shopping.");
         });
     };
@@ -216,6 +218,10 @@ const checkOut = ({history}) => {
                                                         <h4>Got a Coupon?</h4>
                                                     </div>
                                                     {showApplyCoupon()}
+                                                    <br/>
+                                                    {discountError && <p className='form-control bg-danger'
+                                                    style={{color: '#fff', marginTop: '20px'}}
+                                                    >{discountError}</p>}
                                                 </div>
                                             </div>
                                         </div>
@@ -260,6 +266,13 @@ const checkOut = ({history}) => {
                                                             ${total.toFixed(2)}
                                                             </span></li>
                                                     </ul>
+                                                    {totalAfterDiscount > 0 && (
+                                                        <ul className="total">
+                                                            <li className='bg-success  p-2 form-control' style={{color: '#fff'}}>Discount Applied: <span className="count" style={{color: '#fff'}}>
+                                                            ${totalAfterDiscount}
+                                                            </span></li>
+                                                        </ul>
+                                                    )}
                                                 </div>
 
                                                 <div className="payment-box">
