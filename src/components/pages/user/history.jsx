@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import Breadcrumb from "../../common/breadcrumb";
 import UserNav from "../../nav/UserNav";
 import {Link} from "react-router-dom";
+import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
+import { getUserOrders } from "../../../functions/user";
+import { useSelector, useDispatch } from "react-redux";
 
 const UserHistory = (props) => {
+    const [orders, setOrders] = useState([]);
+    const { user } = useSelector((state) => ({ ...state }));
+
+    useEffect(() => {
+        loadUserOrders();
+    }, []);
+
+    const loadUserOrders = () =>
+        getUserOrders(user.token).then((res) => {
+            console.log(JSON.stringify(res.data, null, 4));
+            setOrders(res.data);
+        });
 
     return (
         <div>
