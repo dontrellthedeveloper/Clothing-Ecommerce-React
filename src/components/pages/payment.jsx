@@ -5,6 +5,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import Breadcrumb from "../common/breadcrumb";
 import {useSelector} from "react-redux";
 
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import StripeCheckout from "../../components/StripeCheckout";
+import "../stripe.css";
+
+
+// load stripe outside of components render to avoid recreating stripe object on every render
+const promise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
 
 const Payment = ({history}) => {
 
@@ -18,10 +26,16 @@ const Payment = ({history}) => {
             <section className="pwd-page section-b-space">
                 <div className="container">
                     <div className="row">
-                        <div className="col-lg-6 offset-lg-3">
-                            <h2>Complete your purchase</h2>
+                        <div className="col-lg-10 offset-lg-1">
+                            <Elements stripe={promise}>
+                                {/*<h2>Complete your purchase</h2>*/}
+                                <div className="col-md-8 offset-md-2">
+                                    <StripeCheckout />
+                                </div>
+                            </Elements>
 
-                            Complete your purchase
+
+
                         </div>
                     </div>
                 </div>
