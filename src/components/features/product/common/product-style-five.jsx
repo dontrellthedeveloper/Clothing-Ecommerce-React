@@ -97,6 +97,7 @@ const ProductStyleFive = ({props, product}) => {
 
                             <button title={tooltip}
                                     onClick={handleAddToCart}
+                                    disabled={product.quantity < 1}
                             >
                                 <i className="fa fa-shopping-cart" aria-hidden="true"></i>
                             </button>
@@ -131,6 +132,7 @@ const ProductStyleFive = ({props, product}) => {
                             {/*{symbol}{product.price-(product.price*product.discount/100)}*/}
                             ${price}
                         </h4>
+                        <h6>{product.quantity < 1 ? 'Out of stock' : ''}</h6>
                         {product && product.ratings && product.ratings.length > 0 ? (
                             showAverage(product)
                         ) : (
