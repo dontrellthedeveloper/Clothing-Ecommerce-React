@@ -45,6 +45,7 @@ import ProductCreate from './components/pages/admin/product/ProductCreate';
 import AllProducts from './components/pages/admin/product/AllProducts';
 import ProductUpdate from './components/pages/admin/product/ProductUpdate';
 import CreateCouponPage from './components/pages/admin/coupon/CreateCouponPage';
+import Payment from './components/pages/payment';
 
 // User Routes
 import UserRoute from "./components/routes/UserRoute";
@@ -258,6 +259,8 @@ const Root = () => {
                                         <Route exact path={`${process.env.PUBLIC_URL}/category/:slug`} component={CategoryHome}/>
                                         <Route exact path={`${process.env.PUBLIC_URL}/sub/:slug`} component={SubHome}/>
                                         <Route exact path={`${process.env.PUBLIC_URL}/shop`} component={Shop}/>
+
+                                        <UserRoute exact path={`${process.env.PUBLIC_URL}/payment`} component={Payment}/>
 
 
 

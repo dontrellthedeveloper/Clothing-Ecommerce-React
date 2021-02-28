@@ -8,6 +8,7 @@ import { cartReducer } from "./cartReducer";
 import filtersReducer from './filters';
 import wishlistReducer from './wishlist';
 import compareReducer from './compare';
+import { couponReducer } from "./couponReducer";
 import {drawerReducer} from './drawerReducer';
 
 import {userReducer} from './userReducer'
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
     wishlist: wishlistReducer,
     compare: compareReducer,
     user: userReducer,
+    coupon: couponReducer,
     search: searchReducer,
     Intl
 });

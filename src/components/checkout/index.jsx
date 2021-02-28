@@ -289,7 +289,7 @@ const checkOut = ({history}) => {
                                                                     <div className="radio-option paypal" style={{margin: '0 auto'}}>
                                                                         {/*<input type="radio" name="payment-group" id="payment-1" onClick={() => this.checkhandle('paypal')} />*/}
                                                                             <label htmlFor="payment-1"><span className="image">
-                                                                                <img src={`${process.env.PUBLIC_URL}/assets/images/paypal.png`} alt=""/>
+                                                                                <img src={`${process.env.PUBLIC_URL}/assets/images/stripe.png`} alt=""/>
                                                                             </span></label>
                                                                     </div>
                                                                 </li>
@@ -315,7 +315,7 @@ const checkOut = ({history}) => {
                                                                     type="button"
                                                                     className="btn-solid btn"
                                                                     disabled={!addressSaved || !products.length}
-                                                                    // onClick={() => this.StripeClick()}
+                                                                    onClick={() => history.push('/payment')}
                                                                 >
                                                                     Place Order
                                                                 </button>
