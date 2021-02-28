@@ -28,7 +28,7 @@ const Payment = ({history}) => {
                     <div className="row">
                         <div className="col-lg-10 offset-lg-1">
                             <Elements stripe={promise}>
-                                {/*<h2>Complete your purchase</h2>*/}
+                                <h4>Complete your purchase</h4>
                                 <div className="col-md-8 offset-md-2">
                                     <StripeCheckout />
                                 </div>

@@ -142,21 +142,27 @@ const StripeCheckout = ({ history }) => {
                 />
             </div>
 
-            <form id="payment-form" className="stripe-form" onSubmit={handleSubmit}>
+            <form id="payment-form"
+                  style={{backgroundColor: '#79868F'}}
+                  className="stripe-form" onSubmit={handleSubmit}>
                 <CardElement
                     id="card-element"
                     options={cartStyle}
                     onChange={handleChange}
+                    style={{marginBottom: '40px'}}
                 />
-                <button
-                    className="btn-solid btn"
-                    // style={{marginTop: '20px'}}
-                    disabled={processing || disabled || succeeded}
-                >
+                <div style={{marginTop: '40px'}}>
+                    <button
+                        className="btn-solid btn"
+                        // style={{marginTop: '20px'}}
+                        disabled={processing || disabled || succeeded}
+                    >
                   <span id="button-text">
                     {processing ? <div className="spinner" id="spinner"></div> : "Pay"}
                   </span>
-                </button>
+                    </button>
+                </div>
+
                 <br />
                 {error && (
                     <div className="card-error" role="alert">
@@ -164,9 +170,9 @@ const StripeCheckout = ({ history }) => {
                     </div>
                 )}
                 <br />
-                <p className={succeeded ? "result-message" : "result-message hidden"}>
+                <p className={succeeded ? "result-message" : "result-message hidden"} style={{color: '#fff'}}>
                     Payment Successful.{" "}
-                    <Link to="/user/history">See it in your purchase history.</Link>
+                    <Link to="/user/history" style={{color: '#e0e0e0'}}>See it in your purchase history.</Link>
                 </p>
             </form>
         </>
