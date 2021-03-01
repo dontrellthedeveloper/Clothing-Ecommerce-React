@@ -1377,7 +1377,8 @@ header {
     height: 75vh;
     @for $i from 1 through 56 {
       &.home#{$i} {
-        background-image:url("#{$assetspath}/home-banner/#{$i}.jpg");
+        //background-image:url("#{$assetspath}/home-banner/#{$i}.jpg");
+        background-image:url("#{$assetspath}/home-banner/home-banner-1.jpg");
       }
     }
   }
