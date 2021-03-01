@@ -165,21 +165,24 @@ const NewArrivals = () => {
                     <div className="container">
                         <div className="row">
                             <div className="col">
-                                <Slider {...Product5} className="product-4 product-m">
-                                    { products.map((product ) =>
-                                        <div key={product._id}>
-                                            <ProductItem product={product}
-                                                         key={product._id}
-                                                         // symbol={symbol}
-                                                         // onAddToCompareClicked={() => addToCompare(product)}
-                                                         // onAddToWishlistClicked={() => addToWishlist(product)}
-                                                         // onAddToCartClicked={() => addToCart(product, 1)}
-                                                         // key={index}
-                                            />
-                                        </div>
-                                    )
-                                    }
-                                </Slider>
+                                {loading ? <h2 style={{fontWeight: "800"}}>Loading...</h2> :
+                                    <Slider {...Product5} className="product-4 product-m">
+                                        { products.map((product ) =>
+                                            <div key={product._id}>
+                                                <ProductItem product={product}
+                                                             key={product._id}
+                                                    // symbol={symbol}
+                                                    // onAddToCompareClicked={() => addToCompare(product)}
+                                                    // onAddToWishlistClicked={() => addToWishlist(product)}
+                                                    // onAddToCartClicked={() => addToCart(product, 1)}
+                                                    // key={index}
+                                                />
+                                            </div>
+                                        )
+                                        }
+                                    </Slider>
+                                }
+
                                 {/*<Pagination current={page} total={(productsCount / 3) * 10}*/}
                                 {/*onChange={(value) => setPage(value)}/>*/}
                             </div>
