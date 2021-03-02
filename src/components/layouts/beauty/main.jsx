@@ -83,10 +83,8 @@ const Beauty = (props) => {
                                                 <div style={{width: "100%", marginTop: "30px", textAlign: "center"}}>
                                                     <h2 style={{color: "#fff", marginBottom: "10px", fontSize: "40px"}}>
                                                         {/*<Jumbotron text={['Hustle x Bustle', "Top Urban Wear"]}/>*/}
-                                                        URBAN
+                                                        URBAN SKY
                                                         {/*<i className="fa fa-times" aria-hidden="true"></i>*/}
-                                                        <i style={{margin: "15px"}} className="fa fa-window-close" aria-hidden="true"></i>
-                                                        SKY
                                                     </h2>
                                                     <h1></h1><a href="#" className="btn btn-solid">shop
                                                     now</a>
