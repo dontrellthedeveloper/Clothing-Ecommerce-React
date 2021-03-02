@@ -52,7 +52,7 @@ const ProductStyleFive = ({props, product}) => {
           // console.log('unique', unique)
           localStorage.setItem("cart", JSON.stringify(unique));
           // show tooltip
-          toast.success(`Added ${title} to cart!`);
+          // toast.success(`Added ${title} to cart!`);
           // add to redux state
           dispatch({
               type: "ADD_TO_CART",
