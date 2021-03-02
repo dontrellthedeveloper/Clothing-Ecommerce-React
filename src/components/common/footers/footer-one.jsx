@@ -60,8 +60,7 @@ class FooterOne extends Component {
                                     <div className="footer-logo">
                                         <LogoImage logo={this.props.logoName} />
                                     </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, </p>
+                                    <p>Urban Sky is an online fashion store. Shop dresses, jeans, shoes, bodysuits, skirts and more. Cheap & affordable fashion online </p>
                                     <div className="footer-social">
                                         <ul>
                                             <li>
@@ -90,10 +89,10 @@ class FooterOne extends Component {
                                     </div>
                                     <div className="footer-contant">
                                         <ul>
-                                            <li><Link to={`${process.env.PUBLIC_URL}/left-sidebar/collection`} >womens</Link></li>
-                                            <li><Link to={`${process.env.PUBLIC_URL}/left-sidebar/collection`} >clothing</Link></li>
-                                            <li><Link to={`${process.env.PUBLIC_URL}/left-sidebar/collection`} >accessories</Link></li>
-                                            <li><Link to={`${process.env.PUBLIC_URL}/left-sidebar/collection`} >featured</Link></li>
+                                            <li><Link to='#' >womens</Link></li>
+                                            <li><Link to='#' >clothing</Link></li>
+                                            <li><Link to='#' >accessories</Link></li>
+                                            <li><Link to='#' >featured</Link></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -125,7 +124,7 @@ class FooterOne extends Component {
                                             </li>
                                             <li><i className="fa fa-phone"></i>Call Us: (311) 808 6039</li>
                                             <li><i className="fa fa-envelope-o"></i>Email Us: <a
-                                                href="#">support@hustlexbustle.com</a></li>
+                                                href="#">support@urbansky.com</a></li>
                                             <li><i className="fa fa-fax"></i>Fax: (818) 123 0453</li>
                                         </ul>
                                     </div>
@@ -139,7 +138,7 @@ class FooterOne extends Component {
                         <div className="row">
                             <div className="col-xl-6 col-md-6 col-sm-12">
                                 <div className="footer-end">
-                                    <p><i className="fa fa-copyright" aria-hidden="true"></i> 2021 Hustle & Bustle, Inc.</p>
+                                    <p><i className="fa fa-copyright" aria-hidden="true"></i> Urban Sky, Inc.</p>
                                 </div>
                             </div>
                             <div className="col-xl-6 col-md-6 col-sm-12">

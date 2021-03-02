@@ -1486,7 +1486,7 @@ r
 /*}*/
 .home-slider .home.home34, .center-slider .home.home34 {
   /*background-image: url("/assets/images/home-banner/34.jpg");*/
-  background-image: url("/assets/images/home-banner/urban-sky-slider-1-2.jpg");
+  background-image: url("/assets/images/home-banner/home-banner-1.jpg");
 }
 .home-slider .home.home35, .center-slider .home.home35 {
   background-image: url("/assets/images/home-banner/home-banner-2.jpg");
@@ -3428,7 +3428,7 @@ r
   background-position: center;
 }
 .full-banner.parallax-banner1 {
-  background-image: url("/assets/images/parallax/parallax-image-6.jpg");
+  background-image: url("/assets/images/home-banner/urban-sky-parallax.jpg");
 }
 .full-banner.parallax-banner2 {
   background-image: url("/assets/images/parallax/parallax-image-5.jpg");
@@ -4392,7 +4392,7 @@ r
   height: 60px;
   width: 60px;
   border-radius: 100%;
-  background-color: #f0b54d;
+  background-color: #79868F;
   text-align: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;

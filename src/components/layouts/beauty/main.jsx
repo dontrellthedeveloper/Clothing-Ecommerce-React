@@ -67,7 +67,7 @@ const Beauty = (props) => {
         return (
             <div>
                 <Helmet>
-                    <title>Hustle x Bustle</title>
+                    <title>Urban Sky</title>
                 </Helmet>
 
                 {/*<HeaderOne logoName={'logo.png'}/>*/}
@@ -774,7 +774,7 @@ const Beauty = (props) => {
                                    onClick={onOpenModal}
                                 >
                                     <div className="video-img">
-                                        <img src={`${process.env.PUBLIC_URL}/assets/images/beauty/video_1.jpg`} alt="" className="img-fluid blur-up lazyload" />
+                                        <img src={`${process.env.PUBLIC_URL}/assets/images/home-banner/urban-sky-video.jpg`} alt="" className="img-fluid blur-up lazyload" />
                                         <div className="play-btn">
                                             <span><i className="fa fa-play" aria-hidden="true"></i></span>
                                         </div>
@@ -785,8 +785,12 @@ const Beauty = (props) => {
                                     onClose={onCloseModal}
                                     id="video"
                                     className="modal fade video-modal" center>
-                                    <iframe width="750" height="700" src="https://www.youtube.com/embed/FRIDLxM8Roc"
-                                            allowFullScreen></iframe>
+                                    {/*<iframe width="750" height="700" src="https://www.youtube.com/embed/FRIDLxM8Roc"*/}
+                                    {/*        allowFullScreen></iframe>*/}
+                                    <iframe frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0"
+                                            width="788.54" height="443" type="text/html"
+                                            src="https://www.youtube.com/embed/y9j-BL5ocW8?autoplay=0&fs=0&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com">
+                                    </iframe>
                                 </Modal>
                             </div>
                         </div>
@@ -871,39 +875,39 @@ const Beauty = (props) => {
 
 
                 {/*service layout*/}
-                <div className="container">
-                    <section className="service border-section small-section ">
-                        <div className="row">
-                            <div className="col-md-4 service-block">
-                                <div className="media">
-                                    <div dangerouslySetInnerHTML={{ __html: svgFreeShipping }} />
-                                    <div className="media-body">
-                                        <h4>free shipping</h4>
-                                        <p>free shipping world wide</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-md-4 service-block">
-                                <div className="media">
-                                    <div dangerouslySetInnerHTML={{ __html: svgservice }} />
-                                    <div className="media-body">
-                                        <h4>24 X 7 service</h4>
-                                        <p>online service for new customer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-md-4 service-block">
-                                <div className="media">
-                                    <div dangerouslySetInnerHTML={{ __html: svgoffer }} />
-                                    <div className="media-body">
-                                        <h4>festival offer</h4>
-                                        <p>new online special festival offer</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
+                {/*<div className="container">*/}
+                {/*    <section className="service border-section small-section ">*/}
+                {/*        <div className="row">*/}
+                {/*            <div className="col-md-4 service-block">*/}
+                {/*                <div className="media">*/}
+                {/*                    <div dangerouslySetInnerHTML={{ __html: svgFreeShipping }} />*/}
+                {/*                    <div className="media-body">*/}
+                {/*                        <h4>free shipping</h4>*/}
+                {/*                        <p>free shipping world wide</p>*/}
+                {/*                    </div>*/}
+                {/*                </div>*/}
+                {/*            </div>*/}
+                {/*            <div className="col-md-4 service-block">*/}
+                {/*                <div className="media">*/}
+                {/*                    <div dangerouslySetInnerHTML={{ __html: svgservice }} />*/}
+                {/*                    <div className="media-body">*/}
+                {/*                        <h4>24 X 7 service</h4>*/}
+                {/*                        <p>online service for new customer</p>*/}
+                {/*                    </div>*/}
+                {/*                </div>*/}
+                {/*            </div>*/}
+                {/*            <div className="col-md-4 service-block">*/}
+                {/*                <div className="media">*/}
+                {/*                    <div dangerouslySetInnerHTML={{ __html: svgoffer }} />*/}
+                {/*                    <div className="media-body">*/}
+                {/*                        <h4>festival offer</h4>*/}
+                {/*                        <p>new online special festival offer</p>*/}
+                {/*                    </div>*/}
+                {/*                </div>*/}
+                {/*            </div>*/}
+                {/*        </div>*/}
+                {/*    </section>*/}
+                {/*</div>*/}
 
 
 

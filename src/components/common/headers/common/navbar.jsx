@@ -87,17 +87,17 @@ const NavBar = (props) => {
                                     {translate('shop')}
                                 </Link>
                             </li>
-                            <li>
-                                <Link to={`${process.env.PUBLIC_URL}/features/portfolio-grid/2`} className="nav-link">
-                                    {translate('gallery')}
-                                    Gallery
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to={`${process.env.PUBLIC_URL}/pages/contact`} className="nav-link">
-                                    {translate('contact')}
-                                </Link>
-                            </li>
+                            {/*<li>*/}
+                            {/*    <Link to={`${process.env.PUBLIC_URL}/features/portfolio-grid/2`} className="nav-link">*/}
+                            {/*        {translate('gallery')}*/}
+                            {/*        Gallery*/}
+                            {/*    </Link>*/}
+                            {/*</li>*/}
+                            {/*<li>*/}
+                            {/*    <Link to={`${process.env.PUBLIC_URL}/pages/contact`} className="nav-link">*/}
+                            {/*        {translate('contact')}*/}
+                            {/*    </Link>*/}
+                            {/*</li>*/}
                         </ul>
                     </div>
                 </div>
