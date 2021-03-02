@@ -29,9 +29,9 @@ const HeaderOne = (props) => {
 
     //component did mount
     useEffect(() => {
-        // window.addEventListener('scroll',
-        //     handleScroll
-        // )
+        window.addEventListener('scroll',
+            handleScroll
+        )
     }, []);
 
     useEffect(() => {
@@ -46,24 +46,24 @@ const HeaderOne = (props) => {
     //component will unmount
     useEffect(() => {
         return () => {
-            // window.removeEventListener('scroll',
-            //     handleScroll
-            // )
+            window.removeEventListener('scroll',
+                handleScroll
+            )
         }
     }, []);
 
 
-    // const handleScroll = () => {
-    //     let number = window.pageXOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-    //     if (number >= 300) {
-    //         if (window.innerWidth < 576) {
-    //             document.getElementById("sticky").classList.remove('fixed');
-    //         }else
-    //         	document.getElementById("sticky").classList.add('fixed');
-    //     } else {
-    //         document.getElementById("sticky").classList.remove('fixed');
-    //     }
-    // };
+    const handleScroll = () => {
+        let number = window.pageXOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        if (number >= 300) {
+            if (window.innerWidth < 576) {
+                document.getElementById("sticky").classList.remove('fixed');
+            }else
+            	document.getElementById("sticky").classList.add('fixed');
+        } else {
+            document.getElementById("sticky").classList.remove('fixed');
+        }
+    };
 
     const changeLanguage = (lang) => {
         store.dispatch(IntlActions.setLocale(lang))
@@ -108,133 +108,136 @@ const HeaderOne = (props) => {
 
 		return (
 			<div>
-				<header id="sticky" className="sticky">
-					{isLoading ? <Pace color="#27ae60"/> : null}
-					<div className="mobile-fix-option"></div>
-					{/*Top Header Component*/}
-					{/*<TopBar/>*/}
+                <div style={{height: '191.33px'}}>
+                    <header id="sticky" className="sticky">
+                        {isLoading ? <Pace color="#27ae60"/> : null}
+                        <div className="mobile-fix-option"></div>
+                        {/*Top Header Component*/}
+                        {/*<TopBar/>*/}
 
-					{/*<TopBar/>*/}
-                    <div className="top-header">
-                        <div className="container">
-                            <div className="row">
-                                <div className="col-lg-6">
-                                    <div className="header-contact">
-                                        <ul>
-                                            <li>
-                                                <i className="fa fa-phone" aria-hidden="true"></i>{('Call Us')}:  311 - 808 - 6039
+                        {/*<TopBar/>*/}
+                        <div className="top-header">
+                            <div className="container">
+                                <div className="row">
+                                    <div className="col-lg-6">
+                                        <div className="header-contact">
+                                            <ul>
+                                                <li>
+                                                    <i className="fa fa-phone" aria-hidden="true"></i>{('Call Us')}:  311 - 808 - 6039
 
-  {/*                                              <div className="input-group rounded">*/}
-  {/*                                                  <input type="search" className="form-control rounded"*/}
-  {/*                                                         placeholder="Search" aria-label="Search"*/}
-  {/*                                                         aria-describedby="search-addon"/>*/}
-  {/*                                                  <span className="input-group-text border-0"*/}
-  {/*                                                        id="search-addon">*/}
-  {/*  <i className="fa fa-search"></i>*/}
-  {/*</span>*/}
-  {/*                                              </div>*/}
+                                                    {/*                                              <div className="input-group rounded">*/}
+                                                    {/*                                                  <input type="search" className="form-control rounded"*/}
+                                                    {/*                                                         placeholder="Search" aria-label="Search"*/}
+                                                    {/*                                                         aria-describedby="search-addon"/>*/}
+                                                    {/*                                                  <span className="input-group-text border-0"*/}
+                                                    {/*                                                        id="search-addon">*/}
+                                                    {/*  <i className="fa fa-search"></i>*/}
+                                                    {/*</span>*/}
+                                                    {/*                                              </div>*/}
 
-                                            </li>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div className="col-lg-6 text-right">
+                                        <ul className="header-dropdown">
+
+                                            {!user && (
+                                                <li>
+                                                    <Link to={`${process.env.PUBLIC_URL}/pages/login`} data-lng="en"><i className="fa fa-sign-in" aria-hidden="true"></i>Login</Link>
+                                                </li>
+                                            )}
+                                            {/*{!user && (*/}
+                                            {/*    <li>*/}
+                                            {/*        <Link to={`${process.env.PUBLIC_URL}/pages/register`} data-lng="en">Register</Link>*/}
+                                            {/*    </li>*/}
+                                            {/*)}*/}
+                                            {user && (
+                                                <li className="onhover-dropdown mobile-account"
+                                                >
+                                                    <i className="fa fa-user" aria-hidden="true"></i>
+                                                    {user.email && user.email.split("@")[0]}
+                                                    <ul className="onhover-show-div">
+                                                        {user && user.role === 'subscriber' && (
+                                                            <li>
+                                                                <Link to={`${process.env.PUBLIC_URL}/user/history`} data-lng="en"><i className="fa fa-th-large" aria-hidden="true"></i>Dashboard</Link>
+                                                            </li>
+                                                        )}
+
+                                                        {user && user.role === 'admin' && (
+                                                            <li>
+                                                                <Link to={`${process.env.PUBLIC_URL}/admin/dashboard`} data-lng="en"><i className="fa fa-th-large" aria-hidden="true"></i>Dashboard</Link>
+                                                            </li>
+                                                        )}
+                                                        <li className="mobile-wishlist"><Link to={`${process.env.PUBLIC_URL}/user/wishlist`}><i className="fa fa-heart" aria-hidden="true"></i>{('Wishlist')}</Link></li>
+                                                        <li>
+                                                            <Link to='#' onClick={logout} data-lng="en"><i className="fa fa-sign-out" aria-hidden="true"></i>Logout</Link>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            )}
                                         </ul>
                                     </div>
                                 </div>
-                                <div className="col-lg-6 text-right">
-                                    <ul className="header-dropdown">
+                            </div>
+                        </div>
 
-                                        {!user && (
-                                            <li>
-                                                <Link to={`${process.env.PUBLIC_URL}/pages/login`} data-lng="en"><i className="fa fa-sign-in" aria-hidden="true"></i>Login</Link>
-                                            </li>
-                                        )}
-                                        {/*{!user && (*/}
-                                        {/*    <li>*/}
-                                        {/*        <Link to={`${process.env.PUBLIC_URL}/pages/register`} data-lng="en">Register</Link>*/}
-                                        {/*    </li>*/}
-                                        {/*)}*/}
-                                        {user && (
-                                            <li className="onhover-dropdown mobile-account"
-                                            >
-                                                <i className="fa fa-user" aria-hidden="true"></i>
-                                                {user.email && user.email.split("@")[0]}
-                                                <ul className="onhover-show-div">
-                                                    {user && user.role === 'subscriber' && (
-                                                        <li>
-                                                            <Link to={`${process.env.PUBLIC_URL}/user/history`} data-lng="en"><i className="fa fa-th-large" aria-hidden="true"></i>Dashboard</Link>
-                                                        </li>
-                                                    )}
 
-                                                    {user && user.role === 'admin' && (
-                                                        <li>
-                                                            <Link to={`${process.env.PUBLIC_URL}/admin/dashboard`} data-lng="en"><i className="fa fa-th-large" aria-hidden="true"></i>Dashboard</Link>
-                                                        </li>
-                                                    )}
-                                                    <li className="mobile-wishlist"><Link to={`${process.env.PUBLIC_URL}/user/wishlist`}><i className="fa fa-heart" aria-hidden="true"></i>{('Wishlist')}</Link></li>
-                                                    <li>
-                                                        <Link to='#' onClick={logout} data-lng="en"><i className="fa fa-sign-out" aria-hidden="true"></i>Logout</Link>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        )}
-                                    </ul>
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-sm-12">
+                                    <div className="main-menu">
+                                        <div className="menu-left">
+                                            {/*<div className="navbar">*/}
+                                            {/*	<a href="javascript:void(0)" onClick={openNav}>*/}
+                                            {/*		<div className="bar-style"> <i className="fa fa-bars sidebar-bar" aria-hidden="true"></i></div>*/}
+                                            {/*	</a>*/}
+                                            {/*	/!*SideBar Navigation Component*!/*/}
+                                            {/*	<SideBar/>*/}
+                                            {/*</div>*/}
+                                            <div className="brand-logo">
+                                                <LogoImage />
+                                            </div>
+                                        </div>
+                                        <div className="menu-right pull-right">
+                                            {/*Top Navigation Bar Component*/}
+                                            <NavBar/>
+
+                                            <div>
+                                                <div className="icon-nav">
+                                                    <ul>
+                                                        {/*<li className="onhover-div mobile-search">*/}
+                                                        {/*	<div><img src={`${process.env.PUBLIC_URL}/assets/images/icon/search.png`} onClick={openSearch} className="img-fluid" alt="" />*/}
+                                                        {/*		<i className="fa fa-search" onClick={openSearch}></i></div>*/}
+
+                                                        {/*</li>*/}
+
+                                                        <SearchContainer
+                                                            // openSearch={openSearch}
+                                                            // closeSearch={closeSearch}
+                                                        />
+
+
+                                                        <CartContainer
+                                                            visible={drawer}
+                                                            cart={cart}
+                                                        />
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </header>
+                </div>
 
-
-					<div className="container">
-						<div className="row">
-							<div className="col-sm-12">
-								<div className="main-menu">
-									<div className="menu-left">
-										{/*<div className="navbar">*/}
-										{/*	<a href="javascript:void(0)" onClick={openNav}>*/}
-										{/*		<div className="bar-style"> <i className="fa fa-bars sidebar-bar" aria-hidden="true"></i></div>*/}
-										{/*	</a>*/}
-										{/*	/!*SideBar Navigation Component*!/*/}
-										{/*	<SideBar/>*/}
-										{/*</div>*/}
-										<div className="brand-logo">
-											<LogoImage />
-										</div>
-									</div>
-									<div className="menu-right pull-right">
-										{/*Top Navigation Bar Component*/}
-										<NavBar/>
-
-										<div>
-											<div className="icon-nav">
-												<ul>
-													{/*<li className="onhover-div mobile-search">*/}
-													{/*	<div><img src={`${process.env.PUBLIC_URL}/assets/images/icon/search.png`} onClick={openSearch} className="img-fluid" alt="" />*/}
-													{/*		<i className="fa fa-search" onClick={openSearch}></i></div>*/}
-
-													{/*</li>*/}
-
-                                                    <SearchContainer
-                                                        // openSearch={openSearch}
-                                                        // closeSearch={closeSearch}
-                                                    />
-
-
-													<CartContainer
-                                                    visible={drawer}
-                                                    cart={cart}
-                                                    />
-												</ul>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</header>
 
 
 
                 {/*<div className="ghostHidden">*/}
-                {/*    */}
+
                 {/*</div>*/}
 
 
