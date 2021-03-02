@@ -105,7 +105,7 @@ const Beauty = (props) => {
                                             <div className="slider-contain">
                                                 <div style={{width: "100%", marginTop: "30px", textAlign: "center"}}>
                                                     <h2 style={{color: "#fff", marginBottom: "30px"}}>
-                                                        <Jumbotron text={['Hustle x Bustle', "Urban Fashion"]}/>
+                                                        <Jumbotron text={['Urban Sky', "Urban Fashion"]}/>
                                                     </h2>
                                                     <h1></h1><a href="#" className="btn btn-solid">shop
                                                     now</a>
