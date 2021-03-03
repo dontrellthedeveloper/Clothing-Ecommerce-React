@@ -101,8 +101,7 @@ const Beauty = (props) => {
                                             <div className="slider-contain">
                                                 <div style={{width: "100%", marginTop: "30px", textAlign: "center"}}>
                                                     <h2 style={{color: "#fff", marginBottom: "10px", fontSize: "40px"}}>
-                                                        {/*<Jumbotron text={['Hustle x Bustle', "Top Urban Wear"]}/>*/}
-                                                        URBAN SKY
+                                                        <Jumbotron text={['Urban Sky', "Urban Fashion"]}/>
                                                         {/*<i className="fa fa-times" aria-hidden="true"></i>*/}
                                                     </h2>
                                                     <h1></h1><a href="#" className="btn btn-solid">shop
@@ -116,16 +115,14 @@ const Beauty = (props) => {
                         </div>
 
                         <div>
-                            <div className="home home3">
+                            <div className="home home35">
                                 <div className="container">
                                     <div className="row">
                                         <div className="col">
                                             <div className="slider-contain">
                                                 <div style={{width: "100%", marginTop: "30px", textAlign: "center"}}>
                                                     <h2 style={{color: "#fff", marginBottom: "10px", fontSize: "40px"}}>
-                                                        {/*<Jumbotron text={['Hustle x Bustle', "Top Urban Wear"]}/>*/}
-                                                        URBAN SKY
-                                                        {/*<i className="fa fa-times" aria-hidden="true"></i>*/}
+                                                        <Jumbotron text={['Urban Sky', "Urban Fashion"]}/>
                                                     </h2>
                                                     <h1></h1><a href="#" className="btn btn-solid">shop
                                                     now</a>
