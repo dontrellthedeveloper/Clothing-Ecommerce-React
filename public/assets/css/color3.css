@@ -1489,14 +1489,14 @@ r
   background-image: url("/assets/images/home-banner/home-banner-1.jpg");
 }
 .home-slider .home.home35, .center-slider .home.home35 {
-  background-image: url("/assets/images/home-banner/home-banner-2.jpg");
+  background-image: url("/assets/images/home-banner/urban-sky-slider-6.jpg");
 }
 /*.home-slider .home.home36, .center-slider .home.home36 {*/
-/*  background-image: url("/assets/images/home-banner/36.jpg");*/
+/*  background-image: url("/assets/images/home-banner/home-banner-2.jpg");*/
 /*}*/
-/*.home-slider .home.home37, .center-slider .home.home37 {*/
-/*  background-image: url("/assets/images/home-banner/37.jpg");*/
-/*}*/
+.home-slider .home.home37, .center-slider .home.home37 {
+  background-image: url("/assets/images/home-banner/urban-sky-slider-7.jpg");
+}
 /*.home-slider .home.home38, .center-slider .home.home38 {*/
 /*  background-image: url("/assets/images/home-banner/38.jpg");*/
 /*}*/
